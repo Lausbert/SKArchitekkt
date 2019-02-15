@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'SKArchitekkt_Example' do
+  pod 'SKArchitekkt', :path => '../'
+
+  target 'SKArchitekkt_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
