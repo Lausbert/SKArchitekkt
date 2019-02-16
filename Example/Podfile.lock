@@ -1,0 +1,16 @@
+PODS:
+  - SKArchitekkt (0.1.0)
+
+DEPENDENCIES:
+  - SKArchitekkt (from `../`)
+
+EXTERNAL SOURCES:
+  SKArchitekkt:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  SKArchitekkt: 755e7ba5089537af84bdbaa5fb9da67c2500ca15
+
+PODFILE CHECKSUM: 79e49ace55d7fd945eb87d8710dffdf775bc831b
+
+COCOAPODS: 1.6.0
