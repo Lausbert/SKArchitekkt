@@ -46,9 +46,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "ED83F68920348A760038D96B"
-               BuildableName = "SKArchitekkt_Tests.xctest"
-               BlueprintName = "SKArchitekkt_Tests"
+               BlueprintIdentifier = "5DCAC345221881E80020B403"
+               BuildableName = "UITests.xctest"
+               BlueprintName = "UITests"
                ReferencedContainer = "container:SKArchitekkt.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -64,9 +64,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "ED83F68920348A760038D96B"
-               BuildableName = "SKArchitekkt_Tests.xctest"
-               BlueprintName = "SKArchitekkt_Tests"
+               BlueprintIdentifier = "5DCAC345221881E80020B403"
+               BuildableName = "UITests.xctest"
+               BlueprintName = "UITests"
                ReferencedContainer = "container:SKArchitekkt.xcodeproj">
             </BuildableReference>
          </TestableReference>
