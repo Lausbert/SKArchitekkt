@@ -1,16 +1,23 @@
 PODS:
-  - SKArchitekkt (0.1.0)
+  - CoreArchitekkt (0.1.0)
+  - SKArchitekkt (0.1.0):
+    - CoreArchitekkt (= 0.1.0)
 
 DEPENDENCIES:
   - SKArchitekkt (from `../`)
+
+SPEC REPOS:
+  https://github.com/Lausbert/PodSpecsArchitekkt:
+    - CoreArchitekkt
 
 EXTERNAL SOURCES:
   SKArchitekkt:
     :path: "../"
 
 SPEC CHECKSUMS:
-  SKArchitekkt: 755e7ba5089537af84bdbaa5fb9da67c2500ca15
+  CoreArchitekkt: 57aea056c71375cd430b8b8e02de3c92d43a180c
+  SKArchitekkt: 5352c57798252870546d822c4b00c0092f168ff7
 
-PODFILE CHECKSUM: 79e49ace55d7fd945eb87d8710dffdf775bc831b
+PODFILE CHECKSUM: 16467db9f0a2b67b3f7bc0adf959c9884f367939
 
 COCOAPODS: 1.6.0

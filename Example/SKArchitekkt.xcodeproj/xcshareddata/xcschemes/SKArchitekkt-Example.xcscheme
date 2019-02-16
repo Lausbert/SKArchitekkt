@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "1020"
-   version = "1.3">
+   version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "rm -rf ${BUILT_PRODUCTS_DIR}&#10;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "ED83F67720348A760038D96B"
+                     BuildableName = "SKArchitekkt_Example.app"
+                     BlueprintName = "SKArchitekkt_Example"
+                     ReferencedContainer = "container:SKArchitekkt.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
@@ -17,6 +35,20 @@
                BlueprintIdentifier = "ED83F67720348A760038D96B"
                BuildableName = "SKArchitekkt_Example.app"
                BlueprintName = "SKArchitekkt_Example"
+               ReferencedContainer = "container:SKArchitekkt.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "ED83F68920348A760038D96B"
+               BuildableName = "SKArchitekkt_Tests.xctest"
+               BlueprintName = "SKArchitekkt_Tests"
                ReferencedContainer = "container:SKArchitekkt.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

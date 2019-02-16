@@ -1,5 +1,7 @@
-use_frameworks!
+platform :macos, '10.14'
+source 'https://github.com/Lausbert/PodSpecsArchitekkt.git'
 
+use_frameworks!
 target 'SKArchitekkt_Example' do
   pod 'SKArchitekkt', :path => '../'
 
