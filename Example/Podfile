@@ -5,8 +5,4 @@ use_frameworks!
 target 'SKArchitekkt_Example' do
   pod 'SKArchitekkt', :path => '../'
 
-  target 'UITests' do
-    inherit! :search_paths
-
-  end
 end
