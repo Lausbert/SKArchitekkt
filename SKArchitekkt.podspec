@@ -17,5 +17,5 @@ Pod::Spec.new do |s|
     
     s.source_files = 'SKArchitekkt/Source/**/*'
     
-    s.dependency 'CoreArchitekkt', '0.1.0'
+    s.dependency 'CoreArchitekkt'
 end
