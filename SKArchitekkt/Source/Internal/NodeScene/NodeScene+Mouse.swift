@@ -4,7 +4,7 @@ import SpriteKit
 import CoreArchitekkt
 
 extension NodeScene {
-    
+
     // MARK: - Internal -
 
     func setUpCamera() {
@@ -14,11 +14,11 @@ extension NodeScene {
         movedNode = nil
         frozenNodes = []
     }
-    
+
     func makeMoveableByMouse(_ node: SKNode) {
         node.name = NodeScene.movableByMouseIdentifier
     }
-    
+
     override func mouseDown(with event: NSEvent) {
         let position = event.location(in: self)
         let nodes = self.nodes(at: position).filter { $0.name == NodeScene.movableByMouseIdentifier }
@@ -39,7 +39,7 @@ extension NodeScene {
             }
         }
     }
-    
+
     override func mouseDragged(with event: NSEvent) {
         let scale = (camera?.xScale ?? 1)
         if frozenNodes.isEmpty {
@@ -51,7 +51,7 @@ extension NodeScene {
             movedNode?.position.y -= scale*event.deltaY
         }
     }
-    
+
     override func mouseUp(with event: NSEvent) {
         for node in frozenNodes {
             node.physicsBody?.isDynamic = true
@@ -59,7 +59,7 @@ extension NodeScene {
         frozenNodes = []
         movedNode = nil
     }
-    
+
     override func scrollWheel(with event: NSEvent) {
         guard let currentScale = camera?.xScale else { return }
         let newScale: CGFloat = min(max(0.2, currentScale - event.deltaY), 50)
@@ -67,9 +67,9 @@ extension NodeScene {
         camera?.xScale = roundedNewScale
         camera?.yScale = roundedNewScale
     }
-    
+
     // MARK: - Private -
-    
+
     private static let movableByMouseIdentifier = "movableByMouse"
     private static let movedNodeObjectAssociation = ObjectAssociation<SKNode?>()
     private var movedNode: SKNode? {
@@ -81,7 +81,7 @@ extension NodeScene {
         get { return NodeScene.frozenNodesObjectAssociation[self] ?? [] }
         set { NodeScene.frozenNodesObjectAssociation[self] = newValue }
     }
-    
+
     private func nearestNodeTo(position: CGPoint, nodes: [SKNode]) -> SKNode? {
         let sortedNodes = nodes.sorted { (firstNode, secondNode) -> Bool in
             let firstRadius = (firstNode as? ShapeNode)?.radius ?? 0
@@ -93,7 +93,7 @@ extension NodeScene {
         }
         return sortedNodes.first
     }
-    
+
     private func replaceNodeWithParentIfNeeded(node: SKNode?) -> SKNode? {
         var node = node
         while (node?.parent?.children.filter { $0.name == NodeScene.movableByMouseIdentifier }.count ?? Int.max) <= 1 {
@@ -101,5 +101,5 @@ extension NodeScene {
         }
         return node
     }
-    
+
 }

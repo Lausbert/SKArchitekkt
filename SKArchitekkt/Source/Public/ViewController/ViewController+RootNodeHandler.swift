@@ -4,10 +4,9 @@ import Foundation
 import CoreArchitekkt
 
 extension ViewController: RootNodeHandler {
-    
+
     public func handle(rootNode: Node) {
         (children.filter { $0 is NodeViewController }.first as? NodeViewController)?.handle(rootNode: rootNode)
     }
-    
-}
 
+}

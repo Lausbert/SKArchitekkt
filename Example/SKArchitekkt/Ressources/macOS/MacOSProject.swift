@@ -99,5 +99,5 @@ struct MacOSProject: Ressource {
   "scope" : "root"
 }
 """
-    
+
 }

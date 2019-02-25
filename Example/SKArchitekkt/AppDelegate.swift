@@ -6,13 +6,13 @@ import SKArchitekkt
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    
+
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         let viewController = setUpViewController(sideLength: 800)
         let rootNode = getRootNode()
         viewController.handle(rootNode: rootNode)
     }
-    
+
     private func setUpViewController(sideLength: CGFloat) -> ViewController {
         let window = NSWindow(contentRect: NSRect(x: ((NSScreen.main?.frame.width ?? 0) - sideLength)/2, y: ((NSScreen.main?.frame.height ?? 0) - sideLength)/2, width: sideLength, height: sideLength), styleMask: [.titled, .closable, .resizable, .miniaturizable], backing: .buffered, defer: false)
         window.makeKeyAndOrderFront(nil)
@@ -21,7 +21,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         window.contentViewController = viewController
         return viewController
     }
-    
+
     private func getRootNode() -> Node {
         guard let ressourceIdentifier = UserDefaults.standard.string(forKey: "ressourceIdentifier") else { fatalError("Could not setup root node.") }
         let ressourceJsonString: String
@@ -37,5 +37,5 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         guard let rootNode = try? JSONDecoder().decode(Node.self, from: data) else { fatalError("Could not setup root node.") }
         return rootNode
     }
-    
+
 }

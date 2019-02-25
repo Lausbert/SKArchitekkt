@@ -12,7 +12,7 @@ extension UITests {
             }
         }
     }
-    
+
     func testIOSProject() {
         testRootNodeHandlingFor(ressourceIdentifier: IOSProject.identifier()) { (elementTree) in
             for element in elementTree {

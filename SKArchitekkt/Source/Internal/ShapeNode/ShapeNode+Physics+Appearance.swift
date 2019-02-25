@@ -4,15 +4,15 @@ import SpriteKit
 import CoreArchitekkt
 
 extension ShapeNode {
-    
+
     // MARK: - Internal -
-    
+
     private static let radiusObjectAssociation = ObjectAssociation<CGFloat>()
     private(set) var radius: CGFloat {
         get { return ShapeNode.radiusObjectAssociation[self] ?? 16 }
         set { ShapeNode.radiusObjectAssociation[self] = newValue }
     }
-    
+
     func setUpPhysicsAndAppearance() {
         guard physicsBody == nil else { return }
         assert(physicsBody == nil, "Setup shapenode a second time.")
@@ -22,7 +22,7 @@ extension ShapeNode {
         updateRadius()
         resetChildrenPosition()
     }
-    
+
     func didDoubleTap() {
         guard castedChildren.count > 0 else { return }
         isCollapsed = !isCollapsed
@@ -44,12 +44,12 @@ extension ShapeNode {
             resetChildrenPosition()
         }
     }
-    
-    func setColors(_ dictionary: [String : NSColor]) {
+
+    func setColors(_ dictionary: [String: NSColor]) {
         scopeColorDictionary = dictionary
         updateColor()
     }
-    
+
     func updatePhysicsWith(forceDecay: CGFloat, velocityDecay: CGFloat) {
         castedChildren.forEach { $0.updatePhysicsWith(forceDecay: forceDecay, velocityDecay: velocityDecay) }
         physicsBody?.velocity *= velocityDecay
@@ -57,14 +57,14 @@ extension ShapeNode {
         updateNegativeRadialGravitationalForceOnSiblingsWith(forceDecay: forceDecay)
         updateSpringForceBetweenByArcConnectedNodes(forceDecay: forceDecay)
     }
-    
+
     func updateAppearance() {
         castedChildren.forEach { $0.updateAppearance() }
         updateArcNodesAppearance()
     }
-    
+
     // MARK: - Private -
-    
+
     private static let isCollapsedObjectAssociation = ObjectAssociation<Bool>()
     private var isCollapsed: Bool {
         get { return ShapeNode.isCollapsedObjectAssociation[self] ?? true }
@@ -80,7 +80,7 @@ extension ShapeNode {
         get { return ShapeNode.arcNodeDictionaryObjectAssociation[self] ?? [:] }
         set { ShapeNode.arcNodeDictionaryObjectAssociation[self] = newValue }
     }
-    
+
     private func setUpPhysicsBody() {
         let physicsBody = SKPhysicsBody(circleOfRadius: radius)
         physicsBody.isDynamic = true
@@ -91,7 +91,7 @@ extension ShapeNode {
         physicsBody.collisionBitMask = 0
         self.physicsBody = physicsBody
     }
-    
+
     private func updateRadius() {
         let minimumRadius = CGFloat(16)
         let areaOfChildren = isCollapsed ? minimumRadius : castedChildren.map { $0.radius^^2 }.reduce(0, +)
@@ -104,7 +104,7 @@ extension ShapeNode {
         updateTextNodes()
         updateColor()
     }
-    
+
     private func updateAncestorsRadius() {
         var node = self
         while let parent = node.castedParent {
@@ -112,7 +112,7 @@ extension ShapeNode {
             node = parent
         }
     }
-    
+
     private func updateConstraints() {
         castedChildren.forEach {
             $0.constraints = [SKConstraint.distance(SKRange(lowerLimit: 0, upperLimit: radius - $0.radius), to: self)]
@@ -122,11 +122,11 @@ extension ShapeNode {
             smaller.constraints?.append(SKConstraint.distance(SKRange(lowerLimit: smaller.radius + bigger.radius), to: bigger))
         }
     }
-    
+
     private func updatePhysicsBody() {
         physicsBody?.mass = radius^^2
     }
-    
+
     private func updateTextNodes() {
         guard let name = identifier?.components(separatedBy: ".").last else { return }
         children.filter { $0 is SKLabelNode }.forEach { $0.removeFromParent() }
@@ -170,23 +170,23 @@ extension ShapeNode {
             }
         }
     }
-    
+
     private func updateColor() {
         fillColor = isCollapsed ? colorForScope() : .clear
         strokeColor = colorForScope()
         lineWidth = 3
     }
-    
+
     private func colorForScope() -> NSColor {
         return scopeColorDictionary[scope, default: .windowFrameColor]
     }
-    
+
     private func resetChildrenPosition() {
         castedChildren.forEach {
             $0.position = CGPoint(x: CGFloat.random(in: -radius/2...radius/2), y: CGFloat.random(in: -radius/2...radius/2))
         }
     }
-    
+
     private func updateRadialGravitationalForceOnChildrenWith(forceDecay: CGFloat) {
         guard !isCollapsed else { return }
         castedChildren.forEach {
@@ -194,7 +194,7 @@ extension ShapeNode {
             $0.physicsBody?.applyForce(force)
         }
     }
-    
+
     private func updateNegativeRadialGravitationalForceOnSiblingsWith(forceDecay: CGFloat) {
         guard !isCollapsed, castedChildren.count > 1 else { return }
         for pair in siblingPairs {
@@ -203,7 +203,7 @@ extension ShapeNode {
             pair.1.physicsBody?.applyForce(-force)
         }
     }
-    
+
     private func updateSpringForceBetweenByArcConnectedNodes(forceDecay: CGFloat) {
         guard !isHidden else { return }
         for arc in resultingArcs {
@@ -224,7 +224,7 @@ extension ShapeNode {
             }
         }
     }
-    
+
     private func computeForceBetween(first: ShapeNode, second: ShapeNode, minimumRadius: CGFloat = 0, multiplier: CGFloat = 1, proportionalToDistanceRaisedToPowerOf power: CGFloat = 1) -> CGVector {
         guard let scene = scene else { return CGVector.zero }
         let distanceVector = first.convert(CGPoint.zero, to: scene) - second.convert(CGPoint.zero, to: scene)
@@ -234,13 +234,13 @@ extension ShapeNode {
         let force = 100*multiplier*newDistance^^power*normalizedDistanceVector
         return force
     }
-    
+
     private func updateArcNodesAppearance() {
         arcNodeDictionary.forEach { $1.isHidden = true }
         guard !isHidden else { return }
         resultingArcs.forEach { updateArcNodeAppearance(to: $0) }
     }
-    
+
     private func updateArcNodeAppearance(to: ShapeNode) {
         guard let arcNode = arcNodeDictionary[to] else {
             let arcNode = SKShapeNode()
@@ -266,5 +266,5 @@ extension ShapeNode {
         path.addLine(to: toPosition)
         arcNode.path = path
     }
-    
+
 }

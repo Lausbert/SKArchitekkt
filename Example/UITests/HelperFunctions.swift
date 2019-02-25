@@ -3,7 +3,7 @@
 import XCTest
 
 class UITests: XCTestCase {
-    
+
     func testRootNodeHandlingFor(ressourceIdentifier: String, elementTreeValidationHandler: (_ elementTree: [XCUIElement]) -> Void) {
         let app = XCUIApplication()
         app.launchArguments.append("-ressourceIdentifier")

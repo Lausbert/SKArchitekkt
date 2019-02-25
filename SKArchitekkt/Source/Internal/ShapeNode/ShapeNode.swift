@@ -4,14 +4,14 @@ import SpriteKit
 import CoreArchitekkt
 
 class ShapeNode: SKShapeNode {
-    
+
     // MARK: - Internal -
-    
+
     let isRoot: Bool
     let identifier: String?
     let scope: String
     private(set) var arcs: [ShapeNode]
-    
+
     var castedChildren: [ShapeNode] {
         return children.compactMap { $0 as? ShapeNode }
     }
@@ -51,18 +51,18 @@ class ShapeNode: SKShapeNode {
         }
         return allCastedAncestors
     }
-    
+
     convenience init(rootNode node: CoreArchitekkt.Node) {
         assert(node.isRoot, "Initialized ShapeNode with non-root node.")
         self.init(node: node)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Private -
-        
+
     private init(node: CoreArchitekkt.Node) {
         isRoot = node.isRoot
         identifier = node.identifier
@@ -70,7 +70,7 @@ class ShapeNode: SKShapeNode {
         arcs = node.arcs.map { ShapeNode(node: $0) }
         super.init()
         node.children.forEach { addChild(ShapeNode(node: $0)) }
-        
+
         if isRoot {
             let namedDescendants = Dictionary(uniqueKeysWithValues: allCastedDescendants.compactMap { (node: ShapeNode) -> (String, ShapeNode)? in
                 if let identifier = node.identifier {
@@ -80,10 +80,10 @@ class ShapeNode: SKShapeNode {
             })
             replaceAllNamedArcs(with: namedDescendants)
         }
-        
+
         setUpPhysicsAndAppearance()
     }
-    
+
     private func replaceAllNamedArcs(with namedDescendants: [String: ShapeNode]) {
         for arc in arcs {
             assert(identifier != nil)
@@ -94,11 +94,11 @@ class ShapeNode: SKShapeNode {
         }
         castedChildren.forEach { $0.replaceAllNamedArcs(with: namedDescendants) }
     }
-    
+
     private func replace(arc: ShapeNode, with namedNode: ShapeNode) {
         if let index = arcs.firstIndex(of: arc) {
             arcs[index] = namedNode
         }
     }
-    
+
 }

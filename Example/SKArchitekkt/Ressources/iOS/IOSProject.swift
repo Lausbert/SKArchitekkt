@@ -3,7 +3,7 @@
 import Foundation
 
 struct IOSProject: Ressource {
-    
+
     static let jsonString: String = """
 {
   "children" : [
@@ -215,5 +215,5 @@ struct IOSProject: Ressource {
   "scope" : "root"
 }
 """
-    
+
 }

@@ -4,9 +4,9 @@ import Foundation
 import CoreArchitekkt
 
 extension NodeView: RootNodeHandler {
-    
+
     // MARK: - Public -
-    
+
     public func handle(rootNode: Node) {
         let rootNode = ShapeNode(rootNode: rootNode)
         (scene as? NodeScene)?.add(rootNode: rootNode)
@@ -22,5 +22,5 @@ extension NodeView: RootNodeHandler {
             "9": #colorLiteral(red: 0.2392974496, green: 0.1283998489, blue: 0.7470512986, alpha: 1)
         ])
     }
-    
+
 }
