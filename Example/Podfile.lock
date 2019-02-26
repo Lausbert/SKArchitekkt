@@ -1,5 +1,5 @@
 PODS:
-  - CoreArchitekkt (0.1.4)
+  - CoreArchitekkt (0.1.10)
   - SKArchitekkt (0.1.2):
     - CoreArchitekkt
 
@@ -15,7 +15,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  CoreArchitekkt: e56f4424b6cc7aabd9a7a59e5aad5949e9d0d053
+  CoreArchitekkt: 7666d594bc25c30fe6cd6d39cc5c3926e24bbfe2
   SKArchitekkt: 79121e14050794e3f4f479c886818067925c6505
 
 PODFILE CHECKSUM: caa0cc4ecc0e188d27fc795de996e8ab16ae7cac
