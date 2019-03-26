@@ -86,7 +86,7 @@ class ShapeNode: SKShapeNode {
 
     private func replaceAllNamedArcs(with namedDescendants: [String: ShapeNode]) {
         for arc in arcs {
-            assert(identifier != nil)
+            assert(arc.identifier != nil)
             guard let identifier = arc.identifier else { return }
             assert(namedDescendants[identifier] != nil)
             guard let namedNode = namedDescendants[identifier] else { return }
