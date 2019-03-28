@@ -52,9 +52,30 @@ class ShapeNode: SKShapeNode {
         return allCastedAncestors
     }
 
-    convenience init(rootNode node: CoreArchitekkt.Node) {
-        assert(node.isRoot, "Initialized ShapeNode with non-root node.")
-        self.init(node: node)
+    convenience init(rootNode: CoreArchitekkt.Node) {
+        assert(rootNode.isRoot, "Initialized ShapeNode with non-root node.")
+        self.init(node: rootNode)
+        var nodeDictionary: [CoreArchitekkt.Node: ShapeNode] = [rootNode: self]
+        rootNode.allDescendants.forEach { (node) in
+            nodeDictionary[node] = ShapeNode(node: node)
+        }
+        for (node, shapeNode) in nodeDictionary {
+            for child in node.children {
+                assert(nodeDictionary[child] != nil)
+                if let childShapeNode = nodeDictionary[child] {
+                    shapeNode.addChild(childShapeNode)
+                }
+            }
+            for arc in node.arcs {
+                assert(nodeDictionary[arc] != nil)
+                if let arcShapeNode = nodeDictionary[arc] {
+                    shapeNode.arcs.append(arcShapeNode)
+                }
+            }
+        }
+        ([self] + allCastedDescendants).forEach { (node) in
+            node.setUpPhysicsAndAppearance()
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -67,38 +88,8 @@ class ShapeNode: SKShapeNode {
         isRoot = node.isRoot
         identifier = node.identifier
         scope = node.scope
-        arcs = node.arcs.map { ShapeNode(node: $0) }
+        arcs = []
         super.init()
-        node.children.forEach { addChild(ShapeNode(node: $0)) }
-
-        if isRoot {
-            let namedDescendants = Dictionary(uniqueKeysWithValues: allCastedDescendants.compactMap { (node: ShapeNode) -> (String, ShapeNode)? in
-                if let identifier = node.identifier {
-                    return (identifier, node)
-                }
-                return nil
-            })
-            replaceAllNamedArcs(with: namedDescendants)
-        }
-
-        setUpPhysicsAndAppearance()
-    }
-
-    private func replaceAllNamedArcs(with namedDescendants: [String: ShapeNode]) {
-        for arc in arcs {
-            assert(arc.identifier != nil)
-            guard let identifier = arc.identifier else { return }
-            assert(namedDescendants[identifier] != nil)
-            guard let namedNode = namedDescendants[identifier] else { return }
-            replace(arc: arc, with: namedNode)
-        }
-        castedChildren.forEach { $0.replaceAllNamedArcs(with: namedDescendants) }
-    }
-
-    private func replace(arc: ShapeNode, with namedNode: ShapeNode) {
-        if let index = arcs.firstIndex(of: arc) {
-            arcs[index] = namedNode
-        }
     }
 
 }

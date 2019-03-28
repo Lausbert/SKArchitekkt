@@ -176,7 +176,7 @@ public class Node: NSObject, Codable {
         // parent is missing on purpose to avoid circular dependencies during encoding
     }
 
-    private var allDescendants: [Node] {
+    public var allDescendants: [Node] {
         guard !children.isEmpty else { return [] }
         return children + children.flatMap { $0.allDescendants }
     }
