@@ -2,7 +2,7 @@
 
 import Foundation
 
-public class Node: Codable {
+public class Node: NSObject, Codable {
 
     // MARK: - Public -
 
@@ -11,12 +11,15 @@ public class Node: Codable {
     public let isRoot: Bool
     public let identifier: String?
     public private(set) var scope: Scope
-    // for cleaner encoded nodes _children and _arcs should be optional; for cleaner API children and arcs should not
+    // for cleaner encoded nodes _children, _arcs and _tags should be optional; for cleaner API children, arcs and tags should not
     public var children: [Node] {
         return _children ?? []
     }
     public var arcs: [Node] {
         return _arcs ?? []
+    }
+    public var tags: Set<String> {
+        return _tags ?? []
     }
     public private(set) weak var parent: Node?
 
@@ -43,11 +46,6 @@ public class Node: Codable {
     }
 
     public func add(child: Node) {
-        // no node should reference its children within _arcs
-        if arcs.contains(child) {
-            _arcs?.remove(element: child)
-        }
-
         if _children == nil {
             _children = []
         }
@@ -80,6 +78,13 @@ public class Node: Codable {
         _arcs?.append(arc)
     }
 
+    public func add(tag: String) {
+        if _tags == nil {
+            _tags = []
+        }
+        _tags?.insert(tag)
+    }
+
     // MARK: Codable
 
     public func encode(to encoder: Encoder) throws {
@@ -89,13 +94,19 @@ public class Node: Codable {
             try container.encode(identifier, forKey: .identifier)
         }
         try container.encode(scope, forKey: .scope)
-        if let children = _children {
+        if let children = _children, !children.isEmpty {
             try container.encode(children, forKey: .children)
         }
-
         // reinitialize nodes in _arcs without children and arcs to avoid circular dependencies
-        if let arcs = _arcs?.map({ Node(identifier: $0.identifier, scope: $0.scope, isRoot: $0.isRoot) }) {
+        if let arcs = _arcs?.map({ Node(identifier: $0.identifier, scope: $0.scope, isRoot: $0.isRoot) }), !arcs.isEmpty {
             try container.encode(arcs, forKey: .arcs)
+        }
+        if let tags = _tags {
+            #if DEBUG
+            try container.encode(tags.sorted(), forKey: .tags)
+            #else
+            try container.encode(tags, forKey: .tags)
+            #endif
         }
     }
 
@@ -110,6 +121,9 @@ public class Node: Codable {
         scope = try container.decode(Scope.self, forKey: .scope)
         _children = try container.decodeIfPresent([Node].self, forKey: .children)
         _arcs = try container.decodeIfPresent([Node].self, forKey: .arcs)
+        _tags = try container.decodeIfPresent(Set<String>.self, forKey: .tags)
+
+        super.init()
 
         _children?.forEach { $0.parent = self }
 
@@ -148,6 +162,7 @@ public class Node: Codable {
 
     private var _children: [Node]?
     private var _arcs: [Node]?
+    private var _tags: Set<String>?
 
     // MARK: Codable
 
@@ -157,6 +172,7 @@ public class Node: Codable {
         case scope
         case children
         case arcs
+        case tags
         // parent is missing on purpose to avoid circular dependencies during encoding
     }
 

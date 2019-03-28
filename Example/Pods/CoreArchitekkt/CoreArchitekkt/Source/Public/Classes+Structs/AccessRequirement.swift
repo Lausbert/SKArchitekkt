@@ -6,12 +6,12 @@ public struct AccessRequirement: Hashable {
 
     // MARK: - Public -
 
-    let key: String
-    let description: String
-    let fileName: String?
-    let fileType: String?
+    public let key: String?
+    public let description: String
+    public let fileName: String?
+    public let fileType: String?
 
-    public init(key: String, description: String, fileName: String?, fileType: String?) {
+    public init(key: String?, description: String, fileName: String?, fileType: String?) {
         self.key = key
         self.description = description
         self.fileName = fileName
