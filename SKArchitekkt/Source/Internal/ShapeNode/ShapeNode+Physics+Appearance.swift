@@ -40,6 +40,7 @@ extension ShapeNode {
             }
         }
         updateRadius()
+        updateAncestorsRadius()
         if !isCollapsed {
             resetChildrenPosition()
         }
@@ -102,7 +103,6 @@ extension ShapeNode {
         let radius = max(minimumRadius, 2.5*sqrt(areaOfChildren))
         path = CGPath(ellipseIn: CGRect(x: -radius, y: -radius, width: 2*radius, height: 2*radius), transform: nil)
         self.radius = radius
-        updateAncestorsRadius()
         updateConstraints()
         updatePhysicsBody()
         updateTextNodes()
@@ -121,10 +121,6 @@ extension ShapeNode {
         castedChildren.forEach {
             $0.constraints = [SKConstraint.distance(SKRange(lowerLimit: 0, upperLimit: radius - $0.radius), to: self)]
         }
-//        siblingPairs.forEach {
-//            let (smaller, bigger) = $0.0.radius < $0.1.radius ? ($0.0, $0.1) : ($0.1, $0.0)
-//            smaller.constraints?.append(SKConstraint.distance(SKRange(lowerLimit: smaller.radius + bigger.radius), to: bigger))
-//        }
     }
 
     private func updatePhysicsBody() {
