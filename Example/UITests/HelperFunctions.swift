@@ -9,7 +9,7 @@ class UITests: XCTestCase {
         app.launchArguments.append("-ressourceIdentifier")
         app.launchArguments.append(ressourceIdentifier)
         app.launch()
-        sleep(60)
+        sleep(3600)
         elementTreeValidationHandler(app.groups["SKView"].children(matching: .image).allElementsBoundByIndex)
     }
 

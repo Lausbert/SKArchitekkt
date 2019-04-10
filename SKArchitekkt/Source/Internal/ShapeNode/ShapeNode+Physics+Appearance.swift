@@ -50,12 +50,16 @@ extension ShapeNode {
         updateColor()
     }
 
-    func updatePhysicsWith(forceDecay: CGFloat, velocityDecay: CGFloat) {
-        castedChildren.forEach { $0.updatePhysicsWith(forceDecay: forceDecay, velocityDecay: velocityDecay) }
-        physicsBody?.velocity *= velocityDecay
+    func updatePhysicsWith(forceDecay: CGFloat) {
+        castedChildren.forEach { $0.updatePhysicsWith(forceDecay: forceDecay) }
         updateRadialGravitationalForceOnChildrenWith(forceDecay: forceDecay)
         updateNegativeRadialGravitationalForceOnSiblingsWith(forceDecay: forceDecay)
         updateSpringForceBetweenByArcConnectedNodes(forceDecay: forceDecay)
+    }
+    
+    func updateVelocity(velocityDecay: CGFloat, velocityMaximum: CGFloat) {
+        castedChildren.forEach { $0.updateVelocity(velocityDecay: velocityDecay, velocityMaximum: velocityMaximum) }
+        reduceVelocityWith(velocityDecay: velocityDecay, velocityMaximum: velocityMaximum)
     }
 
     func updateAppearance() {
@@ -95,7 +99,7 @@ extension ShapeNode {
     private func updateRadius() {
         let minimumRadius = CGFloat(16)
         let areaOfChildren = isCollapsed ? minimumRadius : castedChildren.map { $0.radius^^2 }.reduce(0, +)
-        let radius = max(minimumRadius, sqrt(3*areaOfChildren))
+        let radius = max(minimumRadius, 2.5*sqrt(areaOfChildren))
         path = CGPath(ellipseIn: CGRect(x: -radius, y: -radius, width: 2*radius, height: 2*radius), transform: nil)
         self.radius = radius
         updateAncestorsRadius()
@@ -117,10 +121,10 @@ extension ShapeNode {
         castedChildren.forEach {
             $0.constraints = [SKConstraint.distance(SKRange(lowerLimit: 0, upperLimit: radius - $0.radius), to: self)]
         }
-        siblingPairs.forEach {
-            let (smaller, bigger) = $0.0.radius < $0.1.radius ? ($0.0, $0.1) : ($0.1, $0.0)
-            smaller.constraints?.append(SKConstraint.distance(SKRange(lowerLimit: smaller.radius + bigger.radius), to: bigger))
-        }
+//        siblingPairs.forEach {
+//            let (smaller, bigger) = $0.0.radius < $0.1.radius ? ($0.0, $0.1) : ($0.1, $0.0)
+//            smaller.constraints?.append(SKConstraint.distance(SKRange(lowerLimit: smaller.radius + bigger.radius), to: bigger))
+//        }
     }
 
     private func updatePhysicsBody() {
@@ -186,11 +190,20 @@ extension ShapeNode {
             $0.position = CGPoint(x: CGFloat.random(in: -radius/2...radius/2), y: CGFloat.random(in: -radius/2...radius/2))
         }
     }
+    
+    private func reduceVelocityWith(velocityDecay: CGFloat, velocityMaximum: CGFloat) {
+        physicsBody?.velocity *= velocityDecay
+        guard let velocity = physicsBody?.velocity else { return }
+        let absoluteVelocity = velocity.length()
+        if absoluteVelocity > velocityMaximum {
+            physicsBody?.velocity = velocityMaximum*(velocity/absoluteVelocity)
+        }
+    }
 
     private func updateRadialGravitationalForceOnChildrenWith(forceDecay: CGFloat) {
         guard !isCollapsed else { return }
         castedChildren.forEach {
-            let force = computeForceBetween(first: self, second: $0, minimumRadius: radius, multiplier: forceDecay*radius^^2*$0.radius^^2, proportionalToDistanceRaisedToPowerOf: -2)
+            let force = computeForceBetween(first: self, second: $0, minimumRadius: radius, multiplier: forceDecay*radius^^2*$0.radius^^2, proportionalToDistanceRaisedToPowerOf: -1.9)
             $0.physicsBody?.applyForce(force)
         }
     }
@@ -198,7 +211,7 @@ extension ShapeNode {
     private func updateNegativeRadialGravitationalForceOnSiblingsWith(forceDecay: CGFloat) {
         guard !isCollapsed, castedChildren.count > 1 else { return }
         for pair in siblingPairs {
-            let force = computeForceBetween(first: pair.0, second: pair.1, multiplier: forceDecay*pair.0.radius^^2*pair.1.radius^^2, proportionalToDistanceRaisedToPowerOf: -1.5)
+            let force = computeForceBetween(first: pair.0, second: pair.1, multiplier: forceDecay*pair.0.radius^^2*pair.1.radius^^2, proportionalToDistanceRaisedToPowerOf: -1.3)
             pair.0.physicsBody?.applyForce(force)
             pair.1.physicsBody?.applyForce(-force)
         }
@@ -207,7 +220,7 @@ extension ShapeNode {
     private func updateSpringForceBetweenByArcConnectedNodes(forceDecay: CGFloat) {
         guard !isHidden else { return }
         for arc in resultingArcs {
-            let force = computeForceBetween(first: self, second: arc, multiplier: forceDecay, proportionalToDistanceRaisedToPowerOf: 1.5)
+            let force = computeForceBetween(first: self, second: arc, multiplier: forceDecay, proportionalToDistanceRaisedToPowerOf: 1.1)
             self.physicsBody?.applyForce(-force)
             arc.physicsBody?.applyForce(force)
             var node = self
