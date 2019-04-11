@@ -56,6 +56,7 @@ extension ShapeNode {
     }
 
     func updatePhysicsWith(forceDecay: CGFloat, velocityDecay: CGFloat) {
+        guard !isHidden else { return }
         castedChildren.forEach { $0.updatePhysicsWith(forceDecay: forceDecay, velocityDecay: velocityDecay) }
         updateRadialGravitationalForceOnChildrenWith(forceDecay: forceDecay)
         updateNegativeRadialGravitationalForceOnSiblingsWith(forceDecay: forceDecay)
@@ -64,6 +65,7 @@ extension ShapeNode {
     }
 
     func updateAppearance() {
+        guard !isHidden else { return }
         castedChildren.forEach { $0.updateAppearance() }
         updateArcNodesAppearance()
     }
@@ -238,7 +240,6 @@ extension ShapeNode {
 
     private func updateArcNodesAppearance() {
         arcNodeDictionary.forEach { $1.isHidden = true }
-        guard !isHidden else { return }
         resultingArcs.forEach { updateArcNodeAppearance(to: $0) }
     }
 
