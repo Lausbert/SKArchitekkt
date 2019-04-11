@@ -82,7 +82,7 @@ class ShapeNode: SKShapeNode {
     }
 
     // MARK: - Private -
-    
+
     private var arcs: [ShapeNode]
 
     private init(node: CoreArchitekkt.Node) {
