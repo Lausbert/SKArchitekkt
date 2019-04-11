@@ -103,7 +103,7 @@ extension ShapeNode {
     private func updateRadius() {
         let minimumRadius = CGFloat(16)
         let areaOfChildren = isCollapsed ? minimumRadius : castedChildren.map { $0.radius^^2 }.reduce(0, +)
-        let radius = max(minimumRadius, 2.5*sqrt(areaOfChildren))
+        let radius = max(minimumRadius, 2.2*sqrt(areaOfChildren))
         path = CGPath(ellipseIn: CGRect(x: -radius, y: -radius, width: 2*radius, height: 2*radius), transform: nil)
         self.radius = radius
         updateConstraints()
@@ -161,7 +161,7 @@ extension ShapeNode {
                 labelNode.fontColor = .black
                 labelNode.fontName = NSFont.systemFont(ofSize: fontSize).fontName
             } else {
-                labelNode.fontColor = .textColor
+                labelNode.fontColor = NSColor.textColor.blended(withFraction: 0.3, of: .clear)
                 labelNode.fontName = NSFont.systemFont(ofSize: fontSize, weight: .light).fontName
             }
             addChild(labelNode)
@@ -211,28 +211,30 @@ extension ShapeNode {
     private func updateSpringForceBetweenByArcConnectedNodes(forceDecay: CGFloat) {
         guard !isHidden else { return }
         for arc in resultingArcs {
-            let force = computeForceBetween(first: self, second: arc, multiplier: forceDecay, proportionalToDistanceRaisedToPowerOf: 1.1)
-            self.physicsBody?.applyForce(-force)
-            arc.physicsBody?.applyForce(force)
-            var node = self
-            while let parent = node.castedParent, !arc.allCastedAncestors.contains(parent) {
-                parent.physicsBody?.applyForce(-force)
-                arc.physicsBody?.applyForce(force)
-                node = parent
+            var nodes = [self]
+            while let parent = nodes.last?.castedParent, !arc.allCastedAncestors.contains(parent) {
+                nodes.append(parent)
             }
-            node = arc
-            while let parent = node.castedParent, !allCastedAncestors.contains(parent) {
-                self.physicsBody?.applyForce(-force)
-                parent.physicsBody?.applyForce(force)
-                node = parent
+            var arcs = [arc]
+            while let parent = arcs.last?.castedParent, !allCastedAncestors.contains(parent) {
+                arcs.append(parent)
+            }
+            guard let lastNode = nodes.last, let lastArc = arcs.last else { return }
+            let offSetDistance = -(lastNode.radius + lastArc.radius)
+            let force = computeForceBetween(first: self, second: arc, offSetDistance: offSetDistance, multiplier: forceDecay, proportionalToDistanceRaisedToPowerOf: 1.8)
+            nodes.forEach {
+                $0.physicsBody?.applyForce(-force)
+            }
+            arcs.forEach {
+                $0.physicsBody?.applyForce(force)
             }
         }
     }
 
-    private func computeForceBetween(first: ShapeNode, second: ShapeNode, minimumRadius: CGFloat = 0, multiplier: CGFloat = 1, proportionalToDistanceRaisedToPowerOf power: CGFloat = 1) -> CGVector {
+    private func computeForceBetween(first: ShapeNode, second: ShapeNode, offSetDistance: CGFloat = 0, minimumRadius: CGFloat = 0, multiplier: CGFloat = 1, proportionalToDistanceRaisedToPowerOf power: CGFloat = 1) -> CGVector {
         guard let scene = scene else { return CGVector.zero }
         let distanceVector = first.convert(CGPoint.zero, to: scene) - second.convert(CGPoint.zero, to: scene)
-        let distance = distanceVector.length()
+        let distance = distanceVector.length() + offSetDistance
         let newDistance = max(distance, minimumRadius)
         let normalizedDistanceVector = distance > 0 ? distanceVector/distance : CGVector.zero // important note: normalizedDistanceVector is not really normalized in case of distance <= 0
         let force = 100*multiplier*newDistance^^power*normalizedDistanceVector
