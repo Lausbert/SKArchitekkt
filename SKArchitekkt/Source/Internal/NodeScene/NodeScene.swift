@@ -6,10 +6,9 @@ class NodeScene: SKScene {
 
     private var forceDecay: CGFloat = 1
     private let forceDecayTarget: CGFloat = 0
-    private let forceDecayMin: CGFloat = 0.02
+    private let forceDecayMin: CGFloat = 0.1
     private let forceDecayDecay: CGFloat = 0.005
-    private let velocityDecay: CGFloat = 0.2
-    private let velocityMaximum: CGFloat = 0.005
+    private let velocityDecay: CGFloat = 0.9
 
     private weak var rootNode: ShapeNode?
     private var scopeColorDictionary: [String: NSColor] = [:]
@@ -42,13 +41,11 @@ class NodeScene: SKScene {
     func startSimulation() {
         isPaused = false
         forceDecay = 1
-        rootNode?.updatePhysicsWith(forceDecay: forceDecay)
     }
 
     func stopSimulation() {
         isPaused = true
         forceDecay = 0
-        rootNode?.updatePhysicsWith(forceDecay: forceDecay)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -66,12 +63,7 @@ extension NodeScene: SKSceneDelegate {
             return
         }
 
-        rootNode?.updatePhysicsWith(forceDecay: forceDecay)
-    }
-    
-    override func didSimulatePhysics() {
-        super.didSimulatePhysics()
-        rootNode?.updateVelocity(velocityDecay: velocityDecay, velocityMaximum: velocityMaximum)
+        rootNode?.updatePhysicsWith(forceDecay: forceDecay, velocityDecay: velocityDecay)
     }
 
     func didApplyConstraints(for scene: SKScene) {

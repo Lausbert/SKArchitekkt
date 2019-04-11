@@ -29,11 +29,15 @@ extension ShapeNode {
         if !isCollapsed {
             castedChildren.forEach {
                 $0.isHidden = false
+                $0.updateTextNodes()
             }
         } else {
             allCastedDescendants.forEach {
                 $0.isHidden = true
                 $0.isCollapsed = true
+                $0.children.filter { $0 is SKLabelNode }.forEach { $0.removeFromParent() }
+                $0.arcNodeDictionary.values.forEach { $0.removeFromParent() }
+                $0.arcNodeDictionary = [:]
             }
             allCastedDescendants.forEach {
                 $0.updateRadius()
@@ -51,16 +55,12 @@ extension ShapeNode {
         updateColor()
     }
 
-    func updatePhysicsWith(forceDecay: CGFloat) {
-        castedChildren.forEach { $0.updatePhysicsWith(forceDecay: forceDecay) }
+    func updatePhysicsWith(forceDecay: CGFloat, velocityDecay: CGFloat) {
+        castedChildren.forEach { $0.updatePhysicsWith(forceDecay: forceDecay, velocityDecay: velocityDecay) }
         updateRadialGravitationalForceOnChildrenWith(forceDecay: forceDecay)
         updateNegativeRadialGravitationalForceOnSiblingsWith(forceDecay: forceDecay)
         updateSpringForceBetweenByArcConnectedNodes(forceDecay: forceDecay)
-    }
-    
-    func updateVelocity(velocityDecay: CGFloat, velocityMaximum: CGFloat) {
-        castedChildren.forEach { $0.updateVelocity(velocityDecay: velocityDecay, velocityMaximum: velocityMaximum) }
-        reduceVelocityWith(velocityDecay: velocityDecay, velocityMaximum: velocityMaximum)
+        physicsBody?.velocity *= velocityDecay
     }
 
     func updateAppearance() {
@@ -128,7 +128,8 @@ extension ShapeNode {
     }
 
     private func updateTextNodes() {
-        guard let name = identifier?.components(separatedBy: ".").last else { return }
+        guard !isHidden else { return }
+        let name = identifier?.components(separatedBy: ".").last ?? scope
         children.filter { $0 is SKLabelNode }.forEach { $0.removeFromParent() }
         let nameLength = CGFloat(name.count)
         var lettersPerFullCircle = CGFloat(24)
@@ -184,15 +185,6 @@ extension ShapeNode {
     private func resetChildrenPosition() {
         castedChildren.forEach {
             $0.position = CGPoint(x: CGFloat.random(in: -radius/2...radius/2), y: CGFloat.random(in: -radius/2...radius/2))
-        }
-    }
-    
-    private func reduceVelocityWith(velocityDecay: CGFloat, velocityMaximum: CGFloat) {
-        physicsBody?.velocity *= velocityDecay
-        guard let velocity = physicsBody?.velocity else { return }
-        let absoluteVelocity = velocity.length()
-        if absoluteVelocity > velocityMaximum {
-            physicsBody?.velocity = velocityMaximum*(velocity/absoluteVelocity)
         }
     }
 
