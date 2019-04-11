@@ -194,7 +194,7 @@ extension ShapeNode {
     private func updateRadialGravitationalForceOnChildrenWith(forceDecay: CGFloat) {
         guard !isCollapsed else { return }
         castedChildren.forEach {
-            let force = computeForceBetween(first: self, second: $0, minimumRadius: radius, multiplier: forceDecay*radius^^2*$0.radius^^2, proportionalToDistanceRaisedToPowerOf: -1.9)
+            let force = computeForceBetween(first: self, second: $0, minimumRadius: radius, multiplier: forceDecay*radius^^2*$0.radius^^2, proportionalToDistanceRaisedToPowerOf: -1.6)
             $0.physicsBody?.applyForce(force)
         }
     }
