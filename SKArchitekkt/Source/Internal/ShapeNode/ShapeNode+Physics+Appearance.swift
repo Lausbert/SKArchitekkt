@@ -209,7 +209,6 @@ extension ShapeNode {
     }
 
     private func updateSpringForceBetweenByArcConnectedNodes(forceDecay: CGFloat) {
-        guard !isHidden else { return }
         for arc in resultingArcs {
             var nodes = [self]
             while let parent = nodes.last?.castedParent, !arc.allCastedAncestors.contains(parent) {
