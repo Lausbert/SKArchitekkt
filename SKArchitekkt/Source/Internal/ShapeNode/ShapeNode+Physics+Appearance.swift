@@ -29,12 +29,13 @@ extension ShapeNode {
         if !isCollapsed {
             castedChildren.forEach {
                 $0.isHidden = false
-                $0.updateTextNodes()
+                $0.updateRadius()
             }
         } else {
             allCastedDescendants.forEach {
                 $0.isHidden = true
                 $0.isCollapsed = true
+                $0.constraints = []
                 $0.children.filter { $0 is SKLabelNode }.forEach { $0.removeFromParent() }
                 $0.arcNodeDictionary.values.forEach { $0.removeFromParent() }
                 $0.arcNodeDictionary = [:]
