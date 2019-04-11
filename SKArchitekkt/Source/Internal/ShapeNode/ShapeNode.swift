@@ -10,7 +10,6 @@ class ShapeNode: SKShapeNode {
     let isRoot: Bool
     let identifier: String?
     let scope: String
-    private(set) var arcs: [ShapeNode]
 
     var castedChildren: [ShapeNode] {
         return children.compactMap { $0 as? ShapeNode }
@@ -33,7 +32,7 @@ class ShapeNode: SKShapeNode {
         let redirectedRelevantArcs: [ShapeNode] = relevantArcs.compactMap {
             var node: ShapeNode? = $0
             while node?.isHidden == true {
-                node = ($0.parent as? ShapeNode)
+                node = $0.castedParent
             }
             return node
         }
@@ -83,6 +82,8 @@ class ShapeNode: SKShapeNode {
     }
 
     // MARK: - Private -
+    
+    private var arcs: [ShapeNode]
 
     private init(node: CoreArchitekkt.Node) {
         isRoot = node.isRoot
