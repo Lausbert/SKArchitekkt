@@ -15,7 +15,7 @@
 		29255B1E3F1431F02A0F4CF6332BD690 /* NodeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB9F648FA4B4243FCC5404705812BA4 /* NodeScene.swift */; };
 		2ADD631D0C7B5B05BC8930936EADEDE3 /* CoreArchitekkt-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = DB80F31566EC70985442CA15C3F58ED2 /* CoreArchitekkt-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		2D0CDDBA2D60195C51737D13EE6973E6 /* CoreArchitekkt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 07E01C102F6239CEB39F4A174D55B3B9 /* CoreArchitekkt.framework */; };
-		319D5A7B20CE995C67FA3E6D4C989E1E /* ShapeNode+Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A2F0C683FE58BCFADD2B1F5B10628B /* ShapeNode+Appearance.swift */; };
+		319D5A7B20CE995C67FA3E6D4C989E1E /* NodeScene+Physics.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5A2F0C683FE58BCFADD2B1F5B10628B /* NodeScene+Physics.swift */; };
 		37D5757A792110EE1FB7407726577B3E /* NodeViewController+RootNodeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FE09ABA35C7E519BAA9BCA71326CC4 /* NodeViewController+RootNodeHandler.swift */; };
 		3A58113929D9BB41F1EA867E9ADFA9C2 /* Node+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A7CFCCD689E212AF5FAF1E204F4E6F3 /* Node+Comparable.swift */; };
 		3CA6569C8B6D6277AC8A080316851AE9 /* RootNodeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08DEA2C6633B047A322F83E72F147953 /* RootNodeHandler.swift */; };
@@ -124,7 +124,7 @@
 		DD7E72A9A58226879F044C5E3615C82F /* CoreArchitekkt.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CoreArchitekkt.xcconfig; sourceTree = "<group>"; };
 		DD810AA794CE155CB5EC389F37108A6B /* SKArchitekkt-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SKArchitekkt-prefix.pch"; sourceTree = "<group>"; };
 		E1FE09ABA35C7E519BAA9BCA71326CC4 /* NodeViewController+RootNodeHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NodeViewController+RootNodeHandler.swift"; sourceTree = "<group>"; };
-		E5A2F0C683FE58BCFADD2B1F5B10628B /* ShapeNode+Appearance.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "ShapeNode+Appearance.swift"; sourceTree = "<group>"; };
+		E5A2F0C683FE58BCFADD2B1F5B10628B /* NodeScene+Physics.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NodeScene+Physics.swift"; sourceTree = "<group>"; };
 		EBFCA8088C2002B6DFC89127CC3B39A3 /* CoreArchitekkt-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "CoreArchitekkt-Info.plist"; sourceTree = "<group>"; };
 		F0B987DCB8EA2DB049D4CEC4D208F46E /* SKArchitekkt-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SKArchitekkt-Info.plist"; sourceTree = "<group>"; };
 		F0EA0F8291F5E5F526AF033B14592C3E /* GraphRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GraphRequest.swift; path = "CoreArchitekkt/Source/Public/Classes+Structs/GraphRequest.swift"; sourceTree = "<group>"; };
@@ -169,15 +169,6 @@
 				53D31A5320B73B91B99C2C34CD9EC94E /* SKArchitekkt.podspec */,
 			);
 			name = Pod;
-			sourceTree = "<group>";
-		};
-		06EE097FDF3E7C37E35B760AAB4FE852 /* ShapeNode */ = {
-			isa = PBXGroup;
-			children = (
-				B7B0AA8FCB5C79513607DD8DECE4641A /* ShapeNode.swift */,
-				E5A2F0C683FE58BCFADD2B1F5B10628B /* ShapeNode+Appearance.swift */,
-			);
-			path = ShapeNode;
 			sourceTree = "<group>";
 		};
 		09EACB52D009126CAABB2FFC82E51EF6 /* Frameworks */ = {
@@ -366,6 +357,7 @@
 			children = (
 				9DB9F648FA4B4243FCC5404705812BA4 /* NodeScene.swift */,
 				49388A57457352C80B552EC1DD9FC2DE /* NodeScene+Mouse.swift */,
+				E5A2F0C683FE58BCFADD2B1F5B10628B /* NodeScene+Physics.swift */,
 			);
 			path = NodeScene;
 			sourceTree = "<group>";
@@ -386,7 +378,7 @@
 				D6A87B88E590BAF97EFD68312CF7FA46 /* NodeScene */,
 				9B0492B51E635D8844D51CB8676476DE /* NodeView */,
 				643060D7CC2439ED055D396AEF6B5DD9 /* NodeViewController */,
-				06EE097FDF3E7C37E35B760AAB4FE852 /* ShapeNode */,
+				B7B0AA8FCB5C79513607DD8DECE4641A /* ShapeNode.swift */,
 			);
 			name = Internal;
 			path = SKArchitekkt/Source/Internal;
@@ -555,7 +547,7 @@
 				37D5757A792110EE1FB7407726577B3E /* NodeViewController+RootNodeHandler.swift in Sources */,
 				F0F971B54D4007B753C0C6A24CBECF8E /* NodeViewController.storyboard in Sources */,
 				FB6EE8B545F26D4897C028294DE69D0D /* NodeViewController.swift in Sources */,
-				319D5A7B20CE995C67FA3E6D4C989E1E /* ShapeNode+Appearance.swift in Sources */,
+				319D5A7B20CE995C67FA3E6D4C989E1E /* NodeScene+Physics.swift in Sources */,
 				88D54B77C446D6F4C95D48D8CAC7B499 /* ShapeNode.swift in Sources */,
 				E4E1A47CDAD709F7ECE612F7824CC3C3 /* SKArchitekkt-dummy.m in Sources */,
 				EC5BC360C0D749E8AB56CD55B21469E3 /* ViewController+RootNodeHandler.swift in Sources */,
