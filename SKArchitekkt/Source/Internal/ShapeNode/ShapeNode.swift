@@ -14,9 +14,11 @@ class ShapeNode: SKShapeNode {
     private(set) var siblingPairs: [(ShapeNode, ShapeNode)] = []
     private(set) var radius: CGFloat = 16
     
-    init(node: CoreArchitekkt.Node) {
+    init(node: CoreArchitekkt.Node, colorDictionary: [String: NSColor]) {
         self.node = node
+        self.colorDictionary = colorDictionary
         super.init()
+        name = "ShapeNode"
         setUpPhysicsAndAppearance()
     }
 
@@ -31,7 +33,7 @@ class ShapeNode: SKShapeNode {
     // MARK - Private -
     
     private var isCollapsed = true
-    private var scopeColorDictionary: [String: NSColor] = [:]
+    private var colorDictionary: [String: NSColor]
     private var allCastedAncestors: [ShapeNode] {
         var allCastedAncestors: [ShapeNode] = []
         var node = self
@@ -76,7 +78,7 @@ class ShapeNode: SKShapeNode {
             self.resultingArcs = Set(node.arcs + node.allDescendants.flatMap { $0.arcs })
         } else {
             let castedChildren = node.children.map { (node) -> ShapeNode in
-                let shapeNode = ShapeNode(node: node)
+                let shapeNode = ShapeNode(node: node, colorDictionary: colorDictionary)
                 addChild(shapeNode)
                 return shapeNode
             }
@@ -163,11 +165,6 @@ class ShapeNode: SKShapeNode {
         }
     }
     
-    private func setColors(_ dictionary: [String: NSColor]) {
-        scopeColorDictionary = dictionary
-        updateColor()
-    }
-    
     private func updateColor() {
         fillColor = isCollapsed ? colorForScope() : .clear
         strokeColor = colorForScope()
@@ -175,7 +172,7 @@ class ShapeNode: SKShapeNode {
     }
     
     private func colorForScope() -> NSColor {
-        return scopeColorDictionary[node.scope, default: .windowFrameColor]
+        return colorDictionary[node.scope, default: .windowFrameColor]
     }
     
     private func resetChildrenPosition() {

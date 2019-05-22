@@ -3,15 +3,10 @@
 import SpriteKit
 
 class NodeScene: SKScene {
+    
+    // MARK: - Internal -
 
-    private var forceDecay: CGFloat = 1
-    private let forceDecayTarget: CGFloat = 0
-    private let forceDecayMin: CGFloat = 0.1
-    private let forceDecayDecay: CGFloat = 0.005
-    private let velocityDecay: CGFloat = 0.9
-
-    private weak var rootNode: ShapeNode?
-    private var scopeColorDictionary: [String: NSColor] = [:]
+    
 
     override init() {
         super.init(size: CGSize.zero)
@@ -20,6 +15,10 @@ class NodeScene: SKScene {
         setUpPhysicsWorld()
         setUpCamera()
     }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     func setUpPhysicsWorld() {
         physicsWorld.gravity = CGVector.zero
@@ -27,17 +26,6 @@ class NodeScene: SKScene {
 
     func add(rootNode: ShapeNode) {
         addChild(rootNode)
-        #warning("refactor")
-//        rootNode.allCastedDescendants.forEach {
-//            makeMoveableByMouse($0)
-//        }
-        self.rootNode = rootNode
-    }
-
-    func setColors(_ dictionary: [String: NSColor]) {
-        self.scopeColorDictionary = dictionary
-        #warning("refactor")
-//        rootNode?.allCastedDescendants.forEach { $0.setColors(dictionary) }
     }
 
     func startSimulation() {
@@ -50,13 +38,20 @@ class NodeScene: SKScene {
         forceDecay = 0
     }
 
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    // MARK: - Private -
+    
+    private let forceDecayTarget: CGFloat = 0
+    private let forceDecayMin: CGFloat = 0.1
+    private let forceDecayDecay: CGFloat = 0.005
+    private let velocityDecay: CGFloat = 0.9
 
+    private var forceDecay: CGFloat = 1
+    private var scopeColorDictionary: [String: NSColor] = [:]
 }
 
 extension NodeScene: SKSceneDelegate {
+    
+    // MARK: - Internal -
 
     func update(_ currentTime: TimeInterval, for scene: SKScene) {
         forceDecay += (forceDecayTarget - forceDecay) * forceDecayDecay

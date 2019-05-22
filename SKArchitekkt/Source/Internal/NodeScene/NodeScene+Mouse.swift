@@ -15,14 +15,9 @@ extension NodeScene {
         frozenNodes = []
     }
 
-    #warning("refactor")
-//    func makeMoveableByMouse(_ node: SKNode) {
-//        node.name = NodeScene.movableByMouseIdentifier
-//    }
-
     override func mouseDown(with event: NSEvent) {
         let position = event.location(in: self)
-        let nodes = self.nodes(at: position).filter { $0.name == NodeScene.movableByMouseIdentifier }
+        let nodes = self.nodes(at: position).filter { $0.name == "ShapeNode" }
         let clickedNode = nearestNodeTo(position: position, nodes: nodes)
         if !nodes.isEmpty {
             switch event.clickCount {
@@ -71,7 +66,6 @@ extension NodeScene {
 
     // MARK: - Private -
 
-    private static let movableByMouseIdentifier = "movableByMouse"
     private static let movedNodeObjectAssociation = ObjectAssociation<SKNode?>()
     private var movedNode: SKNode? {
         get { return NodeScene.movedNodeObjectAssociation[self] ?? nil }
@@ -97,7 +91,7 @@ extension NodeScene {
 
     private func replaceNodeWithParentIfNeeded(node: SKNode?) -> SKNode? {
         var node = node
-        while (node?.parent?.children.filter { $0.name == NodeScene.movableByMouseIdentifier }.count ?? Int.max) <= 1 {
+        while (node?.parent?.children.filter { $0.name == "ShapeNode" }.count ?? Int.max) <= 1 {
             node = node?.parent
         }
         return node
