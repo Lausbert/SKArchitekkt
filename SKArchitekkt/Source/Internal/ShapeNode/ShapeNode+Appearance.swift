@@ -30,21 +30,10 @@ extension ShapeNode {
     func set(collapsed: Bool) {
         let collapsed = node.children.count > 0 ? collapsed : true
         isCollapsed = collapsed
-        if isCollapsed {
-            castedChildren.forEach { $0.removeFromParent() }
-        } else {
-            let castedChildren = node.children.map { (node) -> ShapeNode in
-                let shapeNode = ShapeNode(node: node)
-                addChild(shapeNode)
-                return shapeNode
-            }
-            self.castedChildren = castedChildren
-        }
+        updateChildren()
         updateRadius()
         updateAncestorsRadius()
-        if !isCollapsed {
-            resetChildrenPosition()
-        }
+        resetChildrenPosition()
     }
 
     #warning("move to scene")
@@ -90,6 +79,20 @@ extension ShapeNode {
         physicsBody.allowsRotation = false
         physicsBody.collisionBitMask = 0
         self.physicsBody = physicsBody
+    }
+    
+    private func updateChildren() {
+        if isCollapsed {
+            castedChildren.forEach { $0.removeFromParent() }
+            self.castedChildren = []
+        } else {
+            let castedChildren = node.children.map { (node) -> ShapeNode in
+                let shapeNode = ShapeNode(node: node)
+                addChild(shapeNode)
+                return shapeNode
+            }
+            self.castedChildren = castedChildren
+        }
     }
 
     private func updateRadius() {
