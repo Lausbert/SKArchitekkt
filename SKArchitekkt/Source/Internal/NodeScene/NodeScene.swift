@@ -27,15 +27,17 @@ class NodeScene: SKScene {
 
     func add(rootNode: ShapeNode) {
         addChild(rootNode)
-        rootNode.allCastedDescendants.forEach {
-            makeMoveableByMouse($0)
-        }
+        #warning("refactor")
+//        rootNode.allCastedDescendants.forEach {
+//            makeMoveableByMouse($0)
+//        }
         self.rootNode = rootNode
     }
 
     func setColors(_ dictionary: [String: NSColor]) {
         self.scopeColorDictionary = dictionary
-        rootNode?.allCastedDescendants.forEach { $0.setColors(dictionary) }
+        #warning("refactor")
+//        rootNode?.allCastedDescendants.forEach { $0.setColors(dictionary) }
     }
 
     func startSimulation() {
@@ -62,12 +64,12 @@ extension NodeScene: SKSceneDelegate {
             stopSimulation()
             return
         }
-
-        rootNode?.updatePhysicsWith(forceDecay: forceDecay, velocityDecay: velocityDecay)
+        #warning("refactor")
+//        rootNode?.updatePhysicsWith(forceDecay: forceDecay, velocityDecay: velocityDecay)
     }
 
     func didApplyConstraints(for scene: SKScene) {
-        rootNode?.updateAppearance()
+//        rootNode?.updateAppearance()
     }
 
 }

@@ -8,7 +8,7 @@ extension NodeView: RootNodeHandler {
     // MARK: - Public -
 
     public func handle(rootNode: Node) {
-        let rootNode = ShapeNode(rootNode: rootNode)
+        let rootNode = ShapeNode(node: rootNode)
         (scene as? NodeScene)?.add(rootNode: rootNode)
         (scene as? NodeScene)?.setColors([
             "1": #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1),

@@ -15,9 +15,10 @@ extension NodeScene {
         frozenNodes = []
     }
 
-    func makeMoveableByMouse(_ node: SKNode) {
-        node.name = NodeScene.movableByMouseIdentifier
-    }
+    #warning("refactor")
+//    func makeMoveableByMouse(_ node: SKNode) {
+//        node.name = NodeScene.movableByMouseIdentifier
+//    }
 
     override func mouseDown(with event: NSEvent) {
         let position = event.location(in: self)
