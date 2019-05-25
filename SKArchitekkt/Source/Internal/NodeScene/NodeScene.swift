@@ -4,14 +4,14 @@ import SpriteKit
 import CoreArchitekkt
 
 class NodeScene: SKScene {
-    
+
     // MARK: - Internal -
-    
+
     struct Arc: Hashable {
         let from: Node
         let to: Node
     }
-    
+
     private(set) var castedChildren: Set<ShapeNode> = []
     private(set) var shapeNodeForNodeDictionary: [Node: ShapeNode] = [:]
     private(set) var arcNodeForArcDictionary: [Arc: SKShapeNode] = [:]
@@ -23,7 +23,7 @@ class NodeScene: SKScene {
         setUpPhysicsWorld()
         setUpCamera()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -48,9 +48,9 @@ class NodeScene: SKScene {
 }
 
 extension NodeScene: ShapeNodeDelegate {
-    
+
     // MARK: - Internal -
-    
+
     func shapeNode(_ shapeNode: ShapeNode, didAdd child: ShapeNode) {
         castedChildren.insert(child)
         ([child.node] + child.node.allDescendants).forEach { shapeNodeForNodeDictionary[$0] = child }
@@ -66,7 +66,7 @@ extension NodeScene: ShapeNodeDelegate {
             arcNodeForArcDictionary[arcToAdd] = arcNode
         }
     }
-    
+
     func shapeNode(_ shapeNode: ShapeNode, didRemove child: ShapeNode) {
         castedChildren.remove(child)
         ([child.node] + child.node.allDescendants).forEach { shapeNodeForNodeDictionary[$0] = shapeNode }
@@ -82,9 +82,9 @@ extension NodeScene: ShapeNodeDelegate {
             arcNodeForArcDictionary[arcToAdd] = arcNode
         }
     }
-    
+
     // MARK: - Private -
-    
+
     private func createArcNode() -> SKShapeNode {
         let arcNode = SKShapeNode()
         arcNode.strokeColor = .windowFrameColor
@@ -92,5 +92,5 @@ extension NodeScene: ShapeNodeDelegate {
         arcNode.zPosition = -1
         return arcNode
     }
-    
+
 }

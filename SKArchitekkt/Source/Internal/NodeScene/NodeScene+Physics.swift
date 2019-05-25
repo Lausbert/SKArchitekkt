@@ -4,23 +4,23 @@ import SpriteKit
 import CoreArchitekkt
 
 extension NodeScene: SKSceneDelegate {
-    
+
     // MARK: - Internal -
-    
+
     func setUpPhysicsWorld() {
         physicsWorld.gravity = CGVector.zero
     }
-    
+
     func startSimulation() {
         isPaused = false
         forceDecay = 1
     }
-    
+
     func stopSimulation() {
         isPaused = true
         forceDecay = 0
     }
-    
+
     func update(_ currentTime: TimeInterval, for scene: SKScene) {
         forceDecay += (forceDecayTarget - forceDecay) * forceDecayDecay
         if forceDecay < forceDecayMin {
@@ -29,25 +29,25 @@ extension NodeScene: SKSceneDelegate {
         }
         updatePhysicsWith(forceDecay: forceDecay, velocityDecay: velocityDecay)
     }
-    
+
     func didApplyConstraints(for scene: SKScene) {
         updateAppearance()
     }
-    
+
     // MARK: - Private -
-    
+
     private static let forceDecayTargetObjectAssociation = ObjectAssociation<CGFloat>()
     private var forceDecayTarget: CGFloat { return 0 }
     private var forceDecayMin: CGFloat { return 0.1 }
     private var forceDecayDecay: CGFloat { return 0.005 }
     private var velocityDecay: CGFloat { return 0.9 }
-    
+
     private static let forceDecayObjectAssociation = ObjectAssociation<CGFloat>()
     private var forceDecay: CGFloat {
         get { return NodeScene.forceDecayObjectAssociation[self] ?? 1 }
         set { NodeScene.forceDecayObjectAssociation[self] = newValue }
     }
-    
+
     private func updatePhysicsWith(forceDecay: CGFloat, velocityDecay: CGFloat) {
         for shapeNode in castedChildren {
             updateRadialGravitationalForceOnChildren(for: shapeNode, withForceDecay: forceDecay)
@@ -62,7 +62,7 @@ extension NodeScene: SKSceneDelegate {
             updateArcNodeAppearance(for: shapeNode)
         }
     }
-    
+
     private func updateRadialGravitationalForceOnChildren(for shapeNode: ShapeNode, withForceDecay forceDecay: CGFloat) {
         guard !shapeNode.isCollapsed else { return }
         shapeNode.castedChildren.forEach {
@@ -70,7 +70,7 @@ extension NodeScene: SKSceneDelegate {
             $0.physicsBody?.applyForce(force)
         }
     }
-    
+
     private func updateNegativeRadialGravitationalForceOnSiblings(for shapeNode: ShapeNode, withForceDecay forceDecay: CGFloat) {
         guard !shapeNode.isCollapsed, shapeNode.castedChildren.count > 1 else { return }
         for pair in shapeNode.siblingPairs {
@@ -79,9 +79,9 @@ extension NodeScene: SKSceneDelegate {
             pair.1.physicsBody?.applyForce(-force)
         }
     }
-    
+
     private func updateSpringForce(for shapeNode: ShapeNode, withForceDecay forceDecay: CGFloat) {
-        for to in shapeNode.resultingArcs.compactMap( { shapeNodeForNodeDictionary[$0] } ) {
+        for to in shapeNode.resultingArcs.compactMap({ shapeNodeForNodeDictionary[$0] }) {
             var froms = [shapeNode]
             let allCastedAncestors = shapeNode.allCastedAncestors
             let arcAllCastedAncestors = to.allCastedAncestors
@@ -103,7 +103,7 @@ extension NodeScene: SKSceneDelegate {
             }
         }
     }
-    
+
     private func computeForceBetween(first: ShapeNode, second: ShapeNode, offSetDistance: CGFloat = 0, minimumRadius: CGFloat = 0, multiplier: CGFloat = 1, proportionalToDistanceRaisedToPowerOf power: CGFloat = 1) -> CGVector {
         guard let scene = scene else { return CGVector.zero }
         let distanceVector = first.convert(CGPoint.zero, to: scene) - second.convert(CGPoint.zero, to: scene)
@@ -113,10 +113,10 @@ extension NodeScene: SKSceneDelegate {
         let force = 100*multiplier*newDistance^^power*normalizedDistanceVector
         return force
     }
-    
+
     private func updateArcNodeAppearance(for shapeNode: ShapeNode) {
         guard let scene = scene else { return }
-        for to in shapeNode.resultingArcs.compactMap( { shapeNodeForNodeDictionary[$0] } ) {
+        for to in shapeNode.resultingArcs.compactMap({ shapeNodeForNodeDictionary[$0] }) {
             guard let arcNode = arcNodeForArcDictionary[Arc(from: shapeNode.node, to: to.node)] else {
                 continue
             }
