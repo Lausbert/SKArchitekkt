@@ -76,7 +76,7 @@ class ShapeNode: SKShapeNode {
     
     private func setUpPhysicsAndAppearance() {
         setUpPhysicsBody()
-        set(collapsed: !node.isRoot, forceFully: true)
+        set(collapsed: true, forceFully: true)
     }
     
     private func setUpPhysicsBody() {
