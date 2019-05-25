@@ -55,7 +55,6 @@ extension NodeScene: SKSceneDelegate {
             updateSpringForce(for: shapeNode, withForceDecay: forceDecay)
             shapeNode.physicsBody?.velocity *= velocityDecay
         }
-//        updateSpringForceBetweenByArcConnectedNodes(forceDecay: forceDecay)
     }
 
     private func updateAppearance() {
