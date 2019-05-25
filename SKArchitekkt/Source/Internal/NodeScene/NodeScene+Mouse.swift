@@ -17,7 +17,7 @@ extension NodeScene {
 
     override func mouseDown(with event: NSEvent) {
         let position = event.location(in: self)
-        let nodes = self.nodes(at: position).filter { $0.name == "ShapeNode" }
+        let nodes = self.nodes(at: position).filter { $0.name == ShapeNode.identifier }
         let clickedNode = nearestNodeTo(position: position, nodes: nodes)
         if !nodes.isEmpty {
             switch event.clickCount {
@@ -91,7 +91,7 @@ extension NodeScene {
 
     private func replaceNodeWithParentIfNeeded(node: SKNode?) -> SKNode? {
         var node = node
-        while (node?.parent?.children.filter { $0.name == "ShapeNode" }.count ?? Int.max) <= 1 {
+        while (node?.parent?.children.filter { $0.name == ShapeNode.identifier }.count ?? Int.max) <= 1 {
             node = node?.parent
         }
         return node

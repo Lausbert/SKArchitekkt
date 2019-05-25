@@ -1,45 +1,95 @@
+//  Copyright © 2019 Stephan Lerner. All rights reserved.
 
-    #warning("move to scene")
-//    func updatePhysicsWith(forceDecay: CGFloat, velocityDecay: CGFloat) {
-//        guard !isHidden else { return }
-//        castedChildren.forEach { $0.updatePhysicsWith(forceDecay: forceDecay, velocityDecay: velocityDecay) }
-//        updateRadialGravitationalForceOnChildrenWith(forceDecay: forceDecay)
-//        updateNegativeRadialGravitationalForceOnSiblingsWith(forceDecay: forceDecay)
-//        updateSpringForceBetweenByArcConnectedNodes(forceDecay: forceDecay)
-//        physicsBody?.velocity *= velocityDecay
-//    }
-//
-//    func updateAppearance() {
-//        guard !isHidden else { return }
-//        castedChildren.forEach { $0.updateAppearance() }
-//        updateArcNodesAppearance()
-//    }
+import SpriteKit
+import CoreArchitekkt
 
+extension NodeScene: SKSceneDelegate {
+    
+    // MARK: - Internal -
+    
+    func setUpPhysicsWorld() {
+        physicsWorld.gravity = CGVector.zero
+    }
+    
+    func startSimulation() {
+        isPaused = false
+        forceDecay = 1
+    }
+    
+    func stopSimulation() {
+        isPaused = true
+        forceDecay = 0
+    }
+    
+    func update(_ currentTime: TimeInterval, for scene: SKScene) {
+        forceDecay += (forceDecayTarget - forceDecay) * forceDecayDecay
+        if forceDecay < forceDecayMin {
+            stopSimulation()
+            return
+        }
+        updatePhysicsWith(forceDecay: forceDecay, velocityDecay: velocityDecay)
+    }
+    
+    func didApplyConstraints(for scene: SKScene) {
+        updateAppearance()
+    }
+    
     // MARK: - Private -
+    
+    private static let forceDecayTargetObjectAssociation = ObjectAssociation<CGFloat>()
+    private var forceDecayTarget: CGFloat { return 0 }
+    private var forceDecayMin: CGFloat { return 0.1 }
+    private var forceDecayDecay: CGFloat { return 0.005 }
+    private var velocityDecay: CGFloat { return 0.9 }
+    
+    private static let forceDecayObjectAssociation = ObjectAssociation<CGFloat>()
+    private var forceDecay: CGFloat {
+        get { return NodeScene.forceDecayObjectAssociation[self] ?? 1 }
+        set { NodeScene.forceDecayObjectAssociation[self] = newValue }
+    }
+    
+    private func updatePhysicsWith(forceDecay: CGFloat, velocityDecay: CGFloat) {
+        for shapeNode in castedChildren {
+            updateRadialGravitationalForceOnChildren(for: shapeNode, withForceDecay: forceDecay)
+            updateNegativeRadialGravitationalForceOnSiblings(for: shapeNode, withForceDecay: forceDecay)
+            shapeNode.physicsBody?.velocity *= velocityDecay
+        }
+//        updateSpringForceBetweenByArcConnectedNodes(forceDecay: forceDecay)
+    }
 
-//    private static let arcNodeDictionaryObjectAssociation = ObjectAssociation<[ShapeNode: SKShapeNode]>()
-//    private var arcNodeDictionary: [ShapeNode: SKShapeNode] {
-//        get { return ShapeNode.arcNodeDictionaryObjectAssociation[self] ?? [:] }
-//        set { ShapeNode.arcNodeDictionaryObjectAssociation[self] = newValue }
-//    }
+    private func updateAppearance() {
+//        updateArcNodesAppearance()
+    }
+    
+    private func updateRadialGravitationalForceOnChildren(for shapeNode: ShapeNode, withForceDecay forceDecay: CGFloat) {
+        guard !shapeNode.isCollapsed else { return }
+        shapeNode.castedChildren.forEach {
+            let force = computeForceBetween(first: shapeNode, second: $0, minimumRadius: shapeNode.radius, multiplier: forceDecay*shapeNode.radius^^2*$0.radius^^2, proportionalToDistanceRaisedToPowerOf: -1.6)
+            $0.physicsBody?.applyForce(force)
+        }
+    }
+    
+    private func updateNegativeRadialGravitationalForceOnSiblings(for shapeNode: ShapeNode, withForceDecay forceDecay: CGFloat) {
+        guard !shapeNode.isCollapsed, shapeNode.castedChildren.count > 1 else { return }
+        for pair in shapeNode.siblingPairs {
+            let force = computeForceBetween(first: pair.0, second: pair.1, multiplier: forceDecay*pair.0.radius^^2*pair.1.radius^^2, proportionalToDistanceRaisedToPowerOf: -1.3)
+            pair.0.physicsBody?.applyForce(force)
+            pair.1.physicsBody?.applyForce(-force)
+        }
+    }
+    
+    private func computeForceBetween(first: ShapeNode, second: ShapeNode, offSetDistance: CGFloat = 0, minimumRadius: CGFloat = 0, multiplier: CGFloat = 1, proportionalToDistanceRaisedToPowerOf power: CGFloat = 1) -> CGVector {
+        guard let scene = scene else { return CGVector.zero }
+        let distanceVector = first.convert(CGPoint.zero, to: scene) - second.convert(CGPoint.zero, to: scene)
+        let distance = distanceVector.length() + offSetDistance
+        let newDistance = max(distance, minimumRadius)
+        let normalizedDistanceVector = distance > 0 ? distanceVector/distance : CGVector.zero // important note: normalizedDistanceVector is not really normalized in case of distance <= 0
+        let force = 100*multiplier*newDistance^^power*normalizedDistanceVector
+        return force
+    }
+    
+}
 
-//    private func updateRadialGravitationalForceOnChildrenWith(forceDecay: CGFloat) {
-//        guard !isCollapsed else { return }
-//        castedChildren.forEach {
-//            let force = computeForceBetween(first: self, second: $0, minimumRadius: radius, multiplier: forceDecay*radius^^2*$0.radius^^2, proportionalToDistanceRaisedToPowerOf: -1.6)
-//            $0.physicsBody?.applyForce(force)
-//        }
-//    }
-//
-//    private func updateNegativeRadialGravitationalForceOnSiblingsWith(forceDecay: CGFloat) {
-//        guard !isCollapsed, castedChildren.count > 1 else { return }
-//        for pair in siblingPairs {
-//            let force = computeForceBetween(first: pair.0, second: pair.1, multiplier: forceDecay*pair.0.radius^^2*pair.1.radius^^2, proportionalToDistanceRaisedToPowerOf: -1.3)
-//            pair.0.physicsBody?.applyForce(force)
-//            pair.1.physicsBody?.applyForce(-force)
-//        }
-//    }
-//
 //
 //    private func updateSpringForceBetweenByArcConnectedNodes(forceDecay: CGFloat) {
 //        for arc in resultingArcs {
@@ -63,15 +113,6 @@
 //        }
 //    }
 //
-//    private func computeForceBetween(first: ShapeNode, second: ShapeNode, offSetDistance: CGFloat = 0, minimumRadius: CGFloat = 0, multiplier: CGFloat = 1, proportionalToDistanceRaisedToPowerOf power: CGFloat = 1) -> CGVector {
-//        guard let scene = scene else { return CGVector.zero }
-//        let distanceVector = first.convert(CGPoint.zero, to: scene) - second.convert(CGPoint.zero, to: scene)
-//        let distance = distanceVector.length() + offSetDistance
-//        let newDistance = max(distance, minimumRadius)
-//        let normalizedDistanceVector = distance > 0 ? distanceVector/distance : CGVector.zero // important note: normalizedDistanceVector is not really normalized in case of distance <= 0
-//        let force = 100*multiplier*newDistance^^power*normalizedDistanceVector
-//        return force
-//    }
 //
 //    private func updateArcNodesAppearance() {
 //        arcNodeDictionary.forEach { $1.isHidden = true }

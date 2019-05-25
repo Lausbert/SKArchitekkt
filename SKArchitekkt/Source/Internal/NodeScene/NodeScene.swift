@@ -6,6 +6,8 @@ import CoreArchitekkt
 class NodeScene: SKScene {
     
     // MARK: - Internal -
+    
+    private(set) var castedChildren: Set<ShapeNode> = []
 
     override init() {
         super.init(size: CGSize.zero)
@@ -17,10 +19,6 @@ class NodeScene: SKScene {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-
-    func setUpPhysicsWorld() {
-        physicsWorld.gravity = CGVector.zero
     }
 
     func add(rootNode: Node) {
@@ -35,47 +33,21 @@ class NodeScene: SKScene {
             "func_decl": #colorLiteral(red: 0.9182413816, green: 0.6399110556, blue: 0.1377894878, alpha: 1),
             "8": #colorLiteral(red: 0.2392974496, green: 0.1283998489, blue: 0.7470512986, alpha: 1)
         ]
-        let rootNode = ShapeNode(node: rootNode, colorDictionary: colorDictionary)
+        let rootNode = ShapeNode(node: rootNode, colorDictionary: colorDictionary, delegate: self)
         addChild(rootNode)
+        shapeNode(rootNode, didAdd: rootNode)
     }
 
-    func startSimulation() {
-        isPaused = false
-        forceDecay = 1
-    }
-
-    func stopSimulation() {
-        isPaused = true
-        forceDecay = 0
-    }
-
-    // MARK: - Private -
-    
-    private let forceDecayTarget: CGFloat = 0
-    private let forceDecayMin: CGFloat = 0.1
-    private let forceDecayDecay: CGFloat = 0.005
-    private let velocityDecay: CGFloat = 0.9
-
-    private var forceDecay: CGFloat = 1
-    private var scopeColorDictionary: [String: NSColor] = [:]
 }
 
-extension NodeScene: SKSceneDelegate {
+extension NodeScene: ShapeNodeDelegate {
     
-    // MARK: - Internal -
-
-    func update(_ currentTime: TimeInterval, for scene: SKScene) {
-        forceDecay += (forceDecayTarget - forceDecay) * forceDecayDecay
-        if forceDecay < forceDecayMin {
-            stopSimulation()
-            return
-        }
-        #warning("refactor")
-//        rootNode?.updatePhysicsWith(forceDecay: forceDecay, velocityDecay: velocityDecay)
+    func shapeNode(_ shapeNode: ShapeNode, didAdd child: ShapeNode) {
+        castedChildren.insert(child)
     }
-
-    func didApplyConstraints(for scene: SKScene) {
-//        rootNode?.updateAppearance()
+    
+    func shapeNode(_ shapeNode: ShapeNode, willRemove child: ShapeNode) {
+        castedChildren.remove(child)
     }
-
+    
 }

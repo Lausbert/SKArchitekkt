@@ -3,9 +3,19 @@
 import SpriteKit
 import CoreArchitekkt
 
-class ShapeNode: SKShapeNode {
+protocol ShapeNodeDelegate: class {
+    
+    func shapeNode(_ shapeNode: ShapeNode, didAdd child: ShapeNode)
+    
+    func shapeNode(_ shapeNode: ShapeNode, willRemove child: ShapeNode)
+    
+}
 
+class ShapeNode: SKShapeNode {
+    
     // MARK: - Internal -
+    
+    static let identifier = "ShapeNode"
 
     let node: Node
     
@@ -13,17 +23,33 @@ class ShapeNode: SKShapeNode {
     private(set) var castedChildren: [ShapeNode] = []
     private(set) var siblingPairs: [(ShapeNode, ShapeNode)] = []
     private(set) var radius: CGFloat = 16
+    private(set) var isCollapsed = true
     
-    init(node: CoreArchitekkt.Node, colorDictionary: [String: NSColor]) {
+    init(node: CoreArchitekkt.Node, colorDictionary: [String: NSColor], delegate: ShapeNodeDelegate?) {
         self.node = node
         self.colorDictionary = colorDictionary
+        self.delegate = delegate
         super.init()
-        name = "ShapeNode"
+        name = ShapeNode.identifier
         setUpPhysicsAndAppearance()
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func addChild(_ node: SKNode) {
+        super.addChild(node)
+        if let child = node as? ShapeNode {
+            delegate?.shapeNode(self, didAdd: child)
+        }
+    }
+    
+    override func removeFromParent() {
+        if let parent = self.parent as? ShapeNode {
+            delegate?.shapeNode(parent, willRemove: self)
+        }
+        super.removeFromParent()
     }
     
     func didDoubleTap() {
@@ -32,7 +58,7 @@ class ShapeNode: SKShapeNode {
     
     // MARK - Private -
     
-    private var isCollapsed = true
+    private weak var delegate: ShapeNodeDelegate?
     private var colorDictionary: [String: NSColor]
     private var allCastedAncestors: [ShapeNode] {
         var allCastedAncestors: [ShapeNode] = []
@@ -78,7 +104,7 @@ class ShapeNode: SKShapeNode {
             self.resultingArcs = Set(node.arcs + node.allDescendants.flatMap { $0.arcs })
         } else {
             let castedChildren = node.children.map { (node) -> ShapeNode in
-                let shapeNode = ShapeNode(node: node, colorDictionary: colorDictionary)
+                let shapeNode = ShapeNode(node: node, colorDictionary: colorDictionary, delegate: delegate)
                 addChild(shapeNode)
                 return shapeNode
             }
