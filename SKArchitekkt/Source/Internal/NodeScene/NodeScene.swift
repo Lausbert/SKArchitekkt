@@ -7,8 +7,14 @@ class NodeScene: SKScene {
     
     // MARK: - Internal -
     
+    struct Arc: Hashable {
+        let from: Node
+        let to: Node
+    }
+    
     private(set) var castedChildren: Set<ShapeNode> = []
     private(set) var shapeNodeForNodeDictionary: [Node: ShapeNode] = [:]
+    private(set) var arcNodeForArcDictionary: [Arc: SKShapeNode] = [:]
 
     override init() {
         super.init(size: CGSize.zero)
@@ -43,14 +49,48 @@ class NodeScene: SKScene {
 
 extension NodeScene: ShapeNodeDelegate {
     
+    // MARK: - Internal -
+    
     func shapeNode(_ shapeNode: ShapeNode, didAdd child: ShapeNode) {
         castedChildren.insert(child)
         ([child.node] + child.node.allDescendants).forEach { shapeNodeForNodeDictionary[$0] = child }
+        for to in child.resultingArcs {
+            let arcToRemove = Arc(from: shapeNode.node, to: to)
+            arcNodeForArcDictionary.removeValue(forKey: arcToRemove)?.removeFromParent()
+            guard shapeNodeForNodeDictionary[to] != child else {
+                continue
+            }
+            let arcToAdd = Arc(from: child.node, to: to)
+            let arcNode = createArcNode()
+            addChild(arcNode)
+            arcNodeForArcDictionary[arcToAdd] = arcNode
+        }
     }
     
     func shapeNode(_ shapeNode: ShapeNode, didRemove child: ShapeNode) {
         castedChildren.remove(child)
         ([child.node] + child.node.allDescendants).forEach { shapeNodeForNodeDictionary[$0] = shapeNode }
+        for to in child.resultingArcs {
+            let arcToRemove = Arc(from: child.node, to: to)
+            arcNodeForArcDictionary.removeValue(forKey: arcToRemove)?.removeFromParent()
+            guard shapeNode.resultingArcs.contains(to) && shapeNodeForNodeDictionary[to] != shapeNode else {
+                continue
+            }
+            let arcToAdd = Arc(from: shapeNode.node, to: to)
+            let arcNode = createArcNode()
+            addChild(arcNode)
+            arcNodeForArcDictionary[arcToAdd] = arcNode
+        }
+    }
+    
+    // MARK: - Private -
+    
+    private func createArcNode() -> SKShapeNode {
+        let arcNode = SKShapeNode()
+        arcNode.strokeColor = .windowFrameColor
+        arcNode.lineWidth = 2
+        arcNode.zPosition = -1
+        return arcNode
     }
     
 }

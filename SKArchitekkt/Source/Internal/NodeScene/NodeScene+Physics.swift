@@ -58,7 +58,9 @@ extension NodeScene: SKSceneDelegate {
     }
 
     private func updateAppearance() {
-//        updateArcNodesAppearance()
+        for shapeNode in castedChildren {
+            updateArcNodeAppearance(for: shapeNode)
+        }
     }
     
     private func updateRadialGravitationalForceOnChildren(for shapeNode: ShapeNode, withForceDecay forceDecay: CGFloat) {
@@ -79,24 +81,24 @@ extension NodeScene: SKSceneDelegate {
     }
     
     private func updateSpringForce(for shapeNode: ShapeNode, withForceDecay forceDecay: CGFloat) {
-        for arc in shapeNode.resultingArcs.compactMap( { shapeNodeForNodeDictionary[$0] } ) {
-            var nodes = [shapeNode]
+        for to in shapeNode.resultingArcs.compactMap( { shapeNodeForNodeDictionary[$0] } ) {
+            var froms = [shapeNode]
             let allCastedAncestors = shapeNode.allCastedAncestors
-            let arcAllCastedAncestors = arc.allCastedAncestors
-            while let parent = nodes.last?.castedParent, !arcAllCastedAncestors.contains(parent) {
-                nodes.append(parent)
+            let arcAllCastedAncestors = to.allCastedAncestors
+            while let parent = froms.last?.castedParent, !arcAllCastedAncestors.contains(parent) {
+                froms.append(parent)
             }
-            var arcs = [arc]
-            while let parent = arcs.last?.castedParent, !allCastedAncestors.contains(parent) {
-                arcs.append(parent)
+            var tos = [to]
+            while let parent = tos.last?.castedParent, !allCastedAncestors.contains(parent) {
+                tos.append(parent)
             }
-            guard let lastNode = nodes.last, let lastArc = arcs.last else { return }
-            let offSetDistance = -(lastNode.radius + lastArc.radius)
-            let force = computeForceBetween(first: shapeNode, second: arc, offSetDistance: offSetDistance, multiplier: forceDecay, proportionalToDistanceRaisedToPowerOf: 1.8)
-            nodes.forEach {
+            guard let lastFrom = froms.last, let lastTo = tos.last else { return }
+            let offSetDistance = -(lastFrom.radius + lastTo.radius)
+            let force = computeForceBetween(first: shapeNode, second: to, offSetDistance: offSetDistance, multiplier: forceDecay, proportionalToDistanceRaisedToPowerOf: 1.8)
+            froms.forEach {
                 $0.physicsBody?.applyForce(-force)
             }
-            arcs.forEach {
+            tos.forEach {
                 $0.physicsBody?.applyForce(force)
             }
         }
@@ -112,37 +114,23 @@ extension NodeScene: SKSceneDelegate {
         return force
     }
     
+    private func updateArcNodeAppearance(for shapeNode: ShapeNode) {
+        guard let scene = scene else { return }
+        for to in shapeNode.resultingArcs.compactMap( { shapeNodeForNodeDictionary[$0] } ) {
+            guard let arcNode = arcNodeForArcDictionary[Arc(from: shapeNode.node, to: to.node)] else {
+                continue
+            }
+            let fromPositionCenter = shapeNode.convert(CGPoint.zero, to: scene)
+            let toPositionCenter = to.convert(CGPoint.zero, to: scene)
+            let distanceVector = fromPositionCenter - toPositionCenter
+            let distance = distanceVector.length()
+            let fromPosition = fromPositionCenter - shapeNode.radius/distance*distanceVector
+            let toPosition = toPositionCenter + to.radius/distance*distanceVector
+            let path = CGMutablePath()
+            path.move(to: fromPosition)
+            path.addLine(to: toPosition)
+            arcNode.path = path
+        }
+    }
+
 }
-
-//
-//    private func updateArcNodesAppearance() {
-//        arcNodeDictionary.forEach { $1.isHidden = true }
-//        resultingArcs.forEach { updateArcNodeAppearance(to: $0) }
-//    }
-//
-//    private func updateArcNodeAppearance(to: ShapeNode) {
-//        guard let arcNode = arcNodeDictionary[to] else {
-//            let arcNode = SKShapeNode()
-//            arcNode.strokeColor = .windowFrameColor
-//            arcNode.lineWidth = 2
-//            arcNode.zPosition = -1
-//            scene?.addChild(arcNode)
-//            arcNodeDictionary[to] = arcNode
-//            return
-//        }
-//        guard let scene = scene else {
-//            return
-//        }
-//        arcNode.isHidden = false
-//        let fromPositionCenter = self.convert(CGPoint.zero, to: scene)
-//        let toPositionCenter = to.convert(CGPoint.zero, to: scene)
-//        let distanceVector = fromPositionCenter - toPositionCenter
-//        let distance = distanceVector.length()
-//        let fromPosition = fromPositionCenter - self.radius/distance*distanceVector
-//        let toPosition = toPositionCenter + to.radius/distance*distanceVector
-//        let path = CGMutablePath()
-//        path.move(to: fromPosition)
-//        path.addLine(to: toPosition)
-//        arcNode.path = path
-//    }
-

@@ -103,6 +103,7 @@ class ShapeNode: SKShapeNode {
     
     private func updateChildren() {
         if isCollapsed {
+            collapseDescendantsBottomUp()
             let castedChildren = self.castedChildren
             self.castedChildren = []
             self.siblingPairs = []
@@ -120,6 +121,13 @@ class ShapeNode: SKShapeNode {
             self.siblingPairs = siblingPairs
             self.resultingArcs = Set(node.arcs)
             castedChildren.forEach { addChild($0) }
+        }
+    }
+    
+    private func collapseDescendantsBottomUp(collapseSelf: Bool = false) {
+        castedChildren.forEach { $0.collapseDescendantsBottomUp(collapseSelf: true) }
+        if collapseSelf {
+            set(collapsed: true)
         }
     }
     
