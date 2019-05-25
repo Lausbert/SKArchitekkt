@@ -8,6 +8,7 @@ class NodeScene: SKScene {
     // MARK: - Internal -
     
     private(set) var castedChildren: Set<ShapeNode> = []
+    private(set) var arcMap: [Node: ShapeNode] = [:]
 
     override init() {
         super.init(size: CGSize.zero)
@@ -44,10 +45,14 @@ extension NodeScene: ShapeNodeDelegate {
     
     func shapeNode(_ shapeNode: ShapeNode, didAdd child: ShapeNode) {
         castedChildren.insert(child)
+        if !child.node.isRoot {
+            ([child.node] + child.node.allDescendants).forEach { arcMap[$0] = child }
+        }
     }
     
     func shapeNode(_ shapeNode: ShapeNode, willRemove child: ShapeNode) {
         castedChildren.remove(child)
+        ([child.node] + child.node.allDescendants).forEach { arcMap[$0] = shapeNode }
     }
     
 }

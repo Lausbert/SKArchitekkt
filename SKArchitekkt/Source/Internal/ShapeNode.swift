@@ -25,6 +25,19 @@ class ShapeNode: SKShapeNode {
     private(set) var radius: CGFloat = 16
     private(set) var isCollapsed = true
     
+    var castedParent: ShapeNode? {
+        return parent as? ShapeNode
+    }
+    var allCastedAncestors: [ShapeNode] {
+        var allCastedAncestors: [ShapeNode] = []
+        var node = self
+        while let parent = node.castedParent {
+            allCastedAncestors.append(parent)
+            node = parent
+        }
+        return allCastedAncestors
+    }
+    
     init(node: CoreArchitekkt.Node, colorDictionary: [String: NSColor], delegate: ShapeNodeDelegate?) {
         self.node = node
         self.colorDictionary = colorDictionary
@@ -60,15 +73,6 @@ class ShapeNode: SKShapeNode {
     
     private weak var delegate: ShapeNodeDelegate?
     private var colorDictionary: [String: NSColor]
-    private var allCastedAncestors: [ShapeNode] {
-        var allCastedAncestors: [ShapeNode] = []
-        var node = self
-        while let parent = node.parent as? ShapeNode {
-            allCastedAncestors.append(parent)
-            node = parent
-        }
-        return allCastedAncestors
-    }
     
     private func setUpPhysicsAndAppearance() {
         setUpPhysicsBody()

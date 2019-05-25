@@ -52,6 +52,7 @@ extension NodeScene: SKSceneDelegate {
         for shapeNode in castedChildren {
             updateRadialGravitationalForceOnChildren(for: shapeNode, withForceDecay: forceDecay)
             updateNegativeRadialGravitationalForceOnSiblings(for: shapeNode, withForceDecay: forceDecay)
+            updateSpringForce(for: shapeNode, withForceDecay: forceDecay)
             shapeNode.physicsBody?.velocity *= velocityDecay
         }
 //        updateSpringForceBetweenByArcConnectedNodes(forceDecay: forceDecay)
@@ -78,6 +79,30 @@ extension NodeScene: SKSceneDelegate {
         }
     }
     
+    private func updateSpringForce(for shapeNode: ShapeNode, withForceDecay forceDecay: CGFloat) {
+        for arc in shapeNode.resultingArcs.compactMap( { arcMap[$0] } ) {
+            var nodes = [shapeNode]
+            let allCastedAncestors = shapeNode.allCastedAncestors
+            let arcAllCastedAncestors = arc.allCastedAncestors
+            while let parent = nodes.last?.castedParent, !arcAllCastedAncestors.contains(parent) {
+                nodes.append(parent)
+            }
+            var arcs = [arc]
+            while let parent = arcs.last?.castedParent, !allCastedAncestors.contains(parent) {
+                arcs.append(parent)
+            }
+            guard let lastNode = nodes.last, let lastArc = arcs.last else { return }
+            let offSetDistance = -(lastNode.radius + lastArc.radius)
+            let force = computeForceBetween(first: shapeNode, second: arc, offSetDistance: offSetDistance, multiplier: forceDecay, proportionalToDistanceRaisedToPowerOf: 1.8)
+            nodes.forEach {
+                $0.physicsBody?.applyForce(-force)
+            }
+            arcs.forEach {
+                $0.physicsBody?.applyForce(force)
+            }
+        }
+    }
+    
     private func computeForceBetween(first: ShapeNode, second: ShapeNode, offSetDistance: CGFloat = 0, minimumRadius: CGFloat = 0, multiplier: CGFloat = 1, proportionalToDistanceRaisedToPowerOf power: CGFloat = 1) -> CGVector {
         guard let scene = scene else { return CGVector.zero }
         let distanceVector = first.convert(CGPoint.zero, to: scene) - second.convert(CGPoint.zero, to: scene)
@@ -90,29 +115,6 @@ extension NodeScene: SKSceneDelegate {
     
 }
 
-//
-//    private func updateSpringForceBetweenByArcConnectedNodes(forceDecay: CGFloat) {
-//        for arc in resultingArcs {
-//            var nodes = [self]
-//            while let parent = nodes.last?.castedParent, !arc.allCastedAncestors.contains(parent) {
-//                nodes.append(parent)
-//            }
-//            var arcs = [arc]
-//            while let parent = arcs.last?.castedParent, !allCastedAncestors.contains(parent) {
-//                arcs.append(parent)
-//            }
-//            guard let lastNode = nodes.last, let lastArc = arcs.last else { return }
-//            let offSetDistance = -(lastNode.radius + lastArc.radius)
-//            let force = computeForceBetween(first: self, second: arc, offSetDistance: offSetDistance, multiplier: forceDecay, proportionalToDistanceRaisedToPowerOf: 1.8)
-//            nodes.forEach {
-//                $0.physicsBody?.applyForce(-force)
-//            }
-//            arcs.forEach {
-//                $0.physicsBody?.applyForce(force)
-//            }
-//        }
-//    }
-//
 //
 //    private func updateArcNodesAppearance() {
 //        arcNodeDictionary.forEach { $1.isHidden = true }
