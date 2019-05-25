@@ -7,7 +7,7 @@ protocol ShapeNodeDelegate: class {
     
     func shapeNode(_ shapeNode: ShapeNode, didAdd child: ShapeNode)
     
-    func shapeNode(_ shapeNode: ShapeNode, willRemove child: ShapeNode)
+    func shapeNode(_ shapeNode: ShapeNode, didRemove child: ShapeNode)
     
 }
 
@@ -59,10 +59,11 @@ class ShapeNode: SKShapeNode {
     }
     
     override func removeFromParent() {
-        if let parent = self.parent as? ShapeNode {
-            delegate?.shapeNode(parent, willRemove: self)
-        }
+        let parent = self.parent as? ShapeNode
         super.removeFromParent()
+        if let parent = parent {
+            delegate?.shapeNode(parent, didRemove: self)
+        }
     }
     
     func didDoubleTap() {
@@ -102,16 +103,13 @@ class ShapeNode: SKShapeNode {
     
     private func updateChildren() {
         if isCollapsed {
-            castedChildren.forEach { $0.removeFromParent() }
+            let castedChildren = self.castedChildren
             self.castedChildren = []
             self.siblingPairs = []
             self.resultingArcs = Set(node.arcs + node.allDescendants.flatMap { $0.arcs })
+            castedChildren.forEach { $0.removeFromParent() }
         } else {
-            let castedChildren = node.children.map { (node) -> ShapeNode in
-                let shapeNode = ShapeNode(node: node, colorDictionary: colorDictionary, delegate: delegate)
-                addChild(shapeNode)
-                return shapeNode
-            }
+            let castedChildren = node.children.map { ShapeNode(node: $0, colorDictionary: colorDictionary, delegate: delegate) }
             self.castedChildren = castedChildren
             var siblingPairs: [(ShapeNode, ShapeNode)] = []
             for (index, first) in castedChildren[..<castedChildren.count].enumerated() {
@@ -121,6 +119,7 @@ class ShapeNode: SKShapeNode {
             }
             self.siblingPairs = siblingPairs
             self.resultingArcs = Set(node.arcs)
+            castedChildren.forEach { addChild($0) }
         }
     }
     

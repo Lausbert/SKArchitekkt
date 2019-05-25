@@ -79,7 +79,7 @@ extension NodeScene: SKSceneDelegate {
     }
     
     private func updateSpringForce(for shapeNode: ShapeNode, withForceDecay forceDecay: CGFloat) {
-        for arc in shapeNode.resultingArcs.compactMap( { arcMap[$0] } ) {
+        for arc in shapeNode.resultingArcs.compactMap( { shapeNodeForNodeDictionary[$0] } ) {
             var nodes = [shapeNode]
             let allCastedAncestors = shapeNode.allCastedAncestors
             let arcAllCastedAncestors = arc.allCastedAncestors
