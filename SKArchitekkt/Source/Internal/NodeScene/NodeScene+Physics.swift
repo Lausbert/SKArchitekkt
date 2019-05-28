@@ -116,16 +116,17 @@ extension NodeScene: SKSceneDelegate {
 
     private func updateArcNodeAppearance(for shapeNode: ShapeNode) {
         guard let scene = scene else { return }
-        for to in shapeNode.resultingArcs.compactMap({ shapeNodeForNodeDictionary[$0] }) {
-            guard let arcNode = arcNodeForArcDictionary[Arc(from: shapeNode.node, to: to.node)] else {
+        for to in shapeNode.resultingArcs {
+            guard let toShapeNode = shapeNodeForNodeDictionary[to],
+                let arcNode = arcNodeForArcDictionary[Arc(from: shapeNode.node, to: to)] else {
                 continue
             }
             let fromPositionCenter = shapeNode.convert(CGPoint.zero, to: scene)
-            let toPositionCenter = to.convert(CGPoint.zero, to: scene)
+            let toPositionCenter = toShapeNode.convert(CGPoint.zero, to: scene)
             let distanceVector = fromPositionCenter - toPositionCenter
             let distance = distanceVector.length()
             let fromPosition = fromPositionCenter - shapeNode.radius/distance*distanceVector
-            let toPosition = toPositionCenter + to.radius/distance*distanceVector
+            let toPosition = toPositionCenter + toShapeNode.radius/distance*distanceVector
             let path = CGMutablePath()
             path.move(to: fromPosition)
             path.addLine(to: toPosition)
