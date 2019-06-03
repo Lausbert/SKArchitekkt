@@ -54,14 +54,14 @@ extension NodeScene: ShapeNodeDelegate {
     func shapeNode(_ shapeNode: ShapeNode, didAdd child: ShapeNode) {
         castedChildren.insert(child)
         ([child.node] + child.node.allDescendants).forEach { shapeNodeForNodeDictionary[$0] = child }
-        for to in child.resultingArcs.keys {
-            let arcToRemove = Arc(from: shapeNode.node, to: to)
+        for to in child.resultingArcs {
+            let arcToRemove = Arc(from: shapeNode.node, to: to.key)
             arcNodeForArcDictionary.removeValue(forKey: arcToRemove)?.removeFromParent()
-            guard shapeNodeForNodeDictionary[to] != child else {
+            guard shapeNodeForNodeDictionary[to.key] != child else {
                 continue
             }
-            let arcToAdd = Arc(from: child.node, to: to)
-            let arcNode = createArcNode()
+            let arcToAdd = Arc(from: child.node, to: to.key)
+            let arcNode = createArcNode(withStrength: to.value)
             addChild(arcNode)
             arcNodeForArcDictionary[arcToAdd] = arcNode
         }
@@ -70,14 +70,14 @@ extension NodeScene: ShapeNodeDelegate {
     func shapeNode(_ shapeNode: ShapeNode, didRemove child: ShapeNode) {
         castedChildren.remove(child)
         ([child.node] + child.node.allDescendants).forEach { shapeNodeForNodeDictionary[$0] = shapeNode }
-        for to in child.resultingArcs.keys {
-            let arcToRemove = Arc(from: child.node, to: to)
+        for to in child.resultingArcs {
+            let arcToRemove = Arc(from: child.node, to: to.key)
             arcNodeForArcDictionary.removeValue(forKey: arcToRemove)?.removeFromParent()
-            guard shapeNode.resultingArcs.keys.contains(to) && shapeNodeForNodeDictionary[to] != shapeNode else {
+            guard shapeNode.resultingArcs.keys.contains(to.key) && shapeNodeForNodeDictionary[to.key] != shapeNode else {
                 continue
             }
-            let arcToAdd = Arc(from: shapeNode.node, to: to)
-            let arcNode = createArcNode()
+            let arcToAdd = Arc(from: shapeNode.node, to: to.key)
+            let arcNode = createArcNode(withStrength: shapeNode.resultingArcs[to.key, default: 0])
             addChild(arcNode)
             arcNodeForArcDictionary[arcToAdd] = arcNode
         }
@@ -85,10 +85,10 @@ extension NodeScene: ShapeNodeDelegate {
 
     // MARK: - Private -
 
-    private func createArcNode() -> SKShapeNode {
+    private func createArcNode(withStrength strenght: Int) -> SKShapeNode {
         let arcNode = SKShapeNode()
         arcNode.strokeColor = .windowFrameColor
-        arcNode.lineWidth = 2
+        arcNode.lineWidth = max(1, 2*log(CGFloat(strenght)))
         arcNode.zPosition = -1
         return arcNode
     }

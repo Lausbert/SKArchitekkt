@@ -81,7 +81,11 @@ extension NodeScene: SKSceneDelegate {
     }
 
     private func updateSpringForce(for shapeNode: ShapeNode, withForceDecay forceDecay: CGFloat) {
-        for to in shapeNode.resultingArcs.keys.compactMap({ shapeNodeForNodeDictionary[$0] }) {
+        for (to, strength) in shapeNode.resultingArcs.compactMap({ (shapeNodeForNodeDictionary[$0.key], $0.value) }) {
+            guard let to = to else {
+                assertionFailure()
+                continue
+            }
             var froms = [shapeNode]
             let allCastedAncestors = shapeNode.allCastedAncestors
             let arcAllCastedAncestors = to.allCastedAncestors
@@ -94,7 +98,8 @@ extension NodeScene: SKSceneDelegate {
             }
             guard let lastFrom = froms.last, let lastTo = tos.last else { return }
             let offSetDistance = -(lastFrom.radius + lastTo.radius)
-            let force = computeForceBetween(first: shapeNode, second: to, offSetDistance: offSetDistance, multiplier: forceDecay, proportionalToDistanceRaisedToPowerOf: 1.8)
+            let multiplier = max(1, 2*log(CGFloat(strength)))
+            let force = computeForceBetween(first: shapeNode, second: to, offSetDistance: offSetDistance, multiplier: forceDecay*multiplier, proportionalToDistanceRaisedToPowerOf: 1.8)
             froms.forEach {
                 $0.physicsBody?.applyForce(-force)
             }
