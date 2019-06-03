@@ -54,7 +54,7 @@ extension NodeScene: ShapeNodeDelegate {
     func shapeNode(_ shapeNode: ShapeNode, didAdd child: ShapeNode) {
         castedChildren.insert(child)
         ([child.node] + child.node.allDescendants).forEach { shapeNodeForNodeDictionary[$0] = child }
-        for to in child.resultingArcs {
+        for to in child.resultingArcs.keys {
             let arcToRemove = Arc(from: shapeNode.node, to: to)
             arcNodeForArcDictionary.removeValue(forKey: arcToRemove)?.removeFromParent()
             guard shapeNodeForNodeDictionary[to] != child else {
@@ -70,10 +70,10 @@ extension NodeScene: ShapeNodeDelegate {
     func shapeNode(_ shapeNode: ShapeNode, didRemove child: ShapeNode) {
         castedChildren.remove(child)
         ([child.node] + child.node.allDescendants).forEach { shapeNodeForNodeDictionary[$0] = shapeNode }
-        for to in child.resultingArcs {
+        for to in child.resultingArcs.keys {
             let arcToRemove = Arc(from: child.node, to: to)
             arcNodeForArcDictionary.removeValue(forKey: arcToRemove)?.removeFromParent()
-            guard shapeNode.resultingArcs.contains(to) && shapeNodeForNodeDictionary[to] != shapeNode else {
+            guard shapeNode.resultingArcs.keys.contains(to) && shapeNodeForNodeDictionary[to] != shapeNode else {
                 continue
             }
             let arcToAdd = Arc(from: shapeNode.node, to: to)

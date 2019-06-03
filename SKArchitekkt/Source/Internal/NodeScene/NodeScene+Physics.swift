@@ -81,7 +81,7 @@ extension NodeScene: SKSceneDelegate {
     }
 
     private func updateSpringForce(for shapeNode: ShapeNode, withForceDecay forceDecay: CGFloat) {
-        for to in shapeNode.resultingArcs.compactMap({ shapeNodeForNodeDictionary[$0] }) {
+        for to in shapeNode.resultingArcs.keys.compactMap({ shapeNodeForNodeDictionary[$0] }) {
             var froms = [shapeNode]
             let allCastedAncestors = shapeNode.allCastedAncestors
             let arcAllCastedAncestors = to.allCastedAncestors
@@ -116,7 +116,7 @@ extension NodeScene: SKSceneDelegate {
 
     private func updateArcNodeAppearance(for shapeNode: ShapeNode) {
         guard let scene = scene else { return }
-        for to in shapeNode.resultingArcs {
+        for to in shapeNode.resultingArcs.keys {
             guard let toShapeNode = shapeNodeForNodeDictionary[to],
                 let arcNode = arcNodeForArcDictionary[Arc(from: shapeNode.node, to: to)] else {
                 continue

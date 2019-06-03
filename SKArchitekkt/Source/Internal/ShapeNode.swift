@@ -19,7 +19,7 @@ class ShapeNode: SKShapeNode {
 
     let node: Node
 
-    private(set) var resultingArcs: Set<Node> = []
+    private(set) var resultingArcs: [Node: Int] = [:]
     private(set) var castedChildren: [ShapeNode] = []
     private(set) var siblingPairs: [(ShapeNode, ShapeNode)] = []
     private(set) var radius: CGFloat = 16
@@ -107,7 +107,7 @@ class ShapeNode: SKShapeNode {
             let castedChildren = self.castedChildren
             self.castedChildren = []
             self.siblingPairs = []
-            self.resultingArcs = Set(node.arcs + node.allDescendants.flatMap { $0.arcs })
+            self.resultingArcs = (node.arcs + node.allDescendants.flatMap { $0.arcs }).reduce(into: [:]) { $0[$1, default: 0] += 1 }
             castedChildren.forEach { $0.removeFromParent() }
         } else {
             let castedChildren = node.children.map { ShapeNode(node: $0, colorDictionary: colorDictionary, delegate: delegate) }
@@ -119,7 +119,7 @@ class ShapeNode: SKShapeNode {
                 }
             }
             self.siblingPairs = siblingPairs
-            self.resultingArcs = Set(node.arcs)
+            self.resultingArcs = node.arcs.reduce(into: [:]) { $0[$1] = 1 }
             castedChildren.forEach { addChild($0) }
         }
     }
