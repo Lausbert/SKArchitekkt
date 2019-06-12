@@ -74,7 +74,7 @@ extension NodeScene: SKSceneDelegate {
     private func updateNegativeRadialGravitationalForceOnSiblings(for shapeNode: ShapeNode, withForceDecay forceDecay: CGFloat) {
         guard !shapeNode.isCollapsed, shapeNode.castedChildren.count > 1 else { return }
         for pair in shapeNode.siblingPairs {
-            let force = computeForceBetween(first: pair.0, second: pair.1, multiplier: forceDecay*pair.0.radius^^2*pair.1.radius^^2, proportionalToDistanceRaisedToPowerOf: -1.3)
+            let force = computeForceBetween(first: pair.0, second: pair.1, multiplier: forceDecay*pair.0.radius^^2*pair.1.radius^^2, proportionalToDistanceRaisedToPowerOf: -0.5)
             pair.0.physicsBody?.applyForce(force)
             pair.1.physicsBody?.applyForce(-force)
         }
@@ -98,7 +98,7 @@ extension NodeScene: SKSceneDelegate {
             }
             guard let lastFrom = froms.last, let lastTo = tos.last else { return }
             let offSetDistance = -(lastFrom.radius + lastTo.radius)
-            let multiplier = max(1, 2*log(CGFloat(strength)))
+            let multiplier = min(10, max(1, log(CGFloat(strength))))
             let force = computeForceBetween(first: shapeNode, second: to, offSetDistance: offSetDistance, multiplier: forceDecay*multiplier, proportionalToDistanceRaisedToPowerOf: 1.8)
             froms.forEach {
                 $0.physicsBody?.applyForce(-force)

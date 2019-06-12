@@ -107,7 +107,9 @@ class ShapeNode: SKShapeNode {
             let castedChildren = self.castedChildren
             self.castedChildren = []
             self.siblingPairs = []
-            self.resultingArcs = (node.arcs + node.allDescendants.flatMap { $0.arcs }).reduce(into: [:]) { $0[$1, default: 0] += 1 }
+            self.resultingArcs = (node.arcs + node.allDescendants.flatMap { $0.arcs })
+                .filter({ !([node] + node.allDescendants).contains($0) })
+                .reduce(into: [:]) { $0[$1, default: 0] += 1 }
             castedChildren.forEach { $0.removeFromParent() }
         } else {
             let castedChildren = node.children.map { ShapeNode(node: $0, colorDictionary: colorDictionary, delegate: delegate) }
