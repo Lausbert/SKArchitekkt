@@ -108,7 +108,6 @@ class ShapeNode: SKShapeNode {
             self.castedChildren = []
             self.siblingPairs = []
             self.resultingArcs = (node.arcs + node.allDescendants.flatMap { $0.arcs })
-                .filter({ !([node] + node.allDescendants).contains($0) })
                 .reduce(into: [:]) { $0[$1, default: 0] += 1 }
             castedChildren.forEach { $0.removeFromParent() }
         } else {

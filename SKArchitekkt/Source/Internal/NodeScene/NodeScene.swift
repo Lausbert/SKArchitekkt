@@ -69,11 +69,13 @@ extension NodeScene: ShapeNodeDelegate {
 
     func shapeNode(_ shapeNode: ShapeNode, didRemove child: ShapeNode) {
         castedChildren.remove(child)
-        ([child.node] + child.node.allDescendants).forEach { shapeNodeForNodeDictionary[$0] = shapeNode }
+        // the following line only works, when all children of a shapenode are always removed at once...
+        shapeNode.node.allDescendants.forEach { shapeNodeForNodeDictionary[$0] = shapeNode }
         for to in child.resultingArcs {
             let arcToRemove = Arc(from: child.node, to: to.key)
             arcNodeForArcDictionary.removeValue(forKey: arcToRemove)?.removeFromParent()
-            guard shapeNode.resultingArcs.keys.contains(to.key) else {
+            // ... but if the upper line wouldn't be as it is, the second condition here would fail, if more than one children are removed at once
+            guard shapeNode.resultingArcs.keys.contains(to.key) && shapeNodeForNodeDictionary[to.key] != shapeNode else {
                 continue
             }
             let arcToAdd = Arc(from: shapeNode.node, to: to.key)
