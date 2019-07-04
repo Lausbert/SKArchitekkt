@@ -13,10 +13,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         viewController.handle(rootNode: rootNode)
     }
 
-    private func setUpViewController(sideLength: CGFloat) -> ViewController {
+    private func setUpViewController(sideLength: CGFloat) -> SplitViewController {
         let window = NSWindow(contentRect: NSRect(x: ((NSScreen.main?.frame.width ?? 0) - sideLength)/2, y: ((NSScreen.main?.frame.height ?? 0) - sideLength)/2, width: sideLength, height: sideLength), styleMask: [.titled, .closable, .resizable, .miniaturizable], backing: .buffered, defer: false)
         window.makeKeyAndOrderFront(nil)
-        let viewController = ViewController.createFromStoryBoard()
+        let viewController = SplitViewController.createFromStoryBoard()
         viewController.preferredContentSize = CGSize(width: sideLength, height: sideLength)
         window.contentViewController = viewController
         return viewController
