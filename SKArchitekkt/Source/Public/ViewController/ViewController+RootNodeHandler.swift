@@ -4,7 +4,7 @@ import Foundation
 import CoreArchitekkt
 
 extension SplitViewController: RootNodeHandler {
-    
+
     // MARK: - Public -
 
     public func handle(rootNode: Node) {

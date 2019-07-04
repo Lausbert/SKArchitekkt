@@ -8,30 +8,30 @@ public protocol SplitViewControllerPaneDelegate: class {
 }
 
 public class SplitViewController: NSSplitViewController, StoryBoardLoadable {
-    
+
     // MARK: - Public -
-    
+
     public weak var paneDelegate: SplitViewControllerPaneDelegate?
-    
+
     public enum Pane {
         case right
     }
-    
+
     public func setPane(visible: Bool, pane: Pane) {
         switch pane {
         case .right:
             splitViewItems.first(where: { $0.viewController is RightPaneViewController })?.isCollapsed = !visible
         }
     }
-    
+
     // MARK: - Internal -
-    
+
     public override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         splitView.delegate = self
     }
-    
+
     public override func splitViewDidResizeSubviews(_ notification: Notification) {
         for splitViewItem in splitViewItems {
             switch splitViewItem.viewController {

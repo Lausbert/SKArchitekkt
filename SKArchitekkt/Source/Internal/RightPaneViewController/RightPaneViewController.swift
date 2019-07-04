@@ -3,5 +3,5 @@
 import AppKit
 
 class RightPaneViewController: NSViewController {
-    
+
 }
