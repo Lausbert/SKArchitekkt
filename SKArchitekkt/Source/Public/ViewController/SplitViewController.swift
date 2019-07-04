@@ -17,10 +17,14 @@ public class SplitViewController: NSSplitViewController, StoryBoardLoadable {
         case right
     }
 
-    public func setPane(visible: Bool, pane: Pane) {
+    public func setPane(visible: Bool, pane: Pane, animated: Bool) {
         switch pane {
         case .right:
-            splitViewItems.first(where: { $0.viewController is RightPaneViewController })?.isCollapsed = !visible
+            if animated {
+                splitViewItems.first(where: { $0.viewController is RightPaneViewController })?.animator().isCollapsed = !visible
+            } else {
+                splitViewItems.first(where: { $0.viewController is RightPaneViewController })?.isCollapsed = !visible
+            }
         }
     }
 
@@ -36,7 +40,7 @@ public class SplitViewController: NSSplitViewController, StoryBoardLoadable {
         for splitViewItem in splitViewItems {
             switch splitViewItem.viewController {
             case is RightPaneViewController:
-                paneDelegate?.didSetPane(visible: splitViewItem.isCollapsed, pane: .right)
+                paneDelegate?.didSetPane(visible: !splitViewItem.isCollapsed, pane: .right)
             default:
                 break
             }
