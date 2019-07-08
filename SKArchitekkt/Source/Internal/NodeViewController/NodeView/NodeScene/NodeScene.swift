@@ -19,7 +19,7 @@ class NodeScene: SKScene {
     override init() {
         super.init(size: CGSize.zero)
         delegate = self
-        backgroundColor = NSColor.windowBackgroundColor
+        backgroundColor = NSColor.controlBackgroundColor
         setUpPhysicsWorld()
         setUpCamera()
     }
