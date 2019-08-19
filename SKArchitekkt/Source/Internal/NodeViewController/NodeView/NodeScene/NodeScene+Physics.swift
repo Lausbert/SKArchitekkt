@@ -22,7 +22,7 @@ extension NodeScene: SKSceneDelegate {
     }
 
     func update(_ currentTime: TimeInterval, for scene: SKScene) {
-        forceDecay += (forceDecayTarget - forceDecay) * forceDecayDecay
+        forceDecay -= (forceDecay - forceDecayTarget) * forceDecayDecay
         if forceDecay < forceDecayMin {
             stopSimulation()
             return
