@@ -5,7 +5,7 @@ import Foundation
 class SettingsItem: Codable {
     
     let name: String
-    let value: Double
+    var value: Double
     let minValue: Double
     let maxValue: Double
     

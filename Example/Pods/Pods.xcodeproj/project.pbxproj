@@ -33,6 +33,7 @@
 		5DC1B741230C27C400E0388C /* RightPaneViewController.storyboard in Sources */ = {isa = PBXBuildFile; fileRef = 5DC1B731230C275100E0388C /* RightPaneViewController.storyboard */; };
 		5DC1B742230C27C400E0388C /* SettingsItemView.xib in Sources */ = {isa = PBXBuildFile; fileRef = 5DC1B738230C275D00E0388C /* SettingsItemView.xib */; };
 		5DC1B747230C28BE00E0388C /* SettingsItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC1B746230C28BE00E0388C /* SettingsItemView.swift */; };
+		5DC1B74A230C29BB00E0388C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC1B749230C29BB00E0388C /* Settings.swift */; };
 		60231790D199BE7C049885D283C04647 /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797CA0925A7EB3AB593F57D5A92A3938 /* CGFloat.swift */; };
 		61B3EB84F16C1229D28C8C3918660E72 /* GraphRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4350E4447D188E0FC0B580115F16A9E4 /* GraphRequest.swift */; };
 		62DC4908261D4B74DB5B3FE072D41F86 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDF34A04C199AF83D47781DFC2F0970 /* SplitViewController.swift */; };
@@ -115,6 +116,7 @@
 		5DC1B73A230C275D00E0388C /* SettingsGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsGroup.swift; sourceTree = "<group>"; };
 		5DC1B73B230C275D00E0388C /* SettingsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsItem.swift; sourceTree = "<group>"; };
 		5DC1B746230C28BE00E0388C /* SettingsItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsItemView.swift; sourceTree = "<group>"; };
+		5DC1B749230C29BB00E0388C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		5F3424B0230C0CC196915777D9C9AA06 /* Shell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Shell.swift; path = "CoreArchitekkt/Source/Public/Utilities/Classes+Structs/Shell.swift"; sourceTree = "<group>"; };
 		601A543EFE1E4EA1F7215AB106785B5D /* Node.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Node.swift; path = "CoreArchitekkt/Source/Public/Classes+Structs/Node/Node.swift"; sourceTree = "<group>"; };
 		68C369A08B661CAC4592BA18D39C140D /* ViewController+RootNodeHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "ViewController+RootNodeHandler.swift"; sourceTree = "<group>"; };
@@ -292,7 +294,6 @@
 				5DC1B732230C275100E0388C /* RightPaneCollectionViewItem.swift */,
 				5DC1B733230C275100E0388C /* RightPaneCollectionViewItem.xib */,
 				5DC1B730230C275100E0388C /* RightPaneViewController.swift */,
-				5DC1B748230C295600E0388C /* Settings */,
 			);
 			path = RightPaneViewController;
 			sourceTree = "<group>";
@@ -300,10 +301,11 @@
 		5DC1B748230C295600E0388C /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				5DC1B738230C275D00E0388C /* SettingsItemView.xib */,
-				5DC1B746230C28BE00E0388C /* SettingsItemView.swift */,
+				5DC1B749230C29BB00E0388C /* Settings.swift */,
 				5DC1B73A230C275D00E0388C /* SettingsGroup.swift */,
 				5DC1B73B230C275D00E0388C /* SettingsItem.swift */,
+				5DC1B738230C275D00E0388C /* SettingsItemView.xib */,
+				5DC1B746230C28BE00E0388C /* SettingsItemView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -378,6 +380,7 @@
 		C3B0C82597175035B0061F04E2B61645 /* Internal */ = {
 			isa = PBXGroup;
 			children = (
+				5DC1B748230C295600E0388C /* Settings */,
 				2617B8C344F9F91FEDCA9C850543BBA0 /* NodeViewController */,
 				5D7CEB9A22CB8A6300EB7A43 /* RightPaneViewController */,
 				18D1862BCE7D887A97C4C4C6453489E9 /* Extensions */,
@@ -603,6 +606,7 @@
 				92213AE2A6B3BBA6CE2D42326F91961F /* SKArchitekkt-dummy.m in Sources */,
 				8C9B1718EF1C8A22A2834A0DAFF25C08 /* ViewController+RootNodeHandler.swift in Sources */,
 				5DC1B734230C275100E0388C /* RightPaneViewController.swift in Sources */,
+				5DC1B74A230C29BB00E0388C /* Settings.swift in Sources */,
 				B5A2F3A58DCEFB76531AF300470D3774 /* SplitViewController.storyboard in Sources */,
 				62DC4908261D4B74DB5B3FE072D41F86 /* SplitViewController.swift in Sources */,
 			);

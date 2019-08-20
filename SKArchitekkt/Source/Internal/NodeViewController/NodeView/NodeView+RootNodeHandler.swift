@@ -5,9 +5,9 @@ import CoreArchitekkt
 
 extension NodeView: RootNodeHandler {
 
-    // MARK: - Public -
+    // MARK: - Internal -
 
-    public func handle(rootNode: Node) {
+    func handle(rootNode: Node) {
         (scene as? NodeScene)?.add(rootNode: rootNode)
     }
 

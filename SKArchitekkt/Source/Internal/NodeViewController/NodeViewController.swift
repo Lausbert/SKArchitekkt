@@ -3,6 +3,8 @@
 import AppKit
 
 class NodeViewController: NSViewController {
+    
+    // MARK: - Internal -
 
     @IBOutlet weak var nodeView: NodeView!
 

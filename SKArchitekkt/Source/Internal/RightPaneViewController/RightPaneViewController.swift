@@ -4,6 +4,8 @@ import AppKit
 
 class RightPaneViewController: NSViewController, NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout {
     
+    // MARK: - Internal -
+    
     @IBOutlet weak var collectionView: NSCollectionView!
     
     override func viewDidLoad() {
