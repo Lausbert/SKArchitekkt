@@ -10,9 +10,49 @@
             <objects>
                 <viewController storyboardIdentifier="RightPaneViewController" id="Wmc-0e-3p5" customClass="RightPaneViewController" customModule="SKArchitekkt" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Kdp-pu-OB0">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="250" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7z-zC-PWq">
+                                <rect key="frame" x="0.0" y="0.0" width="250" height="300"/>
+                                <clipView key="contentView" drawsBackground="NO" id="tkz-WR-tbq">
+                                    <rect key="frame" x="1" y="1" width="248" height="298"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <collectionView id="x8o-ZZ-gsh">
+                                            <rect key="frame" x="0.0" y="0.0" width="248" height="158"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" id="aaN-dv-AOI">
+                                                <size key="itemSize" width="250" height="50"/>
+                                            </collectionViewFlowLayout>
+                                            <color key="primaryBackgroundColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </collectionView>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                </clipView>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="0fc-X0-fxg"/>
+                                </constraints>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="wQl-W2-aU9">
+                                    <rect key="frame" x="1" y="283" width="248" height="16"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Hj0-R1-AJA">
+                                    <rect key="frame" x="234" y="1" width="15" height="143"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="x7z-zC-PWq" secondAttribute="trailing" id="Al0-8G-z97"/>
+                            <constraint firstItem="x7z-zC-PWq" firstAttribute="leading" secondItem="Kdp-pu-OB0" secondAttribute="leading" id="CGQ-Xf-vc3"/>
+                            <constraint firstAttribute="bottom" secondItem="x7z-zC-PWq" secondAttribute="bottom" id="Yb7-ns-Rg7"/>
+                            <constraint firstItem="x7z-zC-PWq" firstAttribute="top" secondItem="Kdp-pu-OB0" secondAttribute="top" id="xdC-Jf-np4"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="x8o-ZZ-gsh" id="z8B-n6-fUG"/>
+                    </connections>
                 </viewController>
                 <customObject id="fp2-yN-a8v" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

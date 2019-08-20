@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="250" height="272"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="Kn3-Na-km1">
+                    <rect key="frame" x="0.0" y="0.0" width="250" height="272"/>
+                    <subviews>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Z1Z-cy-84x">
+                            <rect key="frame" x="4" y="255" width="32" height="13"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="mFT-Na-wdG">
+                                <font key="font" metaFont="systemSemibold" size="10"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                        <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ve9-BD-Wx4">
+                            <rect key="frame" x="16" y="16" width="226" height="231"/>
+                        </stackView>
+                        <box ambiguous="YES" boxType="custom" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="xhw-fu-8x5">
+                            <rect key="frame" x="0.0" y="-4" width="250" height="7"/>
+                            <view key="contentView" ambiguous="YES" id="Wce-dS-Tsi">
+                                <rect key="frame" x="1" y="1" width="248" height="5"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </view>
+                            <constraints>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="Boz-ch-OO9"/>
+                                <constraint firstAttribute="height" constant="1" id="iPi-WP-mC8"/>
+                            </constraints>
+                            <color key="borderColor" red="1" green="1" blue="1" alpha="0.052429620615851977" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="fillColor" red="1" green="1" blue="1" alpha="0.049101055475006906" colorSpace="custom" customColorSpace="sRGB"/>
+                        </box>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="ve9-BD-Wx4" firstAttribute="top" secondItem="Z1Z-cy-84x" secondAttribute="bottom" constant="8" id="3Ds-1g-t7I"/>
+                        <constraint firstItem="ve9-BD-Wx4" firstAttribute="leading" secondItem="Kn3-Na-km1" secondAttribute="leading" constant="16" id="9G6-nf-v0E"/>
+                        <constraint firstItem="Z1Z-cy-84x" firstAttribute="leading" secondItem="Kn3-Na-km1" secondAttribute="leading" constant="6" id="9IY-E5-9cb"/>
+                        <constraint firstAttribute="trailing" secondItem="xhw-fu-8x5" secondAttribute="trailing" id="GpX-4f-kcq"/>
+                        <constraint firstAttribute="bottom" secondItem="xhw-fu-8x5" secondAttribute="bottom" id="La7-DN-fzb"/>
+                        <constraint firstItem="Z1Z-cy-84x" firstAttribute="top" secondItem="Kn3-Na-km1" secondAttribute="top" constant="4" id="Lx3-9y-EWv"/>
+                        <constraint firstAttribute="bottom" secondItem="ve9-BD-Wx4" secondAttribute="bottom" constant="16" id="PiF-Da-RiJ"/>
+                        <constraint firstItem="xhw-fu-8x5" firstAttribute="leading" secondItem="Kn3-Na-km1" secondAttribute="leading" id="wQn-i1-moc"/>
+                        <constraint firstAttribute="trailing" secondItem="ve9-BD-Wx4" secondAttribute="trailing" constant="8" id="yGY-Vh-N9L"/>
+                    </constraints>
+                </customView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Kn3-Na-km1" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="0nJ-Ve-yGe"/>
+                <constraint firstAttribute="bottom" secondItem="Kn3-Na-km1" secondAttribute="bottom" id="WfF-cV-fBI"/>
+                <constraint firstAttribute="trailing" secondItem="Kn3-Na-km1" secondAttribute="trailing" id="Wk0-Ap-Lml"/>
+                <constraint firstItem="Kn3-Na-km1" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="sgY-My-15w"/>
+            </constraints>
+        </customView>
+        <customObject id="b3R-wS-vPN" customClass="RightPaneCollectionViewItem" customModule="SKArchitekkt" customModuleProvider="target">
+            <connections>
+                <outlet property="stackView" destination="ve9-BD-Wx4" id="j98-58-EBF"/>
+                <outlet property="titleLabel" destination="Z1Z-cy-84x" id="77e-dw-IKA"/>
+                <outlet property="view" destination="c22-O7-iKe" id="I3K-WG-HWt"/>
+            </connections>
+        </customObject>
+    </objects>
+</document>
