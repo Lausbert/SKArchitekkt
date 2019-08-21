@@ -2,10 +2,10 @@
 
 import Foundation
 
-class SettingsItem: Codable {
+class SettingsItem: NSObject, Codable {
     
     let name: String
-    var value: Double
+    @objc dynamic var value: Double
     let minValue: Double
     let maxValue: Double
     

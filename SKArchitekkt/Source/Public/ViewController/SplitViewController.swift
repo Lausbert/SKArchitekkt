@@ -28,8 +28,6 @@ public class SplitViewController: NSSplitViewController, StoryBoardLoadable {
         }
     }
 
-    // MARK: - Internal -
-
     public override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -46,5 +44,20 @@ public class SplitViewController: NSSplitViewController, StoryBoardLoadable {
             }
         }
     }
+    
+    public override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        switch segue.destinationController {
+        case let nodeViewController as NodeViewController:
+            nodeViewController.settings = settings
+        case let rightPaneViewController as RightPaneViewController:
+            rightPaneViewController.settings = settings
+        default:
+            break
+        }
+    }
+    
+    // MARK: - Private -
+    
+    private let settings: Settings = Settings.createSettings()
 
 }

@@ -8,6 +8,8 @@ class RightPaneViewController: NSViewController, NSCollectionViewDataSource, NSC
     
     @IBOutlet weak var collectionView: NSCollectionView!
     
+    var settings: Settings!; #warning("remove ! and make private after @IBSegueActions are used for initialization")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
