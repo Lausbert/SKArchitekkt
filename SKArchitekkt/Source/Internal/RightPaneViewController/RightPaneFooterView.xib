@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe" customClass="RightPaneFooterView">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="8"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <box boxType="custom" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="Dm0-2k-KVA">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="1"/>
+                    <view key="contentView" id="aO3-vI-8Eu">
+                        <rect key="frame" x="1" y="1" width="478" height="0.0"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="9C8-Dd-SKj"/>
+                    </constraints>
+                    <color key="borderColor" red="1" green="1" blue="1" alpha="0.048991020263739297" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="fillColor" red="1" green="1" blue="1" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="sRGB"/>
+                </box>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Dm0-2k-KVA" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="0Qb-3U-Cy5"/>
+                <constraint firstAttribute="trailing" secondItem="Dm0-2k-KVA" secondAttribute="trailing" id="Bdt-Wj-LhR"/>
+                <constraint firstAttribute="bottom" secondItem="Dm0-2k-KVA" secondAttribute="bottom" id="NRi-Q7-4L2"/>
+                <constraint firstItem="Dm0-2k-KVA" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="7" id="bih-3O-hEa"/>
+            </constraints>
+        </customView>
+    </objects>
+</document>

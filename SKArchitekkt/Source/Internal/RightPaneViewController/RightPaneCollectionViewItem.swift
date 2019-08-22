@@ -4,9 +4,7 @@ import AppKit
 
 class RightPaneCollectionViewItem: NSCollectionViewItem, NibLoadable {
     
-    // MARK: - Internal -
-    
-    @IBOutlet weak var titleLabel: NSTextField!
-    @IBOutlet weak var stackView: NSStackView!
+    @IBOutlet weak var label: NSTextField!
+    @IBOutlet weak var slider: NSSlider!
     
 }

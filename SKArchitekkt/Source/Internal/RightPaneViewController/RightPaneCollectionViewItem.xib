@@ -5,66 +5,55 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-2" userLabel="File's Owner" customClass="SettingsItemView" customModule="SKArchitekkt"/>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="c22-O7-iKe">
-            <rect key="frame" x="0.0" y="0.0" width="250" height="272"/>
+            <rect key="frame" x="0.0" y="0.0" width="197" height="23"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <customView translatesAutoresizingMaskIntoConstraints="NO" id="Kn3-Na-km1">
-                    <rect key="frame" x="0.0" y="0.0" width="250" height="272"/>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="iIq-Ix-dCD">
+                    <rect key="frame" x="0.0" y="0.0" width="197" height="23"/>
                     <subviews>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Z1Z-cy-84x">
-                            <rect key="frame" x="4" y="255" width="32" height="13"/>
-                            <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="mFT-Na-wdG">
-                                <font key="font" metaFont="systemSemibold" size="10"/>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qNL-HV-CVy">
+                            <rect key="frame" x="-2" y="5" width="64" height="13"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Label" id="NYa-E8-r5Z">
+                                <font key="font" metaFont="system" size="10"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="16" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ve9-BD-Wx4">
-                            <rect key="frame" x="16" y="16" width="226" height="231"/>
-                        </stackView>
-                        <box ambiguous="YES" boxType="custom" title="Box" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="xhw-fu-8x5">
-                            <rect key="frame" x="0.0" y="-4" width="250" height="7"/>
-                            <view key="contentView" ambiguous="YES" id="Wce-dS-Tsi">
-                                <rect key="frame" x="1" y="1" width="248" height="5"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </view>
-                            <constraints>
-                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="Boz-ch-OO9"/>
-                                <constraint firstAttribute="height" constant="1" id="iPi-WP-mC8"/>
-                            </constraints>
-                            <color key="borderColor" red="1" green="1" blue="1" alpha="0.052429620615851977" colorSpace="custom" customColorSpace="sRGB"/>
-                            <color key="fillColor" red="1" green="1" blue="1" alpha="0.049101055475006906" colorSpace="custom" customColorSpace="sRGB"/>
-                        </box>
+                        <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ANE-Kn-jyJ">
+                            <rect key="frame" x="66" y="2" width="125" height="19"/>
+                            <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="oSE-Te-IDS"/>
+                        </slider>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="ve9-BD-Wx4" firstAttribute="top" secondItem="Z1Z-cy-84x" secondAttribute="bottom" constant="8" id="3Ds-1g-t7I"/>
-                        <constraint firstItem="ve9-BD-Wx4" firstAttribute="leading" secondItem="Kn3-Na-km1" secondAttribute="leading" constant="16" id="9G6-nf-v0E"/>
-                        <constraint firstItem="Z1Z-cy-84x" firstAttribute="leading" secondItem="Kn3-Na-km1" secondAttribute="leading" constant="6" id="9IY-E5-9cb"/>
-                        <constraint firstAttribute="trailing" secondItem="xhw-fu-8x5" secondAttribute="trailing" id="GpX-4f-kcq"/>
-                        <constraint firstAttribute="bottom" secondItem="xhw-fu-8x5" secondAttribute="bottom" id="La7-DN-fzb"/>
-                        <constraint firstItem="Z1Z-cy-84x" firstAttribute="top" secondItem="Kn3-Na-km1" secondAttribute="top" constant="4" id="Lx3-9y-EWv"/>
-                        <constraint firstAttribute="bottom" secondItem="ve9-BD-Wx4" secondAttribute="bottom" constant="16" id="PiF-Da-RiJ"/>
-                        <constraint firstItem="xhw-fu-8x5" firstAttribute="leading" secondItem="Kn3-Na-km1" secondAttribute="leading" id="wQn-i1-moc"/>
-                        <constraint firstAttribute="trailing" secondItem="ve9-BD-Wx4" secondAttribute="trailing" constant="8" id="yGY-Vh-N9L"/>
+                        <constraint firstAttribute="leading" secondItem="qNL-HV-CVy" secondAttribute="trailing" constant="-60" id="4OZ-5n-DPt"/>
+                        <constraint firstItem="ANE-Kn-jyJ" firstAttribute="centerY" secondItem="qNL-HV-CVy" secondAttribute="centerY" id="6ND-t9-b4C"/>
+                        <constraint firstAttribute="trailing" secondItem="ANE-Kn-jyJ" secondAttribute="trailing" constant="8" id="Dre-ya-y1P"/>
+                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="qNL-HV-CVy" secondAttribute="bottom" constant="4" id="a3o-xK-hwq"/>
+                        <constraint firstItem="ANE-Kn-jyJ" firstAttribute="leading" secondItem="qNL-HV-CVy" secondAttribute="trailing" constant="8" id="aV4-pw-sPc"/>
+                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ANE-Kn-jyJ" secondAttribute="bottom" constant="4" id="glU-3o-otZ"/>
+                        <constraint firstItem="qNL-HV-CVy" firstAttribute="top" relation="greaterThanOrEqual" secondItem="iIq-Ix-dCD" secondAttribute="top" constant="4" id="iYD-hQ-aTE"/>
+                        <constraint firstItem="qNL-HV-CVy" firstAttribute="leading" secondItem="iIq-Ix-dCD" secondAttribute="leading" id="lWe-77-qyF"/>
+                        <constraint firstItem="ANE-Kn-jyJ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="iIq-Ix-dCD" secondAttribute="top" constant="4" id="rCa-dm-OTn"/>
                     </constraints>
                 </customView>
             </subviews>
             <constraints>
-                <constraint firstItem="Kn3-Na-km1" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="0nJ-Ve-yGe"/>
-                <constraint firstAttribute="bottom" secondItem="Kn3-Na-km1" secondAttribute="bottom" id="WfF-cV-fBI"/>
-                <constraint firstAttribute="trailing" secondItem="Kn3-Na-km1" secondAttribute="trailing" id="Wk0-Ap-Lml"/>
-                <constraint firstItem="Kn3-Na-km1" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="sgY-My-15w"/>
+                <constraint firstAttribute="trailing" secondItem="iIq-Ix-dCD" secondAttribute="trailing" id="54D-8I-RhF"/>
+                <constraint firstItem="iIq-Ix-dCD" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="EzG-93-OtJ"/>
+                <constraint firstAttribute="bottom" secondItem="iIq-Ix-dCD" secondAttribute="bottom" id="ebL-wH-mDX"/>
+                <constraint firstItem="iIq-Ix-dCD" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="rXa-me-4LO"/>
             </constraints>
+            <point key="canvasLocation" x="191.5" y="154"/>
         </customView>
-        <customObject id="b3R-wS-vPN" customClass="RightPaneCollectionViewItem" customModule="SKArchitekkt" customModuleProvider="target">
+        <customObject id="0GD-3T-Q8W" customClass="RightPaneCollectionViewItem" customModule="SKArchitekkt" customModuleProvider="target">
             <connections>
-                <outlet property="stackView" destination="ve9-BD-Wx4" id="j98-58-EBF"/>
-                <outlet property="titleLabel" destination="Z1Z-cy-84x" id="77e-dw-IKA"/>
-                <outlet property="view" destination="c22-O7-iKe" id="I3K-WG-HWt"/>
+                <outlet property="label" destination="qNL-HV-CVy" id="StT-Z2-sdo"/>
+                <outlet property="slider" destination="ANE-Kn-jyJ" id="l2d-Jl-qR3"/>
+                <outlet property="view" destination="c22-O7-iKe" id="lMA-to-bNO"/>
             </connections>
         </customObject>
     </objects>

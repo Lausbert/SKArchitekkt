@@ -26,14 +26,16 @@
 		5C762359AEA2F007E43E61A4FAD88F8F /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000F46C3EBDEEBBBD34D9B1BF4856E88 /* Regex.swift */; };
 		5DC1B72F230C273700E0388C /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC1B72E230C273700E0388C /* NibLoadable.swift */; };
 		5DC1B734230C275100E0388C /* RightPaneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC1B730230C275100E0388C /* RightPaneViewController.swift */; };
-		5DC1B736230C275100E0388C /* RightPaneCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC1B732230C275100E0388C /* RightPaneCollectionViewItem.swift */; };
 		5DC1B73E230C275D00E0388C /* SettingsGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC1B73A230C275D00E0388C /* SettingsGroup.swift */; };
 		5DC1B73F230C275D00E0388C /* SettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC1B73B230C275D00E0388C /* SettingsItem.swift */; };
-		5DC1B740230C27C400E0388C /* RightPaneCollectionViewItem.xib in Sources */ = {isa = PBXBuildFile; fileRef = 5DC1B733230C275100E0388C /* RightPaneCollectionViewItem.xib */; };
 		5DC1B741230C27C400E0388C /* RightPaneViewController.storyboard in Sources */ = {isa = PBXBuildFile; fileRef = 5DC1B731230C275100E0388C /* RightPaneViewController.storyboard */; };
-		5DC1B742230C27C400E0388C /* SettingsItemView.xib in Sources */ = {isa = PBXBuildFile; fileRef = 5DC1B738230C275D00E0388C /* SettingsItemView.xib */; };
-		5DC1B747230C28BE00E0388C /* SettingsItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC1B746230C28BE00E0388C /* SettingsItemView.swift */; };
+		5DC1B742230C27C400E0388C /* RightPaneCollectionViewItem.xib in Sources */ = {isa = PBXBuildFile; fileRef = 5DC1B738230C275D00E0388C /* RightPaneCollectionViewItem.xib */; };
+		5DC1B747230C28BE00E0388C /* RightPaneCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC1B746230C28BE00E0388C /* RightPaneCollectionViewItem.swift */; };
 		5DC1B74A230C29BB00E0388C /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC1B749230C29BB00E0388C /* Settings.swift */; };
+		5DDFCA88230EC7CE0043322E /* RightPaneHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DDFCA84230EC4FB0043322E /* RightPaneHeaderView.xib */; };
+		5DDFCA89230EC7D50043322E /* RightPaneHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDFCA86230EC7390043322E /* RightPaneHeaderView.swift */; };
+		5DDFCA8E230ECC3D0043322E /* RightPaneFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DDFCA8A230ECB920043322E /* RightPaneFooterView.xib */; };
+		5DFCA191230ECC7C00D7B2C0 /* RightPaneFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDFCA8C230ECBF40043322E /* RightPaneFooterView.swift */; };
 		60231790D199BE7C049885D283C04647 /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797CA0925A7EB3AB593F57D5A92A3938 /* CGFloat.swift */; };
 		61B3EB84F16C1229D28C8C3918660E72 /* GraphRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4350E4447D188E0FC0B580115F16A9E4 /* GraphRequest.swift */; };
 		62DC4908261D4B74DB5B3FE072D41F86 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDF34A04C199AF83D47781DFC2F0970 /* SplitViewController.swift */; };
@@ -110,13 +112,15 @@
 		5DC1B72E230C273700E0388C /* NibLoadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
 		5DC1B730230C275100E0388C /* RightPaneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightPaneViewController.swift; sourceTree = "<group>"; };
 		5DC1B731230C275100E0388C /* RightPaneViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = RightPaneViewController.storyboard; sourceTree = "<group>"; };
-		5DC1B732230C275100E0388C /* RightPaneCollectionViewItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RightPaneCollectionViewItem.swift; sourceTree = "<group>"; };
-		5DC1B733230C275100E0388C /* RightPaneCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RightPaneCollectionViewItem.xib; sourceTree = "<group>"; };
-		5DC1B738230C275D00E0388C /* SettingsItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsItemView.xib; sourceTree = "<group>"; };
+		5DC1B738230C275D00E0388C /* RightPaneCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RightPaneCollectionViewItem.xib; sourceTree = "<group>"; };
 		5DC1B73A230C275D00E0388C /* SettingsGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsGroup.swift; sourceTree = "<group>"; };
 		5DC1B73B230C275D00E0388C /* SettingsItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsItem.swift; sourceTree = "<group>"; };
-		5DC1B746230C28BE00E0388C /* SettingsItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsItemView.swift; sourceTree = "<group>"; };
+		5DC1B746230C28BE00E0388C /* RightPaneCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightPaneCollectionViewItem.swift; sourceTree = "<group>"; };
 		5DC1B749230C29BB00E0388C /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		5DDFCA84230EC4FB0043322E /* RightPaneHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RightPaneHeaderView.xib; sourceTree = "<group>"; };
+		5DDFCA86230EC7390043322E /* RightPaneHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightPaneHeaderView.swift; sourceTree = "<group>"; };
+		5DDFCA8A230ECB920043322E /* RightPaneFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RightPaneFooterView.xib; sourceTree = "<group>"; };
+		5DDFCA8C230ECBF40043322E /* RightPaneFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightPaneFooterView.swift; sourceTree = "<group>"; };
 		5F3424B0230C0CC196915777D9C9AA06 /* Shell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Shell.swift; path = "CoreArchitekkt/Source/Public/Utilities/Classes+Structs/Shell.swift"; sourceTree = "<group>"; };
 		601A543EFE1E4EA1F7215AB106785B5D /* Node.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Node.swift; path = "CoreArchitekkt/Source/Public/Classes+Structs/Node/Node.swift"; sourceTree = "<group>"; };
 		68C369A08B661CAC4592BA18D39C140D /* ViewController+RootNodeHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "ViewController+RootNodeHandler.swift"; sourceTree = "<group>"; };
@@ -291,9 +295,13 @@
 			isa = PBXGroup;
 			children = (
 				5DC1B731230C275100E0388C /* RightPaneViewController.storyboard */,
-				5DC1B732230C275100E0388C /* RightPaneCollectionViewItem.swift */,
-				5DC1B733230C275100E0388C /* RightPaneCollectionViewItem.xib */,
 				5DC1B730230C275100E0388C /* RightPaneViewController.swift */,
+				5DDFCA84230EC4FB0043322E /* RightPaneHeaderView.xib */,
+				5DDFCA86230EC7390043322E /* RightPaneHeaderView.swift */,
+				5DC1B738230C275D00E0388C /* RightPaneCollectionViewItem.xib */,
+				5DC1B746230C28BE00E0388C /* RightPaneCollectionViewItem.swift */,
+				5DDFCA8A230ECB920043322E /* RightPaneFooterView.xib */,
+				5DDFCA8C230ECBF40043322E /* RightPaneFooterView.swift */,
 			);
 			path = RightPaneViewController;
 			sourceTree = "<group>";
@@ -304,8 +312,6 @@
 				5DC1B749230C29BB00E0388C /* Settings.swift */,
 				5DC1B73A230C275D00E0388C /* SettingsGroup.swift */,
 				5DC1B73B230C275D00E0388C /* SettingsItem.swift */,
-				5DC1B738230C275D00E0388C /* SettingsItemView.xib */,
-				5DC1B746230C28BE00E0388C /* SettingsItemView.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -573,6 +579,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DDFCA8E230ECC3D0043322E /* RightPaneFooterView.xib in Resources */,
+				5DDFCA88230EC7CE0043322E /* RightPaneHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -583,24 +591,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5DC1B747230C28BE00E0388C /* SettingsItemView.swift in Sources */,
-				5DC1B740230C27C400E0388C /* RightPaneCollectionViewItem.xib in Sources */,
+				5DC1B747230C28BE00E0388C /* RightPaneCollectionViewItem.swift in Sources */,
 				5DC1B741230C27C400E0388C /* RightPaneViewController.storyboard in Sources */,
-				5DC1B742230C27C400E0388C /* SettingsItemView.xib in Sources */,
+				5DC1B742230C27C400E0388C /* RightPaneCollectionViewItem.xib in Sources */,
 				60231790D199BE7C049885D283C04647 /* CGFloat.swift in Sources */,
 				24721E430FFE4C810809EF0FC7485524 /* CGPoint.swift in Sources */,
 				5B0A4949F776A33F539112C487965A04 /* CGVector+Comparable.swift in Sources */,
 				3520DD19C7E6C37ABBFCEF12BB18DDBD /* CGVector.swift in Sources */,
 				5DC1B73E230C275D00E0388C /* SettingsGroup.swift in Sources */,
-				5DC1B736230C275100E0388C /* RightPaneCollectionViewItem.swift in Sources */,
 				723F0DB1F78852769F2256CFC8B758EE /* NodeScene+Mouse.swift in Sources */,
 				DFD6AB2FBA1DAA10B85DF6B11735BDE0 /* NodeScene+Physics.swift in Sources */,
 				3CB200D4D9F3D36E349DA27BED890468 /* NodeScene.swift in Sources */,
 				AE19171D212C28B74CF7D89A05DE5C28 /* NodeView+RootNodeHandler.swift in Sources */,
+				5DFCA191230ECC7C00D7B2C0 /* RightPaneFooterView.swift in Sources */,
 				5633D601E0BE537614D47FC9B37D8257 /* NodeView.swift in Sources */,
 				634A637764571E004E51C013DA65E73F /* NodeViewController+RootNodeHandler.swift in Sources */,
 				03A7A780449B2F5633ED162257110EA5 /* NodeViewController.storyboard in Sources */,
 				30A97CB0394096E113057EEE329C89DD /* NodeViewController.swift in Sources */,
+				5DDFCA89230EC7D50043322E /* RightPaneHeaderView.swift in Sources */,
 				5DC1B73F230C275D00E0388C /* SettingsItem.swift in Sources */,
 				5DC1B72F230C273700E0388C /* NibLoadable.swift in Sources */,
 				5204B8CB68711D9B847562C17DEAA47D /* ShapeNode.swift in Sources */,
