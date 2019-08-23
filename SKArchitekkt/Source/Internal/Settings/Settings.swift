@@ -29,18 +29,17 @@ class Settings: Codable {
             settings = s
         } else {
             settings = Settings(
-                forceDecaySettingsItem: SettingsItem(name: "Force", value: 0.005, minValue: 0, maxValue: 0.1),
-                velocityDecaySettingsItem: SettingsItem(name: "Velocity", value: 0.1, minValue: 0, maxValue: 1)
+                forceDecaySettingsItem: SettingsItem(name: "Force", value: 0.005, minValue: 0, maxValue: 0.01),
+                velocityDecaySettingsItem: SettingsItem(name: "Velocity", value: 0.1, minValue: 0, maxValue: 0.2)
             )
         }
-        settingsItemObservations = []
-        for settingsItem in settings.settingsItems {
-            settingsItemObservations.append(settingsItem.observe(\.value) { (settingsItem, change) in
+        settingsItemObservations = settings.settingsItems.map({ (settingsItem) -> NSKeyValueObservation in
+            return settingsItem.observe(\.value) { (_, _) in
                 if let data = try? JSONEncoder().encode(settings) {
                     UserDefaults.standard.set(data, forKey: userDefaultsKey)
                 }
-            })
-        }
+            }
+        })
         return settings
     }
     

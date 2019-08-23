@@ -13,7 +13,7 @@ class NodeViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        nodeView.setUp()
+        nodeView.setUp(with: settings)
     }
     
 }

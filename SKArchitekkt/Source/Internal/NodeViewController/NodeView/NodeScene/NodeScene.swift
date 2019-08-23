@@ -11,13 +11,22 @@ class NodeScene: SKScene {
         let from: Node
         let to: Node
     }
+    
+    let settings: Settings
 
     private(set) var castedChildren: Set<ShapeNode> = []
     private(set) var shapeNodeForNodeDictionary: [Node: ShapeNode] = [:]
     private(set) var arcNodeForArcDictionary: [Arc: SKShapeNode] = [:]
 
-    override init() {
+    init(with settings: Settings) {
+        self.settings = settings
         super.init(size: CGSize.zero)
+        self.settingsItemObservations = settings.settingsItems.map({ [weak self] (settingsItem) -> NSKeyValueObservation in
+            return settingsItem.observe(\.value) { (_, _) in
+                self?.startSimulation()
+                self?.applyRandomForceToAllCastedChildren()
+            }
+        })
         delegate = self
         backgroundColor = NSColor.controlBackgroundColor
         setUpPhysicsWorld()
@@ -43,6 +52,20 @@ class NodeScene: SKScene {
         let rootNode = ShapeNode(node: rootNode, colorDictionary: colorDictionary, delegate: self)
         addChild(rootNode)
         shapeNode(rootNode, didAdd: rootNode)
+    }
+    
+    // MARK: - Private -
+    
+    private var settingsItemObservations: [NSKeyValueObservation] = []
+    
+    private func applyRandomForceToAllCastedChildren() {
+        for shapeNode in castedChildren {
+            if shapeNode.castedParent == nil {
+                continue
+            }
+            let force = CGVector(dx: CGFloat.random(in: -(shapeNode.radius^^3)...shapeNode.radius^^3), dy: CGFloat.random(in: -(shapeNode.radius^^3)...shapeNode.radius^^3))
+            shapeNode.physicsBody?.applyImpulse(force)
+        }
     }
 
 }
@@ -86,7 +109,7 @@ extension NodeScene: ShapeNodeDelegate {
     }
 
     // MARK: - Private -
-
+    
     private func createArcNode(withStrength strength: Int) -> SKShapeNode {
         let arcNode = SKShapeNode()
         arcNode.strokeColor = .windowFrameColor

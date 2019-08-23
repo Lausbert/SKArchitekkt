@@ -39,8 +39,8 @@ extension NodeScene: SKSceneDelegate {
     private static let forceDecayTargetObjectAssociation = ObjectAssociation<CGFloat>()
     private var forceDecayTarget: CGFloat { return 0 }
     private var forceDecayMin: CGFloat { return 0.1 }
-    private var forceDecayDecay: CGFloat { return 0.005 }
-    private var velocityDecay: CGFloat { return 0.1 }
+    private var forceDecayDecay: CGFloat { return CGFloat(settings.forceDecaySettingsItem.value) }
+    private var velocityDecay: CGFloat { return CGFloat(settings.velocityDecaySettingsitem.value) }
 
     private static let forceDecayObjectAssociation = ObjectAssociation<CGFloat>()
     private var forceDecay: CGFloat {

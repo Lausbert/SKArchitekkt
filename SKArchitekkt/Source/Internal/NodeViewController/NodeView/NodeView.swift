@@ -10,13 +10,13 @@ class NodeView: SKView {
         self.scene?.scrollWheel(with: event)
     }
 
-    func setUp() {
+    func setUp(with settings: Settings) {
         ignoresSiblingOrder = true
         #if DEBUG
         showsFPS = true
         #endif
 
-        let scene = NodeScene()
+        let scene = NodeScene(with: settings)
         scene.scaleMode = .resizeFill
         presentScene(scene)
     }
