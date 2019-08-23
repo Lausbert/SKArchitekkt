@@ -33,6 +33,18 @@ public class SplitViewController: NSSplitViewController, StoryBoardLoadable {
 
         splitView.delegate = self
     }
+    
+    public override func insertSplitViewItem(_ splitViewItem: NSSplitViewItem, at index: Int) {
+        switch splitViewItem.viewController {
+        case let nodeViewController as NodeViewController:
+            nodeViewController.settings = settings
+        case let rightPaneViewController as RightPaneViewController:
+            rightPaneViewController.settings = settings
+        default:
+            break
+        }
+        super.insertSplitViewItem(splitViewItem, at: index)
+    }
 
     public override func splitViewDidResizeSubviews(_ notification: Notification) {
         for splitViewItem in splitViewItems {
@@ -42,17 +54,6 @@ public class SplitViewController: NSSplitViewController, StoryBoardLoadable {
             default:
                 break
             }
-        }
-    }
-    
-    public override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
-        switch segue.destinationController {
-        case let nodeViewController as NodeViewController:
-            nodeViewController.settings = settings
-        case let rightPaneViewController as RightPaneViewController:
-            rightPaneViewController.settings = settings
-        default:
-            break
         }
     }
     

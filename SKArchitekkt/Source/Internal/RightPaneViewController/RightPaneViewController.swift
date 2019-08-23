@@ -8,7 +8,7 @@ class RightPaneViewController: NSViewController, NSCollectionViewDataSource, NSC
     
     @IBOutlet weak var collectionView: NSCollectionView!
     
-    var settings: Settings!; #warning("remove ! and make private after @IBSegueActions are used for initialization")
+    var settings: Settings!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,12 +17,17 @@ class RightPaneViewController: NSViewController, NSCollectionViewDataSource, NSC
         collectionView.dataSource = self
     }
     
+    func numberOfSections(in collectionView: NSCollectionView) -> Int {
+        return settings.settingsGroups.count
+    }
+    
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 2
+        return settings.settingsGroups[section].settingsItems.count
     }
     
     func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
         guard let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RightPaneCollectionViewItem"), for: indexPath) as? RightPaneCollectionViewItem else { return NSCollectionViewItem() }
+        item.label.stringValue = settings.settingsGroups[indexPath.section].settingsItems[indexPath.item].name
         return item
     }
     
@@ -42,12 +47,13 @@ class RightPaneViewController: NSViewController, NSCollectionViewDataSource, NSC
     func collectionView(_ collectionView: NSCollectionView, viewForSupplementaryElementOfKind kind: NSCollectionView.SupplementaryElementKind, at indexPath: IndexPath) -> NSView {
         switch kind {
         case NSCollectionView.elementKindSectionHeader:
-            if let view = collectionView.makeSupplementaryView(ofKind: kind, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RightPaneHeaderView"), for: indexPath) as? RightPaneHeaderView {
-                return view
+            if let headerView = collectionView.makeSupplementaryView(ofKind: kind, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RightPaneHeaderView"), for: indexPath) as? RightPaneHeaderView {
+                headerView.label.stringValue = settings.settingsGroups[indexPath.section].name
+                return headerView
             }
         case NSCollectionView.elementKindSectionFooter:
-            if let view = collectionView.makeSupplementaryView(ofKind: kind, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RightPaneFooterView"), for: indexPath) as? RightPaneFooterView {
-                return view
+            if let footerView = collectionView.makeSupplementaryView(ofKind: kind, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RightPaneFooterView"), for: indexPath) as? RightPaneFooterView {
+                return footerView
             }
         default:
             break

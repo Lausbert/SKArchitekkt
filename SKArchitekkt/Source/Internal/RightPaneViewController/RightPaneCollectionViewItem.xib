@@ -16,7 +16,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="197" height="23"/>
                     <subviews>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qNL-HV-CVy">
-                            <rect key="frame" x="-2" y="5" width="64" height="13"/>
+                            <rect key="frame" x="-2" y="5" width="74" height="13"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Label" id="NYa-E8-r5Z">
                                 <font key="font" metaFont="system" size="10"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -24,12 +24,12 @@
                             </textFieldCell>
                         </textField>
                         <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ANE-Kn-jyJ">
-                            <rect key="frame" x="66" y="2" width="125" height="19"/>
+                            <rect key="frame" x="76" y="2" width="115" height="19"/>
                             <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="oSE-Te-IDS"/>
                         </slider>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="leading" secondItem="qNL-HV-CVy" secondAttribute="trailing" constant="-60" id="4OZ-5n-DPt"/>
+                        <constraint firstAttribute="leading" secondItem="qNL-HV-CVy" secondAttribute="trailing" constant="-70" id="4OZ-5n-DPt"/>
                         <constraint firstItem="ANE-Kn-jyJ" firstAttribute="centerY" secondItem="qNL-HV-CVy" secondAttribute="centerY" id="6ND-t9-b4C"/>
                         <constraint firstAttribute="trailing" secondItem="ANE-Kn-jyJ" secondAttribute="trailing" constant="8" id="Dre-ya-y1P"/>
                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="qNL-HV-CVy" secondAttribute="bottom" constant="4" id="a3o-xK-hwq"/>

@@ -8,19 +8,22 @@ class Settings: Codable {
     
     var settingsGroups: [SettingsGroup] {
         return [
-            SettingsGroup(name: "Decay", settingsItems: [
+            SettingsGroup(name: "ForceDecay", settingsItems: [
+                forceDecayAlphaSettingsItem,
                 forceDecayTargetSettingsItem,
                 forceDecayMinSettingsItem,
-                forceDecayDecaySettingsItem,
-                velocityDecaySettingsitem
+                ]),
+            SettingsGroup(name: "VelocityDecay", settingsItems: [
+                velocityDecayBetaSettingsitem
                 ])
         ]
     }
     
+    let forceDecayAlphaSettingsItem: SettingsItem
     let forceDecayTargetSettingsItem: SettingsItem
     let forceDecayMinSettingsItem: SettingsItem
-    let forceDecayDecaySettingsItem: SettingsItem
-    let velocityDecaySettingsitem: SettingsItem
+    
+    let velocityDecayBetaSettingsitem: SettingsItem
     
     static func createSettings() -> Settings {
         if let data = UserDefaults.standard.data(forKey: userDefaultsKey),
@@ -28,10 +31,10 @@ class Settings: Codable {
             return settings
         } else {
             let settings = Settings(
-                forceDecayTargetSettingsItem: SettingsItem(name: "ForceDecayTarget", value: 0, minValue: 0, maxValue: 1),
-                forceDecayMinSettingsItem: SettingsItem(name: "ForceDecayMin", value: 0.1, minValue: 0, maxValue: 1),
-                forceDecayDecaySettingsItem: SettingsItem(name: "ForceDecayDecay", value: 0.005, minValue: 0, maxValue: 0.01),
-                velocityDecaySettingsitem: SettingsItem(name: "VelocityDecay", value: 0.9, minValue: 0, maxValue: 1)
+                forceDecayAlphaSettingsItem: SettingsItem(name: "Alpha", value: 0.005, minValue: 0, maxValue: 0.01),
+                forceDecayTargetSettingsItem: SettingsItem(name: "Target", value: 0, minValue: 0, maxValue: 1),
+                forceDecayMinSettingsItem: SettingsItem(name: "Minimum", value: 0.1, minValue: 0, maxValue: 1),
+                velocityDecayBetaSettingsitem: SettingsItem(name: "Beta", value: 0.9, minValue: 0, maxValue: 1)
             )
             let settingsItems = settings.settingsGroups.flatMap { $0.settingsItems }
             settingsItemObservations = []
@@ -51,14 +54,14 @@ class Settings: Codable {
     private static let userDefaultsKey = "settingsUserDefaultsKey"
     private static var settingsItemObservations: [NSKeyValueObservation] = []
     
-    private init(forceDecayTargetSettingsItem: SettingsItem,
+    private init(forceDecayAlphaSettingsItem: SettingsItem,
+                 forceDecayTargetSettingsItem: SettingsItem,
                  forceDecayMinSettingsItem: SettingsItem,
-                 forceDecayDecaySettingsItem: SettingsItem,
-                 velocityDecaySettingsitem: SettingsItem) {
+                 velocityDecayBetaSettingsitem: SettingsItem) {
+        self.forceDecayAlphaSettingsItem = forceDecayAlphaSettingsItem
         self.forceDecayTargetSettingsItem = forceDecayTargetSettingsItem
         self.forceDecayMinSettingsItem = forceDecayMinSettingsItem
-        self.forceDecayDecaySettingsItem = forceDecayDecaySettingsItem
-        self.velocityDecaySettingsitem = velocityDecaySettingsitem
+        self.velocityDecayBetaSettingsitem = velocityDecayBetaSettingsitem
     }
     
 }

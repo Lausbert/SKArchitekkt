@@ -22,12 +22,12 @@ extension NodeScene: SKSceneDelegate {
     }
 
     func update(_ currentTime: TimeInterval, for scene: SKScene) {
-        forceDecay -= (forceDecay - forceDecayTarget) * forceDecayDecay
+        forceDecay -= (forceDecay - forceDecayTarget) * forceDecayAlpha
         if forceDecay < forceDecayMin {
             stopSimulation()
             return
         }
-        updatePhysicsWith(forceDecay: forceDecay, velocityDecay: velocityDecay)
+        updatePhysicsWith(forceDecay: forceDecay, velocityDecay: velocityDecayBeta)
     }
 
     func didApplyConstraints(for scene: SKScene) {
@@ -39,8 +39,8 @@ extension NodeScene: SKSceneDelegate {
     private static let forceDecayTargetObjectAssociation = ObjectAssociation<CGFloat>()
     private var forceDecayTarget: CGFloat { return 0 }
     private var forceDecayMin: CGFloat { return 0.1 }
-    private var forceDecayDecay: CGFloat { return 0.005 }
-    private var velocityDecay: CGFloat { return 0.9 }
+    private var forceDecayAlpha: CGFloat { return 0.005 }
+    private var velocityDecayBeta: CGFloat { return 0.9 }
 
     private static let forceDecayObjectAssociation = ObjectAssociation<CGFloat>()
     private var forceDecay: CGFloat {

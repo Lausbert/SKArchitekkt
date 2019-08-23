@@ -8,7 +8,7 @@ class NodeViewController: NSViewController {
 
     @IBOutlet weak var nodeView: NodeView!
     
-    var settings: Settings!; #warning("remove ! and make private after @IBSegueActions are used for initialization")
+    var settings: Settings!
 
     override func viewDidLoad() {
         super.viewDidLoad()

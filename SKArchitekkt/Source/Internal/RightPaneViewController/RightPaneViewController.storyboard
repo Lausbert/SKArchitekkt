@@ -9,18 +9,18 @@
         <scene sceneID="ZDS-SV-DIq">
             <objects>
                 <viewController storyboardIdentifier="RightPaneViewController" id="Wmc-0e-3p5" customClass="RightPaneViewController" customModule="SKArchitekkt" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="Kdp-pu-OB0">
-                        <rect key="frame" x="0.0" y="0.0" width="250" height="300"/>
+                    <view key="view" misplaced="YES" id="Kdp-pu-OB0">
+                        <rect key="frame" x="0.0" y="0.0" width="260" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7z-zC-PWq">
-                                <rect key="frame" x="0.0" y="0.0" width="250" height="300"/>
+                            <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7z-zC-PWq">
+                                <rect key="frame" x="0.0" y="0.0" width="260" height="300"/>
                                 <clipView key="contentView" drawsBackground="NO" id="tkz-WR-tbq">
-                                    <rect key="frame" x="1" y="1" width="248" height="298"/>
+                                    <rect key="frame" x="1" y="1" width="258" height="298"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <collectionView id="x8o-ZZ-gsh">
-                                            <rect key="frame" x="0.0" y="0.0" width="248" height="158"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="258" height="298"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" id="aaN-dv-AOI">
                                                 <size key="itemSize" width="250" height="50"/>
@@ -31,10 +31,10 @@
                                     <color key="backgroundColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 </clipView>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="250" id="0fc-X0-fxg"/>
+                                    <constraint firstAttribute="width" constant="260" id="0fc-X0-fxg"/>
                                 </constraints>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="wQl-W2-aU9">
-                                    <rect key="frame" x="1" y="283" width="248" height="16"/>
+                                    <rect key="frame" x="-100" y="-100" width="248" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Hj0-R1-AJA">
