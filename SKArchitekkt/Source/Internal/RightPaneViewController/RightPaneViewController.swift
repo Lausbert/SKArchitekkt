@@ -27,7 +27,14 @@ class RightPaneViewController: NSViewController, NSCollectionViewDataSource, NSC
     
     func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
         guard let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RightPaneCollectionViewItem"), for: indexPath) as? RightPaneCollectionViewItem else { return NSCollectionViewItem() }
-        item.label.stringValue = settings.settingsGroups[indexPath.section].settingsItems[indexPath.item].name
+        let settingsItem = settings.settingsGroups[indexPath.section].settingsItems[indexPath.item]
+        item.label.stringValue = settingsItem.name
+        item.slider.minValue = settingsItem.minValue
+        item.slider.doubleValue = settingsItem.value
+        item.slider.maxValue = settingsItem.maxValue
+        item.sliderChangeHandler = { [weak settingsItem] value in
+            settingsItem?.value = value
+        }
         return item
     }
     
@@ -52,9 +59,7 @@ class RightPaneViewController: NSViewController, NSCollectionViewDataSource, NSC
                 return headerView
             }
         case NSCollectionView.elementKindSectionFooter:
-            if let footerView = collectionView.makeSupplementaryView(ofKind: kind, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RightPaneFooterView"), for: indexPath) as? RightPaneFooterView {
-                return footerView
-            }
+            return collectionView.makeSupplementaryView(ofKind: kind, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RightPaneFooterView"), for: indexPath)
         default:
             break
         }

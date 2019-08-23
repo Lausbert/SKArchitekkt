@@ -35,7 +35,6 @@
 		5DDFCA88230EC7CE0043322E /* RightPaneHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DDFCA84230EC4FB0043322E /* RightPaneHeaderView.xib */; };
 		5DDFCA89230EC7D50043322E /* RightPaneHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDFCA86230EC7390043322E /* RightPaneHeaderView.swift */; };
 		5DDFCA8E230ECC3D0043322E /* RightPaneFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DDFCA8A230ECB920043322E /* RightPaneFooterView.xib */; };
-		5DFCA191230ECC7C00D7B2C0 /* RightPaneFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDFCA8C230ECBF40043322E /* RightPaneFooterView.swift */; };
 		60231790D199BE7C049885D283C04647 /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 797CA0925A7EB3AB593F57D5A92A3938 /* CGFloat.swift */; };
 		61B3EB84F16C1229D28C8C3918660E72 /* GraphRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4350E4447D188E0FC0B580115F16A9E4 /* GraphRequest.swift */; };
 		62DC4908261D4B74DB5B3FE072D41F86 /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CDF34A04C199AF83D47781DFC2F0970 /* SplitViewController.swift */; };
@@ -120,7 +119,6 @@
 		5DDFCA84230EC4FB0043322E /* RightPaneHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RightPaneHeaderView.xib; sourceTree = "<group>"; };
 		5DDFCA86230EC7390043322E /* RightPaneHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightPaneHeaderView.swift; sourceTree = "<group>"; };
 		5DDFCA8A230ECB920043322E /* RightPaneFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RightPaneFooterView.xib; sourceTree = "<group>"; };
-		5DDFCA8C230ECBF40043322E /* RightPaneFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightPaneFooterView.swift; sourceTree = "<group>"; };
 		5F3424B0230C0CC196915777D9C9AA06 /* Shell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Shell.swift; path = "CoreArchitekkt/Source/Public/Utilities/Classes+Structs/Shell.swift"; sourceTree = "<group>"; };
 		601A543EFE1E4EA1F7215AB106785B5D /* Node.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Node.swift; path = "CoreArchitekkt/Source/Public/Classes+Structs/Node/Node.swift"; sourceTree = "<group>"; };
 		68C369A08B661CAC4592BA18D39C140D /* ViewController+RootNodeHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "ViewController+RootNodeHandler.swift"; sourceTree = "<group>"; };
@@ -301,7 +299,6 @@
 				5DC1B738230C275D00E0388C /* RightPaneCollectionViewItem.xib */,
 				5DC1B746230C28BE00E0388C /* RightPaneCollectionViewItem.swift */,
 				5DDFCA8A230ECB920043322E /* RightPaneFooterView.xib */,
-				5DDFCA8C230ECBF40043322E /* RightPaneFooterView.swift */,
 			);
 			path = RightPaneViewController;
 			sourceTree = "<group>";
@@ -603,7 +600,6 @@
 				DFD6AB2FBA1DAA10B85DF6B11735BDE0 /* NodeScene+Physics.swift in Sources */,
 				3CB200D4D9F3D36E349DA27BED890468 /* NodeScene.swift in Sources */,
 				AE19171D212C28B74CF7D89A05DE5C28 /* NodeView+RootNodeHandler.swift in Sources */,
-				5DFCA191230ECC7C00D7B2C0 /* RightPaneFooterView.swift in Sources */,
 				5633D601E0BE537614D47FC9B37D8257 /* NodeView.swift in Sources */,
 				634A637764571E004E51C013DA65E73F /* NodeViewController+RootNodeHandler.swift in Sources */,
 				03A7A780449B2F5633ED162257110EA5 /* NodeViewController.storyboard in Sources */,

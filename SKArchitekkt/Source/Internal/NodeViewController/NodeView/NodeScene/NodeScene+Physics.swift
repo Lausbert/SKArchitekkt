@@ -22,12 +22,12 @@ extension NodeScene: SKSceneDelegate {
     }
 
     func update(_ currentTime: TimeInterval, for scene: SKScene) {
-        forceDecay -= (forceDecay - forceDecayTarget) * forceDecayAlpha
+        forceDecay -= (forceDecay - forceDecayTarget) * forceDecayDecay
         if forceDecay < forceDecayMin {
             stopSimulation()
             return
         }
-        updatePhysicsWith(forceDecay: forceDecay, velocityDecay: velocityDecayBeta)
+        updatePhysicsWith(forceDecay: forceDecay, velocityDecay: velocityDecay)
     }
 
     func didApplyConstraints(for scene: SKScene) {
@@ -39,8 +39,8 @@ extension NodeScene: SKSceneDelegate {
     private static let forceDecayTargetObjectAssociation = ObjectAssociation<CGFloat>()
     private var forceDecayTarget: CGFloat { return 0 }
     private var forceDecayMin: CGFloat { return 0.1 }
-    private var forceDecayAlpha: CGFloat { return 0.005 }
-    private var velocityDecayBeta: CGFloat { return 0.9 }
+    private var forceDecayDecay: CGFloat { return 0.005 }
+    private var velocityDecay: CGFloat { return 0.1 }
 
     private static let forceDecayObjectAssociation = ObjectAssociation<CGFloat>()
     private var forceDecay: CGFloat {
@@ -53,7 +53,7 @@ extension NodeScene: SKSceneDelegate {
             updateRadialGravitationalForceOnChildren(for: shapeNode, withForceDecay: forceDecay)
             updateNegativeRadialGravitationalForceOnSiblings(for: shapeNode, withForceDecay: forceDecay)
             updateSpringForce(for: shapeNode, withForceDecay: forceDecay)
-            shapeNode.physicsBody?.velocity *= velocityDecay
+            shapeNode.physicsBody?.velocity *= (1 - velocityDecay)
         }
     }
 

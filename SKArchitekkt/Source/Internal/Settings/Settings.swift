@@ -6,47 +6,42 @@ class Settings: Codable {
     
     // MARK: - Internal -
     
+    var settingsItems: [SettingsItem] {
+        return settingsGroups.flatMap { $0.settingsItems }
+    }
+    
     var settingsGroups: [SettingsGroup] {
         return [
-            SettingsGroup(name: "ForceDecay", settingsItems: [
-                forceDecayAlphaSettingsItem,
-                forceDecayTargetSettingsItem,
-                forceDecayMinSettingsItem,
-                ]),
-            SettingsGroup(name: "VelocityDecay", settingsItems: [
-                velocityDecayBetaSettingsitem
+            SettingsGroup(name: "Decay", settingsItems: [
+                forceDecaySettingsItem,
+                velocityDecaySettingsitem
                 ])
         ]
     }
     
-    let forceDecayAlphaSettingsItem: SettingsItem
-    let forceDecayTargetSettingsItem: SettingsItem
-    let forceDecayMinSettingsItem: SettingsItem
-    
-    let velocityDecayBetaSettingsitem: SettingsItem
+    let forceDecaySettingsItem: SettingsItem
+    let velocityDecaySettingsitem: SettingsItem
     
     static func createSettings() -> Settings {
+        let settings: Settings
         if let data = UserDefaults.standard.data(forKey: userDefaultsKey),
-            let settings = try? JSONDecoder().decode(Settings.self, from: data) {
-            return settings
+            let s = try? JSONDecoder().decode(Settings.self, from: data) {
+            settings = s
         } else {
-            let settings = Settings(
-                forceDecayAlphaSettingsItem: SettingsItem(name: "Alpha", value: 0.005, minValue: 0, maxValue: 0.01),
-                forceDecayTargetSettingsItem: SettingsItem(name: "Target", value: 0, minValue: 0, maxValue: 1),
-                forceDecayMinSettingsItem: SettingsItem(name: "Minimum", value: 0.1, minValue: 0, maxValue: 1),
-                velocityDecayBetaSettingsitem: SettingsItem(name: "Beta", value: 0.9, minValue: 0, maxValue: 1)
+            settings = Settings(
+                forceDecaySettingsItem: SettingsItem(name: "Force", value: 0.005, minValue: 0, maxValue: 0.1),
+                velocityDecaySettingsItem: SettingsItem(name: "Velocity", value: 0.1, minValue: 0, maxValue: 1)
             )
-            let settingsItems = settings.settingsGroups.flatMap { $0.settingsItems }
-            settingsItemObservations = []
-            for settingsItem in settingsItems {
-                settingsItemObservations.append(settingsItem.observe(\.value) { (settingsItem, change) in
-                    if let data = try? JSONEncoder().encode(settings) {
-                        UserDefaults.standard.set(data, forKey: userDefaultsKey)
-                    }
-                })
-            }
-            return settings
         }
+        settingsItemObservations = []
+        for settingsItem in settings.settingsItems {
+            settingsItemObservations.append(settingsItem.observe(\.value) { (settingsItem, change) in
+                if let data = try? JSONEncoder().encode(settings) {
+                    UserDefaults.standard.set(data, forKey: userDefaultsKey)
+                }
+            })
+        }
+        return settings
     }
     
     // MARK: - Private -
@@ -54,14 +49,10 @@ class Settings: Codable {
     private static let userDefaultsKey = "settingsUserDefaultsKey"
     private static var settingsItemObservations: [NSKeyValueObservation] = []
     
-    private init(forceDecayAlphaSettingsItem: SettingsItem,
-                 forceDecayTargetSettingsItem: SettingsItem,
-                 forceDecayMinSettingsItem: SettingsItem,
-                 velocityDecayBetaSettingsitem: SettingsItem) {
-        self.forceDecayAlphaSettingsItem = forceDecayAlphaSettingsItem
-        self.forceDecayTargetSettingsItem = forceDecayTargetSettingsItem
-        self.forceDecayMinSettingsItem = forceDecayMinSettingsItem
-        self.velocityDecayBetaSettingsitem = velocityDecayBetaSettingsitem
+    private init(forceDecaySettingsItem: SettingsItem,
+                 velocityDecaySettingsItem: SettingsItem) {
+        self.forceDecaySettingsItem = forceDecaySettingsItem
+        self.velocityDecaySettingsitem = velocityDecaySettingsItem
     }
     
 }
