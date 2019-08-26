@@ -3,11 +3,11 @@
 import AppKit
 
 class NodeViewController: NSViewController {
-    
+
     // MARK: - Internal -
 
     @IBOutlet weak var nodeView: NodeView!
-    
+
     var settings: Settings!
 
     override func viewDidLoad() {
@@ -15,5 +15,5 @@ class NodeViewController: NSViewController {
 
         nodeView.setUp(with: settings)
     }
-    
+
 }

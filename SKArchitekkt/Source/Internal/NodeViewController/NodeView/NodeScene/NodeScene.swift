@@ -11,7 +11,7 @@ class NodeScene: SKScene {
         let from: Node
         let to: Node
     }
-    
+
     let settings: Settings
 
     private(set) var castedChildren: Set<ShapeNode> = []
@@ -53,11 +53,11 @@ class NodeScene: SKScene {
         addChild(rootNode)
         shapeNode(rootNode, didAdd: rootNode)
     }
-    
+
     // MARK: - Private -
-    
+
     private var settingsItemObservations: [NSKeyValueObservation] = []
-    
+
     private func applyRandomForceToAllCastedChildren() {
         for shapeNode in castedChildren {
             if shapeNode.castedParent == nil {
@@ -109,7 +109,7 @@ extension NodeScene: ShapeNodeDelegate {
     }
 
     // MARK: - Private -
-    
+
     private func createArcNode(withStrength strength: Int) -> SKShapeNode {
         let arcNode = SKShapeNode()
         arcNode.strokeColor = .windowFrameColor

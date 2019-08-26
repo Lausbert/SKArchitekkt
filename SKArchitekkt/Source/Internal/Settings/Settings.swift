@@ -3,13 +3,13 @@
 import Foundation
 
 class Settings: Codable {
-    
+
     // MARK: - Internal -
-    
+
     var settingsItems: [SettingsItem] {
         return settingsGroups.flatMap { $0.settingsItems }
     }
-    
+
     var settingsGroups: [SettingsGroup] {
         return [
             SettingsGroup(name: "Decay", settingsItems: [
@@ -30,10 +30,10 @@ class Settings: Codable {
                 ])
         ]
     }
-    
+
     let forceDecaySettingsItem: SettingsItem
     let velocityDecaySettingsitem: SettingsItem
-    
+
     let radialGravitationalForceOnChildrenMultiplierSettingsItem: SettingsItem
     let radialGravitationalForceOnChildrenPowerSettingsItem: SettingsItem
 
@@ -43,7 +43,6 @@ class Settings: Codable {
     let springForceBetweenConnectedNodesMultiplierSettingsItem: SettingsItem
     let springForceBetweenConnectedNodesPowerSettingsItem: SettingsItem
 
-    
     static func createSettings() -> Settings {
         let settings: Settings
         if let data = UserDefaults.standard.data(forKey: userDefaultsKey),
@@ -70,12 +69,12 @@ class Settings: Codable {
         })
         return settings
     }
-    
+
     // MARK: - Private -
-    
+
     private static let userDefaultsKey = "settingsUserDefaultsKey"
     private static var settingsItemObservations: [NSKeyValueObservation] = []
-    
+
     private init(forceDecaySettingsItem: SettingsItem,
                  velocityDecaySettingsItem: SettingsItem,
                  radialGravitationalForceOnChildrenMultiplierSettingsItem: SettingsItem,
@@ -93,5 +92,5 @@ class Settings: Codable {
         self.springForceBetweenConnectedNodesMultiplierSettingsItem = springForceBetweenConnectedNodesMultiplierSettingsItem
         self.springForceBetweenConnectedNodesPowerSettingsItem = springForceBetweenConnectedNodesPowerSettingsItem
     }
-    
+
 }

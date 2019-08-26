@@ -33,7 +33,7 @@ public class SplitViewController: NSSplitViewController, StoryBoardLoadable {
 
         splitView.delegate = self
     }
-    
+
     public override func insertSplitViewItem(_ splitViewItem: NSSplitViewItem, at index: Int) {
         switch splitViewItem.viewController {
         case let nodeViewController as NodeViewController:
@@ -56,9 +56,9 @@ public class SplitViewController: NSSplitViewController, StoryBoardLoadable {
             }
         }
     }
-    
+
     // MARK: - Private -
-    
+
     private let settings: Settings = Settings.createSettings()
 
 }

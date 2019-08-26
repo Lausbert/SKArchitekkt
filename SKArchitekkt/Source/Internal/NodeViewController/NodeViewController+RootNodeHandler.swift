@@ -4,7 +4,7 @@ import Foundation
 import CoreArchitekkt
 
 extension NodeViewController: RootNodeHandler {
-    
+
     // MARK: - Internal -
 
     func handle(rootNode: Node) {
