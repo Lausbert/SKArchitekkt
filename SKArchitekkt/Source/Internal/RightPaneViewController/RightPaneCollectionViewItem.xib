@@ -25,7 +25,7 @@
                         </textField>
                         <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ANE-Kn-jyJ">
                             <rect key="frame" x="76" y="2" width="115" height="19"/>
-                            <sliderCell key="cell" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="oSE-Te-IDS"/>
+                            <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="oSE-Te-IDS"/>
                             <connections>
                                 <action selector="valueDidChange:" target="0GD-3T-Q8W" id="qXN-5Y-Rfu"/>
                             </connections>
