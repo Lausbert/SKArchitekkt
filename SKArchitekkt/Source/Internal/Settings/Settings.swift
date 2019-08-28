@@ -12,7 +12,7 @@ class Settings: Codable {
             let s = try? JSONDecoder().decode(Settings.self, from: data) {
             settings = s
         } else {
-            settings = createNewSettings()
+            settings = Settings()
         }
         settingsItemObservations = settings.settingsItems.map({ (settingsItem) -> NSKeyValueObservation in
             return settingsItem.observe(\.value) { (_, _) in
@@ -69,7 +69,7 @@ class Settings: Codable {
     }
 
     func reset() {
-        let newSettings = Settings.createNewSettings()
+        let newSettings = Settings()
         let zippedSettingsItems = zip(settingsItems, newSettings.settingsItems)
         for (settingsItem, newSettingsItem) in zippedSettingsItems {
             settingsItem.value = newSettingsItem.value
@@ -81,42 +81,20 @@ class Settings: Codable {
     private static let userDefaultsKey = "settingsUserDefaultsKey"
     private static var settingsItemObservations: [NSKeyValueObservation] = []
 
-    private static func createNewSettings() -> Settings {
-        return Settings(
-            forceDecaySettingsItem: SettingsItem(name: "Force", value: 0.005, minValue: 0, maxValue: 0.01),
-            velocityDecaySettingsItem: SettingsItem(name: "Velocity", value: 0.05, minValue: 0, maxValue: 0.1),
-            radialGravitationalForceOnChildrenMultiplierSettingsItem: SettingsItem(name: "Multiplier", value: 1, minValue: 0, maxValue: 10),
-            radialGravitationalForceOnChildrenPowerSettingsItem: SettingsItem(name: "Power", value: -1.4, minValue: -1.8, maxValue: -1),
-            negativeRadialGravitationalForceOnSiblingsMultiplierSettingsItem: SettingsItem(name: "Multiplier", value: 1, minValue: 0, maxValue: 10),
-            negativeRadialGravitationalForceOnSiblingsPowerSettingsItem: SettingsItem(name: "Power", value: -1.1, minValue: -2.1, maxValue: -0.1),
-            springForceBetweenConnectedNodesMultiplierSettingsItem: SettingsItem(name: "Multiplier", value: 1, minValue: 0, maxValue: 10),
-            springForceBetweenConnectedNodesPowerSettingsItem: SettingsItem(name: "Power", value: 2.3, minValue: 1, maxValue: 3.6),
-            areaBasedOnTotalChildrensAreaMultiplierSettingsItem: SettingsItem(name: "Multiplier", value: 2, minValue: 1, maxValue: 3),
-            areaBasedOnTotalChildrensAreaPowerSettingsItem: SettingsItem(name: "Power", value: 1, minValue: 0.5, maxValue: 1.5)
-        )
+    private init() {
+        forceDecaySettingsItem = SettingsItem(name: "Force", value: 0.005, minValue: 0, maxValue: 0.01)
+        velocityDecaySettingsitem = SettingsItem(name: "Velocity", value: 0.05, minValue: 0, maxValue: 0.1)
+        
+        radialGravitationalForceOnChildrenMultiplierSettingsItem = SettingsItem(name: "Multiplier", value: 1, minValue: 0, maxValue: 10)
+        radialGravitationalForceOnChildrenPowerSettingsItem = SettingsItem(name: "Power", value: -1.4, minValue: -1.8, maxValue: -1)
+        
+        negativeRadialGravitationalForceOnSiblingsMultiplierSettingsItem = SettingsItem(name: "Multiplier", value: 1, minValue: 0, maxValue: 10)
+        negativeRadialGravitationalForceOnSiblingsPowerSettingsItem = SettingsItem(name: "Power", value: -1.1, minValue: -2.1, maxValue: -0.1)
+        
+        springForceBetweenConnectedNodesMultiplierSettingsItem = SettingsItem(name: "Multiplier", value: 1, minValue: 0, maxValue: 10)
+        springForceBetweenConnectedNodesPowerSettingsItem = SettingsItem(name: "Power", value: 2.3, minValue: 1, maxValue: 3.6)
+        
+        areaBasedOnTotalChildrensAreaMultiplierSettingsItem = SettingsItem(name: "Multiplier", value: 2, minValue: 1, maxValue: 3)
+        areaBasedOnTotalChildrensAreaPowerSettingsItem = SettingsItem(name: "Power", value: 1, minValue: 0.5, maxValue: 1.5)
     }
-
-    private init(forceDecaySettingsItem: SettingsItem,
-                 velocityDecaySettingsItem: SettingsItem,
-                 radialGravitationalForceOnChildrenMultiplierSettingsItem: SettingsItem,
-                 radialGravitationalForceOnChildrenPowerSettingsItem: SettingsItem,
-                 negativeRadialGravitationalForceOnSiblingsMultiplierSettingsItem: SettingsItem,
-                 negativeRadialGravitationalForceOnSiblingsPowerSettingsItem: SettingsItem,
-                 springForceBetweenConnectedNodesMultiplierSettingsItem: SettingsItem,
-                 springForceBetweenConnectedNodesPowerSettingsItem: SettingsItem,
-                 areaBasedOnTotalChildrensAreaMultiplierSettingsItem: SettingsItem,
-                 areaBasedOnTotalChildrensAreaPowerSettingsItem: SettingsItem
-                 ) {
-        self.forceDecaySettingsItem = forceDecaySettingsItem
-        self.velocityDecaySettingsitem = velocityDecaySettingsItem
-        self.radialGravitationalForceOnChildrenMultiplierSettingsItem = radialGravitationalForceOnChildrenMultiplierSettingsItem
-        self.radialGravitationalForceOnChildrenPowerSettingsItem = radialGravitationalForceOnChildrenPowerSettingsItem
-        self.negativeRadialGravitationalForceOnSiblingsMultiplierSettingsItem = negativeRadialGravitationalForceOnSiblingsMultiplierSettingsItem
-        self.negativeRadialGravitationalForceOnSiblingsPowerSettingsItem = negativeRadialGravitationalForceOnSiblingsPowerSettingsItem
-        self.springForceBetweenConnectedNodesMultiplierSettingsItem = springForceBetweenConnectedNodesMultiplierSettingsItem
-        self.springForceBetweenConnectedNodesPowerSettingsItem = springForceBetweenConnectedNodesPowerSettingsItem
-        self.areaBasedOnTotalChildrensAreaMultiplierSettingsItem = areaBasedOnTotalChildrensAreaMultiplierSettingsItem
-        self.areaBasedOnTotalChildrensAreaPowerSettingsItem = areaBasedOnTotalChildrensAreaPowerSettingsItem
-    }
-
 }
