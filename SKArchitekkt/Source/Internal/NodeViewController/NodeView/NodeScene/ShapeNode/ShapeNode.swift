@@ -144,7 +144,7 @@ class ShapeNode: SKShapeNode {
             set(collapsed: true)
         }
     }
-    
+
     private func updateDescendantsRadiusBottomUp() {
         castedChildren.forEach { $0.updateDescendantsRadiusBottomUp() }
         updateRadius()

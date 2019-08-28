@@ -5,7 +5,7 @@ import Foundation
 class Settings: Codable {
 
     // MARK: - Internal -
-    
+
     static func createSettings() -> Settings {
         let settings: Settings
         if let data = UserDefaults.standard.data(forKey: userDefaultsKey),
@@ -23,19 +23,19 @@ class Settings: Codable {
         })
         return settings
     }
-    
+
     let forceDecaySettingsItem: SettingsItem
     let velocityDecaySettingsitem: SettingsItem
-    
+
     let radialGravitationalForceOnChildrenMultiplierSettingsItem: SettingsItem
     let radialGravitationalForceOnChildrenPowerSettingsItem: SettingsItem
-    
+
     let negativeRadialGravitationalForceOnSiblingsMultiplierSettingsItem: SettingsItem
     let negativeRadialGravitationalForceOnSiblingsPowerSettingsItem: SettingsItem
-    
+
     let springForceBetweenConnectedNodesMultiplierSettingsItem: SettingsItem
     let springForceBetweenConnectedNodesPowerSettingsItem: SettingsItem
-    
+
     let areaBasedOnTotalChildrensAreaMultiplierSettingsItem: SettingsItem
     let areaBasedOnTotalChildrensAreaPowerSettingsItem: SettingsItem
 
@@ -67,7 +67,7 @@ class Settings: Codable {
                 ])
         ]
     }
-    
+
     func reset() {
         let newSettings = Settings.createNewSettings()
         let zippedSettingsItems = zip(settingsItems, newSettings.settingsItems)
@@ -80,7 +80,7 @@ class Settings: Codable {
 
     private static let userDefaultsKey = "settingsUserDefaultsKey"
     private static var settingsItemObservations: [NSKeyValueObservation] = []
-    
+
     private static func createNewSettings() -> Settings {
         return Settings(
             forceDecaySettingsItem: SettingsItem(name: "Force", value: 0.005, minValue: 0, maxValue: 0.01),

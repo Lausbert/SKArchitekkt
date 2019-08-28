@@ -21,7 +21,7 @@ class RightPaneViewController: NSViewController, NSCollectionViewDataSource, NSC
         settings.reset()
         collectionView.reloadData()
     }
-    
+
     func numberOfSections(in collectionView: NSCollectionView) -> Int {
         return settings.settingsGroups.count
     }
