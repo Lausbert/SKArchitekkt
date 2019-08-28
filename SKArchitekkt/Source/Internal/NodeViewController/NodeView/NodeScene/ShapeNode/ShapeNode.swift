@@ -38,11 +38,22 @@ class ShapeNode: SKShapeNode {
         return allCastedAncestors
     }
 
-    init(node: CoreArchitekkt.Node, colorDictionary: [String: NSColor], delegate: ShapeNodeDelegate?) {
+    init(node: CoreArchitekkt.Node, settings: Settings, colorDictionary: [String: NSColor], delegate: ShapeNodeDelegate?) {
         self.node = node
         self.colorDictionary = colorDictionary
         self.delegate = delegate
+        self.settings = settings
         super.init()
+        self.settingsItemObservations = [
+            settings.areaBasedOnTotalChildrensAreaMultiplierSettingsItem,
+            settings.areaBasedOnTotalChildrensAreaPowerSettingsItem
+            ].map { [weak self] (settingsItem) -> NSKeyValueObservation in
+                return settingsItem.observe(\.value) { (_, _) in
+                    if self?.castedParent == nil { // check if root node
+                        self?.updateDescendantsRadiusBottomUp()
+                    }
+                }
+        }
         name = ShapeNode.identifier
         setUpPhysicsAndAppearance()
     }
@@ -73,7 +84,9 @@ class ShapeNode: SKShapeNode {
     // MARK: - Private -
 
     private weak var delegate: ShapeNodeDelegate?
+    private let settings: Settings
     private var colorDictionary: [String: NSColor]
+    private var settingsItemObservations: [NSKeyValueObservation] = []
 
     private func setUpPhysicsAndAppearance() {
         setUpPhysicsBody()
@@ -111,7 +124,7 @@ class ShapeNode: SKShapeNode {
                 .reduce(into: [:]) { $0[$1, default: 0] += 1 }
             castedChildren.forEach { $0.removeFromParent() }
         } else {
-            let castedChildren = node.children.map { ShapeNode(node: $0, colorDictionary: colorDictionary, delegate: delegate) }
+            let castedChildren = node.children.map { ShapeNode(node: $0, settings: settings, colorDictionary: colorDictionary, delegate: delegate) }
             self.castedChildren = castedChildren
             var siblingPairs: [(ShapeNode, ShapeNode)] = []
             for (index, first) in castedChildren[..<castedChildren.count].enumerated() {
@@ -131,11 +144,16 @@ class ShapeNode: SKShapeNode {
             set(collapsed: true)
         }
     }
+    
+    private func updateDescendantsRadiusBottomUp() {
+        castedChildren.forEach { $0.updateDescendantsRadiusBottomUp() }
+        updateRadius()
+    }
 
     private func updateRadius() {
-        let minimumRadius = CGFloat(16)
+        let minimumRadius = CGFloat(128)
         let areaOfChildren = isCollapsed ? minimumRadius : castedChildren.map { $0.radius^^2 }.reduce(0, +)
-        let radius = max(minimumRadius, 2.2*sqrt(areaOfChildren))
+        let radius = max(minimumRadius, CGFloat(settings.areaBasedOnTotalChildrensAreaMultiplierSettingsItem.value)*(sqrt(areaOfChildren)^^CGFloat(settings.areaBasedOnTotalChildrensAreaPowerSettingsItem.value)))
         path = CGPath(ellipseIn: CGRect(x: -radius, y: -radius, width: 2*radius, height: 2*radius), transform: nil)
         self.radius = radius
         updateConstraints()
@@ -206,7 +224,7 @@ class ShapeNode: SKShapeNode {
     private func updateColor() {
         fillColor = isCollapsed ? colorForScope() : .clear
         strokeColor = colorForScope()
-        lineWidth = 3
+        lineWidth = 8
     }
 
     private func colorForScope() -> NSColor {

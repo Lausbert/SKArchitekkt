@@ -12,4 +12,5 @@ class RightPaneCollectionViewItem: NSCollectionViewItem, NibLoadable {
     @IBAction func valueDidChange(_ slider: NSSlider) {
         sliderChangeHandler(slider.doubleValue)
     }
+    
 }

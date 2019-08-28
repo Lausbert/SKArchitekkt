@@ -17,6 +17,11 @@ class RightPaneViewController: NSViewController, NSCollectionViewDataSource, NSC
         collectionView.dataSource = self
     }
 
+    @IBAction func didPressResetButton(_ sender: Any) {
+        settings.reset()
+        collectionView.reloadData()
+    }
+    
     func numberOfSections(in collectionView: NSCollectionView) -> Int {
         return settings.settingsGroups.count
     }
@@ -30,8 +35,8 @@ class RightPaneViewController: NSViewController, NSCollectionViewDataSource, NSC
         let settingsItem = settings.settingsGroups[indexPath.section].settingsItems[indexPath.item]
         item.label.stringValue = settingsItem.name
         item.slider.minValue = settingsItem.minValue
-        item.slider.doubleValue = settingsItem.value
         item.slider.maxValue = settingsItem.maxValue
+        item.slider.doubleValue = settingsItem.value
         item.sliderChangeHandler = { [weak settingsItem] value in
             settingsItem?.value = value
         }

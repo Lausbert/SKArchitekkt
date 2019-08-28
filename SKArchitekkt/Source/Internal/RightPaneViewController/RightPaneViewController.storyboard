@@ -9,18 +9,18 @@
         <scene sceneID="ZDS-SV-DIq">
             <objects>
                 <viewController storyboardIdentifier="RightPaneViewController" id="Wmc-0e-3p5" customClass="RightPaneViewController" customModule="SKArchitekkt" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="Kdp-pu-OB0">
+                    <view key="view" id="Kdp-pu-OB0">
                         <rect key="frame" x="0.0" y="0.0" width="260" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView wantsLayer="YES" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7z-zC-PWq">
-                                <rect key="frame" x="0.0" y="0.0" width="260" height="300"/>
+                            <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7z-zC-PWq">
+                                <rect key="frame" x="0.0" y="46" width="260" height="254"/>
                                 <clipView key="contentView" drawsBackground="NO" id="tkz-WR-tbq">
-                                    <rect key="frame" x="1" y="1" width="258" height="298"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="260" height="254"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <collectionView id="x8o-ZZ-gsh">
-                                            <rect key="frame" x="0.0" y="0.0" width="258" height="298"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="260" height="254"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                             <collectionViewFlowLayout key="collectionViewLayout" id="aaN-dv-AOI">
                                                 <size key="itemSize" width="250" height="50"/>
@@ -37,16 +37,33 @@
                                     <rect key="frame" x="-100" y="-100" width="248" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="Hj0-R1-AJA">
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Hj0-R1-AJA">
                                     <rect key="frame" x="234" y="1" width="15" height="143"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QOA-IU-4CA">
+                                <rect key="frame" x="24" y="1" width="212" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="2F1-fX-7sg"/>
+                                    <constraint firstAttribute="width" constant="200" id="jzN-op-uLa"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Reset" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" inset="2" id="GUm-q4-nEN">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <color key="contentTintColor" red="0.1764705882" green="0.1764705882" blue="0.1764705882" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="didPressResetButton:" target="Wmc-0e-3p5" id="YW5-ih-Sxr"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="x7z-zC-PWq" secondAttribute="trailing" id="Al0-8G-z97"/>
                             <constraint firstItem="x7z-zC-PWq" firstAttribute="leading" secondItem="Kdp-pu-OB0" secondAttribute="leading" id="CGQ-Xf-vc3"/>
-                            <constraint firstAttribute="bottom" secondItem="x7z-zC-PWq" secondAttribute="bottom" id="Yb7-ns-Rg7"/>
+                            <constraint firstAttribute="bottom" secondItem="QOA-IU-4CA" secondAttribute="bottom" constant="8" id="ViH-mU-NPG"/>
+                            <constraint firstItem="QOA-IU-4CA" firstAttribute="top" secondItem="x7z-zC-PWq" secondAttribute="bottom" constant="8" id="hdd-E0-0Ca"/>
+                            <constraint firstItem="QOA-IU-4CA" firstAttribute="centerX" secondItem="Kdp-pu-OB0" secondAttribute="centerX" id="oeP-br-GVD"/>
                             <constraint firstItem="x7z-zC-PWq" firstAttribute="top" secondItem="Kdp-pu-OB0" secondAttribute="top" id="xdC-Jf-np4"/>
                         </constraints>
                     </view>

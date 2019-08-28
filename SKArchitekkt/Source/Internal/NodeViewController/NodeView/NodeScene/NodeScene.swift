@@ -38,6 +38,7 @@ class NodeScene: SKScene {
     }
 
     func add(rootNode: Node) {
+        #warning("Todo: Integrate colorDictionary in settings.")
         let colorDictionary = [
             "1": #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1),
             "class_decl": #colorLiteral(red: 0, green: 0.4501332641, blue: 0.7726731896, alpha: 1),
@@ -49,7 +50,7 @@ class NodeScene: SKScene {
             "func_decl": #colorLiteral(red: 0.9182413816, green: 0.6399110556, blue: 0.1377894878, alpha: 1),
             "8": #colorLiteral(red: 0.2392974496, green: 0.1283998489, blue: 0.7470512986, alpha: 1)
         ]
-        let rootNode = ShapeNode(node: rootNode, colorDictionary: colorDictionary, delegate: self)
+        let rootNode = ShapeNode(node: rootNode, settings: settings, colorDictionary: colorDictionary, delegate: self)
         addChild(rootNode)
         shapeNode(rootNode, didAdd: rootNode)
     }
@@ -113,7 +114,7 @@ extension NodeScene: ShapeNodeDelegate {
     private func createArcNode(withStrength strength: Int) -> SKShapeNode {
         let arcNode = SKShapeNode()
         arcNode.strokeColor = .windowFrameColor
-        arcNode.lineWidth = min(10, max(1, log(CGFloat(strength))))
+        arcNode.lineWidth = 8*min(10, max(1, log(CGFloat(strength))))
         arcNode.zPosition = -1
         return arcNode
     }
