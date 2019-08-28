@@ -53,11 +53,11 @@ class Settings: Codable {
                 forceDecaySettingsItem: SettingsItem(name: "Force", value: 0.005, minValue: 0, maxValue: 0.01),
                 velocityDecaySettingsItem: SettingsItem(name: "Velocity", value: 0.1, minValue: 0, maxValue: 0.2),
                 radialGravitationalForceOnChildrenMultiplierSettingsItem: SettingsItem(name: "Multiplier", value: 1, minValue: 0, maxValue: 10),
-                radialGravitationalForceOnChildrenPowerSettingsItem: SettingsItem(name: "Power", value: -1.6, minValue: -3, maxValue: 3),
+                radialGravitationalForceOnChildrenPowerSettingsItem: SettingsItem(name: "Power", value: -2, minValue: -3, maxValue: -1),
                 negativeRadialGravitationalForceOnSiblingsMultiplierSettingsItem: SettingsItem(name: "Multiplier", value: 1, minValue: 0, maxValue: 10),
-                negativeRadialGravitationalForceOnSiblingsPowerSettingsItem: SettingsItem(name: "Power", value: -0.5, minValue: -3, maxValue: 3),
+                negativeRadialGravitationalForceOnSiblingsPowerSettingsItem: SettingsItem(name: "Power", value: -1.5, minValue: -2, maxValue: -1),
                 springForceBetweenConnectedNodesMultiplierSettingsItem: SettingsItem(name: "Multiplier", value: 1, minValue: 0, maxValue: 10),
-                springForceBetweenConnectedNodesPowerSettingsItem: SettingsItem(name: "Power", value: 1.8, minValue: -3, maxValue: 3)
+                springForceBetweenConnectedNodesPowerSettingsItem: SettingsItem(name: "Power", value: 2, minValue: 1, maxValue: 3)
             )
         }
         settingsItemObservations = settings.settingsItems.map({ (settingsItem) -> NSKeyValueObservation in
