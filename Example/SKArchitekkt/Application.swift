@@ -4,11 +4,11 @@ import Cocoa
 
 class Application: NSApplication {
 
-    weak var strongDelegate = AppDelegate()
+    var strongReference = AppDelegate()
 
     override init() {
         super.init()
-        self.delegate = strongDelegate
+        self.delegate = strongReference
     }
 
     required init?(coder: NSCoder) {
