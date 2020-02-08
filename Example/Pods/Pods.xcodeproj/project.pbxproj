@@ -42,6 +42,9 @@
 		6F1FBE3189E5F228942A69A6DBDB7B06 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AF18BB9625864641CE45E150A51BC8 /* String.swift */; };
 		723F0DB1F78852769F2256CFC8B758EE /* NodeScene+Mouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD8AAB71E9B32AFC3C935689C7093FF4 /* NodeScene+Mouse.swift */; };
 		8C9B1718EF1C8A22A2834A0DAFF25C08 /* ViewController+RootNodeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C369A08B661CAC4592BA18D39C140D /* ViewController+RootNodeHandler.swift */; };
+		8D27061923EEDFB900A20F5E /* SliderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D27061723EEDF6200A20F5E /* SliderCell.swift */; };
+		8D27061D23EEE4EE00A20F5E /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D27061C23EEE4EE00A20F5E /* Colors.xcassets */; };
+		8D27061F23EEE90F00A20F5E /* NSColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D27061E23EEE90F00A20F5E /* NSColor.swift */; };
 		91EDF4E87D75A46BDC530F7A009BA166 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 901E7FD3AD7B681DAFEBD29E08158262 /* Cocoa.framework */; };
 		92213AE2A6B3BBA6CE2D42326F91961F /* SKArchitekkt-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2018270B93CC9F9BAFFB6CBEF90C6E58 /* SKArchitekkt-dummy.m */; };
 		A220C032A213F630708D3A72E215935B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 901E7FD3AD7B681DAFEBD29E08158262 /* Cocoa.framework */; };
@@ -127,6 +130,9 @@
 		759DAF33ECFBFDD81CDB897C61EBF57F /* NodeScene+Physics.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NodeScene+Physics.swift"; sourceTree = "<group>"; };
 		797CA0925A7EB3AB593F57D5A92A3938 /* CGFloat.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
 		86CBC7C3AEE18BC049B4F6B1B9C6ACDA /* NodeViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NodeViewController.swift; sourceTree = "<group>"; };
+		8D27061723EEDF6200A20F5E /* SliderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SliderCell.swift; sourceTree = "<group>"; };
+		8D27061C23EEE4EE00A20F5E /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		8D27061E23EEE90F00A20F5E /* NSColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSColor.swift; sourceTree = "<group>"; };
 		8F54069A40BE4F947E2399AFF77A52A2 /* GraphRequestHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GraphRequestHandler.swift; path = CoreArchitekkt/Source/Public/Protocols/GraphRequestHandler.swift; sourceTree = "<group>"; };
 		901E7FD3AD7B681DAFEBD29E08158262 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		92C529EE7CC41B8E1C35493F814F4DB2 /* Pods-SKArchitekkt_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SKArchitekkt_Example.modulemap"; sourceTree = "<group>"; };
@@ -210,6 +216,7 @@
 				9CCDA7C1D54E688BBB443EDC10032474 /* CGVector.swift */,
 				B4E2C2CDC545D332D137B2710701BF24 /* CGVector+Comparable.swift */,
 				5DC1B72E230C273700E0388C /* NibLoadable.swift */,
+				8D27061E23EEE90F00A20F5E /* NSColor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -299,6 +306,7 @@
 				5DC1B738230C275D00E0388C /* RightPaneCollectionViewItem.xib */,
 				5DC1B746230C28BE00E0388C /* RightPaneCollectionViewItem.swift */,
 				5DDFCA8A230ECB920043322E /* RightPaneFooterView.xib */,
+				8D27061723EEDF6200A20F5E /* SliderCell.swift */,
 			);
 			path = RightPaneViewController;
 			sourceTree = "<group>";
@@ -357,6 +365,7 @@
 				044AC4E14233D0A18B97C04F5C8A7D04 /* Pod */,
 				D82CB6E53EE701A54081C89AC7C65366 /* Public */,
 				C727A87A761AA3F83E9C85D6652DEB14 /* Support Files */,
+				8D27061C23EEE4EE00A20F5E /* Colors.xcassets */,
 			);
 			name = SKArchitekkt;
 			path = ../..;
@@ -577,6 +586,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5DDFCA8E230ECC3D0043322E /* RightPaneFooterView.xib in Resources */,
+				8D27061D23EEE4EE00A20F5E /* Colors.xcassets in Resources */,
 				5DDFCA88230EC7CE0043322E /* RightPaneHeaderView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -592,6 +602,8 @@
 				5DC1B741230C27C400E0388C /* RightPaneViewController.storyboard in Sources */,
 				5DC1B742230C27C400E0388C /* RightPaneCollectionViewItem.xib in Sources */,
 				60231790D199BE7C049885D283C04647 /* CGFloat.swift in Sources */,
+				8D27061F23EEE90F00A20F5E /* NSColor.swift in Sources */,
+				8D27061923EEDFB900A20F5E /* SliderCell.swift in Sources */,
 				24721E430FFE4C810809EF0FC7485524 /* CGPoint.swift in Sources */,
 				5B0A4949F776A33F539112C487965A04 /* CGVector+Comparable.swift in Sources */,
 				3520DD19C7E6C37ABBFCEF12BB18DDBD /* CGVector.swift in Sources */,
