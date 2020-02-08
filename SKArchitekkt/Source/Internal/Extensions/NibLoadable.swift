@@ -15,7 +15,7 @@ extension NibLoadable where Self: NSView {
         let bundle = Bundle(for: Self.self)
         var topLevelArray: NSArray?
         bundle.loadNibNamed(NSNib.Name(name), owner: self, topLevelObjects: &topLevelArray)
-        let views = Array<Any>(topLevelArray!).filter { $0 is Self }
+        let views = [Any](topLevelArray!).filter { $0 is Self }
         return views.last as! Self
     }
 
@@ -28,7 +28,7 @@ extension NibLoadable where Self: NSCollectionViewItem {
         let bundle = Bundle(for: Self.self)
         var topLevelArray: NSArray?
         bundle.loadNibNamed(NSNib.Name(name), owner: self, topLevelObjects: &topLevelArray)
-        let views = Array<Any>(topLevelArray!).filter { $0 is Self }
+        let views = [Any](topLevelArray!).filter { $0 is Self }
         return views.last as! Self
     }
 

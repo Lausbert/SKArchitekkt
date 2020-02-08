@@ -84,16 +84,16 @@ class Settings: Codable {
     private init() {
         forceDecaySettingsItem = SettingsItem(name: "Force", value: 0.005, minValue: 0, maxValue: 0.01)
         velocityDecaySettingsitem = SettingsItem(name: "Velocity", value: 0.05, minValue: 0, maxValue: 0.1)
-        
+
         radialGravitationalForceOnChildrenMultiplierSettingsItem = SettingsItem(name: "Multiplier", value: 1, minValue: 0, maxValue: 10)
         radialGravitationalForceOnChildrenPowerSettingsItem = SettingsItem(name: "Power", value: -1.4, minValue: -1.8, maxValue: -1)
-        
+
         negativeRadialGravitationalForceOnSiblingsMultiplierSettingsItem = SettingsItem(name: "Multiplier", value: 1, minValue: 0, maxValue: 10)
         negativeRadialGravitationalForceOnSiblingsPowerSettingsItem = SettingsItem(name: "Power", value: -1.1, minValue: -2.1, maxValue: -0.1)
-        
+
         springForceBetweenConnectedNodesMultiplierSettingsItem = SettingsItem(name: "Multiplier", value: 1, minValue: 0, maxValue: 10)
         springForceBetweenConnectedNodesPowerSettingsItem = SettingsItem(name: "Power", value: 2.3, minValue: 1, maxValue: 3.6)
-        
+
         areaBasedOnTotalChildrensAreaMultiplierSettingsItem = SettingsItem(name: "Multiplier", value: 2, minValue: 1, maxValue: 3)
         areaBasedOnTotalChildrensAreaPowerSettingsItem = SettingsItem(name: "Power", value: 1, minValue: 0.5, maxValue: 1.5)
     }

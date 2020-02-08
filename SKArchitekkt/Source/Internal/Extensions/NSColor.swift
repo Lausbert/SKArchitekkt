@@ -8,9 +8,9 @@
 import Foundation
 
 extension NSColor {
-    
+
     static func color(named name: String) -> NSColor {
         return NSColor(named: name, bundle: Bundle(identifier: "org.cocoapods.SKArchitekkt")) ?? #colorLiteral(red: 0.3293760121, green: 0.329436779, blue: 0.3293679655, alpha: 1)
     }
-    
+
 }
