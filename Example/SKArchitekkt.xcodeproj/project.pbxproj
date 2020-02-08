@@ -301,16 +301,12 @@
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputFileListPaths = (
-			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-SKArchitekkt_Example/Pods-SKArchitekkt_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/CoreArchitekkt/CoreArchitekkt.framework",
 				"${BUILT_PRODUCTS_DIR}/SKArchitekkt/SKArchitekkt.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CoreArchitekkt.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SKArchitekkt.framework",

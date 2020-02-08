@@ -4,7 +4,7 @@ import Cocoa
 
 class Application: NSApplication {
 
-    weak var strongDelegate = AppDelegate()
+    var strongDelegate = AppDelegate()
 
     override init() {
         super.init()
