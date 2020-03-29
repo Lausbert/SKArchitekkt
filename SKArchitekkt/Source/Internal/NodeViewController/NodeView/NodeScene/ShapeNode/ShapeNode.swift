@@ -152,8 +152,7 @@ class ShapeNode: SKShapeNode {
 
     private func updateRadius() {
         let minimumRadius = CGFloat(128)
-        let areaOfChildren = isCollapsed ? minimumRadius : castedChildren.map { $0.radius^^2 }.reduce(0, +)
-        let radius = max(minimumRadius, CGFloat(settings.areaBasedOnTotalChildrensAreaMultiplierSettingsItem.value)*(sqrt(areaOfChildren)^^CGFloat(settings.areaBasedOnTotalChildrensAreaPowerSettingsItem.value)))
+        let radius = isCollapsed ? minimumRadius : CGFloat(settings.areaBasedOnTotalChildrensAreaMultiplierSettingsItem.value)*(sqrt(castedChildren.map { $0.radius^^2 }.reduce(0, +))^^CGFloat(settings.areaBasedOnTotalChildrensAreaPowerSettingsItem.value))
         path = CGPath(ellipseIn: CGRect(x: -radius, y: -radius, width: 2*radius, height: 2*radius), transform: nil)
         self.radius = radius
         updateConstraints()
