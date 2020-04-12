@@ -113,6 +113,7 @@ extension NodeScene: ShapeNodeDelegate {
         let arcNode = SKShapeNode()
         arcNode.fillColor = .windowFrameColor
         arcNode.strokeColor = .windowFrameColor
+        arcNode.alpha = 0.5
         arcNode.zPosition = -1
         return arcNode
     }
