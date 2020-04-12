@@ -130,11 +130,11 @@ extension NodeScene: SKSceneDelegate {
             let toPositionCenter = toShapeNode.convert(CGPoint.zero, to: scene)
             let distanceVector = fromPositionCenter - toPositionCenter
             let distance = distanceVector.length()
-            let fromPosition = fromPositionCenter - shapeNode.radius/distance*distanceVector
-            let toPosition = toPositionCenter + toShapeNode.radius/distance*distanceVector
-            let path = CGMutablePath()
-            path.move(to: fromPosition)
-            path.addLine(to: toPosition)
+            let fromPosition = fromPositionCenter - (shapeNode.radius+(shapeNode.lineWidth/2))/distance*distanceVector
+            let toPosition = toPositionCenter + (toShapeNode.radius+(toShapeNode.lineWidth/2))/distance*distanceVector
+            let strength = max(shapeNode.resultingArcs[to, default: 0], toShapeNode.resultingArcs[shapeNode.node, default: 0])
+            let baseWidth = 8*min(10, max(1, log(CGFloat(strength))))
+            let path = CGPath.arrow(from: fromPosition, to: toPosition, tailWidth: baseWidth, headWidth: 2*baseWidth, headLength: 2*baseWidth)
             arcNode.path = path
         }
     }

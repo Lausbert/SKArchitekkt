@@ -35,6 +35,7 @@
 		7D0621C49A431EC09FA6511D04784023 /* RightPaneCollectionViewItem.xib in Sources */ = {isa = PBXBuildFile; fileRef = F328D17FDC9623EB5C99AF5DD50BFE98 /* RightPaneCollectionViewItem.xib */; };
 		82FC55BA4CB1746FF1A98320F28FF569 /* SplitViewController.storyboard in Sources */ = {isa = PBXBuildFile; fileRef = D5B843F1326853F634CE8065BC9296BC /* SplitViewController.storyboard */; };
 		8697F9D7FA93E7BFA3BEE56A46B984AF /* SettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ABBE6BD0DA20C1E023D264C5FAFE1326 /* SettingsItem.swift */; };
+		8D7276F32443980B00220D6E /* CGPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7276F22443980B00220D6E /* CGPath.swift */; };
 		916F5D45A975FA5B372A1A526733D0E3 /* Shell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1CE5617CE9101CF77DD7C330E178BB0 /* Shell.swift */; };
 		92BBFB24C761606893B1C26A8E77450C /* RightPaneFooterView.xib in Sources */ = {isa = PBXBuildFile; fileRef = F3353EC7ABBAE5A7E18824EB1CC95D52 /* RightPaneFooterView.xib */; };
 		9792A7C717E68C90CFB9C1521771FADF /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D993CC0E3A0546933E487793230C26A4 /* Settings.swift */; };
@@ -121,6 +122,7 @@
 		80BFC7613202BA1A4D8DB53C54166B9A /* CGPoint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGPoint.swift; sourceTree = "<group>"; };
 		80E1F897FD12B3333B1E83C3D51097CC /* Array.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Array.swift; path = CoreArchitekkt/Source/Public/Extensions/Array.swift; sourceTree = "<group>"; };
 		8A1B8E4A436C8680CD2F3F003F09EE26 /* CoreArchitekkt-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CoreArchitekkt-umbrella.h"; sourceTree = "<group>"; };
+		8D7276F22443980B00220D6E /* CGPath.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGPath.swift; sourceTree = "<group>"; };
 		93420DDEE1A3D9034BD890ACD3484F2C /* GraphRequestHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GraphRequestHandler.swift; path = CoreArchitekkt/Source/Public/Protocols/GraphRequestHandler.swift; sourceTree = "<group>"; };
 		93D6FCE9B7324B340C994C8A8D7A6D2B /* NodeScene+Physics.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NodeScene+Physics.swift"; sourceTree = "<group>"; };
 		9A8B767B4AF5F25CE2E9A34236CDE81E /* CoreArchitekkt-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CoreArchitekkt-dummy.m"; sourceTree = "<group>"; };
@@ -246,6 +248,7 @@
 				55EA718229E50227C5B33D1CDF65BDB3 /* CGVector.swift */,
 				7BA687579B9010758E59109987317D7C /* CGVector+Comparable.swift */,
 				215F6FE433B5886505669CE41030CD45 /* NibLoadable.swift */,
+				8D7276F22443980B00220D6E /* CGPath.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -535,7 +538,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1100;
-				LastUpgradeCheck = 1100;
+				LastUpgradeCheck = 1140;
 			};
 			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 8.0";
@@ -622,6 +625,7 @@
 				29407A5C1E0A90173A7C69B0BBA1B4D3 /* NibLoadable.swift in Sources */,
 				D0052F9115F92A0C1C6C8CB2397214DD /* NodeScene+Mouse.swift in Sources */,
 				727FBCE9193B97B00315DD77FBAEC167 /* NodeScene+Physics.swift in Sources */,
+				8D7276F32443980B00220D6E /* CGPath.swift in Sources */,
 				EFD231FE922FC0BE05F16E34B95D1605 /* NodeScene.swift in Sources */,
 				0D62B4388EF5D78693631C12E12AEECB /* NodeView+RootNodeHandler.swift in Sources */,
 				98017D7206627E5740AAD23F3C35B20B /* NodeView.swift in Sources */,
@@ -675,7 +679,6 @@
 			baseConfigurationReference = 3FEAC9E05772B616773354429A5DE0D7 /* Pods-SKArchitekkt_Example.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -710,7 +713,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5001FCFAD778433B29AC35858574976B /* CoreArchitekkt.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -744,7 +746,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3BA4C45793229203E3914BFF9CA57B53 /* SKArchitekkt.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -901,7 +902,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5001FCFAD778433B29AC35858574976B /* CoreArchitekkt.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -936,7 +936,6 @@
 			baseConfigurationReference = DCF2FED19D161F2D05C714CA8441EBB5 /* Pods-SKArchitekkt_Example.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -971,7 +970,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3BA4C45793229203E3914BFF9CA57B53 /* SKArchitekkt.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
