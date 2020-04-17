@@ -8,14 +8,14 @@ class NodeScene: SKScene {
     // MARK: - Internal -
 
     struct Arc: Hashable {
-        let from: Node
-        let to: Node
+        let from: UUID
+        let to: UUID
     }
 
     let settings: Settings
 
     private(set) var castedChildren: Set<ShapeNode> = []
-    private(set) var shapeNodeForNodeDictionary: [Node: ShapeNode] = [:]
+    private(set) var shapeNodeForNodeDictionary: [UUID: ShapeNode] = [:]
     private(set) var arcNodeForArcDictionary: [Arc: SKShapeNode] = [:]
 
     init(with settings: Settings) {
@@ -75,14 +75,14 @@ extension NodeScene: ShapeNodeDelegate {
 
     func shapeNode(_ shapeNode: ShapeNode, didAdd child: ShapeNode) {
         castedChildren.insert(child)
-        ([child.node] + child.node.allDescendants).forEach { shapeNodeForNodeDictionary[$0] = child }
+        ([child.node] + child.node.allDescendants).forEach { shapeNodeForNodeDictionary[$0.id] = child }
         for to in child.resultingArcs {
-            let arcToRemove = Arc(from: shapeNode.node, to: to.key)
+            let arcToRemove = Arc(from: shapeNode.node.id, to: to.key)
             arcNodeForArcDictionary.removeValue(forKey: arcToRemove)?.removeFromParent()
             guard shapeNodeForNodeDictionary[to.key] != child else {
                 continue
             }
-            let arcToAdd = Arc(from: child.node, to: to.key)
+            let arcToAdd = Arc(from: child.node.id, to: to.key)
             let arcNode = createArcNode()
             addChild(arcNode)
             arcNodeForArcDictionary[arcToAdd] = arcNode
@@ -92,15 +92,15 @@ extension NodeScene: ShapeNodeDelegate {
     func shapeNode(_ shapeNode: ShapeNode, didRemove child: ShapeNode) {
         castedChildren.remove(child)
         // the following line only works, when all children of a shapenode are always removed at once...
-        shapeNode.node.allDescendants.forEach { shapeNodeForNodeDictionary[$0] = shapeNode }
+        shapeNode.node.allDescendants.forEach { shapeNodeForNodeDictionary[$0.id] = shapeNode }
         for to in child.resultingArcs {
-            let arcToRemove = Arc(from: child.node, to: to.key)
+            let arcToRemove = Arc(from: child.node.id, to: to.key)
             arcNodeForArcDictionary.removeValue(forKey: arcToRemove)?.removeFromParent()
             // ... but if the upper line wouldn't be as it is, the second condition here would fail, if more than one children are removed at once
             guard shapeNode.resultingArcs.keys.contains(to.key) && shapeNodeForNodeDictionary[to.key] != shapeNode else {
                 continue
             }
-            let arcToAdd = Arc(from: shapeNode.node, to: to.key)
+            let arcToAdd = Arc(from: shapeNode.node.id, to: to.key)
             let arcNode = createArcNode()
             addChild(arcNode)
             arcNodeForArcDictionary[arcToAdd] = arcNode

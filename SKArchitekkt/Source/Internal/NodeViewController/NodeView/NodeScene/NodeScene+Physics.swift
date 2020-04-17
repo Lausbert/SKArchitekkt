@@ -83,7 +83,6 @@ extension NodeScene: SKSceneDelegate {
     private func updateSpringForce(for shapeNode: ShapeNode, withForceDecay forceDecay: CGFloat) {
         for (to, strength) in shapeNode.resultingArcs.compactMap({ (shapeNodeForNodeDictionary[$0.key], $0.value) }) {
             guard let to = to else {
-                assertionFailure()
                 continue
             }
             var froms = [shapeNode]
@@ -123,7 +122,7 @@ extension NodeScene: SKSceneDelegate {
         guard let scene = scene else { return }
         for to in shapeNode.resultingArcs.keys {
             guard let toShapeNode = shapeNodeForNodeDictionary[to],
-                let arcNode = arcNodeForArcDictionary[Arc(from: shapeNode.node, to: to)] else {
+                let arcNode = arcNodeForArcDictionary[Arc(from: shapeNode.node.id, to: to)] else {
                 continue
             }
             let fromPositionCenter = shapeNode.convert(CGPoint.zero, to: scene)

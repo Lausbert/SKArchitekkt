@@ -19,7 +19,7 @@ class ShapeNode: SKShapeNode {
 
     let node: Node
 
-    private(set) var resultingArcs: [Node: Int] = [:]
+    private(set) var resultingArcs: [UUID: Int] = [:]
     private(set) var castedChildren: [ShapeNode] = []
     private(set) var siblingPairs: [(ShapeNode, ShapeNode)] = []
     private(set) var radius: CGFloat = 16
@@ -177,7 +177,7 @@ class ShapeNode: SKShapeNode {
 
     private func updateTextNodes() {
         guard !isHidden else { return }
-        let name = node.identifier?.components(separatedBy: ".").last ?? node.scope
+        let name = node.name?.components(separatedBy: ".").last ?? node.scope
         children.filter { $0 is SKLabelNode }.forEach { $0.removeFromParent() }
         let nameLength = CGFloat(name.count)
         var lettersPerFullCircle = CGFloat(24)
