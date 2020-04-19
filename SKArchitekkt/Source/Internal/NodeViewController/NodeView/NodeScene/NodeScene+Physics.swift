@@ -83,6 +83,7 @@ extension NodeScene: SKSceneDelegate {
     private func updateSpringForce(for shapeNode: ShapeNode, withForceDecay forceDecay: CGFloat) {
         for (to, strength) in shapeNode.resultingArcs.compactMap({ (shapeNodeForNodeDictionary[$0.key], $0.value) }) {
             guard let to = to else {
+                assertionFailure()
                 continue
             }
             var froms = [shapeNode]

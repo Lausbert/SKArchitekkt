@@ -27,8 +27,7 @@ struct MacOSProject: Ressource {
               "children" : [
 
               ],
-              "identifier" : "B59C0F4F-73AE-439F-B43B-8919EB8832A4",
-              "isRoot" : false,
+              "id" : "C13AC44E-26F9-4E29-88D5-2016B8BD8EEC",
               "scope" : "import_decl",
               "tags" : [
                 "Cocoa"
@@ -36,9 +35,7 @@ struct MacOSProject: Ressource {
             },
             {
               "arcs" : [
-                "7ABBB333-33C9-4DBF-9E81-11C7336E43E7",
-                "057E83BE-2DD9-43C4-9816-B4E267A347BA",
-                "92065331-316B-413E-BC24-EC80417ECADD"
+
               ],
               "children" : [
                 {
@@ -48,18 +45,17 @@ struct MacOSProject: Ressource {
                   "children" : [
                     {
                       "arcs" : [
-                        "A8F934B3-6E64-4300-8D04-65E0A2391045"
+
                       ],
                       "children" : [
                         {
                           "arcs" : [
-                            "A8F934B3-6E64-4300-8D04-65E0A2391045"
+
                           ],
                           "children" : [
 
                           ],
-                          "identifier" : "70B93B4E-BFEF-4214-AC69-C96AFB89A977",
-                          "isRoot" : false,
+                          "id" : "73E977F8-3B92-4A66-899B-C8BC34FF7C1A",
                           "scope" : "pattern_named",
                           "tags" : [
                             "window"
@@ -82,8 +78,7 @@ struct MacOSProject: Ressource {
                                   "children" : [
 
                                   ],
-                                  "identifier" : "0BC44973-86F1-4494-88C0-96965D182D8A",
-                                  "isRoot" : false,
+                                  "id" : "5943F4CF-62A6-4ED4-B8C1-D90A0335F830",
                                   "scope" : "component",
                                   "tags" : [
                                     "NSWindow",
@@ -92,24 +87,21 @@ struct MacOSProject: Ressource {
                                   ]
                                 }
                               ],
-                              "identifier" : "1833A566-146F-4ECB-A200-DA236964CD31",
-                              "isRoot" : false,
+                              "id" : "D3666497-9660-4330-81D3-FFF742E2BDFB",
                               "scope" : "type_ident",
                               "tags" : [
 
                               ]
                             }
                           ],
-                          "identifier" : "A575145D-B76E-4118-83A3-FB92BDDD0F0C",
-                          "isRoot" : false,
+                          "id" : "19510BDC-0B22-48E1-82C3-AFFD7C6B0651",
                           "scope" : "type_implicitly_unwrapped_optional",
                           "tags" : [
 
                           ]
                         }
                       ],
-                      "identifier" : "5A5C5660-9783-4626-84D9-8528ABE309D0",
-                      "isRoot" : false,
+                      "id" : "039AFC97-F61B-41C1-B33E-247D25DDCDDD",
                       "scope" : "pattern_typed",
                       "tags" : [
 
@@ -117,13 +109,12 @@ struct MacOSProject: Ressource {
                     },
                     {
                       "arcs" : [
-                        "A8F934B3-6E64-4300-8D04-65E0A2391045"
+
                       ],
                       "children" : [
 
                       ],
-                      "identifier" : "47656BFB-FBC6-4B73-B5DE-50B689D6CE02",
-                      "isRoot" : false,
+                      "id" : "BA02BF51-5F2C-477A-8005-55E3E6619E56",
                       "scope" : "nil_literal_expr",
                       "tags" : [
                         "implicit",
@@ -131,8 +122,7 @@ struct MacOSProject: Ressource {
                       ]
                     }
                   ],
-                  "identifier" : "99BA2D53-D0D9-4FD5-81E8-16DB0F780912",
-                  "isRoot" : false,
+                  "id" : "2C6F338F-270D-4BA6-BE61-AFB0FBDD3F85",
                   "scope" : "pattern_binding_decl",
                   "tags" : [
                     "Processed",
@@ -141,12 +131,12 @@ struct MacOSProject: Ressource {
                 },
                 {
                   "arcs" : [
-                    "A8F934B3-6E64-4300-8D04-65E0A2391045"
+
                   ],
                   "children" : [
                     {
                       "arcs" : [
-                        "A8F934B3-6E64-4300-8D04-65E0A2391045"
+
                       ],
                       "children" : [
                         {
@@ -156,9 +146,8 @@ struct MacOSProject: Ressource {
                           "children" : [
 
                           ],
-                          "identifier" : "0AE8D81F-AF95-4B81-8112-73E3C0BCF268",
-                          "isRoot" : false,
-                          "name" : "AppDelegate.window.self:6DF13DD5-5BBD-4F7A-B46D-7D4BAB347B5C",
+                          "id" : "0235A003-DCEE-424D-B770-7C07CE7F9A63",
+                          "name" : "AppDelegate.window.self:36369CC1-923A-427E-9328-C7BEF2C17158",
                           "scope" : "parameter",
                           "tags" : [
                             "interface"
@@ -171,8 +160,7 @@ struct MacOSProject: Ressource {
                           "children" : [
 
                           ],
-                          "identifier" : "AE4A9119-F7CE-43CF-B5AA-AB98564A1D91",
-                          "isRoot" : false,
+                          "id" : "0D91963A-0EC6-40CD-91B3-2AB050988AAD",
                           "scope" : "parameter_list",
                           "tags" : [
 
@@ -190,7 +178,7 @@ struct MacOSProject: Ressource {
                               "children" : [
                                 {
                                   "arcs" : [
-                                    "A8F934B3-6E64-4300-8D04-65E0A2391045"
+
                                   ],
                                   "children" : [
                                     {
@@ -200,8 +188,7 @@ struct MacOSProject: Ressource {
                                       "children" : [
 
                                       ],
-                                      "identifier" : "097D5762-F1BC-4F29-81A9-E860AA6E2A11",
-                                      "isRoot" : false,
+                                      "id" : "6D445966-D7D0-4CBA-864B-CC5F70EBF361",
                                       "scope" : "declref_expr",
                                       "tags" : [
                                         "function_ref=unapplied",
@@ -209,8 +196,7 @@ struct MacOSProject: Ressource {
                                       ]
                                     }
                                   ],
-                                  "identifier" : "24FA1704-A64A-49C4-9D28-D8679821734F",
-                                  "isRoot" : false,
+                                  "id" : "8C50ACFC-B3EC-4902-8999-A6EF40602247",
                                   "scope" : "member_ref_expr",
                                   "tags" : [
                                     "direct_to_storage",
@@ -218,24 +204,21 @@ struct MacOSProject: Ressource {
                                   ]
                                 }
                               ],
-                              "identifier" : "1CCC5A89-6248-4353-B49A-78F98E7F0E00",
-                              "isRoot" : false,
+                              "id" : "CD928EE1-5C8F-48E7-B1D4-443D4A8EA620",
                               "scope" : "return_stmt",
                               "tags" : [
                                 "implicit"
                               ]
                             }
                           ],
-                          "identifier" : "6E57C0D7-FD1A-4221-B94D-6D637566054E",
-                          "isRoot" : false,
+                          "id" : "08581C78-43DF-4C88-A902-75BFAA6B1199",
                           "scope" : "brace_stmt",
                           "tags" : [
                             "implicit"
                           ]
                         }
                       ],
-                      "identifier" : "CD0902B8-AB0F-438A-8401-5FBCEEF9519C",
-                      "isRoot" : false,
+                      "id" : "CFF5FFB9-A462-4F94-82F5-6DCE1C9EF937",
                       "scope" : "accessor_decl",
                       "tags" : [
                         "access=internal",
@@ -246,7 +229,7 @@ struct MacOSProject: Ressource {
                     },
                     {
                       "arcs" : [
-                        "A8F934B3-6E64-4300-8D04-65E0A2391045"
+
                       ],
                       "children" : [
                         {
@@ -256,9 +239,8 @@ struct MacOSProject: Ressource {
                           "children" : [
 
                           ],
-                          "identifier" : "0B669421-9F74-4745-BA08-68E5E8C72404",
-                          "isRoot" : false,
-                          "name" : "AppDelegate.window.self:5D5AB702-49E2-49B2-92BB-D03F7E062494",
+                          "id" : "3EC0AA04-2257-444A-9A2A-9428B884DAE2",
+                          "name" : "AppDelegate.window.self:37CD079A-B62F-4D22-940C-7AFF177F7F8C",
                           "scope" : "parameter",
                           "tags" : [
                             "interface"
@@ -271,13 +253,12 @@ struct MacOSProject: Ressource {
                           "children" : [
                             {
                               "arcs" : [
-                                "A8F934B3-6E64-4300-8D04-65E0A2391045"
+
                               ],
                               "children" : [
 
                               ],
-                              "identifier" : "48DAA5A1-3AC7-44B8-A900-201223091CA8",
-                              "isRoot" : false,
+                              "id" : "C2D4DA82-5E7B-47E7-85A8-B9A6DC13E359",
                               "name" : "AppDelegate.window.value",
                               "scope" : "parameter",
                               "tags" : [
@@ -285,8 +266,7 @@ struct MacOSProject: Ressource {
                               ]
                             }
                           ],
-                          "identifier" : "155C92AA-6185-48EA-9B7C-40FD923F3717",
-                          "isRoot" : false,
+                          "id" : "3811B78F-8F62-43E7-917D-5C6D8EF2C382",
                           "scope" : "parameter_list",
                           "tags" : [
 
@@ -304,7 +284,7 @@ struct MacOSProject: Ressource {
                               "children" : [
                                 {
                                   "arcs" : [
-                                    "A8F934B3-6E64-4300-8D04-65E0A2391045"
+
                                   ],
                                   "children" : [
                                     {
@@ -314,8 +294,7 @@ struct MacOSProject: Ressource {
                                       "children" : [
 
                                       ],
-                                      "identifier" : "58123A2E-216E-47EB-8C2C-5B8DC8BBE22B",
-                                      "isRoot" : false,
+                                      "id" : "E0312A2C-1159-433F-B91C-DEDB503A5C19",
                                       "scope" : "declref_expr",
                                       "tags" : [
                                         "function_ref=unapplied",
@@ -323,8 +302,7 @@ struct MacOSProject: Ressource {
                                       ]
                                     }
                                   ],
-                                  "identifier" : "0483262D-0F24-4F0A-B18E-2A219D6A01A0",
-                                  "isRoot" : false,
+                                  "id" : "C50C440D-37B6-40E7-B52E-677AD4727BC4",
                                   "scope" : "member_ref_expr",
                                   "tags" : [
                                     "direct_to_storage",
@@ -333,13 +311,12 @@ struct MacOSProject: Ressource {
                                 },
                                 {
                                   "arcs" : [
-                                    "A8F934B3-6E64-4300-8D04-65E0A2391045"
+
                                   ],
                                   "children" : [
 
                                   ],
-                                  "identifier" : "03A0C280-7F5D-489A-BF92-EA288E68D5BC",
-                                  "isRoot" : false,
+                                  "id" : "CB4F3D1A-84F8-4890-9A77-4BE8EB5E4DA2",
                                   "scope" : "declref_expr",
                                   "tags" : [
                                     "function_ref=unapplied",
@@ -347,24 +324,21 @@ struct MacOSProject: Ressource {
                                   ]
                                 }
                               ],
-                              "identifier" : "3B3D62E9-A162-46CA-A9F9-27CB45667609",
-                              "isRoot" : false,
+                              "id" : "329FEF99-7AE7-4E10-8842-65AC22E1004B",
                               "scope" : "assign_expr",
                               "tags" : [
                                 "implicit"
                               ]
                             }
                           ],
-                          "identifier" : "A3E6C6B0-9C4C-401D-9DF2-70C60A1C7D90",
-                          "isRoot" : false,
+                          "id" : "A6C54B6D-4D2A-45CF-A3B2-B53AB79B0961",
                           "scope" : "brace_stmt",
                           "tags" : [
                             "implicit"
                           ]
                         }
                       ],
-                      "identifier" : "48466BBE-5216-47DA-A975-D2D6BD431749",
-                      "isRoot" : false,
+                      "id" : "F44752A6-3633-4A28-B1DF-33920E501042",
                       "scope" : "accessor_decl",
                       "tags" : [
                         "access=internal",
@@ -385,9 +359,8 @@ struct MacOSProject: Ressource {
                           "children" : [
 
                           ],
-                          "identifier" : "E1C99D6A-F71E-4C77-8D7D-CC64B9813163",
-                          "isRoot" : false,
-                          "name" : "AppDelegate.window.self:8F416037-4FC2-4A5C-A449-FE21124CA198",
+                          "id" : "8D7C7603-6A8E-4EE1-B914-4007466DEC21",
+                          "name" : "AppDelegate.window.self:2C886342-00D7-4A57-BE29-D6EAA90DB55A",
                           "scope" : "parameter",
                           "tags" : [
                             "interface"
@@ -400,8 +373,7 @@ struct MacOSProject: Ressource {
                           "children" : [
 
                           ],
-                          "identifier" : "747D0F40-E690-49E6-B946-199687201A16",
-                          "isRoot" : false,
+                          "id" : "4ECF7A52-4498-4F94-86B6-735513888125",
                           "scope" : "parameter_list",
                           "tags" : [
 
@@ -419,12 +391,12 @@ struct MacOSProject: Ressource {
                               "children" : [
                                 {
                                   "arcs" : [
-                                    "A8F934B3-6E64-4300-8D04-65E0A2391045"
+
                                   ],
                                   "children" : [
                                     {
                                       "arcs" : [
-                                        "A8F934B3-6E64-4300-8D04-65E0A2391045"
+
                                       ],
                                       "children" : [
                                         {
@@ -434,8 +406,7 @@ struct MacOSProject: Ressource {
                                           "children" : [
 
                                           ],
-                                          "identifier" : "659360D7-CB96-4B21-AD08-E3635A5FCE38",
-                                          "isRoot" : false,
+                                          "id" : "CFCCE528-F520-4C5B-AEC0-689A7CCDF3E1",
                                           "scope" : "declref_expr",
                                           "tags" : [
                                             "function_ref=unapplied",
@@ -443,8 +414,7 @@ struct MacOSProject: Ressource {
                                           ]
                                         }
                                       ],
-                                      "identifier" : "6904D1C6-138E-430B-85E1-D24777974AC1",
-                                      "isRoot" : false,
+                                      "id" : "BF3A6776-DE5A-49CA-8F1A-FBF1BFABF05A",
                                       "scope" : "member_ref_expr",
                                       "tags" : [
                                         "direct_to_impl",
@@ -452,32 +422,28 @@ struct MacOSProject: Ressource {
                                       ]
                                     }
                                   ],
-                                  "identifier" : "5EBC84A1-C3D2-4CD1-B832-640C82605E64",
-                                  "isRoot" : false,
+                                  "id" : "BE01640C-037E-4D78-9C3E-88083C981C83",
                                   "scope" : "inout_expr",
                                   "tags" : [
                                     "implicit"
                                   ]
                                 }
                               ],
-                              "identifier" : "BE9B437E-CF0B-4D86-A953-0803ED718ECB",
-                              "isRoot" : false,
+                              "id" : "13C6826F-A5B5-487D-9593-F4D863606FF2",
                               "scope" : "yield_stmt",
                               "tags" : [
                                 "implicit"
                               ]
                             }
                           ],
-                          "identifier" : "242F7C7A-4412-4F3D-98B7-82EE0501DC3F",
-                          "isRoot" : false,
+                          "id" : "C27DE5D4-CDB2-4C43-9FB9-A47178F90938",
                           "scope" : "brace_stmt",
                           "tags" : [
                             "implicit"
                           ]
                         }
                       ],
-                      "identifier" : "52DE41F7-66A4-4BDE-8038-F1F199F50F65",
-                      "isRoot" : false,
+                      "id" : "CA12D074-B62D-4CC7-B77C-FA2F60D27E03",
                       "scope" : "accessor_decl",
                       "tags" : [
                         "_modify_for=window",
@@ -487,8 +453,7 @@ struct MacOSProject: Ressource {
                       ]
                     }
                   ],
-                  "identifier" : "8BC8776F-BD2F-4D4F-9D21-49BA49E8552F",
-                  "isRoot" : false,
+                  "id" : "96C6D8D4-E154-4E61-A331-B66B11C6C48E",
                   "name" : "AppDelegate.window",
                   "scope" : "var_decl",
                   "tags" : [
@@ -501,7 +466,7 @@ struct MacOSProject: Ressource {
                 },
                 {
                   "arcs" : [
-                    "D95DFBEA-33DC-49CC-8D87-FE22172517EE"
+
                   ],
                   "children" : [
                     {
@@ -511,8 +476,7 @@ struct MacOSProject: Ressource {
                       "children" : [
 
                       ],
-                      "identifier" : "6454B138-E162-4AF9-A9C0-270C0CAC1727",
-                      "isRoot" : false,
+                      "id" : "1E5C36F8-3039-4EAD-BD30-0CD5E6E69669",
                       "name" : "AppDelegate.applicationDidFinishLaunching(_:).self",
                       "scope" : "parameter",
                       "tags" : [
@@ -526,13 +490,12 @@ struct MacOSProject: Ressource {
                       "children" : [
                         {
                           "arcs" : [
-                            "D95DFBEA-33DC-49CC-8D87-FE22172517EE"
+
                           ],
                           "children" : [
 
                           ],
-                          "identifier" : "4A18CEB5-8BE9-4992-8F8B-21E291916486",
-                          "isRoot" : false,
+                          "id" : "A3D41519-95D2-4F0C-B467-B23B4A3EF6D6",
                           "name" : "AppDelegate.applicationDidFinishLaunching(_:).aNotification",
                           "scope" : "parameter",
                           "tags" : [
@@ -540,8 +503,7 @@ struct MacOSProject: Ressource {
                           ]
                         }
                       ],
-                      "identifier" : "1A5AAF0D-D075-4E26-8AE8-AFFA8DF7253F",
-                      "isRoot" : false,
+                      "id" : "AE352F12-A8F4-4431-B40E-F73B0E48940D",
                       "scope" : "parameter_list",
                       "tags" : [
 
@@ -554,16 +516,14 @@ struct MacOSProject: Ressource {
                       "children" : [
 
                       ],
-                      "identifier" : "8D59894C-060D-4957-9482-5E5F20F27BE5",
-                      "isRoot" : false,
+                      "id" : "684AD34D-CCC3-49AB-A0AC-5E625B953C4C",
                       "scope" : "brace_stmt",
                       "tags" : [
 
                       ]
                     }
                   ],
-                  "identifier" : "E4A402C1-8B5B-4214-8C49-2B74EE991C9A",
-                  "isRoot" : false,
+                  "id" : "BEF4139E-746A-46A2-9EBD-788F96C271FC",
                   "name" : "AppDelegate.applicationDidFinishLaunching(_:)",
                   "scope" : "func_decl",
                   "tags" : [
@@ -574,7 +534,7 @@ struct MacOSProject: Ressource {
                 },
                 {
                   "arcs" : [
-                    "D95DFBEA-33DC-49CC-8D87-FE22172517EE"
+
                   ],
                   "children" : [
                     {
@@ -584,8 +544,7 @@ struct MacOSProject: Ressource {
                       "children" : [
 
                       ],
-                      "identifier" : "B227F0C3-71F7-4BB2-BCA1-6CBEFBCB6520",
-                      "isRoot" : false,
+                      "id" : "B6C45057-38B9-40BB-80B7-24E64080DAFE",
                       "name" : "AppDelegate.applicationWillTerminate(_:).self",
                       "scope" : "parameter",
                       "tags" : [
@@ -599,13 +558,12 @@ struct MacOSProject: Ressource {
                       "children" : [
                         {
                           "arcs" : [
-                            "D95DFBEA-33DC-49CC-8D87-FE22172517EE"
+
                           ],
                           "children" : [
 
                           ],
-                          "identifier" : "2A387535-9B37-425A-A98B-BABC12C22980",
-                          "isRoot" : false,
+                          "id" : "29E08A41-74CC-4A28-90C8-42CE47FD3108",
                           "name" : "AppDelegate.applicationWillTerminate(_:).aNotification",
                           "scope" : "parameter",
                           "tags" : [
@@ -613,8 +571,7 @@ struct MacOSProject: Ressource {
                           ]
                         }
                       ],
-                      "identifier" : "F07EF048-9438-4882-8911-682C4D71A6EB",
-                      "isRoot" : false,
+                      "id" : "1D97E923-4328-4E8B-947D-5006F5262B0D",
                       "scope" : "parameter_list",
                       "tags" : [
 
@@ -627,16 +584,14 @@ struct MacOSProject: Ressource {
                       "children" : [
 
                       ],
-                      "identifier" : "334E3226-FF22-4A13-8DD3-95C76665F301",
-                      "isRoot" : false,
+                      "id" : "0CAF9D4A-04B0-475E-893F-81FC99FA35CB",
                       "scope" : "brace_stmt",
                       "tags" : [
 
                       ]
                     }
                   ],
-                  "identifier" : "6489E9E0-CCD8-4B14-BD8F-92693D5C9808",
-                  "isRoot" : false,
+                  "id" : "736DE2F7-4602-4712-9E00-D2C75CDD3A04",
                   "name" : "AppDelegate.applicationWillTerminate(_:)",
                   "scope" : "func_decl",
                   "tags" : [
@@ -657,8 +612,7 @@ struct MacOSProject: Ressource {
                       "children" : [
 
                       ],
-                      "identifier" : "5561581D-CF97-49EF-A7CC-EAFD16F4033F",
-                      "isRoot" : false,
+                      "id" : "BDB700DF-8B4E-491A-BA66-4438D099F3B2",
                       "name" : "AppDelegate.deinit.self",
                       "scope" : "parameter",
                       "tags" : [
@@ -672,8 +626,7 @@ struct MacOSProject: Ressource {
                       "children" : [
 
                       ],
-                      "identifier" : "B5A965D1-2A77-42D6-A8E3-2AA1F1301716",
-                      "isRoot" : false,
+                      "id" : "707D2AA0-2750-4B0B-A3CA-2950A9FE6F99",
                       "scope" : "parameter_list",
                       "tags" : [
 
@@ -686,16 +639,14 @@ struct MacOSProject: Ressource {
                       "children" : [
 
                       ],
-                      "identifier" : "DC3AB5D0-651D-441B-B6D6-98A1F1EC6FCC",
-                      "isRoot" : false,
+                      "id" : "F995AA89-FD4B-4983-BF98-2C59792E2C5B",
                       "scope" : "brace_stmt",
                       "tags" : [
                         "implicit"
                       ]
                     }
                   ],
-                  "identifier" : "7E9E3587-C940-4B00-A774-DECE4C5151B7",
-                  "isRoot" : false,
+                  "id" : "A6A4945A-F438-4DBB-B131-91C8D32D67A8",
                   "name" : "AppDelegate.deinit",
                   "scope" : "destructor_decl",
                   "tags" : [
@@ -706,7 +657,7 @@ struct MacOSProject: Ressource {
                 },
                 {
                   "arcs" : [
-                    "7ABBB333-33C9-4DBF-9E81-11C7336E43E7"
+
                   ],
                   "children" : [
                     {
@@ -716,8 +667,7 @@ struct MacOSProject: Ressource {
                       "children" : [
 
                       ],
-                      "identifier" : "8EEB1804-EE66-49B4-93CE-7643F270C593",
-                      "isRoot" : false,
+                      "id" : "F51C9B35-C77D-4A38-AD2C-43BBEDABFC9E",
                       "name" : "AppDelegate.init().self",
                       "scope" : "parameter",
                       "tags" : [
@@ -731,8 +681,7 @@ struct MacOSProject: Ressource {
                       "children" : [
 
                       ],
-                      "identifier" : "C705ED57-2DCF-4470-93AE-C293CE61217F",
-                      "isRoot" : false,
+                      "id" : "5B92943A-DA7C-4A7D-95A9-CE89ED5BB893",
                       "scope" : "parameter_list",
                       "tags" : [
 
@@ -750,23 +699,22 @@ struct MacOSProject: Ressource {
                           "children" : [
                             {
                               "arcs" : [
-                                "057E83BE-2DD9-43C4-9816-B4E267A347BA"
+
                               ],
                               "children" : [
                                 {
                                   "arcs" : [
-                                    "057E83BE-2DD9-43C4-9816-B4E267A347BA"
+
                                   ],
                                   "children" : [
                                     {
                                       "arcs" : [
-                                        "057E83BE-2DD9-43C4-9816-B4E267A347BA"
+
                                       ],
                                       "children" : [
 
                                       ],
-                                      "identifier" : "947BF0C1-1587-433B-980C-4D82B6B5F0FF",
-                                      "isRoot" : false,
+                                      "id" : "5FAD23B0-8121-4563-9BB0-E27890192C1F",
                                       "scope" : "other_constructor_ref_expr",
                                       "tags" : [
                                         "implicit"
@@ -774,21 +722,19 @@ struct MacOSProject: Ressource {
                                     },
                                     {
                                       "arcs" : [
-                                        "057E83BE-2DD9-43C4-9816-B4E267A347BA"
+
                                       ],
                                       "children" : [
 
                                       ],
-                                      "identifier" : "EB4E8488-7B45-4B48-816D-25DC9DF800D1",
-                                      "isRoot" : false,
+                                      "id" : "6C961B6A-C3D4-4F7C-84F7-746EFC5C06D4",
                                       "scope" : "super_ref_expr",
                                       "tags" : [
                                         "implicit"
                                       ]
                                     }
                                   ],
-                                  "identifier" : "B138D478-BF73-4B2D-BB86-68BCDB86F90B",
-                                  "isRoot" : false,
+                                  "id" : "1FD43437-130B-4FFE-8C56-5D5CA079564E",
                                   "scope" : "dot_syntax_call_expr",
                                   "tags" : [
                                     "implicit",
@@ -803,16 +749,14 @@ struct MacOSProject: Ressource {
                                   "children" : [
 
                                   ],
-                                  "identifier" : "A8FF3B9B-64F0-454E-B539-B4B6BC042FB8",
-                                  "isRoot" : false,
+                                  "id" : "1F4B8499-2028-4A61-85A7-947CDA027589",
                                   "scope" : "tuple_expr",
                                   "tags" : [
                                     "implicit"
                                   ]
                                 }
                               ],
-                              "identifier" : "E692B235-7F66-40D9-B2EB-45F0747F7667",
-                              "isRoot" : false,
+                              "id" : "7860B37A-9E2F-4A18-B7A6-52564C3E02CF",
                               "scope" : "call_expr",
                               "tags" : [
                                 "arg_labels=",
@@ -821,8 +765,7 @@ struct MacOSProject: Ressource {
                               ]
                             }
                           ],
-                          "identifier" : "0D8F0C12-3C31-430D-8BB6-50EECFCFE953",
-                          "isRoot" : false,
+                          "id" : "219BA5AC-1E9E-442B-838E-F5C33C7695BA",
                           "scope" : "rebind_self_in_constructor_expr",
                           "tags" : [
                             "implicit"
@@ -835,24 +778,21 @@ struct MacOSProject: Ressource {
                           "children" : [
 
                           ],
-                          "identifier" : "15B9887D-9CC9-49F8-A8BF-6B2D1061F02A",
-                          "isRoot" : false,
+                          "id" : "2914817F-435C-4F7C-A53E-3959861AA1DA",
                           "scope" : "return_stmt",
                           "tags" : [
                             "implicit"
                           ]
                         }
                       ],
-                      "identifier" : "F5E79292-9335-46FA-A9F0-8BA7EBB1BBCC",
-                      "isRoot" : false,
+                      "id" : "CB9917D0-1F57-4A44-86B0-D6347251B0A8",
                       "scope" : "brace_stmt",
                       "tags" : [
                         "implicit"
                       ]
                     }
                   ],
-                  "identifier" : "A7F67C4E-0CA8-4177-9116-B8562113CE15",
-                  "isRoot" : false,
+                  "id" : "C4F8B86F-778E-4944-AF91-194B71375427",
                   "name" : "AppDelegate.init()",
                   "scope" : "constructor_decl",
                   "tags" : [
@@ -865,8 +805,7 @@ struct MacOSProject: Ressource {
                   ]
                 }
               ],
-              "identifier" : "DDDA0573-ED0E-4B81-9A77-A13E89487C10",
-              "isRoot" : false,
+              "id" : "E359F832-81AB-4090-AB8C-5F6D298D4477",
               "name" : "AppDelegate",
               "scope" : "class_decl",
               "tags" : [
@@ -876,8 +815,7 @@ struct MacOSProject: Ressource {
               ]
             }
           ],
-          "identifier" : "A135E302-25B5-4F0A-B7B3-EFCCA9645662",
-          "isRoot" : false,
+          "id" : "7DFACF4E-1F82-489F-AA28-17F95F59E2DA",
           "name" : "AppDelegateSourceFile",
           "scope" : "source_file",
           "tags" : [
@@ -885,8 +823,7 @@ struct MacOSProject: Ressource {
           ]
         }
       ],
-      "identifier" : "13F7F54B-5713-4AAF-8D2F-A084690C5C21",
-      "isRoot" : false,
+      "id" : "8F566333-9B1D-4504-A56B-6C79F8101D41",
       "name" : "MacOSSDK",
       "scope" : "module",
       "tags" : [
@@ -894,8 +831,7 @@ struct MacOSProject: Ressource {
       ]
     }
   ],
-  "identifier" : "2659D0D5-74CC-4DD8-80F8-1BB5C22E322A",
-  "isRoot" : true,
+  "id" : "E4632C8F-2E71-4551-A578-22D05F3545A5",
   "scope" : "root",
   "tags" : [
 
