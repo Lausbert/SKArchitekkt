@@ -2,7 +2,7 @@
 
 import XCTest
 
-class UITests: XCTestCase {
+class UITest: XCTestCase {
 
     func testRootNodeHandlingFor(ressourceIdentifier: String, elementTreeValidationHandler: (_ elementTree: [XCUIElement]) -> Void) {
         let app = XCUIApplication()

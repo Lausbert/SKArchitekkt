@@ -1,0 +1,81 @@
+// Copyright © 2020 Stephan Lerner. All rights reserved.
+
+import Foundation
+import CoreArchitekkt
+
+struct VirtualNode: Identifiable, Equatable {
+    
+    struct Settings {
+        let colorDictionary: [String: CGColor]
+        let defaultColor: CGColor
+        let baseRadius: CGFloat
+        let areaMultiplier: CGFloat
+        let areaPower: CGFloat
+    }
+    
+    let id: UUID
+    let scope: String
+    let name: String?
+    let children: [VirtualNode]
+    let color: CGColor
+    let radius: CGFloat
+    
+    static func createVirtualNodes(from node: Node, with transformations: Set<VirtualTransformation>, and settings: VirtualNode.Settings) -> [VirtualNode] {
+
+        if transformations.contains(.unfold(id: node.id)) {
+            let childrenVirtualNodes = node.children.flatMap { createVirtualNodes(from: $0, with: transformations, and: settings) }
+            let r = radius(for: childrenVirtualNodes, and: settings)
+            return[
+                VirtualNode(
+                    id: node.id,
+                    scope: node.scope,
+                    name: node.name,
+                    children: childrenVirtualNodes,
+                    color: settings.colorDictionary[node.scope, default: settings.defaultColor],
+                    radius: r
+                )
+            ]
+        }
+        
+        return [
+            VirtualNode(
+                id: node.id,
+                scope: node.scope,
+                name: node.name,
+                children: [],
+                color: settings.colorDictionary[node.scope, default: settings.defaultColor],
+                radius: settings.baseRadius
+            )
+        ]
+    }
+    
+    private static func radius(for children: [VirtualNode], and settings: VirtualNode.Settings) -> CGFloat {
+        settings.areaMultiplier*(sqrt(children.map {$0.radius^^2} .reduce(0, +))^^settings.areaPower)
+    }
+    
+}
+
+extension VirtualNode: CustomStringConvertible {
+
+    var description: String {
+        description(forNestingLevel: 0) + "\n"
+    }
+    
+    private func description(forNestingLevel level: Int) -> String {
+        let newLine = "\n" + String.init(repeating: "\t", count: level)
+        var result = "\(newLine)id: \(id)"
+        result += "\(newLine)scope: \(scope)"
+        if let name = name {
+            result += "\(newLine)name: \(String(describing: name))"
+        }
+        result += "\(newLine)color: \(color)"
+        result += "\(newLine)radius: \(radius)"
+        if !children.isEmpty {
+            result += "\(newLine)children: ["
+            result += "\(children.map({ $0.description(forNestingLevel: level + 1) }).joined(separator: ","))"
+            result += "\(newLine)]"
+        }
+        return result
+    }
+    
+}

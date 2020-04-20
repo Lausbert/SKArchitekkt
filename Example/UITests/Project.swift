@@ -2,7 +2,7 @@
 
 import XCTest
 
-extension UITests {
+extension UITest {
 
     func testMacOSProject() {
         testRootNodeHandlingFor(ressourceIdentifier: MacOSProject.identifier()) { (elementTree) in

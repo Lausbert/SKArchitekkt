@@ -4,5 +4,8 @@ source 'https://github.com/Lausbert/PodSpecsArchitekkt.git'
 use_frameworks!
 target 'SKArchitekkt_Example' do
   pod 'SKArchitekkt', :path => '../'
+end
 
+target 'UnitTests' do
+  pod 'SKArchitekkt', :path => '../'
 end
