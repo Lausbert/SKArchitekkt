@@ -50,7 +50,7 @@ struct VirtualNode: Identifiable, Equatable {
     }
     
     private static func radius(for children: [VirtualNode], and settings: VirtualNode.Settings) -> CGFloat {
-        settings.areaMultiplier*(sqrt(children.map {$0.radius^^2} .reduce(0, +))^^settings.areaPower)
+        max(settings.baseRadius, settings.areaMultiplier*(sqrt(children.map {$0.radius^^2} .reduce(0, +))^^settings.areaPower))
     }
     
 }

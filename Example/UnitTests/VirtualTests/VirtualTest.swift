@@ -13,14 +13,7 @@ class VirtualTest: XCTestCase {
     var five: Node!
     var six: Node!
     var seven: Node!
-    
-    let defaultSettings = VirtualNode.Settings(
-        colorDictionary: [:],
-        defaultColor: .black,
-        baseRadius: 128,
-        areaMultiplier: 1.5,
-        areaPower: 1
-    )
+    var allNodes: [Node]!
 
     override func setUpWithError() throws {
         one = Node(scope: "one", name: "one")
@@ -43,6 +36,13 @@ class VirtualTest: XCTestCase {
         //      two     three
         //     /   |    |    \
         //  four five  six  seven
+        
+        four.add(arc: five.id)
+        four.add(arc: six.id)
+        five.add(arc: three.id)
+        five.add(arc: six.id)
+        
+        allNodes = [one, two, three, four, five, six, seven]
     }
 
     override func tearDownWithError() throws {
