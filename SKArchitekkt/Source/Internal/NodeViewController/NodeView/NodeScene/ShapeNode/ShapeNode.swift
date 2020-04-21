@@ -3,95 +3,57 @@
 import SpriteKit
 import CoreArchitekkt
 
-protocol ShapeNodeDelegate: class {
-
-    func shapeNode(_ shapeNode: ShapeNode, didAdd child: ShapeNode)
-
-    func shapeNode(_ shapeNode: ShapeNode, didRemove child: ShapeNode)
-
-}
-
 class ShapeNode: SKShapeNode {
 
     // MARK: - Internal -
 
     static let identifier = "ShapeNode"
 
-    let node: Node
-
-    private(set) var resultingArcs: [UUID: Int] = [:]
-    private(set) var castedChildren: [ShapeNode] = []
-    private(set) var siblingPairs: [(ShapeNode, ShapeNode)] = []
-    private(set) var radius: CGFloat = 16
-    private(set) var isCollapsed = true
-
-    var castedParent: ShapeNode? {
-        return parent as? ShapeNode
+    let id: UUID
+    let scope: String
+    let nodeName: String?
+    let castedChildren: [ShapeNode]
+    private(set) var radius: CGFloat
+    
+    var allDescendants: [ShapeNode] {
+           return castedChildren + castedChildren.flatMap { $0.allDescendants }
     }
-    var allCastedAncestors: [ShapeNode] {
-        var allCastedAncestors: [ShapeNode] = []
-        var node = self
-        while let parent = node.castedParent {
-            allCastedAncestors.append(parent)
-            node = parent
-        }
-        return allCastedAncestors
-    }
-
-    init(node: CoreArchitekkt.Node, settings: Settings, colorDictionary: [String: NSColor], delegate: ShapeNodeDelegate?) {
-        self.node = node
-        self.colorDictionary = colorDictionary
-        self.delegate = delegate
-        self.settings = settings
+    
+    init(id: UUID, scope: String, name: String?, children: [ShapeNode], color: CGColor, radius: CGFloat) {
+        self.id = id
+        self.scope = scope
+        self.nodeName = name
+        self.castedChildren = children
+        self.radius = radius
         super.init()
-        self.settingsItemObservations = [
-            settings.areaBasedOnTotalChildrensAreaMultiplierSettingsItem,
-            settings.areaBasedOnTotalChildrensAreaPowerSettingsItem
-            ].map { [weak self] (settingsItem) -> NSKeyValueObservation in
-                return settingsItem.observe(\.value) { (_, _) in
-                    if self?.castedParent == nil { // check if root node
-                        self?.updateDescendantsRadiusBottomUp()
-                    }
-                }
-        }
-        name = ShapeNode.identifier
-        setUpPhysicsAndAppearance()
+        
+        setUpPhysicsBody()
+        children.forEach { addChild($0) }
+        update(color: color)
+        update(radius: radius)
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    override func addChild(_ node: SKNode) {
-        super.addChild(node)
-        if let child = node as? ShapeNode {
-            delegate?.shapeNode(self, didAdd: child)
+    
+    func update(color: CGColor) {
+        guard let color = NSColor(cgColor: color) else {
+            return
         }
+        fillColor = castedChildren.isEmpty ? color : .clear
+        strokeColor = color
+        lineWidth = 8
     }
-
-    override func removeFromParent() {
-        let parent = self.parent as? ShapeNode
-        super.removeFromParent()
-        if let parent = parent {
-            delegate?.shapeNode(parent, didRemove: self)
-        }
-    }
-
-    func didDoubleTap() {
-        set(collapsed: !isCollapsed)
+    
+    func update(radius: CGFloat) {
+        self.radius = radius
+        updateConstraints()
+        updatePhysicsBody()
+        updateTextNodes()
     }
 
     // MARK: - Private -
-
-    private weak var delegate: ShapeNodeDelegate?
-    private let settings: Settings
-    private var colorDictionary: [String: NSColor]
-    private var settingsItemObservations: [NSKeyValueObservation] = []
-
-    private func setUpPhysicsAndAppearance() {
-        setUpPhysicsBody()
-        set(collapsed: true, forceFully: true)
-    }
 
     private func setUpPhysicsBody() {
         let physicsBody = SKPhysicsBody(circleOfRadius: radius)
@@ -103,68 +65,7 @@ class ShapeNode: SKShapeNode {
         physicsBody.collisionBitMask = 0
         self.physicsBody = physicsBody
     }
-
-    private func set(collapsed: Bool, forceFully: Bool = false) {
-        let collapsed = node.children.count > 0 ? collapsed : true
-        guard collapsed != isCollapsed || forceFully else { return }
-        isCollapsed = collapsed
-        updateChildren()
-        updateRadius()
-        updateAncestorsRadius()
-        resetChildrenPosition()
-    }
-
-    private func updateChildren() {
-        if isCollapsed {
-            collapseDescendantsBottomUp()
-            let castedChildren = self.castedChildren
-            self.castedChildren = []
-            self.siblingPairs = []
-            self.resultingArcs = (node.arcs + node.allDescendants.flatMap { $0.arcs })
-                .reduce(into: [:]) { $0[$1, default: 0] += 1 }
-            castedChildren.forEach { $0.removeFromParent() }
-        } else {
-            let castedChildren = node.children.map { ShapeNode(node: $0, settings: settings, colorDictionary: colorDictionary, delegate: delegate) }
-            self.castedChildren = castedChildren
-            var siblingPairs: [(ShapeNode, ShapeNode)] = []
-            for (index, first) in castedChildren[..<castedChildren.count].enumerated() {
-                for second in castedChildren[(index+1)...] {
-                    siblingPairs.append((first, second))
-                }
-            }
-            self.siblingPairs = siblingPairs
-            self.resultingArcs = node.arcs.reduce(into: [:]) { $0[$1] = 1 }
-            castedChildren.forEach { addChild($0) }
-        }
-    }
-
-    private func collapseDescendantsBottomUp(collapseSelf: Bool = false) {
-        castedChildren.forEach { $0.collapseDescendantsBottomUp(collapseSelf: true) }
-        if collapseSelf {
-            set(collapsed: true)
-        }
-    }
-
-    private func updateDescendantsRadiusBottomUp() {
-        castedChildren.forEach { $0.updateDescendantsRadiusBottomUp() }
-        updateRadius()
-    }
-
-    private func updateRadius() {
-        let minimumRadius = CGFloat(128)
-        let radius = isCollapsed ? minimumRadius : CGFloat(settings.areaBasedOnTotalChildrensAreaMultiplierSettingsItem.value)*(sqrt(castedChildren.map { $0.radius^^2 }.reduce(0, +))^^CGFloat(settings.areaBasedOnTotalChildrensAreaPowerSettingsItem.value))
-        path = CGPath(ellipseIn: CGRect(x: -radius, y: -radius, width: 2*radius, height: 2*radius), transform: nil)
-        self.radius = radius
-        updateConstraints()
-        updatePhysicsBody()
-        updateTextNodes()
-        updateColor()
-    }
-
-    private func updateAncestorsRadius() {
-        allCastedAncestors.forEach { $0.updateRadius() }
-    }
-
+    
     private func updateConstraints() {
         castedChildren.forEach {
             $0.constraints = [SKConstraint.distance(SKRange(lowerLimit: 0, upperLimit: radius - $0.radius), to: self)]
@@ -177,7 +78,7 @@ class ShapeNode: SKShapeNode {
 
     private func updateTextNodes() {
         guard !isHidden else { return }
-        let name = node.name?.components(separatedBy: ".").last ?? node.scope
+        let name = nodeName?.components(separatedBy: ".").last ?? scope
         children.filter { $0 is SKLabelNode }.forEach { $0.removeFromParent() }
         let nameLength = CGFloat(name.count)
         var lettersPerFullCircle = CGFloat(24)
@@ -202,7 +103,7 @@ class ShapeNode: SKShapeNode {
             labelNode.position = CGPoint(x: x, y: y)
             labelNode.zRotation = angle - CGFloat.pi/2
             labelNode.fontSize = fontSize
-            if isCollapsed {
+            if castedChildren.isEmpty {
                 labelNode.fontColor = .black
                 labelNode.fontName = NSFont.systemFont(ofSize: fontSize).fontName
             } else {
@@ -217,22 +118,6 @@ class ShapeNode: SKShapeNode {
                 labelNode.text = "…"
                 break
             }
-        }
-    }
-
-    private func updateColor() {
-        fillColor = isCollapsed ? colorForScope() : .clear
-        strokeColor = colorForScope()
-        lineWidth = 8
-    }
-
-    private func colorForScope() -> NSColor {
-        return colorDictionary[node.scope, default: .windowFrameColor]
-    }
-
-    private func resetChildrenPosition() {
-        castedChildren.forEach {
-            $0.position = CGPoint(x: CGFloat.random(in: -radius/2...radius/2), y: CGFloat.random(in: -radius/2...radius/2))
         }
     }
 
