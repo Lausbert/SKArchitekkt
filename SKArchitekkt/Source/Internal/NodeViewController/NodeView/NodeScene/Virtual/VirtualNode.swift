@@ -6,8 +6,8 @@ import CoreArchitekkt
 struct VirtualNode: Identifiable, Equatable {
     
     struct Settings {
-        let colorDictionary: [String: CGColor]
-        let defaultColor: CGColor
+        let colorDictionary: [String: NSColor]
+        let defaultColor: NSColor
         let baseRadius: CGFloat
         let areaMultiplier: CGFloat
         let areaPower: CGFloat
@@ -17,7 +17,7 @@ struct VirtualNode: Identifiable, Equatable {
     let scope: String
     let name: String?
     let children: [VirtualNode]
-    let color: CGColor
+    let color: NSColor
     let radius: CGFloat
     
     static func createVirtualNodes(from node: Node, with transformations: Set<VirtualTransformation>, and settings: VirtualNode.Settings) -> [VirtualNode] {

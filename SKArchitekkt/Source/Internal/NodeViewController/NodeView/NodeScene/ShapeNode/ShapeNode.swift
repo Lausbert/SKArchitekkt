@@ -13,20 +13,30 @@ class ShapeNode: SKShapeNode {
     let scope: String
     let nodeName: String?
     let castedChildren: [ShapeNode]
+    let siblingPairs: [(ShapeNode, ShapeNode)]
     private(set) var radius: CGFloat
     
     var allDescendants: [ShapeNode] {
            return castedChildren + castedChildren.flatMap { $0.allDescendants }
     }
     
-    init(id: UUID, scope: String, name: String?, children: [ShapeNode], color: CGColor, radius: CGFloat) {
+    init(id: UUID, scope: String, name: String?, children: [ShapeNode], color: NSColor, radius: CGFloat) {
         self.id = id
         self.scope = scope
         self.nodeName = name
         self.castedChildren = children
         self.radius = radius
+        var siblingPairs: [(ShapeNode, ShapeNode)] = []
+        for (index, first) in castedChildren[..<castedChildren.count].enumerated() {
+            for second in castedChildren[(index+1)...] {
+                siblingPairs.append((first, second))
+            }
+        }
+        self.siblingPairs = siblingPairs
+
         super.init()
         
+        self.name = ShapeNode.identifier
         setUpPhysicsBody()
         children.forEach { addChild($0) }
         update(color: color)
@@ -37,10 +47,7 @@ class ShapeNode: SKShapeNode {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func update(color: CGColor) {
-        guard let color = NSColor(cgColor: color) else {
-            return
-        }
+    func update(color: NSColor) {
         fillColor = castedChildren.isEmpty ? color : .clear
         strokeColor = color
         lineWidth = 8
@@ -48,6 +55,7 @@ class ShapeNode: SKShapeNode {
     
     func update(radius: CGFloat) {
         self.radius = radius
+        updatePath()
         updateConstraints()
         updatePhysicsBody()
         updateTextNodes()
@@ -64,6 +72,10 @@ class ShapeNode: SKShapeNode {
         physicsBody.allowsRotation = false
         physicsBody.collisionBitMask = 0
         self.physicsBody = physicsBody
+    }
+    
+    private func updatePath() {
+        path = CGPath(ellipseIn: CGRect(x: -radius, y: -radius, width: 2*radius, height: 2*radius), transform: nil)
     }
     
     private func updateConstraints() {

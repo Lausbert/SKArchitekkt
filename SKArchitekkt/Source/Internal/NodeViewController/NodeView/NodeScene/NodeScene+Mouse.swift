@@ -28,7 +28,11 @@ extension NodeScene {
                 }
                 movedNode = replaceNodeWithParentIfNeeded(node: clickedNode)
             case 2:
-                (clickedNode as? ShapeNode)?.didDoubleTap()
+                if let shapeNode = clickedNode as? ShapeNode {
+                    toggleUnfoldTransformation(for: shapeNode.id)
+                } else {
+                    assertionFailure()
+                }
                 startSimulation()
             default:
                 startSimulation()
