@@ -22,6 +22,14 @@ class NodeScene: SKScene {
                 self?.applyRandomForceToAllCastedChildren()
             }
         })
+        self.radiusRelatedSettingsItemObservations = [
+            settings.areaBasedOnTotalChildrensAreaMultiplierSettingsItem,
+            settings.areaBasedOnTotalChildrensAreaPowerSettingsItem
+            ].map { [weak self] (settingsItem) -> NSKeyValueObservation in
+                return settingsItem.observe(\.value) { (_, _) in
+                    self?.update()
+                }
+        }
         delegate = self
         backgroundColor = NSColor.controlBackgroundColor
         setUpPhysicsWorld()
@@ -85,6 +93,7 @@ class NodeScene: SKScene {
     // MARK: - Private -
 
     private var settingsItemObservations: [NSKeyValueObservation] = []
+    private var radiusRelatedSettingsItemObservations: [NSKeyValueObservation] = []
 
     private func applyRandomForceToAllCastedChildren() {
         for shapeNode in castedChildren.flatMap({ $0.allDescendants }) {

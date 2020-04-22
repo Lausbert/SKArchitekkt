@@ -35,10 +35,10 @@ class ShapeNode: SKShapeNode {
         self.siblingPairs = siblingPairs
 
         super.init()
-        
         self.name = ShapeNode.identifier
+        
+        setUpChildren()
         setUpPhysicsBody()
-        children.forEach { addChild($0) }
         update(color: color)
         update(radius: radius)
     }
@@ -50,7 +50,7 @@ class ShapeNode: SKShapeNode {
     func update(color: NSColor) {
         fillColor = castedChildren.isEmpty ? color : .clear
         strokeColor = color
-        lineWidth = 8
+        lineWidth = 16
     }
     
     func update(radius: CGFloat) {
@@ -72,6 +72,13 @@ class ShapeNode: SKShapeNode {
         physicsBody.allowsRotation = false
         physicsBody.collisionBitMask = 0
         self.physicsBody = physicsBody
+    }
+    
+    private func setUpChildren() {
+        castedChildren.forEach {
+            addChild($0)
+            $0.position = CGPoint(x: CGFloat.random(in: -radius/2...radius/2), y: CGFloat.random(in: -radius/2...radius/2))
+        }
     }
     
     private func updatePath() {

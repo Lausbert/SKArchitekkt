@@ -62,7 +62,7 @@ extension NodeScene {
 
     override func scrollWheel(with event: NSEvent) {
         guard let currentScale = camera?.xScale else { return }
-        let newScale: CGFloat = min(max(0.2, currentScale - event.deltaY), 50)
+        let newScale: CGFloat = min(max(0.2, currentScale - event.deltaY), 200)
         let roundedNewScale: CGFloat = round(10*newScale)/10
         camera?.xScale = roundedNewScale
         camera?.yScale = roundedNewScale
