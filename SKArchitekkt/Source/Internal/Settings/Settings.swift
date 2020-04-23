@@ -97,6 +97,6 @@ class Settings: Codable {
         springForceBetweenConnectedNodesPowerSettingsItem = SettingsItem(name: "Power", value: 2.3, minValue: 1, maxValue: 3.6)
 
         areaBasedOnTotalChildrensAreaMultiplierSettingsItem = SettingsItem(name: "Multiplier", value: 1.5, minValue: 1, maxValue: 2)
-        areaBasedOnTotalChildrensAreaPowerSettingsItem = SettingsItem(name: "Power", value: 1, minValue: 0.8, maxValue: 1.2)
+        areaBasedOnTotalChildrensAreaPowerSettingsItem = SettingsItem(name: "Power", value: 1, minValue: 0.95, maxValue: 1.05)
     }
 }
