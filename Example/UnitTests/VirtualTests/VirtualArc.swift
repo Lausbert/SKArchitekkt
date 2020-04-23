@@ -142,7 +142,7 @@ class VirtualArcTest: VirtualTest {
         XCTAssertEqual(virtualArcs, [])
     }
     
-    private func sort(_ virtualArcs: Set<VirtualArc>) -> [VirtualArc] {
+    private func sort(_ virtualArcs: [VirtualArc]) -> [VirtualArc] {
         return virtualArcs.sorted { (lhs, rhs) -> Bool in
             let lhsSourceIndex = allNodes.firstIndex(of: allNodes.first(where: { $0.id == lhs.sourceIdentifier })!)!
             let lhsDestinationIndex = allNodes.firstIndex(of: allNodes.first(where: { $0.id == lhs.destinationIdentifier })!)!

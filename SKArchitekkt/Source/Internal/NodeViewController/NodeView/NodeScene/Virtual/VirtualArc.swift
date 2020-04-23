@@ -8,7 +8,7 @@ struct VirtualArc: Hashable {
     let destinationIdentifier: UUID
     let weight: Int
     
-    static func createVirtualArcs(from node: Node, with transformations: Set<VirtualTransformation>) -> Set<VirtualArc> {
+    static func createVirtualArcs(from node: Node, with transformations: Set<VirtualTransformation>) -> [VirtualArc] {
         if transformations.contains(.unfold(id: node.id)) {
             var (childrenVirtualArcs, foldedDescendantsMapping) = createVirtualArcsAndFoldedDescendantsMapping(
                 from: node.children,
@@ -24,15 +24,19 @@ struct VirtualArc: Hashable {
                     childrenVirtualArcs.removeValue(forKey: weightLessVirtualArc)
                 }
             }
-            return Set(
-                childrenVirtualArcs.map {
-                    VirtualArc(
-                        sourceIdentifier: $0.sourceIdentifier,
-                        destinationIdentifier: $0.destinationIdentifier,
-                        weight: $1
-                    )
+            return childrenVirtualArcs.map {
+                VirtualArc(
+                    sourceIdentifier: $0.sourceIdentifier,
+                    destinationIdentifier: $0.destinationIdentifier,
+                    weight: $1
+                )
+            }.sorted { (lhs, rhs) -> Bool in
+                if lhs.sourceIdentifier != rhs.sourceIdentifier {
+                    return lhs.sourceIdentifier.uuidString < rhs.sourceIdentifier.uuidString
+                } else {
+                    return lhs.destinationIdentifier.uuidString < rhs.destinationIdentifier.uuidString
                 }
-            )
+            }
         } else {
             return []
         }
