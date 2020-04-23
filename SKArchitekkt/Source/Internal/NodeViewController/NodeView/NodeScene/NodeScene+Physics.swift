@@ -49,18 +49,20 @@ extension NodeScene: SKSceneDelegate {
     }
 
     private func updatePhysicsWith(forceDecay: CGFloat, velocityDecay: CGFloat) {
-        for shapeNode in castedDescendantsDictionary.values {
+        for shapeNode in shapeNodesDictionary.values {
             updateRadialGravitationalForceOnChildren(for: shapeNode, withForceDecay: forceDecay)
             updateNegativeRadialGravitationalForceOnSiblings(for: shapeNode, withForceDecay: forceDecay)
-//            updateSpringForce(for: shapeNode, withForceDecay: forceDecay)
             shapeNode.physicsBody?.velocity *= (1 - velocityDecay)
+        }
+        for arcNode in arcNodes {
+            updateSpringForce(for: arcNode, withForceDecay: forceDecay)
         }
     }
 
     private func updateAppearance() {
-//        for shapeNode in castedChildren {
-//            updateArcNodeAppearance(for: shapeNode)
-//        }
+        for arcNode in arcNodes {
+            updateAppearance(for: arcNode)
+        }
     }
 
     private func updateRadialGravitationalForceOnChildren(for shapeNode: ShapeNode, withForceDecay forceDecay: CGFloat) {
@@ -79,34 +81,35 @@ extension NodeScene: SKSceneDelegate {
         }
     }
 
-//    private func updateSpringForce(for shapeNode: ShapeNode, withForceDecay forceDecay: CGFloat) {
-//        for (to, strength) in shapeNode.resultingArcs.compactMap({ (shapeNodeForNodeDictionary[$0.key], $0.value) }) {
-//            guard let to = to else {
-//                assertionFailure()
-//                continue
-//            }
-//            var froms = [shapeNode]
-//            let allCastedAncestors = shapeNode.allCastedAncestors
-//            let arcAllCastedAncestors = to.allCastedAncestors
-//            while let parent = froms.last?.castedParent, !arcAllCastedAncestors.contains(parent) {
-//                froms.append(parent)
-//            }
-//            var tos = [to]
-//            while let parent = tos.last?.castedParent, !allCastedAncestors.contains(parent) {
-//                tos.append(parent)
-//            }
-//            guard let lastFrom = froms.last, let lastTo = tos.last else { return }
-//            let offSetDistance = -(lastFrom.radius + lastTo.radius)
-//            let multiplier = min(10, max(1, log(CGFloat(strength))))
-//            let force = computeForceBetween(first: shapeNode, second: to, offSetDistance: offSetDistance, multiplier: CGFloat(settings.springForceBetweenConnectedNodesMultiplierSettingsItem.value)*forceDecay*multiplier, proportionalToDistanceRaisedToPowerOf: CGFloat(settings.springForceBetweenConnectedNodesPowerSettingsItem.value))
-//            froms.forEach {
-//                $0.physicsBody?.applyForce(-force)
-//            }
-//            tos.forEach {
-//                $0.physicsBody?.applyForce(force)
-//            }
-//        }
-//    }
+    private func updateSpringForce(for arcNode: ArcNode, withForceDecay forceDecay: CGFloat) {
+            guard
+                let sourceShapedNode = shapeNodesDictionary[arcNode.sourceIdentifier],
+                let destinationShapeNode = shapeNodesDictionary[arcNode.destinationIdentifier]
+                else {
+                    assertionFailure()
+                    return
+            }
+            var sources = [sourceShapedNode]
+            let allSourceCastedAncestors = sourceShapedNode.allCastedAncestors
+            let allDestinationCastedAncestors = destinationShapeNode.allCastedAncestors
+            while let parent = sources.last?.castedParent, !allDestinationCastedAncestors.contains(parent) {
+                sources.append(parent)
+            }
+            var tos = [destinationShapeNode]
+            while let parent = tos.last?.castedParent, !allSourceCastedAncestors.contains(parent) {
+                tos.append(parent)
+            }
+            guard let lastSource = sources.last, let lastDestination = tos.last else { return }
+            let offSetDistance = -(lastSource.radius + lastDestination.radius)
+            let multiplier = min(10, max(1, log(CGFloat(arcNode.weight))))
+            let force = computeForceBetween(first: sourceShapedNode, second: destinationShapeNode, offSetDistance: offSetDistance, multiplier: CGFloat(settings.springForceBetweenConnectedNodesMultiplierSettingsItem.value)*forceDecay*multiplier, proportionalToDistanceRaisedToPowerOf: CGFloat(settings.springForceBetweenConnectedNodesPowerSettingsItem.value))
+            sources.forEach {
+                $0.physicsBody?.applyForce(-force)
+            }
+            tos.forEach {
+                $0.physicsBody?.applyForce(force)
+            }
+    }
 
     private func computeForceBetween(first: ShapeNode, second: ShapeNode, offSetDistance: CGFloat = 0, minimumRadius: CGFloat = 0, multiplier: CGFloat = 1, proportionalToDistanceRaisedToPowerOf power: CGFloat = 1) -> CGVector {
         guard let scene = scene else { return CGVector.zero }
@@ -118,24 +121,24 @@ extension NodeScene: SKSceneDelegate {
         return force
     }
 
-//    private func updateArcNodeAppearance(for shapeNode: ShapeNode) {
-//        guard let scene = scene else { return }
-//        for to in shapeNode.resultingArcs.keys {
-//            guard let toShapeNode = shapeNodeForNodeDictionary[to],
-//                let arcNode = arcNodeForArcDictionary[Arc(from: shapeNode.node.id, to: to)] else {
-//                continue
-//            }
-//            let fromPositionCenter = shapeNode.convert(CGPoint.zero, to: scene)
-//            let toPositionCenter = toShapeNode.convert(CGPoint.zero, to: scene)
-//            let distanceVector = fromPositionCenter - toPositionCenter
-//            let distance = distanceVector.length()
-//            let fromPosition = fromPositionCenter - (shapeNode.radius+(shapeNode.lineWidth/2))/distance*distanceVector
-//            let toPosition = toPositionCenter + (toShapeNode.radius+(toShapeNode.lineWidth/2))/distance*distanceVector
-//            let strength = shapeNode.resultingArcs[to, default: 0]
-//            let baseWidth = 8*min(10, max(1, log(CGFloat(strength))))
-//            let path = CGPath.arrow(from: fromPosition, to: toPosition, tailWidth: baseWidth, headWidth: 2*baseWidth, headLength: 2*baseWidth)
-//            arcNode.path = path
-//        }
-//    }
+    private func updateAppearance(for arcNode: ArcNode) {
+        guard
+            let scene = scene,
+            let sourceShapedNode = shapeNodesDictionary[arcNode.sourceIdentifier],
+            let destinationShapeNode = shapeNodesDictionary[arcNode.destinationIdentifier]
+            else {
+                assertionFailure()
+                return
+        }
+        let sourcePositionCenter = sourceShapedNode.convert(CGPoint.zero, to: scene)
+        let toPositionCenter = destinationShapeNode.convert(CGPoint.zero, to: scene)
+        let distanceVector = sourcePositionCenter - toPositionCenter
+        let distance = distanceVector.length()
+        let fromPosition = sourcePositionCenter - (sourceShapedNode.radius+(sourceShapedNode.lineWidth/2))/distance*distanceVector
+        let toPosition = toPositionCenter + (destinationShapeNode.radius+(destinationShapeNode.lineWidth/2))/distance*distanceVector
+        let baseWidth = 8*min(10, max(1, log(CGFloat(arcNode.weight))))
+        let path = CGPath.arrow(from: fromPosition, to: toPosition, tailWidth: baseWidth, headWidth: 2*baseWidth, headLength: 2*baseWidth)
+        arcNode.path = path
+    }
 
 }

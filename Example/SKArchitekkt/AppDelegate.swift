@@ -26,10 +26,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         guard let ressourceIdentifier = UserDefaults.standard.string(forKey: "ressourceIdentifier") else { fatalError("Could not setup root node.") }
         let ressourceJsonString: String
         switch ressourceIdentifier {
-        case MacOSProject.identifier():
-            ressourceJsonString = MacOSProject.jsonString
-        case IOSProject.identifier():
-            ressourceJsonString = IOSProject.jsonString
+        case CocoaPodsWorkspace.identifier():
+            ressourceJsonString = CocoaPodsWorkspace.jsonString
         default:
             fatalError("Could not setup root node.")
         }

@@ -9,13 +9,11 @@
 /* Begin PBXBuildFile section */
 		11E27645577515CE205A192E /* Pods_SKArchitekkt_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA645252A31F2614C598AD5B /* Pods_SKArchitekkt_Example.framework */; };
 		5DCAC358221884D60020B403 /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC351221884D50020B403 /* Application.swift */; };
-		5DCAC359221884D60020B403 /* MacOSProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC354221884D50020B403 /* MacOSProject.swift */; };
-		5DCAC35A221884D60020B403 /* IOSProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC355221884D50020B403 /* IOSProject.swift */; };
+		5DCAC35A221884D60020B403 /* CocoaPodsWorkspace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC355221884D50020B403 /* CocoaPodsWorkspace.swift */; };
 		5DCAC35B221884D60020B403 /* Ressource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC356221884D50020B403 /* Ressource.swift */; };
 		5DCAC35E221885F60020B403 /* UITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC35C221885F60020B403 /* UITest.swift */; };
 		5DCAC35F221885F60020B403 /* Project.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC35D221885F60020B403 /* Project.swift */; };
-		5DCAC3602218861C0020B403 /* MacOSProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC354221884D50020B403 /* MacOSProject.swift */; };
-		5DCAC3612218861F0020B403 /* IOSProject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC355221884D50020B403 /* IOSProject.swift */; };
+		5DCAC3612218861F0020B403 /* CocoaPodsWorkspace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC355221884D50020B403 /* CocoaPodsWorkspace.swift */; };
 		5DCAC362221886360020B403 /* Ressource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC356221884D50020B403 /* Ressource.swift */; };
 		610636F3816D7F7656D5578A /* Pods_UnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC184FFFEA27F09B24D4E552 /* Pods_UnitTests.framework */; };
 		8D68F95F244F0D5B00FD397D /* VirtualArc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D68F95E244F0D5B00FD397D /* VirtualArc.swift */; };
@@ -48,8 +46,7 @@
 		5DCAC346221881E80020B403 /* UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DCAC34A221881E80020B403 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5DCAC351221884D50020B403 /* Application.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Application.swift; sourceTree = "<group>"; };
-		5DCAC354221884D50020B403 /* MacOSProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MacOSProject.swift; sourceTree = "<group>"; };
-		5DCAC355221884D50020B403 /* IOSProject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IOSProject.swift; sourceTree = "<group>"; };
+		5DCAC355221884D50020B403 /* CocoaPodsWorkspace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CocoaPodsWorkspace.swift; sourceTree = "<group>"; };
 		5DCAC356221884D50020B403 /* Ressource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Ressource.swift; sourceTree = "<group>"; };
 		5DCAC35C221885F60020B403 /* UITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITest.swift; sourceTree = "<group>"; };
 		5DCAC35D221885F60020B403 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
@@ -121,24 +118,15 @@
 			isa = PBXGroup;
 			children = (
 				5DCAC356221884D50020B403 /* Ressource.swift */,
-				5DCAC353221884D50020B403 /* macOS */,
 				5DCAC357221884D50020B403 /* iOS */,
 			);
 			path = Ressources;
 			sourceTree = "<group>";
 		};
-		5DCAC353221884D50020B403 /* macOS */ = {
-			isa = PBXGroup;
-			children = (
-				5DCAC354221884D50020B403 /* MacOSProject.swift */,
-			);
-			path = macOS;
-			sourceTree = "<group>";
-		};
 		5DCAC357221884D50020B403 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				5DCAC355221884D50020B403 /* IOSProject.swift */,
+				5DCAC355221884D50020B403 /* CocoaPodsWorkspace.swift */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -448,9 +436,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5DCAC3602218861C0020B403 /* MacOSProject.swift in Sources */,
 				5DCAC362221886360020B403 /* Ressource.swift in Sources */,
-				5DCAC3612218861F0020B403 /* IOSProject.swift in Sources */,
+				5DCAC3612218861F0020B403 /* CocoaPodsWorkspace.swift in Sources */,
 				5DCAC35E221885F60020B403 /* UITest.swift in Sources */,
 				5DCAC35F221885F60020B403 /* Project.swift in Sources */,
 			);
@@ -470,9 +457,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5DCAC359221884D60020B403 /* MacOSProject.swift in Sources */,
 				5DCAC35B221884D60020B403 /* Ressource.swift in Sources */,
-				5DCAC35A221884D60020B403 /* IOSProject.swift in Sources */,
+				5DCAC35A221884D60020B403 /* CocoaPodsWorkspace.swift in Sources */,
 				5DCAC358221884D60020B403 /* Application.swift in Sources */,
 				ED83F67C20348A760038D96B /* AppDelegate.swift in Sources */,
 			);

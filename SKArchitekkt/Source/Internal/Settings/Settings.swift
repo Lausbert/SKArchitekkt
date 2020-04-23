@@ -90,13 +90,13 @@ class Settings: Codable {
         radialGravitationalForceOnChildrenMultiplierSettingsItem = SettingsItem(name: "Multiplier", value: 1, minValue: 0, maxValue: 10)
         radialGravitationalForceOnChildrenPowerSettingsItem = SettingsItem(name: "Power", value: -1.4, minValue: -1.8, maxValue: -1)
 
-        negativeRadialGravitationalForceOnSiblingsMultiplierSettingsItem = SettingsItem(name: "Multiplier", value: 1, minValue: 0, maxValue: 10)
+        negativeRadialGravitationalForceOnSiblingsMultiplierSettingsItem = SettingsItem(name: "Multiplier", value: 5, minValue: 0, maxValue: 10)
         negativeRadialGravitationalForceOnSiblingsPowerSettingsItem = SettingsItem(name: "Power", value: -1.1, minValue: -2.1, maxValue: -0.1)
 
         springForceBetweenConnectedNodesMultiplierSettingsItem = SettingsItem(name: "Multiplier", value: 1, minValue: 0, maxValue: 10)
         springForceBetweenConnectedNodesPowerSettingsItem = SettingsItem(name: "Power", value: 2.3, minValue: 1, maxValue: 3.6)
 
-        areaBasedOnTotalChildrensAreaMultiplierSettingsItem = SettingsItem(name: "Multiplier", value: 1.3, minValue: 1.25, maxValue: 1.35)
-        areaBasedOnTotalChildrensAreaPowerSettingsItem = SettingsItem(name: "Power", value: 1.02, minValue: 1.0175, maxValue: 1.0225)
+        areaBasedOnTotalChildrensAreaMultiplierSettingsItem = SettingsItem(name: "Multiplier", value: 1.5, minValue: 1, maxValue: 2)
+        areaBasedOnTotalChildrensAreaPowerSettingsItem = SettingsItem(name: "Power", value: 1, minValue: 0.8, maxValue: 1.2)
     }
 }

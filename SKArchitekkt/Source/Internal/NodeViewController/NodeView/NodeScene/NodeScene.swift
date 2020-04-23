@@ -10,8 +10,9 @@ class NodeScene: SKScene {
     let settings: Settings
     var rootNode: Node?
     var virtualTransformations: Set<VirtualTransformation> = []
-    var castedChildren: [ShapeNode] = []
-    var castedDescendantsDictionary: [UUID: ShapeNode] = [:]
+    var shapeNodeChildren: [ShapeNode] = []
+    var shapeNodesDictionary: [UUID: ShapeNode] = [:]
+    var arcNodes: [ArcNode] = []
 
     init(with settings: Settings) {
         self.settings = settings
@@ -76,13 +77,21 @@ class NodeScene: SKScene {
                 with: self.virtualTransformations,
                 and: virtualNodeSettings
             )
-            let oldCastedChildren = self.castedChildren
-            self.castedChildren = ShapeNode.render(virtualChildren)
-            self.castedDescendantsDictionary = Dictionary(
-                uniqueKeysWithValues: (self.castedChildren + self.castedChildren.flatMap({ $0.allDescendants })).map({ ($0.id, $0) })
+            let oldCastedChildren = self.shapeNodeChildren
+            self.shapeNodeChildren = ShapeNode.render(virtualChildren)
+            self.shapeNodesDictionary = Dictionary(
+                uniqueKeysWithValues: (self.shapeNodeChildren + self.shapeNodeChildren.flatMap({ $0.allDescendants })).map({ ($0.id, $0) })
             )
             oldCastedChildren.forEach { $0.removeFromParent() }
-            self.castedChildren.forEach { self.scene?.addChild($0) }
+            self.shapeNodeChildren.forEach { self.scene?.addChild($0) }
+            let virtualArcs = VirtualArc.createVirtualArcs(
+                from: rootNode,
+                with: self.virtualTransformations
+            )
+            let oldArcs = self.arcNodes
+            self.arcNodes = ArcNode.render(virtualArcs)
+            oldArcs.forEach { $0.removeFromParent() }
+            self.arcNodes.forEach { self.scene?.addChild($0) }
         })
         if let item = updateDispatchWorkItem {
             DispatchQueue.main.async(execute: item)
@@ -106,7 +115,7 @@ class NodeScene: SKScene {
     private var updateDispatchWorkItem: DispatchWorkItem?
 
     private func applyRandomForceToAllCastedChildren() {
-        for shapeNode in castedChildren.flatMap({ $0.allDescendants }) {
+        for shapeNode in shapeNodeChildren.flatMap({ $0.allDescendants }) {
             let force = CGVector(dx: CGFloat.random(in: -(shapeNode.radius^^3)...shapeNode.radius^^3), dy: CGFloat.random(in: -(shapeNode.radius^^3)...shapeNode.radius^^3))
             shapeNode.physicsBody?.applyImpulse(force)
         }

@@ -41,6 +41,8 @@
 		82081EA9F5A92919BB10F8A3C84B0387 /* NodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6839C35F1A275B91A311D12C97412D5 /* NodeView.swift */; };
 		82ABBCAB4EDC4F9C8EAFEEF2D122D7A1 /* NodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11247508BB39F8F5EBED7FDB00A8ADFF /* NodeViewController.swift */; };
 		8CB062446B7868378A6A44A4D34DBAF9 /* RightPaneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51901DD147B5F4CBA5446CAE0C58B038 /* RightPaneViewController.swift */; };
+		8DBA8939245214EA0012549D /* ArcNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA8938245214EA0012549D /* ArcNode.swift */; };
+		8DBA893B245215AE0012549D /* ArcNode+Rendering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBA893A245215AE0012549D /* ArcNode+Rendering.swift */; };
 		8F5DA28D00E4F35A43329F247C1814AB /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22FC77E23626DD34FC30DD3ACE8CEFAC /* Cocoa.framework */; };
 		95464A4AC47846DAD7ED6FF53F6DDBF8 /* ObjectAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53B9E88A0B0B613A1C0FB7919062093 /* ObjectAssociation.swift */; };
 		978C1FD3C904BAAD2515060D4561E75C /* VirtualNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3950D0ED2327D1138E47EB38537DE803 /* VirtualNode.swift */; };
@@ -151,12 +153,14 @@
 		807F4593B7406DEF4E3335DDDF4A0557 /* NodeViewController.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = NodeViewController.storyboard; sourceTree = "<group>"; };
 		870F026CB91A76BEF7F3A7AB39A5F4BA /* CoreArchitekkt.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CoreArchitekkt.xcconfig; sourceTree = "<group>"; };
 		8C75D546CE9784D1FF3669A4D74DFE44 /* CoreArchitekkt-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "CoreArchitekkt-Info.plist"; sourceTree = "<group>"; };
+		8DBA8938245214EA0012549D /* ArcNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArcNode.swift; sourceTree = "<group>"; };
+		8DBA893A245215AE0012549D /* ArcNode+Rendering.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ArcNode+Rendering.swift"; sourceTree = "<group>"; };
 		987EEA5B5021E3BCA9A02C843E74C1CE /* Pods-UnitTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-UnitTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A3F036EDDF4A2CBE7332A0BF45175715 /* SKArchitekkt.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = SKArchitekkt.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A3F036EDDF4A2CBE7332A0BF45175715 /* SKArchitekkt.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = SKArchitekkt.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		A5CFBF8766ED0C8C014E86F2A0B5637F /* ViewController+RootNodeHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "ViewController+RootNodeHandler.swift"; sourceTree = "<group>"; };
 		A5DDB5CA01501F0AC0185CFA9B62D05F /* NodeScene.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NodeScene.swift; sourceTree = "<group>"; };
-		A6DA0724D1AF91319607D6B9CFF35717 /* Pods_SKArchitekkt_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SKArchitekkt_Example.framework; path = "Pods-SKArchitekkt_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A6DA0724D1AF91319607D6B9CFF35717 /* Pods_SKArchitekkt_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SKArchitekkt_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD28C91C45AE6E5C5D58CA4B5330782F /* VirtualTransformation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VirtualTransformation.swift; sourceTree = "<group>"; };
 		AFEC9802B6BC60C0EC6EEBCEE26C4EFA /* Pods-SKArchitekkt_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SKArchitekkt_Example-frameworks.sh"; sourceTree = "<group>"; };
 		B21236BCA86A87AE6A14ABAE6E39B174 /* RightPaneCollectionViewItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RightPaneCollectionViewItem.swift; sourceTree = "<group>"; };
@@ -164,23 +168,23 @@
 		B51EE8EF08CADE45E49CE43963556C60 /* CGPath.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGPath.swift; sourceTree = "<group>"; };
 		B6D5D8F4F93B048B581F477FDD0CE9CF /* CoreArchitekkt.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = CoreArchitekkt.modulemap; sourceTree = "<group>"; };
 		B8930DD2A07348126A526071084D6A6A /* CoreArchitekkt-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CoreArchitekkt-umbrella.h"; sourceTree = "<group>"; };
-		BA363B70FAE9D80D7CB085C16D56D619 /* SKArchitekkt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SKArchitekkt.framework; path = SKArchitekkt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA363B70FAE9D80D7CB085C16D56D619 /* SKArchitekkt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SKArchitekkt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BBB958DA022888B5C3BC553D9F3B130A /* Node.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Node.swift; path = "CoreArchitekkt/Source/Public/Classes+Structs/Node/Node.swift"; sourceTree = "<group>"; };
 		BC5076791BE4917B78FF91255DC87CC8 /* Shell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Shell.swift; path = "CoreArchitekkt/Source/Public/Utilities/Classes+Structs/Shell.swift"; sourceTree = "<group>"; };
 		C048F6361A2CDE7277FE9A4BCFA2A464 /* RightPaneHeaderView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RightPaneHeaderView.swift; sourceTree = "<group>"; };
 		C115E4477CE2DA1C24DDDF9E45C11F58 /* RightPaneHeaderView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = RightPaneHeaderView.xib; sourceTree = "<group>"; };
 		C3094430A86176EB2FB5F33FC1203C3F /* CGVector+Comparable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CGVector+Comparable.swift"; sourceTree = "<group>"; };
 		C7F2F6D2B14E5BE9FBEE04BE52E0E91E /* Pods-SKArchitekkt_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SKArchitekkt_Example-umbrella.h"; sourceTree = "<group>"; };
-		CFDCEDDC51824B42E174AF09A5431FE8 /* CoreArchitekkt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CoreArchitekkt.framework; path = CoreArchitekkt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFDCEDDC51824B42E174AF09A5431FE8 /* CoreArchitekkt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreArchitekkt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFF8D297C4370BB1EF03E44201AFACE0 /* Pods-UnitTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-UnitTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		D18E03B3A273976ADA34D48C919EDD0F /* NodeViewController+RootNodeHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NodeViewController+RootNodeHandler.swift"; sourceTree = "<group>"; };
 		D53B9E88A0B0B613A1C0FB7919062093 /* ObjectAssociation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ObjectAssociation.swift; path = "CoreArchitekkt/Source/Public/Utilities/Classes+Structs/ObjectAssociation.swift"; sourceTree = "<group>"; };
 		D5B843F1326853F634CE8065BC9296BC /* SplitViewController.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = SplitViewController.storyboard; sourceTree = "<group>"; };
 		D6839C35F1A275B91A311D12C97412D5 /* NodeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NodeView.swift; sourceTree = "<group>"; };
-		D7F7D0731C86C57BC08B90D763CF3D87 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		D7F7D0731C86C57BC08B90D763CF3D87 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		D9E63EDC3F267BFC8FB95DB721F1382E /* ShapeNode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ShapeNode.swift; sourceTree = "<group>"; };
 		DA6C273D5AC795A27A0A95928A440E78 /* RightPaneCollectionViewItem.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = RightPaneCollectionViewItem.xib; sourceTree = "<group>"; };
-		DB3F143C083C253354C5B5E75C15012E /* Pods_UnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_UnitTests.framework; path = "Pods-UnitTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB3F143C083C253354C5B5E75C15012E /* Pods_UnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3A8B74946F106CBC88430FC18DDEA48 /* CGVector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGVector.swift; sourceTree = "<group>"; };
 		F6AE0BAB2894A6C40E9299233B0599B0 /* SKArchitekkt-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SKArchitekkt-umbrella.h"; sourceTree = "<group>"; };
 		F84BF47BBF7CD98A5BFE94BD68DC137F /* CGPoint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGPoint.swift; sourceTree = "<group>"; };
@@ -241,7 +245,6 @@
 				764ED0B2F18D7DC17A79BECC52DE1A26 /* StoryBoardLoadable.swift */,
 				FB3B8A2C47F622AFA37A53BD1839648B /* Support Files */,
 			);
-			name = CoreArchitekkt;
 			path = CoreArchitekkt;
 			sourceTree = "<group>";
 		};
@@ -261,7 +264,6 @@
 				56C563549588299ECDBE4AB442C7FE72 /* SplitViewController.swift */,
 				A5CFBF8766ED0C8C014E86F2A0B5637F /* ViewController+RootNodeHandler.swift */,
 			);
-			name = ViewController;
 			path = ViewController;
 			sourceTree = "<group>";
 		};
@@ -287,7 +289,6 @@
 				D18E03B3A273976ADA34D48C919EDD0F /* NodeViewController+RootNodeHandler.swift */,
 				53B79BF28072240738C075A493F3A285 /* NodeView */,
 			);
-			name = NodeViewController;
 			path = NodeViewController;
 			sourceTree = "<group>";
 		};
@@ -298,7 +299,6 @@
 				79A9C68A0DD6E1D0E94401B5C8FE39ED /* SettingsGroup.swift */,
 				6202E651BF723665FCDC6434E9A0024A /* SettingsItem.swift */,
 			);
-			name = Settings;
 			path = Settings;
 			sourceTree = "<group>";
 		};
@@ -345,7 +345,6 @@
 				D9E63EDC3F267BFC8FB95DB721F1382E /* ShapeNode.swift */,
 				2E7D521E7DC44C1A15CE7F5AE105710E /* ShapeNode+Rendering.swift */,
 			);
-			name = ShapeNode;
 			path = ShapeNode;
 			sourceTree = "<group>";
 		};
@@ -356,20 +355,19 @@
 				1E2B8A55F7EC1DAE7CDCB01C242940FE /* NodeView+RootNodeHandler.swift */,
 				57C83AF536582D16054E4C4C64D04367 /* NodeScene */,
 			);
-			name = NodeView;
 			path = NodeView;
 			sourceTree = "<group>";
 		};
 		57C83AF536582D16054E4C4C64D04367 /* NodeScene */ = {
 			isa = PBXGroup;
 			children = (
+				8DBA8937245214D60012549D /* ArcNode */,
 				A5DDB5CA01501F0AC0185CFA9B62D05F /* NodeScene.swift */,
 				1F308FD2B03463C84824226B383C40DC /* NodeScene+Mouse.swift */,
 				511F26F44A0D63292E851AF75D1C824E /* NodeScene+Physics.swift */,
 				52551C50EFF10E11C5FE711B4D40AF38 /* ShapeNode */,
 				C42124831AA7CCB2024345055B8EC253 /* Virtual */,
 			);
-			name = NodeScene;
 			path = NodeScene;
 			sourceTree = "<group>";
 		};
@@ -394,8 +392,16 @@
 				C3094430A86176EB2FB5F33FC1203C3F /* CGVector+Comparable.swift */,
 				1D827E164EFF6EC5384D06B91D18790D /* NibLoadable.swift */,
 			);
-			name = Extensions;
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8DBA8937245214D60012549D /* ArcNode */ = {
+			isa = PBXGroup;
+			children = (
+				8DBA8938245214EA0012549D /* ArcNode.swift */,
+				8DBA893A245215AE0012549D /* ArcNode+Rendering.swift */,
+			);
+			path = ArcNode;
 			sourceTree = "<group>";
 		};
 		95742814C7B46E32C8B6B80C439B8661 /* Development Pods */ = {
@@ -417,7 +423,6 @@
 				47ED22F3F6FA1A0C43E8888283406E49 /* RightPaneViewController.storyboard */,
 				51901DD147B5F4CBA5446CAE0C58B038 /* RightPaneViewController.swift */,
 			);
-			name = RightPaneViewController;
 			path = RightPaneViewController;
 			sourceTree = "<group>";
 		};
@@ -457,7 +462,6 @@
 				3950D0ED2327D1138E47EB38537DE803 /* VirtualNode.swift */,
 				AD28C91C45AE6E5C5D58CA4B5330782F /* VirtualTransformation.swift */,
 			);
-			name = Virtual;
 			path = Virtual;
 			sourceTree = "<group>";
 		};
@@ -735,6 +739,7 @@
 				82ABBCAB4EDC4F9C8EAFEEF2D122D7A1 /* NodeViewController.swift in Sources */,
 				D652DF05B5C958F23EDF0F4FB493E8D2 /* RightPaneCollectionViewItem.swift in Sources */,
 				0061E0E05D37EE64F88E3116C28C1E20 /* RightPaneCollectionViewItem.xib in Sources */,
+				8DBA893B245215AE0012549D /* ArcNode+Rendering.swift in Sources */,
 				4CA7F509A245FABE91EDA4DF8D6289E6 /* RightPaneFooterView.xib in Sources */,
 				72640D53D8338888237A0DD9E3820F77 /* RightPaneHeaderView.swift in Sources */,
 				210C778B03626D93217F22998F85CE76 /* RightPaneHeaderView.xib in Sources */,
@@ -745,6 +750,7 @@
 				3BBC5841B417DB941C60B688D9587314 /* SettingsItem.swift in Sources */,
 				5DEB894847FFB2FFC9ACB25BE3FBE02F /* ShapeNode+Rendering.swift in Sources */,
 				E5EDE2CDADA91B8E869BB1E560F926C6 /* ShapeNode.swift in Sources */,
+				8DBA8939245214EA0012549D /* ArcNode.swift in Sources */,
 				604B7306ED9EF53BDB1AB06430C55975 /* SKArchitekkt-dummy.m in Sources */,
 				20BE4F4EF8D29AB1344148CB55526B70 /* SplitViewController.storyboard in Sources */,
 				75031DA065A1CEA9010C1CDC378EE001 /* SplitViewController.swift in Sources */,
@@ -1067,8 +1073,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};

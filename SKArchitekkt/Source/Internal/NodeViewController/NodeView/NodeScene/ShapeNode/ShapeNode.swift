@@ -20,6 +20,21 @@ class ShapeNode: SKShapeNode {
            return castedChildren + castedChildren.flatMap { $0.allDescendants }
     }
     
+    var castedParent: ShapeNode? {
+        return parent as? ShapeNode
+    }
+    
+    var allCastedAncestors: [ShapeNode] {
+        var allCastedAncestors: [ShapeNode] = []
+        var node = self
+        while let parent = node.castedParent {
+            allCastedAncestors.append(parent)
+            node = parent
+        }
+        return allCastedAncestors
+    }
+
+    
     init(id: UUID, scope: String, name: String?, children: [ShapeNode], color: NSColor, radius: CGFloat) {
         self.id = id
         self.scope = scope
