@@ -48,7 +48,7 @@ class ShapeNode: SKShapeNode {
     }
     
     func update(color: NSColor) {
-        fillColor = castedChildren.isEmpty ? color : .clear
+        fillColor = castedChildren.isEmpty ? color : color.withAlphaComponent(0.1)
         strokeColor = color
         lineWidth = 16
     }
@@ -111,7 +111,7 @@ class ShapeNode: SKShapeNode {
             angle = CGFloat.pi/2 + ((nameLength-1)/2)*angleDifference
             isSpiral = false
         }
-        let fontSize = radius/3
+        let fontSize = min(radius/3, 10000) // there is a maximum font size, otherwise it will crash
         let fontScalingFactor = CGFloat(1.25)
         let resutlingFontSize = fontSize/fontScalingFactor
         for (index, character) in name.enumerated() {

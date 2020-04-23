@@ -72,7 +72,9 @@ class Settings: Codable {
         let newSettings = Settings()
         let zippedSettingsItems = zip(settingsItems, newSettings.settingsItems)
         for (settingsItem, newSettingsItem) in zippedSettingsItems {
+            settingsItem.minValue = newSettingsItem.minValue
             settingsItem.value = newSettingsItem.value
+            settingsItem.maxValue = newSettingsItem.maxValue
         }
     }
 
@@ -94,7 +96,7 @@ class Settings: Codable {
         springForceBetweenConnectedNodesMultiplierSettingsItem = SettingsItem(name: "Multiplier", value: 1, minValue: 0, maxValue: 10)
         springForceBetweenConnectedNodesPowerSettingsItem = SettingsItem(name: "Power", value: 2.3, minValue: 1, maxValue: 3.6)
 
-        areaBasedOnTotalChildrensAreaMultiplierSettingsItem = SettingsItem(name: "Multiplier", value: 2, minValue: 1, maxValue: 3)
-        areaBasedOnTotalChildrensAreaPowerSettingsItem = SettingsItem(name: "Power", value: 1, minValue: 0.5, maxValue: 1.5)
+        areaBasedOnTotalChildrensAreaMultiplierSettingsItem = SettingsItem(name: "Multiplier", value: 1.3, minValue: 1.25, maxValue: 1.35)
+        areaBasedOnTotalChildrensAreaPowerSettingsItem = SettingsItem(name: "Power", value: 1.02, minValue: 1.0175, maxValue: 1.0225)
     }
 }
