@@ -37,7 +37,6 @@ class Settings: Codable {
     let springForceBetweenConnectedNodesPowerSettingsItem: SettingsItem
 
     let areaBasedOnTotalChildrensAreaMultiplierSettingsItem: SettingsItem
-    let areaBasedOnTotalChildrensAreaPowerSettingsItem: SettingsItem
 
     var settingsItems: [SettingsItem] {
         return settingsGroups.flatMap { $0.settingsItems }
@@ -62,8 +61,7 @@ class Settings: Codable {
                 springForceBetweenConnectedNodesPowerSettingsItem
                 ]),
             SettingsGroup(name: "Area Based On Total Childrens Area", settingsItems: [
-                areaBasedOnTotalChildrensAreaMultiplierSettingsItem,
-                areaBasedOnTotalChildrensAreaPowerSettingsItem
+                areaBasedOnTotalChildrensAreaMultiplierSettingsItem
                 ])
         ]
     }
@@ -96,7 +94,6 @@ class Settings: Codable {
         springForceBetweenConnectedNodesMultiplierSettingsItem = SettingsItem(name: "Multiplier", value: 1, minValue: 0, maxValue: 10)
         springForceBetweenConnectedNodesPowerSettingsItem = SettingsItem(name: "Power", value: 2.3, minValue: 1, maxValue: 3.6)
 
-        areaBasedOnTotalChildrensAreaMultiplierSettingsItem = SettingsItem(name: "Multiplier", value: 1.5, minValue: 1, maxValue: 2)
-        areaBasedOnTotalChildrensAreaPowerSettingsItem = SettingsItem(name: "Power", value: 1, minValue: 0.95, maxValue: 1.05)
+        areaBasedOnTotalChildrensAreaMultiplierSettingsItem = SettingsItem(name: "Multiplier", value: 3, minValue: 2, maxValue: 4)
     }
 }

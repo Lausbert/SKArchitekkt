@@ -10,8 +10,7 @@ class VirtualNodeTest: VirtualTest {
         colorDictionary: [:],
         defaultColor: .black,
         baseRadius: 128,
-        areaMultiplier: 1.5,
-        areaPower: 1
+        areaMultiplier: 1.5
     )
     
     func testNoTransformation() {
@@ -46,7 +45,7 @@ class VirtualNodeTest: VirtualTest {
         XCTAssertEqual(one.scope, "one")
         XCTAssertEqual(one.name, "one")
         XCTAssertEqual(one.color, .black)
-        XCTAssertEqual(one.radius, 271.5290039756343)
+        XCTAssertEqual(one.radius, 221.70250336881628)
         XCTAssertEqual(one.children.count, 2)
         
         let two = one.children[0]
@@ -80,14 +79,14 @@ class VirtualNodeTest: VirtualTest {
         XCTAssertEqual(one.scope, "one")
         XCTAssertEqual(one.name, "one")
         XCTAssertEqual(one.color, .black)
-        XCTAssertEqual(one.radius, 450.2799129430492)
+        XCTAssertEqual(one.radius, 313.53468707624677)
         XCTAssertEqual(one.children.count, 2)
         
         let two = one.children[0]
         XCTAssertEqual(two.scope, "two")
         XCTAssertEqual(two.name, "two")
         XCTAssertEqual(two.color, .black)
-        XCTAssertEqual(two.radius, 271.5290039756343)
+        XCTAssertEqual(two.radius, 221.70250336881628)
         XCTAssertEqual(two.children.count, 2)
         
         let three = one.children[1]
@@ -129,21 +128,21 @@ class VirtualNodeTest: VirtualTest {
         XCTAssertEqual(one.scope, "one")
         XCTAssertEqual(one.name, "one")
         XCTAssertEqual(one.color, .black)
-        XCTAssertEqual(one.radius, 576.0000000000001)
+        XCTAssertEqual(one.radius, 383.99999999999994)
         XCTAssertEqual(one.children.count, 2)
         
         let two = one.children[0]
         XCTAssertEqual(two.scope, "two")
         XCTAssertEqual(two.name, "two")
         XCTAssertEqual(two.color, .black)
-        XCTAssertEqual(two.radius, 271.5290039756343)
+        XCTAssertEqual(two.radius, 221.70250336881628)
         XCTAssertEqual(two.children.count, 2)
         
         let three = one.children[1]
         XCTAssertEqual(three.scope, "two")
         XCTAssertEqual(three.name, "three")
         XCTAssertEqual(three.color, .black)
-        XCTAssertEqual(three.radius, 271.5290039756343)
+        XCTAssertEqual(three.radius, 221.70250336881628)
         XCTAssertEqual(three.children.count, 2)
         
         let four = two.children[0]
@@ -196,21 +195,21 @@ class VirtualNodeTest: VirtualTest {
         XCTAssertEqual(one.scope, "one")
         XCTAssertEqual(one.name, "one")
         XCTAssertEqual(one.color, .black)
-        XCTAssertEqual(one.radius, 576.0000000000001)
+        XCTAssertEqual(one.radius, 383.99999999999994)
         XCTAssertEqual(one.children.count, 2)
         
         let two = one.children[0]
         XCTAssertEqual(two.scope, "two")
         XCTAssertEqual(two.name, "two")
         XCTAssertEqual(two.color, .black)
-        XCTAssertEqual(two.radius, 271.5290039756343)
+        XCTAssertEqual(two.radius, 221.70250336881628)
         XCTAssertEqual(two.children.count, 2)
         
         let three = one.children[1]
         XCTAssertEqual(three.scope, "two")
         XCTAssertEqual(three.name, "three")
         XCTAssertEqual(three.color, .black)
-        XCTAssertEqual(three.radius, 271.5290039756343)
+        XCTAssertEqual(three.radius, 221.70250336881628)
         XCTAssertEqual(three.children.count, 2)
         
         let four = two.children[0]

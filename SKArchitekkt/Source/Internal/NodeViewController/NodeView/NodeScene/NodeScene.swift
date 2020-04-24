@@ -24,8 +24,7 @@ class NodeScene: SKScene {
             }
         })
         self.radiusRelatedSettingsItemObservations = [
-            settings.areaBasedOnTotalChildrensAreaMultiplierSettingsItem,
-            settings.areaBasedOnTotalChildrensAreaPowerSettingsItem
+            settings.areaBasedOnTotalChildrensAreaMultiplierSettingsItem
             ].map { [weak self] (settingsItem) -> NSKeyValueObservation in
                 return settingsItem.observe(\.value) { (_, _) in
                     self?.update()
@@ -69,8 +68,7 @@ class NodeScene: SKScene {
                colorDictionary: colorDictionary,
                defaultColor: .windowFrameColor,
                baseRadius: 128,
-               areaMultiplier: CGFloat(self.settings.areaBasedOnTotalChildrensAreaMultiplierSettingsItem.value),
-               areaPower: CGFloat(self.settings.areaBasedOnTotalChildrensAreaPowerSettingsItem.value)
+               areaMultiplier: CGFloat(self.settings.areaBasedOnTotalChildrensAreaMultiplierSettingsItem.value)
             )
             let virtualChildren = VirtualNode.createVirtualNodes(
                 from: rootNode,
