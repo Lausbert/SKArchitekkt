@@ -6,18 +6,30 @@ extension ArcNode {
     
     // MARK: - Internal -
     
-    static func render(_ virtualArcs: [VirtualArc]) -> [ArcNode] {
-        virtualArcs.map { virtualArc in
-            render(virtualArc)
-        }
-    }
-    
     static func diffChildren(oldVirtualArcs: [VirtualArc], newVirtualArcs: [VirtualArc]) -> (SKNode) -> Void {
         
         var childPatches: [(SKNode) -> Void] = []
+        for (index, oldVirtualArc) in oldVirtualArcs.enumerated() {
+            childPatches.append(diff(oldVirtualArc: oldVirtualArc, newVirtualArc: newVirtualArcs[safe: index]))
+        }
+        
+        var additionalPatches: [(SKNode) -> Void] = []
+        if newVirtualArcs.endIndex > oldVirtualArcs.endIndex {
+            for newVirtualArc in newVirtualArcs[oldVirtualArcs.endIndex...] {
+                additionalPatches.append { parent in
+                    let newArcNode = render(newVirtualArc)
+                    parent.addChild(newArcNode)
+                }
+            }
+        }
         
         return { parent in
-            
+            parent.children.enumerated().forEach { (index, element) in
+                childPatches[index](element)
+            }
+            additionalPatches.forEach { additionalPatch in
+                additionalPatch(parent)
+            }
         }
     }
     
@@ -31,7 +43,7 @@ extension ArcNode {
         )
     }
     
-    private static func diff(oldVirtualArc: VirtualArc, newVirtualArc: VirtualArc?) -> ((SKNode) -> Void)? {
+    private static func diff(oldVirtualArc: VirtualArc, newVirtualArc: VirtualArc?) -> (SKNode) -> Void {
         guard let newVirtualArc = newVirtualArc else {
             return { oldArcNode in
                 oldArcNode.removeFromParent()
@@ -50,7 +62,7 @@ extension ArcNode {
             }
         }
         
-        return nil
+        return { _ in }
     }
         
 }

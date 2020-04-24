@@ -14,6 +14,7 @@ class NodeScene: SKScene {
     var shapeNodesDictionary: [UUID: ShapeNode] = [:]
     
     var oldVirtualArcs: [VirtualArc] = []
+    let arcRootNode = SKNode()
     var arcNodes: [ArcNode] = []
     
     init(with settings: Settings) {
@@ -36,6 +37,8 @@ class NodeScene: SKScene {
         backgroundColor = NSColor.controlBackgroundColor
         setUpPhysicsWorld()
         setUpCamera()
+        
+        scene?.addChild(arcRootNode)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -89,10 +92,10 @@ class NodeScene: SKScene {
             with: self.virtualTransformations
         )
         let arcPatch = ArcNode.diffChildren(oldVirtualArcs: self.oldVirtualArcs, newVirtualArcs: newVirtualArcs)
-        arcPatch(scene)
+        arcPatch(arcRootNode)
         self.oldVirtualArcs = newVirtualArcs
         self.arcNodes = []
-        scene.enumerateChildNodes(withName: ArcNode.name) { (node, _) in
+        arcRootNode.enumerateChildNodes(withName: ArcNode.name) { (node, _) in
             if let arcNode = node as? ArcNode {
                 self.arcNodes.append(arcNode)
             }
