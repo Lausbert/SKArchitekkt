@@ -4,6 +4,9 @@ import Foundation
 import CoreArchitekkt
 
 struct VirtualArc: Hashable {
+    
+    // MARK: - Internal -
+    
     let sourceIdentifier: UUID
     let destinationIdentifier: UUID
     let weight: Int
@@ -42,6 +45,8 @@ struct VirtualArc: Hashable {
         }
         
     }
+    
+    // MARK: - Private -
     
     private struct WeightLessVirtualArc: Hashable {
         let sourceIdentifier: UUID
@@ -130,6 +135,8 @@ struct VirtualArc: Hashable {
 }
 
 extension VirtualArc: CustomStringConvertible {
+    
+    // MARK: - Internal -
     
     var description: String {
         """

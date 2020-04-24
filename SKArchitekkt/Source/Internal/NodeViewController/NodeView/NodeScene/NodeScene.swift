@@ -12,8 +12,10 @@ class NodeScene: SKScene {
     var virtualTransformations: Set<VirtualTransformation> = []
     var shapeNodes: [ShapeNode] = []
     var shapeNodesDictionary: [UUID: ShapeNode] = [:]
+    
+    var oldVirtualArcs: [VirtualArc] = []
     var arcNodes: [ArcNode] = []
-
+    
     init(with settings: Settings) {
         self.settings = settings
         super.init(size: CGSize.zero)
@@ -46,53 +48,54 @@ class NodeScene: SKScene {
     }
     
     func update() {
-        guard let rootNode = rootNode else {
+        guard let scene = scene,
+            let rootNode = rootNode else {
             assertionFailure()
             return
         }
-        if let item = updateDispatchWorkItem {
-            item.cancel()
-        }
-        updateDispatchWorkItem = DispatchWorkItem(block: {
-            #warning("Todo: Integrate colorDictionary in settings.")
-            let colorDictionary: [String: NSColor] = [
-               "struct_decl": #colorLiteral(red: 0.4392156863, green: 0.8470588235, blue: 1, alpha: 1),
-               "class_decl": #colorLiteral(red: 0.4392156863, green: 0.8470588235, blue: 1, alpha: 1),
-               "protocol": #colorLiteral(red: 0.8, green: 0.862745098, blue: 0.8588235294, alpha: 1),
-               "var_decl": #colorLiteral(red: 0.9647058824, green: 0.4823529412, blue: 0.4705882353, alpha: 1),
-               "enum_decl": #colorLiteral(red: 0.4392156863, green: 0.8470588235, blue: 1, alpha: 1),
-               "func_decl": #colorLiteral(red: 0.9607843137, green: 0.768627451, blue: 0.5058823529, alpha: 1),
-               "module": #colorLiteral(red: 0.4745098039, green: 0.9882352941, blue: 0.9176470588, alpha: 1)
-            ]
-            let virtualNodeSettings = VirtualNode.Settings(
-               colorDictionary: colorDictionary,
-               defaultColor: .windowFrameColor,
-               baseRadius: 128,
-               areaMultiplier: CGFloat(self.settings.areaBasedOnTotalChildrensAreaMultiplierSettingsItem.value)
-            )
-            let virtualChildren = VirtualNode.createVirtualNodes(
-                from: rootNode,
-                with: self.virtualTransformations,
-                and: virtualNodeSettings
-            )
-            let oldCastedChildren = self.shapeNodes
-            self.shapeNodes = ShapeNode.render(virtualChildren)
-            self.shapeNodesDictionary = Dictionary(
-                uniqueKeysWithValues: (self.shapeNodes + self.shapeNodes.flatMap({ $0.allDescendants })).map({ ($0.id, $0) })
-            )
-            oldCastedChildren.forEach { $0.removeFromParent() }
-            self.shapeNodes.forEach { self.scene?.addChild($0) }
-            let virtualArcs = VirtualArc.createVirtualArcs(
-                from: rootNode,
-                with: self.virtualTransformations
-            )
-            let oldArcs = self.arcNodes
-            self.arcNodes = ArcNode.render(virtualArcs)
-            oldArcs.forEach { $0.removeFromParent() }
-            self.arcNodes.forEach { self.scene?.addChild($0) }
-        })
-        if let item = updateDispatchWorkItem {
-            DispatchQueue.main.async(execute: item)
+        #warning("Todo: Integrate colorDictionary in settings.")
+        let colorDictionary: [String: NSColor] = [
+           "struct_decl": #colorLiteral(red: 0.4392156863, green: 0.8470588235, blue: 1, alpha: 1),
+           "class_decl": #colorLiteral(red: 0.4392156863, green: 0.8470588235, blue: 1, alpha: 1),
+           "protocol": #colorLiteral(red: 0.8, green: 0.862745098, blue: 0.8588235294, alpha: 1),
+           "var_decl": #colorLiteral(red: 0.9647058824, green: 0.4823529412, blue: 0.4705882353, alpha: 1),
+           "enum_decl": #colorLiteral(red: 0.4392156863, green: 0.8470588235, blue: 1, alpha: 1),
+           "func_decl": #colorLiteral(red: 0.9607843137, green: 0.768627451, blue: 0.5058823529, alpha: 1),
+           "module": #colorLiteral(red: 0.4745098039, green: 0.9882352941, blue: 0.9176470588, alpha: 1)
+        ]
+        let virtualNodeSettings = VirtualNode.Settings(
+           colorDictionary: colorDictionary,
+           defaultColor: .windowFrameColor,
+           baseRadius: 128,
+           areaMultiplier: CGFloat(self.settings.areaBasedOnTotalChildrensAreaMultiplierSettingsItem.value)
+        )
+        let virtualChildren = VirtualNode.createVirtualNodes(
+            from: rootNode,
+            with: self.virtualTransformations,
+            and: virtualNodeSettings
+        )
+        let oldCastedChildren = self.shapeNodes
+        self.shapeNodes = ShapeNode.render(virtualChildren)
+        self.shapeNodesDictionary = Dictionary(
+            uniqueKeysWithValues: (self.shapeNodes + self.shapeNodes.flatMap({ $0.allDescendants })).map({ ($0.id, $0) })
+        )
+        oldCastedChildren.forEach { $0.removeFromParent() }
+        self.shapeNodes.forEach { self.scene?.addChild($0) }
+        
+        
+        
+        let newVirtualArcs = VirtualArc.createVirtualArcs(
+            from: rootNode,
+            with: self.virtualTransformations
+        )
+        let arcPatch = ArcNode.diffChildren(oldVirtualArcs: self.oldVirtualArcs, newVirtualArcs: newVirtualArcs)
+        arcPatch(scene)
+        self.oldVirtualArcs = newVirtualArcs
+        self.arcNodes = []
+        scene.enumerateChildNodes(withName: ArcNode.name) { (node, _) in
+            if let arcNode = node as? ArcNode {
+                self.arcNodes.append(arcNode)
+            }
         }
     }
     
@@ -110,7 +113,6 @@ class NodeScene: SKScene {
 
     private var settingsItemObservations: [NSKeyValueObservation] = []
     private var radiusRelatedSettingsItemObservations: [NSKeyValueObservation] = []
-    private var updateDispatchWorkItem: DispatchWorkItem?
 
     private func applyRandomForceToAllShapeNodeDescendants() {
         for shapeNode in shapeNodes.flatMap({ $0.allDescendants }) {

@@ -5,6 +5,8 @@ import CoreArchitekkt
 
 struct VirtualNode: Identifiable, Equatable {
     
+    // MARK: - Internal -
+    
     struct Settings {
         let colorDictionary: [String: NSColor]
         let defaultColor: NSColor
@@ -48,6 +50,8 @@ struct VirtualNode: Identifiable, Equatable {
         ]
     }
     
+    // MARK: - Private -
+    
     private static func radius(for children: [VirtualNode], and settings: VirtualNode.Settings) -> CGFloat {
         max(settings.baseRadius, (sqrt(settings.areaMultiplier*children.map {$0.radius^^2} .reduce(0, +))))
     }
@@ -55,10 +59,14 @@ struct VirtualNode: Identifiable, Equatable {
 }
 
 extension VirtualNode: CustomStringConvertible {
+    
+    // MARK: - Internal -
 
     var description: String {
         description(forNestingLevel: 0) + "\n"
     }
+    
+    // MARK: - Private -
     
     private func description(forNestingLevel level: Int) -> String {
         let newLine = "\n" + String.init(repeating: "\t", count: level)

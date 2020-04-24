@@ -4,6 +4,8 @@ import SpriteKit
 
 extension ShapeNode {
     
+    // MARK: - Internal -
+    
     static func render(_ nodes: [VirtualNode]) -> [ShapeNode] {
         nodes.map { node in
             let children = render(node.children)

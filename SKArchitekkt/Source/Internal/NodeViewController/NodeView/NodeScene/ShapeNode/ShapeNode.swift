@@ -7,7 +7,7 @@ class ShapeNode: SKShapeNode {
 
     // MARK: - Internal -
 
-    static let identifier = "ShapeNode"
+    static let name = "ShapeNode"
 
     let id: UUID
     let scope: String
@@ -50,7 +50,7 @@ class ShapeNode: SKShapeNode {
         self.siblingPairs = siblingPairs
 
         super.init()
-        self.name = ShapeNode.identifier
+        self.name = ShapeNode.name
         
         setUpChildren()
         setUpPhysicsBody()

@@ -3,5 +3,8 @@
 import Foundation
 
 enum VirtualTransformation: Hashable {
+    
+    // MARK: - Internal -
+    
     case unfold(id: UUID)
 }

@@ -17,7 +17,7 @@ extension NodeScene {
 
     override func mouseDown(with event: NSEvent) {
         let position = event.location(in: self)
-        let nodes = self.nodes(at: position).filter { $0.name == ShapeNode.identifier }
+        let nodes = self.nodes(at: position).filter { $0.name == ShapeNode.name }
         let clickedNode = nearestNodeTo(position: position, nodes: nodes)
         if !nodes.isEmpty {
             switch event.clickCount {
@@ -98,7 +98,7 @@ extension NodeScene {
             return node
         }
         var node = node
-        while (node?.parent?.children.filter { $0.name == ShapeNode.identifier }.count ?? Int.max) <= 1 {
+        while (node?.parent?.children.filter { $0.name == ShapeNode.name }.count ?? Int.max) <= 1 {
             node = node?.parent
         }
         return node
