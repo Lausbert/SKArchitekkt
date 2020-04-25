@@ -101,7 +101,7 @@ extension NodeScene {
         while (node?.parent?.children.filter { $0.name == ShapeNode.name }.count ?? Int.max) <= 1 {
             node = node?.parent
         }
-        return node
+        return node is SKScene || node is ShapelessNode ? nil : node
     }
 
 }
