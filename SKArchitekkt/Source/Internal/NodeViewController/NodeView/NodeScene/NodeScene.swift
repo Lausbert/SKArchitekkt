@@ -10,7 +10,9 @@ class NodeScene: SKScene {
     let settings: Settings
     var rootNode: Node?
     var virtualTransformations: Set<VirtualTransformation> = []
-    var shapeNodes: [ShapeNode] = []
+    
+    var oldVirtualNodes: [VirtualNode] = []
+    let shapeRootNode = ShapelessNode()
     var shapeNodesDictionary: [UUID: ShapeNode] = [:]
     
     var oldVirtualArcs: [VirtualArc] = []
@@ -38,6 +40,7 @@ class NodeScene: SKScene {
         setUpPhysicsWorld()
         setUpCamera()
         
+        scene?.addChild(shapeRootNode)
         scene?.addChild(arcRootNode)
     }
 
@@ -51,8 +54,7 @@ class NodeScene: SKScene {
     }
     
     func update() {
-        guard let scene = scene,
-            let rootNode = rootNode else {
+        guard let rootNode = rootNode else {
             assertionFailure()
             return
         }
@@ -70,31 +72,27 @@ class NodeScene: SKScene {
            colorDictionary: colorDictionary,
            defaultColor: .windowFrameColor,
            baseRadius: 128,
-           areaMultiplier: CGFloat(self.settings.areaBasedOnTotalChildrensAreaMultiplierSettingsItem.value)
+           areaMultiplier: CGFloat(settings.areaBasedOnTotalChildrensAreaMultiplierSettingsItem.value)
         )
-        let virtualChildren = VirtualNode.createVirtualNodes(
+        let newVirtualNodes = VirtualNode.createVirtualNodes(
             from: rootNode,
-            with: self.virtualTransformations,
+            with: virtualTransformations,
             and: virtualNodeSettings
         )
-        let oldCastedChildren = self.shapeNodes
-        self.shapeNodes = ShapeNode.render(virtualChildren)
-        self.shapeNodesDictionary = Dictionary(
-            uniqueKeysWithValues: (self.shapeNodes + self.shapeNodes.flatMap({ $0.allDescendants })).map({ ($0.id, $0) })
+        let shapeNodePatch = ShapeNode.diffChildren(oldVirtualNodes: oldVirtualNodes, newVirtualNode: newVirtualNodes)
+        shapeNodePatch(shapeRootNode)
+        oldVirtualNodes = newVirtualNodes
+        shapeNodesDictionary = Dictionary(
+            uniqueKeysWithValues: shapeRootNode.allDescendants.map({ ($0.id, $0) })
         )
-        oldCastedChildren.forEach { $0.removeFromParent() }
-        self.shapeNodes.forEach { self.scene?.addChild($0) }
-        
-        
-        
         let newVirtualArcs = VirtualArc.createVirtualArcs(
             from: rootNode,
-            with: self.virtualTransformations
+            with: virtualTransformations
         )
-        let arcPatch = ArcNode.diffChildren(oldVirtualArcs: self.oldVirtualArcs, newVirtualArcs: newVirtualArcs)
-        arcPatch(arcRootNode)
-        self.oldVirtualArcs = newVirtualArcs
-        self.arcNodes = []
+        let arcNodePatch = ArcNode.diffChildren(oldVirtualArcs: oldVirtualArcs, newVirtualArcs: newVirtualArcs)
+        arcNodePatch(arcRootNode)
+        oldVirtualArcs = newVirtualArcs
+        arcNodes = []
         arcRootNode.enumerateChildNodes(withName: ArcNode.name) { (node, _) in
             if let arcNode = node as? ArcNode {
                 self.arcNodes.append(arcNode)
@@ -118,7 +116,7 @@ class NodeScene: SKScene {
     private var radiusRelatedSettingsItemObservations: [NSKeyValueObservation] = []
 
     private func applyRandomForceToAllShapeNodeDescendants() {
-        for shapeNode in shapeNodes.flatMap({ $0.allDescendants }) {
+        for shapeNode in shapeRootNode.castedChildren.flatMap({ $0.allDescendants }) {
             let force = CGVector(dx: CGFloat.random(in: -(shapeNode.radius^^3)...shapeNode.radius^^3), dy: CGFloat.random(in: -(shapeNode.radius^^3)...shapeNode.radius^^3))
             shapeNode.physicsBody?.applyImpulse(force)
         }
