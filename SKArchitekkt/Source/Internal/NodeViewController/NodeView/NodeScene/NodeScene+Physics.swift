@@ -7,8 +7,15 @@ extension NodeScene: SKSceneDelegate {
 
     // MARK: - Internal -
 
-    func setUpPhysicsWorld() {
+    func setUpPhysics() {
+        delegate = self
         physicsWorld.gravity = CGVector.zero
+        self.settingsItemObservations = settings.settingsItems.map({ [weak self] (settingsItem) -> NSKeyValueObservation in
+            return settingsItem.observe(\.value) { (_, _) in
+                self?.startSimulation()
+                self?.applyRandomForceToAllShapeNodeDescendants()
+            }
+        })
     }
 
     func startSimulation() {
@@ -44,10 +51,22 @@ extension NodeScene: SKSceneDelegate {
 
     private static let forceDecayObjectAssociation = ObjectAssociation<CGFloat>()
     private var forceDecay: CGFloat {
-        get { return NodeScene.forceDecayObjectAssociation[self] ?? 1 }
+        get { NodeScene.forceDecayObjectAssociation[self] ?? 1 }
         set { NodeScene.forceDecayObjectAssociation[self] = newValue }
     }
+    private static let settingsItemObservationsObjectAssociation = ObjectAssociation<[NSKeyValueObservation]>()
+    private var settingsItemObservations: [NSKeyValueObservation] {
+        get { NodeScene.settingsItemObservationsObjectAssociation[self] ?? [] }
+        set { NodeScene.settingsItemObservationsObjectAssociation[self] = newValue }
+    }
 
+    private func applyRandomForceToAllShapeNodeDescendants() {
+        for shapeNode in shapeRootNode.castedChildren.flatMap({ $0.allDescendants }) {
+            let force = CGVector(dx: CGFloat.random(in: -(shapeNode.radius^^3)...shapeNode.radius^^3), dy: CGFloat.random(in: -(shapeNode.radius^^3)...shapeNode.radius^^3))
+            shapeNode.physicsBody?.applyImpulse(force)
+        }
+    }
+    
     private func updatePhysicsWith(forceDecay: CGFloat, velocityDecay: CGFloat) {
         if shapeRootNode.castedChildren.count == 1 {
             shapeRootNode.castedChildren[0].position = CGPoint(x: 0, y: 0)

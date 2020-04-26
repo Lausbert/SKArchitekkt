@@ -7,7 +7,7 @@ extension NodeScene {
 
     // MARK: - Internal -
 
-    func setUpCamera() {
+    func setUpMouseInteraction() {
         let camera = SKCameraNode()
         self.camera = camera
         addChild(camera)
