@@ -15,15 +15,15 @@ class ShapeNode: SKShapeNode {
     private(set) var castedChildren: [ShapeNode]
     private(set) var siblingPairs: [(ShapeNode, ShapeNode)]
     private(set) var radius: CGFloat
-    
+
     var allDescendants: [ShapeNode] {
            return castedChildren + castedChildren.flatMap { $0.allDescendants }
     }
-    
+
     var castedParent: ShapeNode? {
         return parent as? ShapeNode
     }
-    
+
     var allCastedAncestors: [ShapeNode] {
         var allCastedAncestors: [ShapeNode] = []
         var node = self
@@ -34,7 +34,6 @@ class ShapeNode: SKShapeNode {
         return allCastedAncestors
     }
 
-    
     init(id: UUID, scope: String, name: String?, children: [ShapeNode], color: NSColor, radius: CGFloat) {
         self.id = id
         self.scope = scope
@@ -42,20 +41,20 @@ class ShapeNode: SKShapeNode {
         self.castedChildren = []
         self.siblingPairs = []
         self.radius = radius
-        
+
         super.init()
         self.name = ShapeNode.name
-        
+
         setUp(children)
         setUpPhysicsBody()
         update(color: color)
         update(radius: radius)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     override func addChild(_ node: SKNode) {
         if let shapeNode = node as? ShapeNode {
             castedChildren.append(shapeNode)
@@ -64,7 +63,7 @@ class ShapeNode: SKShapeNode {
         super.addChild(node)
         updateSiblingPairs()
     }
-    
+
     func replaceChild(_ oldShapeNode: ShapeNode, with newShapeNode: ShapeNode) {
         if let index = castedChildren.firstIndex(of: oldShapeNode) {
             castedChildren.insert(newShapeNode, at: index)
@@ -79,7 +78,7 @@ class ShapeNode: SKShapeNode {
             assertionFailure()
         }
     }
-    
+
     override func removeFromParent() {
         if let castedParent = castedParent,
             let index = castedParent.castedChildren.firstIndex(of: self) {
@@ -89,13 +88,13 @@ class ShapeNode: SKShapeNode {
         }
         super.removeFromParent()
     }
-    
+
     func update(color: NSColor) {
         fillColor = castedChildren.isEmpty ? color : color.withAlphaComponent(0.1)
         strokeColor = color
         lineWidth = 16
     }
-    
+
     func update(radius: CGFloat) {
         self.radius = radius
         updatePath()
@@ -105,7 +104,7 @@ class ShapeNode: SKShapeNode {
     }
 
     // MARK: - Private -
-    
+
     private func updateSiblingPairs() {
         siblingPairs = []
         for (index, first) in castedChildren[..<castedChildren.count].enumerated() {
@@ -114,7 +113,7 @@ class ShapeNode: SKShapeNode {
             }
         }
     }
-    
+
     private func resetPosition() {
         position = CGPoint(x: CGFloat.random(in: -radius/2...radius/2), y: CGFloat.random(in: -radius/2...radius/2))
     }
@@ -129,17 +128,17 @@ class ShapeNode: SKShapeNode {
         physicsBody.collisionBitMask = 0
         self.physicsBody = physicsBody
     }
-    
+
     private func setUp(_ children: [ShapeNode]) {
         children.forEach {
             addChild($0)
         }
     }
-    
+
     private func updatePath() {
         path = CGPath(ellipseIn: CGRect(x: -radius, y: -radius, width: 2*radius, height: 2*radius), transform: nil)
     }
-    
+
     private func updateConstraints() {
         castedChildren.forEach {
             $0.constraints = [SKConstraint.distance(SKRange(lowerLimit: 0, upperLimit: radius - $0.radius), to: self)]

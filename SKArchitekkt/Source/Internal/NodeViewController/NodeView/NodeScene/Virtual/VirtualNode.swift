@@ -4,23 +4,23 @@ import Foundation
 import CoreArchitekkt
 
 struct VirtualNode: Identifiable, Equatable {
-    
+
     // MARK: - Internal -
-    
+
     struct Settings {
         let colorDictionary: [String: NSColor]
         let defaultColor: NSColor
         let baseRadius: CGFloat
         let areaMultiplier: CGFloat
     }
-    
+
     let id: UUID
     let scope: String
     let name: String?
     let children: [VirtualNode]
     let color: NSColor
     let radius: CGFloat
-    
+
     static func createVirtualNodes(from node: Node, with transformations: Set<VirtualTransformation>, and settings: VirtualNode.Settings) -> [VirtualNode] {
 
         if transformations.contains(.unfold(id: node.id)) {
@@ -37,7 +37,7 @@ struct VirtualNode: Identifiable, Equatable {
                 )
             ]
         }
-        
+
         return [
             VirtualNode(
                 id: node.id,
@@ -49,25 +49,25 @@ struct VirtualNode: Identifiable, Equatable {
             )
         ]
     }
-    
+
     // MARK: - Private -
-    
+
     private static func radius(for children: [VirtualNode], and settings: VirtualNode.Settings) -> CGFloat {
         max(settings.baseRadius, (sqrt(settings.areaMultiplier*children.map {$0.radius^^2} .reduce(0, +))))
     }
-    
+
 }
 
 extension VirtualNode: CustomStringConvertible {
-    
+
     // MARK: - Internal -
 
     var description: String {
         description(forNestingLevel: 0) + "\n"
     }
-    
+
     // MARK: - Private -
-    
+
     private func description(forNestingLevel level: Int) -> String {
         let newLine = "\n" + String.init(repeating: "\t", count: level)
         var result = "\(newLine)id: \(id)"
@@ -84,5 +84,5 @@ extension VirtualNode: CustomStringConvertible {
         }
         return result
     }
-    
+
 }

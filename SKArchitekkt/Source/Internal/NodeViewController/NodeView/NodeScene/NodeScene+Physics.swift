@@ -66,7 +66,7 @@ extension NodeScene: SKSceneDelegate {
             shapeNode.physicsBody?.applyImpulse(force)
         }
     }
-    
+
     private func updatePhysicsWith(forceDecay: CGFloat, velocityDecay: CGFloat) {
         if shapeRootNode.castedChildren.count == 1 {
             shapeRootNode.castedChildren[0].position = CGPoint(x: 0, y: 0)

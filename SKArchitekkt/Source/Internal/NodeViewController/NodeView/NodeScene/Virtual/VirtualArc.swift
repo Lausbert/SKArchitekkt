@@ -4,13 +4,13 @@ import Foundation
 import CoreArchitekkt
 
 struct VirtualArc: Hashable {
-    
+
     // MARK: - Internal -
-    
+
     let sourceIdentifier: UUID
     let destinationIdentifier: UUID
     let weight: Int
-    
+
     static func createVirtualArcs(from node: Node, with transformations: Set<VirtualTransformation>) -> [VirtualArc] {
         if transformations.contains(.unfold(id: node.id)) {
             var (childrenVirtualArcs, foldedDescendantsMapping) = createVirtualArcsAndFoldedDescendantsMapping(
@@ -43,20 +43,20 @@ struct VirtualArc: Hashable {
         } else {
             return []
         }
-        
+
     }
-    
+
     // MARK: - Private -
-    
+
     private struct WeightLessVirtualArc: Hashable {
         let sourceIdentifier: UUID
         let destinationIdentifier: UUID
     }
-    
+
     private typealias FoldedDescendantsMapping = [UUID: UUID]
-    
+
     private static func createVirtualArcsAndFoldedDescendantsMapping(from node: Node, with transformations: Set<VirtualTransformation>) -> ([WeightLessVirtualArc: Int], FoldedDescendantsMapping) {
-        
+
         let virtualArcs = Dictionary(
             uniqueKeysWithValues: node.arcs.map {
                 (
@@ -68,7 +68,7 @@ struct VirtualArc: Hashable {
                 )
             }
         )
-        
+
         if transformations.contains(.unfold(id: node.id)) {
             let (childrenVirtualArcs, foldedDescendantsMapping) = createVirtualArcsAndFoldedDescendantsMapping(
                 from: node.children,
@@ -81,7 +81,7 @@ struct VirtualArc: Hashable {
                 foldedDescendantsMapping
             )
         }
-        
+
         var foldedDescendantIds: Set<UUID> = []
         var descendantVirtualArcs: [WeightLessVirtualArc: Int] = [:]
         node.allDescendants.forEach { descendant in
@@ -99,7 +99,7 @@ struct VirtualArc: Hashable {
             )
             descendantVirtualArcs = descendantVirtualArcs.merging(d, uniquingKeysWith: { $0 + $1})
         }
-        
+
         let resultingDescendantVirtualArcs = descendantVirtualArcs.filter {
             !foldedDescendantIds.contains($0.key.destinationIdentifier)
         }
@@ -108,10 +108,10 @@ struct VirtualArc: Hashable {
             uniquingKeysWith: { $0 + $1 }
         )
         let foldedDescendantsMapping: FoldedDescendantsMapping = Dictionary(uniqueKeysWithValues: foldedDescendantIds.map { ($0, node.id) })
-    
+
         return (resultingVirtualArcs, foldedDescendantsMapping)
     }
-    
+
     private static func createVirtualArcsAndFoldedDescendantsMapping(from children: [Node], with transformations: Set<VirtualTransformation>) -> ([WeightLessVirtualArc: Int], FoldedDescendantsMapping) {
         var childrenVirtualArcs: [WeightLessVirtualArc: Int] = [:]
         var foldedDescendantsMapping: FoldedDescendantsMapping = [:]
@@ -125,7 +125,7 @@ struct VirtualArc: Hashable {
         }
         return (childrenVirtualArcs, foldedDescendantsMapping)
     }
-    
+
     private init(sourceIdentifier: UUID, destinationIdentifier: UUID, weight: Int) {
         self.sourceIdentifier = sourceIdentifier
         self.destinationIdentifier = destinationIdentifier
@@ -135,17 +135,17 @@ struct VirtualArc: Hashable {
 }
 
 extension VirtualArc: CustomStringConvertible {
-    
+
     // MARK: - Internal -
-    
+
     var description: String {
         """
-        
+
 sourceIdentifier:      \(sourceIdentifier.uuidString)
 destinationIdentifier: \(destinationIdentifier.uuidString)
 weight:                \(weight)
 
 """
     }
-    
+
 }

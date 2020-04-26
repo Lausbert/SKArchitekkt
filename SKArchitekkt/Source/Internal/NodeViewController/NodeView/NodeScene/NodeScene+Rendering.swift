@@ -4,27 +4,27 @@ import SpriteKit
 import CoreArchitekkt
 
 extension NodeScene {
-    
+
     // MARK: - Internal -
-    
+
     private static let shapeRootNodeObjectAssociation = ObjectAssociation<ShapelessNode>()
     private(set) var shapeRootNode: ShapelessNode {
         get { NodeScene.shapeRootNodeObjectAssociation[self] ?? ShapelessNode() }
         set { NodeScene.shapeRootNodeObjectAssociation[self] = newValue }
     }
-    
+
     private static let shapeNodesDictionaryObjectAssociation = ObjectAssociation<[UUID: ShapeNode]>()
     private(set) var shapeNodesDictionary: [UUID: ShapeNode] {
         get { NodeScene.shapeNodesDictionaryObjectAssociation[self] ?? [:] }
         set { NodeScene.shapeNodesDictionaryObjectAssociation[self] = newValue }
     }
-    
+
     private static let arcNodesObjectAssociation = ObjectAssociation<[ArcNode]>()
     private(set) var arcNodes: [ArcNode] {
         get { NodeScene.arcNodesObjectAssociation[self] ?? [] }
         set { NodeScene.arcNodesObjectAssociation[self] = newValue }
     }
-    
+
     func setUpRendering() {
         virtualTransformations = []
         oldVirtualNodes = []
@@ -43,12 +43,12 @@ extension NodeScene {
                 }
         }
     }
-    
+
     func add(rootNode: Node) {
         self.rootNode = rootNode
         update()
     }
-    
+
     func toggleUnfoldTransformation(for id: UUID) {
         let virtualTransformation = VirtualTransformation.unfold(id: id)
         if virtualTransformations.contains(virtualTransformation) {
@@ -58,45 +58,45 @@ extension NodeScene {
         }
         update()
     }
-    
+
     // MARK: - Private -
-    
+
     private static let radiusRelatedSettingsItemObservationsObjectAssociation = ObjectAssociation<[NSKeyValueObservation]>()
     private var radiusRelatedSettingsItemObservations: [NSKeyValueObservation] {
         get { NodeScene.radiusRelatedSettingsItemObservationsObjectAssociation[self] ?? [] }
         set { NodeScene.radiusRelatedSettingsItemObservationsObjectAssociation[self] = newValue }
     }
-    
+
     private static let rootNodeObjectAssociation = ObjectAssociation<Node>()
     private var rootNode: Node? {
         get { NodeScene.rootNodeObjectAssociation[self] }
         set { NodeScene.rootNodeObjectAssociation[self] = newValue }
     }
-    
+
     private static let virtualTransformationsObjectAssociation = ObjectAssociation<Set<VirtualTransformation>>()
     private var virtualTransformations: Set<VirtualTransformation> {
         get { NodeScene.virtualTransformationsObjectAssociation[self] ?? [] }
         set { NodeScene.virtualTransformationsObjectAssociation[self] = newValue }
     }
-    
+
     private static let oldVirtualNodesObjectAssociation = ObjectAssociation<[VirtualNode]>()
     private(set) var oldVirtualNodes: [VirtualNode] {
         get { NodeScene.oldVirtualNodesObjectAssociation[self] ?? [] }
         set { NodeScene.oldVirtualNodesObjectAssociation[self] = newValue }
     }
-    
+
     private static let oldVirtualArcsObjectAssociation = ObjectAssociation<[VirtualArc]>()
     private(set) var oldVirtualArcs: [VirtualArc] {
         get { NodeScene.oldVirtualArcsObjectAssociation[self] ?? [] }
         set { NodeScene.oldVirtualArcsObjectAssociation[self] = newValue }
     }
-    
+
     private static let arcRootNodeObjectAssociation = ObjectAssociation<SKNode>()
     private var arcRootNode: SKNode {
         get { NodeScene.arcRootNodeObjectAssociation[self] ?? SKNode() }
         set { NodeScene.arcRootNodeObjectAssociation[self] = newValue }
     }
-    
+
     private func update() {
         guard let rootNode = rootNode else {
             assertionFailure()
@@ -143,5 +143,5 @@ extension NodeScene {
             }
         }
     }
-    
+
 }

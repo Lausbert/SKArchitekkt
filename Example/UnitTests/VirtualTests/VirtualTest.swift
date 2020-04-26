@@ -5,7 +5,7 @@ import CoreArchitekkt
 @testable import SKArchitekkt
 
 class VirtualTest: XCTestCase {
-    
+
     var one: Node!
     var two: Node!
     var three: Node!
@@ -23,25 +23,25 @@ class VirtualTest: XCTestCase {
         five = Node(scope: "three", name: "five")
         six = Node(scope: "three", name: "six")
         seven = Node(scope: "three", name: "seven")
-        
+
         one.add(child: two)
         one.add(child: three)
         two.add(child: four)
         two.add(child: five)
         three.add(child: six)
         three.add(child: seven)
-        
+
         //          one
         //         /   \
         //      two     three
         //     /   |    |    \
         //  four five  six  seven
-        
+
         four.add(arc: five.id)
         four.add(arc: six.id)
         five.add(arc: three.id)
         five.add(arc: six.id)
-        
+
         allNodes = [one, two, three, four, five, six, seven]
     }
 
@@ -56,4 +56,3 @@ class VirtualTest: XCTestCase {
     }
 
 }
-

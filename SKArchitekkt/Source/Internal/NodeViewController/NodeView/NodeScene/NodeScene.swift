@@ -8,7 +8,7 @@ class NodeScene: SKScene {
     // MARK: - Internal -
 
     let settings: Settings
-    
+
     init(with settings: Settings) {
         self.settings = settings
         super.init(size: CGSize.zero)
@@ -22,11 +22,5 @@ class NodeScene: SKScene {
         fatalError("init(coder:) has not been implemented")
     }
 
-    
-
 }
 
-
-
-
-    
