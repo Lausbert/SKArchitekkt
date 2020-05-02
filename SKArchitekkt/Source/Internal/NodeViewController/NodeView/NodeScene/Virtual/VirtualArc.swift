@@ -12,13 +12,6 @@ struct VirtualArc: Hashable {
     let weight: Int
 
     static func createVirtualArcs(from node: Node, with transformations: Set<VirtualTransformation>) -> [VirtualArc] {
-        let transformationContext = TransformationContext(
-            node: node,
-            transformations: transformations
-        )
-        if let virtualArcs = virtualArcsCache[transformationContext] {
-            return virtualArcs
-        }
         let virtualArcContext = createVirtualArcContext(
             from: node,
             with: transformations
@@ -34,7 +27,7 @@ struct VirtualArc: Hashable {
                 weightDictionary.removeValue(forKey: weightLessVirtualArc)
             }
         }
-        let virtualArcs = weightDictionary.map {
+        return weightDictionary.map {
             VirtualArc(
                 sourceIdentifier: $0.sourceIdentifier,
                 destinationIdentifier: $0.destinationIdentifier,
@@ -47,14 +40,12 @@ struct VirtualArc: Hashable {
                 return lhs.destinationIdentifier.uuidString < rhs.destinationIdentifier.uuidString
             }
         }
-        virtualArcsCache[transformationContext] = virtualArcs
-        return virtualArcs
     }
 
     // MARK: - Private -
 
     private struct TransformationContext: Hashable {
-        let node: Node
+        let identifier: UUID
         let transformations: Set<VirtualTransformation>
     }
 
@@ -71,21 +62,9 @@ struct VirtualArc: Hashable {
 
     }
 
-    private static var virtualArcsCache: [TransformationContext: [VirtualArc]] = [:]
     private static var virtualArcContextCache: [TransformationContext: VirtualArcContext] = [:]
 
     private static func createVirtualArcContext(from node: Node, with transformations: Set<VirtualTransformation>) -> VirtualArcContext {
-        let transformationContext = TransformationContext(
-            node: node,
-            transformations: transformations
-        )
-        if let virtualArcContext = virtualArcContextCache[transformationContext] {
-            return virtualArcContext
-        }
-
-        let resultingWeightDictionary: [VirtualArcContext.WeightLessVirtualArc: Int]
-        let resultingDestinationMapping: [UUID: UUID]
-        let resultingFoldedIds: Set<UUID>
 
         let weightDictionary = Dictionary(
             uniqueKeysWithValues: node.arcs.map {
@@ -104,13 +83,14 @@ struct VirtualArc: Hashable {
                 from: node.children,
                 with: transformations
             )
-
-            resultingWeightDictionary = weightDictionary.merging(
-                virtualArcContext.weightDictionary,
-                uniquingKeysWith: { $0 + $1 }
+            return VirtualArcContext(
+                weightDictionary: weightDictionary.merging(
+                    virtualArcContext.weightDictionary,
+                    uniquingKeysWith: { $0 + $1 }
+                ),
+                destinationMapping: virtualArcContext.destinationMapping,
+                foldedIds: virtualArcContext.foldedIds
             )
-            resultingDestinationMapping = virtualArcContext.destinationMapping
-            resultingFoldedIds = virtualArcContext.foldedIds
         } else {
             let resultingTransformations = transformations.filter {
                 if case .unfold = $0 {
@@ -119,45 +99,44 @@ struct VirtualArc: Hashable {
                     return true
                 }
             }
-
+            let transformationContext = TransformationContext(
+                identifier: node.id,
+                transformations: resultingTransformations
+            )
+            if let virtualArcContext = virtualArcContextCache[transformationContext] {
+                return virtualArcContext
+            }
             let virtualArcContext = createVirtualArcContext(
                 from: node.children,
                 with: resultingTransformations
             )
-
             let foldedIds = Set(node.children.map { $0.id })
-            let temporaryFoldedIds = foldedIds.union(virtualArcContext.foldedIds)
-
-            var temporaryWeightDictionary = weightDictionary
+            let resultingFoldedIds = foldedIds.union(virtualArcContext.foldedIds)
+            var resultingWeightDictionary = weightDictionary
             virtualArcContext.weightDictionary.forEach { (weightLessVirtualArc, weight) in
-                guard !temporaryFoldedIds.contains(weightLessVirtualArc.destinationIdentifier) else {
+                guard !resultingFoldedIds.contains(weightLessVirtualArc.destinationIdentifier) else {
                     return
                 }
                 let newNeightLessVirtualArc = VirtualArcContext.WeightLessVirtualArc(
                     sourceIdentifier: node.id,
                     destinationIdentifier: weightLessVirtualArc.destinationIdentifier
                 )
-                temporaryWeightDictionary[newNeightLessVirtualArc] = temporaryWeightDictionary[newNeightLessVirtualArc, default: 0] + weight
+                resultingWeightDictionary[newNeightLessVirtualArc] = resultingWeightDictionary[newNeightLessVirtualArc, default: 0] + weight
             }
-
             let childrenDestinationMapping = virtualArcContext.destinationMapping.map {($0.key, node.id)}
             let destinationMapping = Dictionary(uniqueKeysWithValues: node.children.map {($0.id, node.id)})
-
-            resultingWeightDictionary = temporaryWeightDictionary
-            resultingDestinationMapping = destinationMapping.merging(
+            let resultingDestinationMapping = destinationMapping.merging(
                 childrenDestinationMapping,
                 uniquingKeysWith: { $1 }
             )
-            resultingFoldedIds = temporaryFoldedIds
+            let resultingVirtualArcContext = VirtualArcContext(
+                weightDictionary: resultingWeightDictionary,
+                destinationMapping: resultingDestinationMapping,
+                foldedIds: resultingFoldedIds
+            )
+            virtualArcContextCache[transformationContext] = resultingVirtualArcContext
+            return resultingVirtualArcContext
         }
-
-        let virtualArcContext = VirtualArcContext(
-            weightDictionary: resultingWeightDictionary,
-            destinationMapping: resultingDestinationMapping,
-            foldedIds: resultingFoldedIds
-        )
-        virtualArcContextCache[transformationContext] = virtualArcContext
-        return virtualArcContext
     }
 
     private static func createVirtualArcContext(from children: [Node], with transformations: Set<VirtualTransformation>) -> VirtualArcContext {
