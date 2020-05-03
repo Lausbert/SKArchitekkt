@@ -58,21 +58,21 @@ class ShapeNode: SKShapeNode {
     override func addChild(_ node: SKNode) {
         if let shapeNode = node as? ShapeNode {
             castedChildren.append(shapeNode)
+            updateSiblingPairs()
             shapeNode.resetPosition()
         }
         super.addChild(node)
-        updateSiblingPairs()
     }
 
     func replaceChild(_ oldShapeNode: ShapeNode, with newShapeNode: ShapeNode) {
         if let index = castedChildren.firstIndex(of: oldShapeNode) {
             castedChildren.insert(newShapeNode, at: index)
+            newShapeNode.resetPosition()
         } else {
             assertionFailure()
         }
         if let index = children.firstIndex(of: oldShapeNode) {
             insertChild(newShapeNode, at: index)
-            newShapeNode.resetPosition()
             oldShapeNode.removeFromParent()
         } else {
             assertionFailure()
@@ -83,6 +83,7 @@ class ShapeNode: SKShapeNode {
         if let castedParent = castedParent,
             let index = castedParent.castedChildren.firstIndex(of: self) {
             castedParent.castedChildren.remove(at: index)
+            updateSiblingPairs()
         } else {
             assertionFailure()
         }
@@ -115,7 +116,7 @@ class ShapeNode: SKShapeNode {
     }
 
     private func resetPosition() {
-        position = CGPoint(x: CGFloat.random(in: -radius/2...radius/2), y: CGFloat.random(in: -radius/2...radius/2))
+        position = CGPoint(x: CGFloat.random(in: -radius/50...radius/50), y: CGFloat.random(in: -radius/50...radius/50))
     }
 
     private func setUpPhysicsBody() {
