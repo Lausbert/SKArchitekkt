@@ -102,7 +102,6 @@ extension NodeScene {
             assertionFailure()
             return
         }
-        fixMemoryLeak()
         #warning("Todo: Integrate colorDictionary in settings.")
         let colorDictionary: [String: NSColor] = [
            "struct_decl": #colorLiteral(red: 0.4392156863, green: 0.8470588235, blue: 1, alpha: 1),
@@ -142,17 +141,6 @@ extension NodeScene {
             if let arcNode = node as? ArcNode {
                 self.arcNodes.append(arcNode)
             }
-        }
-    }
-
-    private func fixMemoryLeak() {
-        // I would be very happy, if I could avoid this
-        let children = shapeRootNode.children
-        scene?.removeChildren(in: [shapeRootNode])
-        shapeRootNode = ShapelessNode()
-        scene?.addChild(shapeRootNode)
-        for child in children {
-            shapeRootNode.addChild(child)
         }
     }
 
