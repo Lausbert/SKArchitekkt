@@ -86,6 +86,7 @@ class ShapeNode: SKShapeNode {
     }
 
     override func removeFromParent() {
+        children.forEach { $0.removeFromParent() }
         if let castedParent = castedParent,
             let index = castedParent.castedChildren.firstIndex(of: self) {
             castedParent.castedChildren.remove(at: index)
