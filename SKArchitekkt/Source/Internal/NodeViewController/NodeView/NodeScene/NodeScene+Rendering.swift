@@ -144,7 +144,7 @@ extension NodeScene {
             }
         }
     }
-    
+
     private func fixMemoryLeak() {
         // I would be very happy, if I could avoid this
         let children = shapeRootNode.children
@@ -155,6 +155,5 @@ extension NodeScene {
             shapeRootNode.addChild(child)
         }
     }
-
 
 }
