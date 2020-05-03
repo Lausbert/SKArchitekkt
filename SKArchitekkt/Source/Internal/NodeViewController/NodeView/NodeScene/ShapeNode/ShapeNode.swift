@@ -78,6 +78,12 @@ class ShapeNode: SKShapeNode {
             assertionFailure()
         }
     }
+    
+    override func removeAllChildren() {
+        castedChildren = []
+        siblingPairs = []
+        super.removeAllChildren()
+    }
 
     override func removeFromParent() {
         if let castedParent = castedParent,
