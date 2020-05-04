@@ -90,7 +90,7 @@ class ShapeNode: SKShapeNode {
         if let castedParent = castedParent,
             let index = castedParent.castedChildren.firstIndex(of: self) {
             castedParent.castedChildren.remove(at: index)
-            updateSiblingPairs()
+            castedParent.updateSiblingPairs()
         } else {
             assertionFailure()
         }
