@@ -111,6 +111,7 @@ class ShapeNode: SKShapeNode {
             assertionFailure()
         }
         super.removeFromParent()
+        ShapeNode.store(shapeNode: self)
     }
 
     func update(color: NSColor) {
@@ -140,6 +141,7 @@ class ShapeNode: SKShapeNode {
     private static func store(shapeNode: ShapeNode) {
         shapeNode.physicsBody = nil
         shapeNode.path = nil
+        shapeNode.removeAllChildren()
         pool.append(shapeNode)
     }
 
