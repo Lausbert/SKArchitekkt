@@ -8,7 +8,7 @@ class ShapeNode: SKShapeNode {
     // MARK: - Internal -
 
     static let name = "ShapeNode"
-    
+
     static func create(
         id: UUID = UUID(),
         scope: String = "",
@@ -19,7 +19,7 @@ class ShapeNode: SKShapeNode {
         isShape: Bool = true
     ) -> ShapeNode {
         let shapeNode = pool.popLast() ?? ShapeNode()
-        
+
         shapeNode.id = id
         shapeNode.scope = scope
         shapeNode.nodeName = name
@@ -27,7 +27,7 @@ class ShapeNode: SKShapeNode {
         shapeNode.siblingPairs = []
         shapeNode.radius = radius
         shapeNode.isShape = isShape
-        
+
         shapeNode.setUp(children)
 
         if isShape {
@@ -35,15 +35,15 @@ class ShapeNode: SKShapeNode {
             shapeNode.setUpPhysicsBody()
             shapeNode.update(color: color)
         }
-        
+
         shapeNode.update(radius: radius)
-        
+
         return shapeNode
     }
 
     private(set) var id: UUID = UUID()
     private(set) var scope: String = ""
-    private(set) var nodeName: String? = nil
+    private(set) var nodeName: String?
     private(set) var castedChildren: [ShapeNode] = []
     private(set) var siblingPairs: [(ShapeNode, ShapeNode)] = []
     private(set) var radius: CGFloat = 0
@@ -134,15 +134,15 @@ class ShapeNode: SKShapeNode {
     }
 
     // MARK: - Private -
-    
+
     private static var pool: [ShapeNode] = []
-    
+
     private static func store(shapeNode: ShapeNode) {
         shapeNode.physicsBody = nil
         shapeNode.path = nil
         pool.append(shapeNode)
     }
-    
+
     private override init() {
         super.init()
     }
