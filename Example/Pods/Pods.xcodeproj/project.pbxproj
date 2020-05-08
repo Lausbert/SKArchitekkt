@@ -27,7 +27,6 @@
 		4A1CCD610855CB597BF7B38D1AEDD492 /* RightPaneHeaderView.xib in Sources */ = {isa = PBXBuildFile; fileRef = C115E4477CE2DA1C24DDDF9E45C11F58 /* RightPaneHeaderView.xib */; };
 		4DE5FD9EE63FED623C67A22DE7AA55EC /* SKArchitekkt-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 06D2228BBA49304037BA06F7A38959A3 /* SKArchitekkt-dummy.m */; };
 		4FBF7D1911A92EA1D8088A5F75F95303 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22FC77E23626DD34FC30DD3ACE8CEFAC /* Cocoa.framework */; };
-		5298DA9376E6A53AC39DBF099D4C2C42 /* ShapelessNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9562529874725C0BE79745AB52F9896 /* ShapelessNode.swift */; };
 		58755AB8F045F1C31CADC48936A37405 /* SplitViewController.storyboard in Sources */ = {isa = PBXBuildFile; fileRef = D5B843F1326853F634CE8065BC9296BC /* SplitViewController.storyboard */; };
 		6A09E902069CB7C85C4D17BC7FAAA0E7 /* NodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11247508BB39F8F5EBED7FDB00A8ADFF /* NodeViewController.swift */; };
 		6C88EA6FB764D182B579C78470735B6A /* NodeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7854C49F159F6F97A0BBB88574219683 /* NodeScene.swift */; };
@@ -162,7 +161,6 @@
 		A5CFBF8766ED0C8C014E86F2A0B5637F /* ViewController+RootNodeHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "ViewController+RootNodeHandler.swift"; sourceTree = "<group>"; };
 		A6DA0724D1AF91319607D6B9CFF35717 /* Pods_SKArchitekkt_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SKArchitekkt_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A7ECCE5585A8F135D92CF829468C94B3 /* VirtualArc.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VirtualArc.swift; sourceTree = "<group>"; };
-		A9562529874725C0BE79745AB52F9896 /* ShapelessNode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ShapelessNode.swift; sourceTree = "<group>"; };
 		AFEC9802B6BC60C0EC6EEBCEE26C4EFA /* Pods-SKArchitekkt_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SKArchitekkt_Example-frameworks.sh"; sourceTree = "<group>"; };
 		B21236BCA86A87AE6A14ABAE6E39B174 /* RightPaneCollectionViewItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RightPaneCollectionViewItem.swift; sourceTree = "<group>"; };
 		B51EE8EF08CADE45E49CE43963556C60 /* CGPath.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGPath.swift; sourceTree = "<group>"; };
@@ -451,7 +449,6 @@
 		9CD2ED0B4DBF4DB087F17E9273B87193 /* ShapeNode */ = {
 			isa = PBXGroup;
 			children = (
-				A9562529874725C0BE79745AB52F9896 /* ShapelessNode.swift */,
 				70777A9E582355CBA23F45347425B4E1 /* ShapeNode.swift */,
 				BA308E22347C3D389612CC3690D04B1B /* ShapeNode+Rendering.swift */,
 			);
@@ -779,7 +776,6 @@
 				AAFA1BD2326D5ED56EF8F4608BC8A7ED /* Settings.swift in Sources */,
 				D3E0737396D9DA32FC9AADEA447925BC /* SettingsGroup.swift in Sources */,
 				C5997F7ECAFA93979BB5B2031B1006F6 /* SettingsItem.swift in Sources */,
-				5298DA9376E6A53AC39DBF099D4C2C42 /* ShapelessNode.swift in Sources */,
 				F076771A54F57649B196366505628E80 /* ShapeNode+Rendering.swift in Sources */,
 				DBB26C88B52AF941D5E11E22A9F15D7C /* ShapeNode.swift in Sources */,
 				4DE5FD9EE63FED623C67A22DE7AA55EC /* SKArchitekkt-dummy.m in Sources */,

@@ -37,7 +37,7 @@ extension ShapeNode {
 
     private static func render(_ node: VirtualNode) -> ShapeNode {
         let children = node.children.map { render($0) }
-        return ShapeNode(
+        return ShapeNode.create(
             id: node.id,
             scope: node.scope,
             name: node.name,

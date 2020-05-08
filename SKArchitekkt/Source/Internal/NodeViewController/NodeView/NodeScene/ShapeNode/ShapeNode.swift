@@ -8,13 +8,46 @@ class ShapeNode: SKShapeNode {
     // MARK: - Internal -
 
     static let name = "ShapeNode"
+    
+    static func create(
+        id: UUID = UUID(),
+        scope: String = "",
+        name: String? = nil,
+        children: [ShapeNode] = [],
+        color: NSColor = .clear,
+        radius: CGFloat = 0,
+        isShape: Bool = true
+    ) -> ShapeNode {
+        let shapeNode = pool.popLast() ?? ShapeNode()
+        
+        shapeNode.id = id
+        shapeNode.scope = scope
+        shapeNode.nodeName = name
+        shapeNode.castedChildren = []
+        shapeNode.siblingPairs = []
+        shapeNode.radius = radius
+        shapeNode.isShape = isShape
+        
+        shapeNode.setUp(children)
 
-    let id: UUID
-    let scope: String
-    let nodeName: String?
-    private(set) var castedChildren: [ShapeNode]
-    private(set) var siblingPairs: [(ShapeNode, ShapeNode)]
-    private(set) var radius: CGFloat
+        if isShape {
+            shapeNode.name = ShapeNode.name
+            shapeNode.setUpPhysicsBody()
+            shapeNode.update(color: color)
+        }
+        
+        shapeNode.update(radius: radius)
+        
+        return shapeNode
+    }
+
+    private(set) var id: UUID = UUID()
+    private(set) var scope: String = ""
+    private(set) var nodeName: String? = nil
+    private(set) var castedChildren: [ShapeNode] = []
+    private(set) var siblingPairs: [(ShapeNode, ShapeNode)] = []
+    private(set) var radius: CGFloat = 0
+    private var isShape: Bool = true
 
     var allDescendants: [ShapeNode] {
            return castedChildren + castedChildren.flatMap { $0.allDescendants }
@@ -32,23 +65,6 @@ class ShapeNode: SKShapeNode {
             node = parent
         }
         return allCastedAncestors
-    }
-
-    init(id: UUID, scope: String, name: String?, children: [ShapeNode], color: NSColor, radius: CGFloat) {
-        self.id = id
-        self.scope = scope
-        self.nodeName = name
-        self.castedChildren = []
-        self.siblingPairs = []
-        self.radius = radius
-
-        super.init()
-        self.name = ShapeNode.name
-
-        setUp(children)
-        setUpPhysicsBody()
-        update(color: color)
-        update(radius: radius)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -98,6 +114,9 @@ class ShapeNode: SKShapeNode {
     }
 
     func update(color: NSColor) {
+        guard isShape else {
+            return
+        }
         fillColor = castedChildren.isEmpty ? color : color.withAlphaComponent(0.1)
         strokeColor = color
         lineWidth = 16
@@ -105,6 +124,9 @@ class ShapeNode: SKShapeNode {
 
     func update(radius: CGFloat) {
         self.radius = radius
+        guard isShape else {
+            return
+        }
         updatePath()
         updateConstraints()
         updatePhysicsBody()
@@ -112,6 +134,18 @@ class ShapeNode: SKShapeNode {
     }
 
     // MARK: - Private -
+    
+    private static var pool: [ShapeNode] = []
+    
+    private static func store(shapeNode: ShapeNode) {
+        shapeNode.physicsBody = nil
+        shapeNode.path = nil
+        pool.append(shapeNode)
+    }
+    
+    private override init() {
+        super.init()
+    }
 
     private func updateSiblingPairs() {
         siblingPairs = []

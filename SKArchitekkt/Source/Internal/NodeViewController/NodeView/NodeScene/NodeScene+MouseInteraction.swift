@@ -94,14 +94,11 @@ extension NodeScene {
     }
 
     private func replaceNodeWithParentIfNeeded(node: SKNode?) -> SKNode? {
-        if node?.parent is SKScene {
-            return node
-        }
         var node = node
         while (node?.parent?.children.filter { $0.name == ShapeNode.name }.count ?? Int.max) <= 1 {
             node = node?.parent
         }
-        return node is SKScene || node is ShapelessNode ? nil : node
+        return node?.name != ShapeNode.name ? nil : node
     }
 
 }
