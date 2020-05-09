@@ -7,7 +7,7 @@ public protocol SplitViewControllerPaneDelegate: class {
     func didSetPane(visible: Bool, pane: SplitViewController.Pane)
 }
 
-public class SplitViewController: NSSplitViewController, StoryBoardLoadable {
+public class SplitViewController: NSSplitViewController {
 
     // MARK: - Public -
 
