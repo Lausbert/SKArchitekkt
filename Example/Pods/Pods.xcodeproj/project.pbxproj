@@ -10,7 +10,6 @@
 		02AAF31105AA107A15A95C3AFFC74644 /* CoreArchitekkt-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C4BCCC4718613AD68FED8F9A2DBBEC4F /* CoreArchitekkt-dummy.m */; };
 		0526F7A830F1D0F9C5FB5D5DC0E67B7F /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F84BF47BBF7CD98A5BFE94BD68DC137F /* CGPoint.swift */; };
 		058AB317E342FF6727FC4247F717335C /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56C563549588299ECDBE4AB442C7FE72 /* SplitViewController.swift */; };
-		07AE45745CD2905BAAB70443689A4409 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D827E164EFF6EC5384D06B91D18790D /* NibLoadable.swift */; };
 		08F815CEFFD5DE1FA37973DD74A71DC4 /* VirtualNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AAD5C1C03FB6DF3D4A616748A6E0E19 /* VirtualNode.swift */; };
 		0E25475D30239FDDC95FBCD4A303C168 /* VirtualTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCCD0FE0397D12067547F66690537B34 /* VirtualTransformation.swift */; };
 		13AC7077812676B4CC85911D4A724C72 /* Shell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4745194B07DDBC2F6BDE785C02378E9C /* Shell.swift */; };
@@ -118,7 +117,6 @@
 		1AAD5C1C03FB6DF3D4A616748A6E0E19 /* VirtualNode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VirtualNode.swift; sourceTree = "<group>"; };
 		1C56A47A6234E7C7D99E06A894851998 /* CoreArchitekkt.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = CoreArchitekkt.modulemap; sourceTree = "<group>"; };
 		1D16C4E06AD9C471215C2E119FFA0551 /* Pods-UnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-UnitTests.release.xcconfig"; sourceTree = "<group>"; };
-		1D827E164EFF6EC5384D06B91D18790D /* NibLoadable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
 		1F3FB5D853D2C73624B15A637A965172 /* Pods-SKArchitekkt_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SKArchitekkt_Example-dummy.m"; sourceTree = "<group>"; };
 		22FC77E23626DD34FC30DD3ACE8CEFAC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		2B32DBF1E79E9B2978D82382A82619E3 /* Pods-SKArchitekkt_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SKArchitekkt_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
@@ -405,7 +403,6 @@
 				F84BF47BBF7CD98A5BFE94BD68DC137F /* CGPoint.swift */,
 				F3A8B74946F106CBC88430FC18DDEA48 /* CGVector.swift */,
 				C3094430A86176EB2FB5F33FC1203C3F /* CGVector+Comparable.swift */,
-				1D827E164EFF6EC5384D06B91D18790D /* NibLoadable.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -757,7 +754,6 @@
 				F8F4F5594EDDA2FCE146372C3472BBE8 /* CGVector+Comparable.swift in Sources */,
 				8D70CAA02455F286007B7DF6 /* NodeScene+Rendering.swift in Sources */,
 				B2ABF4EBB4EBC53EB20118D2294836B5 /* CGVector.swift in Sources */,
-				07AE45745CD2905BAAB70443689A4409 /* NibLoadable.swift in Sources */,
 				E1FEB12A8DF6E87224789193F3218B84 /* NodeScene+MouseInteraction.swift in Sources */,
 				21A3D9056C13FDF76E51C227F91CCEB1 /* NodeScene+Physics.swift in Sources */,
 				6C88EA6FB764D182B579C78470735B6A /* NodeScene.swift in Sources */,

@@ -2,7 +2,7 @@
 
 import AppKit
 
-class RightPaneCollectionViewItem: NSCollectionViewItem, NibLoadable {
+class RightPaneCollectionViewItem: NSCollectionViewItem {
 
     @IBOutlet weak var label: NSTextField!
     @IBOutlet weak var slider: NSSlider!

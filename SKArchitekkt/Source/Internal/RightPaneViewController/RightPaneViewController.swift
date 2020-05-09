@@ -44,8 +44,7 @@ class RightPaneViewController: NSViewController, NSCollectionViewDataSource, NSC
     }
 
     func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {
-        let item = RightPaneCollectionViewItem.createFromNib()
-        return NSSize(width: collectionView.frame.width, height: item.view.fittingSize.height)
+        return NSSize(width: collectionView.frame.width, height: 23)
     }
 
     func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> NSSize {
