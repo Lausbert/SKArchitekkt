@@ -60,7 +60,7 @@ public class SplitViewController: NSSplitViewController {
     // MARK: - Private -
 
     private let settings: Settings = Settings.createSettings()
-    
+
     private func setUp() {
         splitView.delegate = self
         let nodeSplitViewItem = NSSplitViewItem(viewController: NodeViewController.createFromStoryBoard())
