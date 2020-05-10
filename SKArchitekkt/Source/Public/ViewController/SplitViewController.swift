@@ -31,7 +31,7 @@ public class SplitViewController: NSSplitViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
 
-        splitView.delegate = self
+        setUp()
     }
 
     public override func insertSplitViewItem(_ splitViewItem: NSSplitViewItem, at index: Int) {
@@ -60,5 +60,14 @@ public class SplitViewController: NSSplitViewController {
     // MARK: - Private -
 
     private let settings: Settings = Settings.createSettings()
+    
+    private func setUp() {
+        splitView.delegate = self
+        let nodeSplitViewItem = NSSplitViewItem(viewController: NodeViewController.createFromStoryBoard())
+        let rightPaneSplitViewItem = NSSplitViewItem(viewController: RightPaneViewController.createFromStoryBoard())
+        rightPaneSplitViewItem.canCollapse = true
+        addSplitViewItem(nodeSplitViewItem)
+        addSplitViewItem(rightPaneSplitViewItem)
+    }
 
 }
