@@ -3,7 +3,7 @@
 import Foundation
 import CoreArchitekkt
 
-extension SplitViewController: RootNodeHandler {
+extension GraphCoordinator: RootNodeHandler {
 
     // MARK: - Public -
 

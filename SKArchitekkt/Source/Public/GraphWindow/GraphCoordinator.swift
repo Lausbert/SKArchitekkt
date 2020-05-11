@@ -3,31 +3,10 @@
 import AppKit
 import CoreArchitekkt
 
-public protocol SplitViewControllerPaneDelegate: class {
-    func didSetPane(visible: Bool, pane: SplitViewController.Pane)
-}
-
-public class SplitViewController: NSSplitViewController {
-
+public class GraphCoordinator: SplitViewCoordinator<Void> {
+    
     // MARK: - Public -
-
-    public weak var paneDelegate: SplitViewControllerPaneDelegate?
-
-    public enum Pane {
-        case right
-    }
-
-    public func setPane(visible: Bool, pane: Pane, animated: Bool) {
-        switch pane {
-        case .right:
-            if animated {
-                splitViewItems.first(where: { $0.viewController is RightPaneViewController })?.animator().isCollapsed = !visible
-            } else {
-                splitViewItems.first(where: { $0.viewController is RightPaneViewController })?.isCollapsed = !visible
-            }
-        }
-    }
-
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -50,9 +29,26 @@ public class SplitViewController: NSSplitViewController {
         for splitViewItem in splitViewItems {
             switch splitViewItem.viewController {
             case is RightPaneViewController:
-                paneDelegate?.didSetPane(visible: !splitViewItem.isCollapsed, pane: .right)
+                didSetRightPane(self, visible: !splitViewItem.isCollapsed)
             default:
                 break
+            }
+        }
+    }
+
+    // MARK: - Internal -
+
+    enum Pane {
+        case right
+    }
+
+    func setPane(visible: Bool, pane: Pane, animated: Bool) {
+        switch pane {
+        case .right:
+            if animated {
+                splitViewItems.first(where: { $0.viewController is RightPaneViewController })?.animator().isCollapsed = !visible
+            } else {
+                splitViewItems.first(where: { $0.viewController is RightPaneViewController })?.isCollapsed = !visible
             }
         }
     }

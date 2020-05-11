@@ -2,24 +2,15 @@
 
 import Cocoa
 import CoreArchitekkt
-import SKArchitekkt
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
+    
+    // MARK: - Internal -
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        let viewController = setUpViewController(sideLength: 800)
         let rootNode = getRootNode()
-        viewController.handle(rootNode: rootNode)
-    }
-
-    private func setUpViewController(sideLength: CGFloat) -> SplitViewController {
-        let window = NSWindow(contentRect: NSRect(x: ((NSScreen.main?.frame.width ?? 0) - sideLength)/2, y: ((NSScreen.main?.frame.height ?? 0) - sideLength)/2, width: sideLength, height: sideLength), styleMask: [.titled, .closable, .resizable, .miniaturizable], backing: .buffered, defer: false)
-        window.makeKeyAndOrderFront(nil)
-        let viewController = SplitViewController.createFromStoryBoard()
-        viewController.preferredContentSize = CGSize(width: sideLength, height: sideLength)
-        window.contentViewController = viewController
-        return viewController
+        windowCoordinator.showGraph(rootNode: rootNode)
     }
 
     private func getRootNode() -> Node {
@@ -35,5 +26,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         guard let rootNode = try? JSONDecoder().decode(Node.self, from: data) else { fatalError("Could not setup root node.") }
         return rootNode
     }
+    
+    // MARK: - Private -
+    
+    private let windowCoordinator = WindowCoordinator()
 
 }

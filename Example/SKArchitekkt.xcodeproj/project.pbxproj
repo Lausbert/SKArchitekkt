@@ -16,6 +16,7 @@
 		5DCAC3612218861F0020B403 /* CocoaPodsWorkspace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC355221884D50020B403 /* CocoaPodsWorkspace.swift */; };
 		5DCAC362221886360020B403 /* Ressource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC356221884D50020B403 /* Ressource.swift */; };
 		610636F3816D7F7656D5578A /* Pods_UnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC184FFFEA27F09B24D4E552 /* Pods_UnitTests.framework */; };
+		8D0941E92469E06A00674F74 /* WindowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0941E82469E06A00674F74 /* WindowCoordinator.swift */; };
 		8D68F95F244F0D5B00FD397D /* VirtualArc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D68F95E244F0D5B00FD397D /* VirtualArc.swift */; };
 		8DFFF034244E0B3200D6655C /* VirtualNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFFF033244E0B3200D6655C /* VirtualNode.swift */; };
 		8DFFF03D244E180600D6655C /* VirtualTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFFF03C244E180600D6655C /* VirtualTest.swift */; };
@@ -51,6 +52,7 @@
 		5DCAC35C221885F60020B403 /* UITest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITest.swift; sourceTree = "<group>"; };
 		5DCAC35D221885F60020B403 /* Project.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Project.swift; sourceTree = "<group>"; };
 		784B3F4A7C554089EC1DC078 /* Pods-SKArchitekkt_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SKArchitekkt_Example.release.xcconfig"; path = "Target Support Files/Pods-SKArchitekkt_Example/Pods-SKArchitekkt_Example.release.xcconfig"; sourceTree = "<group>"; };
+		8D0941E82469E06A00674F74 /* WindowCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowCoordinator.swift; sourceTree = "<group>"; };
 		8D68F95E244F0D5B00FD397D /* VirtualArc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualArc.swift; sourceTree = "<group>"; };
 		8DFFF031244E0B3200D6655C /* UnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DFFF033244E0B3200D6655C /* VirtualNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VirtualNode.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 			children = (
 				5DCAC351221884D50020B403 /* Application.swift */,
 				ED83F67B20348A760038D96B /* AppDelegate.swift */,
+				8D0941E82469E06A00674F74 /* WindowCoordinator.swift */,
 				5DCAC352221884D50020B403 /* Ressources */,
 				ED83F68420348A760038D96B /* Info.plist */,
 				ED83F68520348A760038D96B /* SKArchitekkt.entitlements */,
@@ -459,6 +462,7 @@
 			files = (
 				5DCAC35B221884D60020B403 /* Ressource.swift in Sources */,
 				5DCAC35A221884D60020B403 /* CocoaPodsWorkspace.swift in Sources */,
+				8D0941E92469E06A00674F74 /* WindowCoordinator.swift in Sources */,
 				5DCAC358221884D60020B403 /* Application.swift in Sources */,
 				ED83F67C20348A760038D96B /* AppDelegate.swift in Sources */,
 			);
