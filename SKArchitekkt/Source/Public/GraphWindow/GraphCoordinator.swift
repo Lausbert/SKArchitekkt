@@ -3,7 +3,7 @@
 import AppKit
 import CoreArchitekkt
 
-public class GraphCoordinator: SplitViewCoordinator<Void> {
+public class GraphCoordinator: SplitViewCoordinator<Any> {
     
     // MARK: - Public -
     

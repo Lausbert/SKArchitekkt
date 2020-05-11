@@ -4,7 +4,7 @@ import Foundation
 import CoreArchitekkt
 import SKArchitekkt
 
-class WindowCoordinator: CoreArchitekkt.WindowCoordinator<Void> {
+class WindowCoordinator: CoreArchitekkt.WindowCoordinator<Any> {
     
     // MARK: - Internal -
     
