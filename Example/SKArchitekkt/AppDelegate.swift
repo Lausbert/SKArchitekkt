@@ -5,7 +5,7 @@ import CoreArchitekkt
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    
+
     // MARK: - Internal -
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
@@ -26,9 +26,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         guard let rootNode = try? JSONDecoder().decode(Node.self, from: data) else { fatalError("Could not setup root node.") }
         return rootNode
     }
-    
+
     // MARK: - Private -
-    
+
     private let windowCoordinator = WindowCoordinator()
 
 }

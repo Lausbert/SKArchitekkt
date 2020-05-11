@@ -4,9 +4,9 @@ import AppKit
 import CoreArchitekkt
 
 public class GraphCoordinator: SplitViewCoordinator<Any> {
-    
+
     // MARK: - Public -
-    
+
     public override func viewDidLoad() {
         super.viewDidLoad()
 

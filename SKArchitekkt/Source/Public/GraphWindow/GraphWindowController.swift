@@ -4,9 +4,9 @@ import AppKit
 import CoreArchitekkt
 
 public class GraphWindowController: NSWindowController {
-    
+
     // MARK: - Public -
-    
+
     public override func didLoadContentViewController() {
         super.didLoadContentViewController()
         setUp()

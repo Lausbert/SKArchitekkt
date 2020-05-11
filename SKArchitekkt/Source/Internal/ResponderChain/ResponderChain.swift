@@ -3,7 +3,7 @@
 import Cocoa
 
 extension NSResponder {
-    
+
     // MARK: - Internal -
 
     @objc func didSetRightPane(_ sender: Any?, visible: Bool) {
