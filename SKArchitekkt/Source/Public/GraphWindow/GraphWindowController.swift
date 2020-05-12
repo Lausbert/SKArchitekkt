@@ -3,16 +3,9 @@
 import AppKit
 import CoreArchitekkt
 
-public class GraphWindowController: NSWindowController {
+public class GraphWindowController: RestorableWindowController {
 
     // MARK: - Public -
-
-    public override func windowDidLoad() {
-        shouldCascadeWindows = false
-        windowFrameAutosaveName = String(describing: Self.self)
-
-        super.windowDidLoad()
-    }
 
     public override func didLoadContentViewController() {
         super.didLoadContentViewController()
