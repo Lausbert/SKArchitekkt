@@ -47,7 +47,7 @@
 		6BB488412BCFA022E40C1E8DE4661348 /* GraphCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC9E5E6AA4B3A8B82273B19804450A9 /* GraphCoordinator.swift */; };
 		7562CBA323DAD915BB4ABCAFCF7B7CD8 /* ResponderChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950AEDDF19820F01C3D3734656F222A4 /* ResponderChain.swift */; };
 		8689EE50786026D9B1AE66A8335BE1E5 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADD871C4FE4C2FE929BA804689D5774 /* Node.swift */; };
-		8D0941ED2469E3C100674F74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D0941EC2469E3C100674F74 /* Assets.xcassets */; };
+		8D0941EF246A956700674F74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D0941EE246A956700674F74 /* Assets.xcassets */; };
 		90B7F25887DF42C335580326363B0683 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22FC77E23626DD34FC30DD3ACE8CEFAC /* Cocoa.framework */; };
 		90B945B5CCBFD48E33E0BCFDC813B846 /* Coordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FA6E338676F8D3055E72B3075FB682 /* Coordinating.swift */; };
 		9175E532C5CE323F3132642F064C6914 /* RightPaneHeaderView.xib in Sources */ = {isa = PBXBuildFile; fileRef = 4222C155A3B1C3E30D0BDCD47CDFDA84 /* RightPaneHeaderView.xib */; };
@@ -181,7 +181,7 @@
 		84C835F60C7998DEBFA7CEA629FB4A56 /* NodeView+RootNodeHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NodeView+RootNodeHandler.swift"; sourceTree = "<group>"; };
 		89CC0D5F3093FBF5DB3C65D7AC5D98A8 /* ArcNode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ArcNode.swift; sourceTree = "<group>"; };
 		8B0958B648B0CCCEBAEB92B70691991D /* ViewWithBackgroundColor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ViewWithBackgroundColor.swift; path = "CoreArchitekkt/Source/Public/Classes+Structs/ViewWithBackgroundColor.swift"; sourceTree = "<group>"; };
-		8D0941EC2469E3C100674F74 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8D0941EE246A956700674F74 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = SKArchitekkt/Assets/Assets.xcassets; sourceTree = "<group>"; };
 		8FBE668855B29D2ED20A54BD33F65868 /* NodeViewController+RootNodeHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NodeViewController+RootNodeHandler.swift"; sourceTree = "<group>"; };
 		9255986F82E0CE6312DE651C1BABBD9B /* StoryBoardLoadable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StoryBoardLoadable.swift; path = CoreArchitekkt/Source/Public/Protocols/StoryBoardLoadable.swift; sourceTree = "<group>"; };
 		950AEDDF19820F01C3D3734656F222A4 /* ResponderChain.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ResponderChain.swift; sourceTree = "<group>"; };
@@ -578,7 +578,7 @@
 			children = (
 				6B6C468AD2D98A75349F05867DCD639D /* Public */,
 				AF7A9F82C7A965186D7ED6B9233B8B10 /* Internal */,
-				8D0941EC2469E3C100674F74 /* Assets.xcassets */,
+				8D0941EE246A956700674F74 /* Assets.xcassets */,
 				F7DCB0FDDE3F23E86F39EFDAF1FD8579 /* Pod */,
 				A1ED6F5E083F029BE77E05125E435E42 /* Support Files */,
 			);
@@ -736,7 +736,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D0941ED2469E3C100674F74 /* Assets.xcassets in Resources */,
+				8D0941EF246A956700674F74 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

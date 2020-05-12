@@ -16,6 +16,7 @@ Pod::Spec.new do |s|
     s.swift_version = '5.0'
     
     s.source_files = 'SKArchitekkt/Source/**/*'
+    s.resources = 'SKArchitekkt/Assets/*.xcassets'
     
     s.dependency 'CoreArchitekkt'
 end
