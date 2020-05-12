@@ -9,9 +9,13 @@ class WindowCoordinator: CoreArchitekkt.WindowCoordinator<Any> {
     // MARK: - Internal -
 
     func showGraph(rootNode: Node) {
-        let graphTuple = self.graphTuple ?? open(windowController: GraphWindowController.self, with: GraphCoordinator.self)
+        let graphTuple = self.graphTuple ?? open(
+            windowController: GraphWindowController.self,
+            with: GraphCoordinator.self,
+            inheritDependencies: false,
+            preferredContentSize: CGSize(width: 800, height: 800)
+        )
         graphTuple.1.handle(rootNode: rootNode)
-        graphTuple.0.showWindow(nil)
         self.graphTuple = graphTuple
     }
 

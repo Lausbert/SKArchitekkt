@@ -7,80 +7,80 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0006B53C66902ACC0878E90C5FF73DA2 /* CoreArchitekkt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB9D426DA9B522A28593DECA1390037C /* CoreArchitekkt.framework */; };
 		01F32A812EB555A3B888BD03008EDAA1 /* NSRect.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1B69F4AF46D1C2EB093D05E86A38E9B /* NSRect.swift */; };
+		0206C59735A9781E083A418C89B71602 /* GraphCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71355523B9C9B5C9C64DA22A1FE26E38 /* GraphCoordinator.swift */; };
+		04249447D60349B954C4D2C74F8C4BAF /* SKArchitekkt-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A63639EB37AE18AB8A08FDCAE8FB0FC1 /* SKArchitekkt-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		09373D1F15B98D422ED50D9E7D0A35D8 /* NSWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAE2CBC08B767AAED24EA315E6D42638 /* NSWindowController.swift */; };
-		0BE944988A6AFAFF716CA93F694D78B6 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22FC77E23626DD34FC30DD3ACE8CEFAC /* Cocoa.framework */; };
-		0FE105436F8476F90220445E707DCA99 /* ShapeNode+Rendering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C5DF1414BC322DD9DFE7C4A74C4091E /* ShapeNode+Rendering.swift */; };
+		0B9DEAA18030BA9578E1CDE9394965A8 /* VirtualNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9E1234B59ED64F0FC7EE95CB090A75 /* VirtualNode.swift */; };
+		0FA371FDF1269D30162A4B5BD77BE5CC /* CoreArchitekkt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FB9D426DA9B522A28593DECA1390037C /* CoreArchitekkt.framework */; };
 		13B42A44213744AC9449FFB004401E61 /* ConsistentUrlRequirement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1D16EED072E12ABDEF15AF97807E0C /* ConsistentUrlRequirement.swift */; };
-		13E0F7BC14D915075D1AD00B7F1FB27D /* ArcNode+Rendering.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE71485CA51E31CC9F43C5BAC3FD90B /* ArcNode+Rendering.swift */; };
-		1531AC99F4E7FAD0BA4F1CAE33F23B76 /* CGVector+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D845DDFD28837C5CA51C0DBED6CFAD /* CGVector+Comparable.swift */; };
-		188108F8503188AC17D6E1416052B01A /* CGPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 201B47B696E370A867CD31A784A33CFA /* CGPath.swift */; };
-		18DB07DD8C579BF7EB2A0D82293C2528 /* RightPaneViewController.storyboard in Sources */ = {isa = PBXBuildFile; fileRef = EE76CBFCCE841A29E696B0F575973325 /* RightPaneViewController.storyboard */; };
+		157974B6BDACA9F9BC552F013823C3B3 /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB1F3A46A03B57B4196618C23CC8ADF /* CGFloat.swift */; };
+		18BAEADC0FD59DD52429E934EFAAF586 /* SettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5CB716FF8A1E8F3F84970B576B9A7489 /* SettingsItem.swift */; };
+		1912F144CFB0FCA2677341815232E863 /* SettingsGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 198D91E5D27FD5DEF6E3FB57DD99E431 /* SettingsGroup.swift */; };
 		193334A48B48C9D2978FD690CA588296 /* CoreArchitekkt-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6FE39D3BB1C3B729C9FE6DB4986C621E /* CoreArchitekkt-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2AFA3ABE77F8857D4FF85B1151704664 /* SKArchitekkt-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DE1B2B7D008BCA6DF60936910190E6F /* SKArchitekkt-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1CA6660A33BFA8689189DE3AB86A200E /* CGVector+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6E0D381942B7B54DC1B1DE334DD5D3 /* CGVector+Comparable.swift */; };
+		1FDEECD121F293F5164EBAD4CBA737A3 /* ArcNode+Rendering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 241D6AF26C16DE6DD4E2378D63412F61 /* ArcNode+Rendering.swift */; };
+		218137CEB765DE2C36CE21A692F34B60 /* NodeViewController.storyboard in Sources */ = {isa = PBXBuildFile; fileRef = A7EA1627A85D99FF15968F04081ACC22 /* NodeViewController.storyboard */; };
 		2BA281EDE2AF0DD84669A8F537CADFA1 /* NSResponder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C339B1C484DCA4BAF4688A7F0153B3D /* NSResponder.swift */; };
 		2BCD7F58B0DF65E0F587353679436B93 /* Pods-UnitTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 35D3238BE68BC0FC15DFCEEB582FEE52 /* Pods-UnitTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2F07DBAA675F3D7CD38D32D7C9049572 /* SettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A3837F504FBE76BDDCF6B1C4801A3106 /* SettingsItem.swift */; };
+		2EBBEA859BB9F94911AEDB4366C6B101 /* NodeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 277434AA4E8FEEA3C274C05FC9EA055F /* NodeScene.swift */; };
+		2F5F34CFBD66266CEC9B740C8FAF5E97 /* ShapeNode+Rendering.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE0687B1E41D441A854A93BE4DFFA118 /* ShapeNode+Rendering.swift */; };
 		32E6D0368C1820965494DC29CAF8D365 /* StoryBoardLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9255986F82E0CE6312DE651C1BABBD9B /* StoryBoardLoadable.swift */; };
-		33B0907ED29EB85001024005336A9F1C /* SettingsGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 513DA2C414B8C0EFBEDBE4F79431A228 /* SettingsGroup.swift */; };
 		358331B64596C85CD1D60BF277EBD297 /* CoreArchitekkt-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 172867A2DCB649E06D710351B82EFA54 /* CoreArchitekkt-dummy.m */; };
 		35EDE314C9D71F7C1EA48B6951E2DB4B /* GraphRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D02F05CDA9D8AF4E49675C3D7A7A9D6 /* GraphRequest.swift */; };
 		3851D929482802A35B09F13CA75E0274 /* SplitViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D321BD7795383FE2E7D55AC2200D1D6D /* SplitViewCoordinator.swift */; };
-		39BAEC139CB5D83AC905155346F91B49 /* CGFloat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 672DE4A0A347A832B866F1527AC01263 /* CGFloat.swift */; };
+		3A20329CDA9F461BFA624430920F5BF7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22FC77E23626DD34FC30DD3ACE8CEFAC /* Cocoa.framework */; };
 		4168A32DA3A3C385263FAED30A027597 /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B2AE89803B2C9A98C7AD1D0EA5D0BDF /* DispatchQueue.swift */; };
-		46844D0E3E0F968F5A013F3A6894D288 /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 834FD5ECA44733ACC5F2BDB69FF44E9A /* CGPoint.swift */; };
-		498D2EE2EC2E0E23CCB274D81B984377 /* RightPaneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA7F804540679C38E23C4D8881C57A37 /* RightPaneViewController.swift */; };
-		4DC6F837E40F3646AB4E56D10B053262 /* NodeScene+Rendering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057DFE66CFC1EA121E4F80185DC02961 /* NodeScene+Rendering.swift */; };
 		4FBF7D1911A92EA1D8088A5F75F95303 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22FC77E23626DD34FC30DD3ACE8CEFAC /* Cocoa.framework */; };
 		5130631364CE089C3221798A4A13933C /* Regex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21B86D50D5F834276087950294B4E714 /* Regex.swift */; };
-		584551CEF456B61DC63A333D2E573610 /* RightPaneCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 838C28682F83FE52A7328B8B79228DEC /* RightPaneCollectionViewItem.swift */; };
-		59138110B3C5F80C4DFD1AA2103D9840 /* RightPaneCollectionViewItem.xib in Sources */ = {isa = PBXBuildFile; fileRef = 2166F1E1D0E86514B8C20BC5AB6AD20A /* RightPaneCollectionViewItem.xib */; };
-		59DE612F71CC3F0B67B12F025EFA0C53 /* NodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3E7F7D5E86F09900E5D941DE359D66D /* NodeViewController.swift */; };
-		5D72DEE159A410E14B73FED3E7A00966 /* VirtualNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D62B86F37F78801FEEC6159F44B5D18F /* VirtualNode.swift */; };
-		5DD5AF42510EEB8856E5CCB6EC21D1CC /* NodeView+RootNodeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84C835F60C7998DEBFA7CEA629FB4A56 /* NodeView+RootNodeHandler.swift */; };
+		543B34ACF173E0DA01595180E4E9776C /* GraphWindowController.storyboard in Sources */ = {isa = PBXBuildFile; fileRef = 2BD7058571560C99155CF0CFC553C28F /* GraphWindowController.storyboard */; };
+		57C1AA179A2AE54569DC73C691126811 /* NodeView+RootNodeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CBDCDC3A7E243C1C3F2162A31A8CEBF /* NodeView+RootNodeHandler.swift */; };
+		58B3498A128C388874DF4EFF527BC81A /* RightPaneHeaderView.xib in Sources */ = {isa = PBXBuildFile; fileRef = BD956A8374A8F5E4E47932EC03327CF8 /* RightPaneHeaderView.xib */; };
+		5A42DA2FC1F10FD16877DD9ACCD4BFDD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8B36384C911667DD826A00A1FF72F28 /* Assets.xcassets */; };
 		5F35E30F23C55FD5EB66353BEE84A9C4 /* GraphRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF9F154498A791E8E713E6DF0A36EB5C /* GraphRequestHandler.swift */; };
+		606FA9E28A53F4EBCFDE0A0649CC62B5 /* VirtualArc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BD8D1A904720F2CF24F9A504710829 /* VirtualArc.swift */; };
 		62CF377A86E95220D253DB0958FF4D36 /* ViewWithBackgroundColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B0958B648B0CCCEBAEB92B70691991D /* ViewWithBackgroundColor.swift */; };
 		62F7F682176FE67E65DAFF21193FC8D5 /* TabViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607D5C2384FC4AC4305C3494349B64D2 /* TabViewCoordinator.swift */; };
-		66A707A7933E948F7907736EA3EE7229 /* VirtualArc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3620B620CD61A2D93271AE792A1543 /* VirtualArc.swift */; };
-		68876EE8DDBE9E32D5421FB9143ED7CF /* NodeScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 523C0977BFA8D17AD1765B8B8A60DAA6 /* NodeScene.swift */; };
-		6BB488412BCFA022E40C1E8DE4661348 /* GraphCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FC9E5E6AA4B3A8B82273B19804450A9 /* GraphCoordinator.swift */; };
-		7562CBA323DAD915BB4ABCAFCF7B7CD8 /* ResponderChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950AEDDF19820F01C3D3734656F222A4 /* ResponderChain.swift */; };
+		65B9EF27631ADB87D4236BB33A933DFF /* RightPaneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1D8DE733ACA163A3AA0110302CF049 /* RightPaneViewController.swift */; };
+		7BFD6D10454BF5601E2E5DAFD356A13C /* RightPaneCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F8BFC67698A0C2D09588A2DCC5B21FA1 /* RightPaneCollectionViewItem.swift */; };
 		8689EE50786026D9B1AE66A8335BE1E5 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADD871C4FE4C2FE929BA804689D5774 /* Node.swift */; };
-		8D0941EF246A956700674F74 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8D0941EE246A956700674F74 /* Assets.xcassets */; };
 		90B7F25887DF42C335580326363B0683 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22FC77E23626DD34FC30DD3ACE8CEFAC /* Cocoa.framework */; };
 		90B945B5CCBFD48E33E0BCFDC813B846 /* Coordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FA6E338676F8D3055E72B3075FB682 /* Coordinating.swift */; };
-		9175E532C5CE323F3132642F064C6914 /* RightPaneHeaderView.xib in Sources */ = {isa = PBXBuildFile; fileRef = 4222C155A3B1C3E30D0BDCD47CDFDA84 /* RightPaneHeaderView.xib */; };
-		95273D5D005BDE216B679278AC228BE7 /* NodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BF8F754833B704F099C598978BE0BB8 /* NodeView.swift */; };
-		9B552EA7097FBA2A28441AA6DAD02B96 /* ShapeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0CDC69F1EC4402589210D73A07B116C /* ShapeNode.swift */; };
+		90B9C421B1629CCC7721B5D2E3473BDF /* CGVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3865B9D468E0B222D2A87D13D87F599 /* CGVector.swift */; };
+		940D63F2B79D1186EF073FF1BA11F407 /* SKArchitekkt-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 027646B07FF854A82F129091512CC6A6 /* SKArchitekkt-dummy.m */; };
+		964722EA849E37D3AC3D9B3E94A723A9 /* ResponderChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE095A27975F6525DECCF2B16427F44E /* ResponderChain.swift */; };
+		970F31293C9D76B5D7F3296C02DF2975 /* RightPaneCollectionViewItem.xib in Sources */ = {isa = PBXBuildFile; fileRef = D04BDEE35D22AC220A75881E7D8598FD /* RightPaneCollectionViewItem.xib */; };
+		9B02AD619230542F80D9D212AEEBBEE5 /* NodeScene+MouseInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65B4E7BA23BE122FA48D2C26D9F50B7A /* NodeScene+MouseInteraction.swift */; };
 		9D41D3CFC8763CA99AA504EDD175CCB1 /* ViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D1362B1F3CD5BC3787CD080B2B5FCD7 /* ViewCoordinator.swift */; };
 		9FCB1DF2DB28078D7F7D1BA3921BCF4B /* DependencyUpdating.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8E6EE372BF4C474DAE2D3111ABE174D /* DependencyUpdating.swift */; };
-		A059DF9326C38EC052EE654EB1F39CA9 /* SKArchitekkt-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C97CA0F18E585D7E21C8F567734BF095 /* SKArchitekkt-dummy.m */; };
-		A36B4310980421116C12B698B7524E30 /* VirtualTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3C6476711DC915BFF75421B1F8B40FE /* VirtualTransformation.swift */; };
-		A6F1B50E13B3E0D250D3207F474E7010 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D455FE5B9676A7064B06A17023BED63 /* Settings.swift */; };
+		9FDFB9A11EEC5759F7EB7219491F6B8A /* RightPaneFooterView.xib in Sources */ = {isa = PBXBuildFile; fileRef = BC95A120987D76FED64D8382074060B9 /* RightPaneFooterView.xib */; };
+		A31C6AE14D22C48B134AEC7C3E5AD00A /* NodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C945FD31E30F327345A98382E8CEE615 /* NodeView.swift */; };
 		A7F9D1F300E25EEA8F7C21A979F95345 /* Pods-SKArchitekkt_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C7F2F6D2B14E5BE9FBEE04BE52E0E91E /* Pods-SKArchitekkt_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A80E22B6F62A1CB36BFFBB2A5C598FB7 /* CGPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4C160BCA05F5B3116730933F81C56A /* CGPoint.swift */; };
 		A88C4DB6F6040FDD1B550E715069BB2D /* NSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24DA6C6059BF333EE6EF9FC79A335893 /* NSViewController.swift */; };
-		AC62AF0757E8E9CA57F198F4880FD8FF /* NodeViewController.storyboard in Sources */ = {isa = PBXBuildFile; fileRef = 5B00187297F218EF66983CD5DBE0472F /* NodeViewController.storyboard */; };
+		AE1A24DEB04D33B434F62ED22A13E25A /* RightPaneViewController.storyboard in Sources */ = {isa = PBXBuildFile; fileRef = AAA3B7C5EAE0F91CEABC8FF316175B85 /* RightPaneViewController.storyboard */; };
 		AE2C82FE5DF4EED8538F23C21C4F54F6 /* ObjectAssociation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4716D3C96E16FCC61EFEC011E56C547E /* ObjectAssociation.swift */; };
-		AEB468A1703CA264E27382CF6CAD0A4C /* ArcNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89CC0D5F3093FBF5DB3C65D7AC5D98A8 /* ArcNode.swift */; };
-		B4C09CF27CD39CB5B0BEB2864C9CC24B /* GraphWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A078BD38ED51E8EE6D069C84C1168F10 /* GraphWindowController.swift */; };
+		B3C0844DAAB60583FE1CA94FB18D01A5 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7D74690B27E1335AC09E1FCDD385E /* Settings.swift */; };
+		B68BBFDA9E99BF2B0EC1E1B1744E77A3 /* GraphCoordinator.storyboard in Sources */ = {isa = PBXBuildFile; fileRef = 9542EFCB25513A6598374C3829BE9172 /* GraphCoordinator.storyboard */; };
 		B71341982066980AF1DC622C9A479C6E /* WindowCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DA9DBA317CBE10CBDEBF4248B7BFF3D8 /* WindowCoordinator.swift */; };
-		B756A8F403B3AD0ACE0FE39BDFD7EFBF /* GraphCoordinator.storyboard in Sources */ = {isa = PBXBuildFile; fileRef = B4CC583CB3FB124A92AE02CF3404CFA5 /* GraphCoordinator.storyboard */; };
-		BCD61D39B17500A9FBA370CCD5A65051 /* NodeScene+Physics.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5A7C8A8ECFA0AEE129C32983E53A08 /* NodeScene+Physics.swift */; };
 		BE8CE2220E51CFFBD1CDDCF4B9DE9C68 /* RootNodeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB27AFB05B76298A7826A6F938D2CDC /* RootNodeHandler.swift */; };
-		C8C14B01CAAFBDDD3B37907FEDEFA863 /* GraphCoordinator+RootNodeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3CFBC4E235F34200508067B530233DB /* GraphCoordinator+RootNodeHandler.swift */; };
+		C0A79D21FC04C70363BAEDA7BD1E3FB2 /* RightPaneHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97087AD7D6640479F0AE39309AE3FABB /* RightPaneHeaderView.swift */; };
+		C2CA8B13F718CF2FE380B45075542F08 /* NodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAB99D9978EABC90B07383CD7C36015 /* NodeViewController.swift */; };
+		C653698370BE18D9FF943C3E8D2EADDC /* NodeScene+Rendering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1896BA996DCFB1B614B56DE3B966418F /* NodeScene+Rendering.swift */; };
+		CAA93F42A8C4486F66740EEA64E0A915 /* GraphCoordinator+RootNodeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81AE144168A17A4F6D261E7C644220E /* GraphCoordinator+RootNodeHandler.swift */; };
+		CBC581E297DE6D070D431A59035E977C /* NodeViewController+RootNodeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE148DEEC3FD86DE9C72A465C9491D6C /* NodeViewController+RootNodeHandler.swift */; };
 		D1141945C8C39B18F5084C0B55D838B2 /* Pods-SKArchitekkt_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F3FB5D853D2C73624B15A637A965172 /* Pods-SKArchitekkt_Example-dummy.m */; };
 		D161276275C24AAFF2230F319A1C3AE4 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD81FEFE20299CDC04893CE360ED4B0 /* Array.swift */; };
-		D2385B7E96DDD4B6E2607C5F18789F4D /* CGVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C3896C2FA7428F9446D9F045FB0587 /* CGVector.swift */; };
-		D9DD7EC179153B34C84A46B656C784B1 /* RightPaneHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DA176BCE014204FFE3A845102834B5E /* RightPaneHeaderView.swift */; };
-		E0E9EE710E6AC751A07713CD99ADD8D2 /* GraphWindowController.storyboard in Sources */ = {isa = PBXBuildFile; fileRef = 22510E172C13985B6EFAFBCE5CD93E34 /* GraphWindowController.storyboard */; };
+		DB113C0E1EBA8FB354D601099A33BA0E /* NodeScene+Physics.swift in Sources */ = {isa = PBXBuildFile; fileRef = B274B144529075959BA2839D6BC5EA0B /* NodeScene+Physics.swift */; };
+		DCC1B44B40584D40D5A2886B79CA7E3C /* ArcNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D7899F41786BC61BFB1DB48E9611CD9 /* ArcNode.swift */; };
 		E67006FC66A09452CB22F91951008A96 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22FC77E23626DD34FC30DD3ACE8CEFAC /* Cocoa.framework */; };
+		EC124901A4289D95CB3A47DAE55787DF /* ShapeNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BBDF9AD3A8725C421A2F63DE0404D22 /* ShapeNode.swift */; };
+		EF6A021D7F63BBFA70A5D6FB2753AA8F /* CGPath.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F8DE7BC3F6722BF4B2203AAC3AF090F /* CGPath.swift */; };
 		F56A17679C91DC9F8CD88663DDC2EB38 /* Node+Comparable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCEBAF7F9E9809C648BDC772E17540DE /* Node+Comparable.swift */; };
+		F584F54F85532460E051F5AE3E1A729C /* GraphWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42F3DDBE5D507BF9F72818D70AD4BA25 /* GraphWindowController.swift */; };
 		F650EA6DCF666F6A8F2A684EE3DC9251 /* Pods-UnitTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 39919475B31DB728AEDC1B5DE7B8E579 /* Pods-UnitTests-dummy.m */; };
 		FB09D64902F37A4DC887F0096AB65316 /* Shell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6CD65037279B55ADFE76A5D179B84E6 /* Shell.swift */; };
-		FBA0252CECF03011A8C9D986E08A3CCA /* NodeViewController+RootNodeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8FBE668855B29D2ED20A54BD33F65868 /* NodeViewController+RootNodeHandler.swift */; };
-		FC51CF558A51D9F1B2B848E09433C4C6 /* NodeScene+MouseInteraction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D56482D3C75D6706D8D29BA9C26B58E /* NodeScene+MouseInteraction.swift */; };
-		FFD08DA90932FA79E4C4C0E0D05D6D77 /* RightPaneFooterView.xib in Sources */ = {isa = PBXBuildFile; fileRef = 71D090A3E3AE9CD49AE67FE9E2CA8060 /* RightPaneFooterView.xib */; };
+		FC867D24F5946CEA4C742ED3986244FD /* VirtualTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1F7682B918CB513431A41ED93E54B1B7 /* VirtualTransformation.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -91,6 +91,13 @@
 			remoteGlobalIDString = 61702F1BDCCB9632B4C064A4B2E64C8D;
 			remoteInfo = SKArchitekkt;
 		};
+		39B5CD596CE23AEB78EABE1C16FF6DED /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DEE73FAC9259AC519912CB2CA3698E2A;
+			remoteInfo = CoreArchitekkt;
+		};
 		50E6ED76AC1BC8C05BDA1E6223584508 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
@@ -99,13 +106,6 @@
 			remoteInfo = SKArchitekkt;
 		};
 		641F86D3F2EC3699C67F454D1CBF5034 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DEE73FAC9259AC519912CB2CA3698E2A;
-			remoteInfo = CoreArchitekkt;
-		};
-		7B26EFA369A7AD5A6062DCBB71CCF2BC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
@@ -122,107 +122,107 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		027646B07FF854A82F129091512CC6A6 /* SKArchitekkt-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SKArchitekkt-dummy.m"; sourceTree = "<group>"; };
 		044676EEC85BFC9FCB2B516007E09711 /* CoreArchitekkt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CoreArchitekkt.debug.xcconfig; sourceTree = "<group>"; };
 		04714D2136B4AB4245CF69AA66DE0A52 /* Pods-UnitTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-UnitTests.modulemap"; sourceTree = "<group>"; };
-		057DFE66CFC1EA121E4F80185DC02961 /* NodeScene+Rendering.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NodeScene+Rendering.swift"; sourceTree = "<group>"; };
 		0C339B1C484DCA4BAF4688A7F0153B3D /* NSResponder.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NSResponder.swift; path = CoreArchitekkt/Source/Public/Extensions/NSResponder.swift; sourceTree = "<group>"; };
 		0D303BC5F2154ECDCCE9677EB6CAA5DB /* Pods-SKArchitekkt_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SKArchitekkt_Example.modulemap"; sourceTree = "<group>"; };
-		0D455FE5B9676A7064B06A17023BED63 /* Settings.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		0FD81FEFE20299CDC04893CE360ED4B0 /* Array.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Array.swift; path = CoreArchitekkt/Source/Public/Extensions/Array.swift; sourceTree = "<group>"; };
 		1297FD8EFC40A592925C565B000B9CDE /* CoreArchitekkt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CoreArchitekkt.release.xcconfig; sourceTree = "<group>"; };
 		172867A2DCB649E06D710351B82EFA54 /* CoreArchitekkt-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "CoreArchitekkt-dummy.m"; sourceTree = "<group>"; };
+		1896BA996DCFB1B614B56DE3B966418F /* NodeScene+Rendering.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NodeScene+Rendering.swift"; sourceTree = "<group>"; };
 		18D9A0217E5BCB2579DAA58BBA2761BC /* Pods-SKArchitekkt_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SKArchitekkt_Example.release.xcconfig"; sourceTree = "<group>"; };
-		1C5DF1414BC322DD9DFE7C4A74C4091E /* ShapeNode+Rendering.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "ShapeNode+Rendering.swift"; sourceTree = "<group>"; };
+		19586AB9300C2917F0B88D04C43186E6 /* SKArchitekkt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SKArchitekkt.release.xcconfig; sourceTree = "<group>"; };
+		198D91E5D27FD5DEF6E3FB57DD99E431 /* SettingsGroup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingsGroup.swift; sourceTree = "<group>"; };
+		1CAB99D9978EABC90B07383CD7C36015 /* NodeViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NodeViewController.swift; sourceTree = "<group>"; };
 		1D16C4E06AD9C471215C2E119FFA0551 /* Pods-UnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-UnitTests.release.xcconfig"; sourceTree = "<group>"; };
-		1D56482D3C75D6706D8D29BA9C26B58E /* NodeScene+MouseInteraction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NodeScene+MouseInteraction.swift"; sourceTree = "<group>"; };
 		1F3FB5D853D2C73624B15A637A965172 /* Pods-SKArchitekkt_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SKArchitekkt_Example-dummy.m"; sourceTree = "<group>"; };
-		201B47B696E370A867CD31A784A33CFA /* CGPath.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGPath.swift; sourceTree = "<group>"; };
-		20C3896C2FA7428F9446D9F045FB0587 /* CGVector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGVector.swift; sourceTree = "<group>"; };
-		21108D04E110ABB63E120E8D79752E37 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		2166F1E1D0E86514B8C20BC5AB6AD20A /* RightPaneCollectionViewItem.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = RightPaneCollectionViewItem.xib; sourceTree = "<group>"; };
+		1F7682B918CB513431A41ED93E54B1B7 /* VirtualTransformation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VirtualTransformation.swift; sourceTree = "<group>"; };
+		1F8DE7BC3F6722BF4B2203AAC3AF090F /* CGPath.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGPath.swift; sourceTree = "<group>"; };
 		21B86D50D5F834276087950294B4E714 /* Regex.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Regex.swift; path = "CoreArchitekkt/Source/Public/Classes+Structs/Regex.swift"; sourceTree = "<group>"; };
-		22510E172C13985B6EFAFBCE5CD93E34 /* GraphWindowController.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = GraphWindowController.storyboard; sourceTree = "<group>"; };
 		22FC77E23626DD34FC30DD3ACE8CEFAC /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		241D6AF26C16DE6DD4E2378D63412F61 /* ArcNode+Rendering.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "ArcNode+Rendering.swift"; sourceTree = "<group>"; };
 		24DA6C6059BF333EE6EF9FC79A335893 /* NSViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NSViewController.swift; path = CoreArchitekkt/Source/Public/Extensions/NSViewController.swift; sourceTree = "<group>"; };
+		277434AA4E8FEEA3C274C05FC9EA055F /* NodeScene.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NodeScene.swift; sourceTree = "<group>"; };
 		2B32DBF1E79E9B2978D82382A82619E3 /* Pods-SKArchitekkt_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SKArchitekkt_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
+		2BD7058571560C99155CF0CFC553C28F /* GraphWindowController.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = GraphWindowController.storyboard; sourceTree = "<group>"; };
 		2D02F05CDA9D8AF4E49675C3D7A7A9D6 /* GraphRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GraphRequest.swift; path = "CoreArchitekkt/Source/Public/Classes+Structs/GraphRequest.swift"; sourceTree = "<group>"; };
-		2FC9E5E6AA4B3A8B82273B19804450A9 /* GraphCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GraphCoordinator.swift; sourceTree = "<group>"; };
 		300E78394908E750671EF6F1154FDEA6 /* Pods-UnitTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-UnitTests-frameworks.sh"; sourceTree = "<group>"; };
 		3271C07773EF0B03B8330DB8C674260C /* Pods-SKArchitekkt_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SKArchitekkt_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		32EC778844AC4047B831A3DCDAFC042D /* Pods-UnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-UnitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		34A0E16DB291B410C16327A47D9D5AB2 /* SKArchitekkt.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SKArchitekkt.modulemap; sourceTree = "<group>"; };
 		35D3238BE68BC0FC15DFCEEB582FEE52 /* Pods-UnitTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-UnitTests-umbrella.h"; sourceTree = "<group>"; };
 		39919475B31DB728AEDC1B5DE7B8E579 /* Pods-UnitTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-UnitTests-dummy.m"; sourceTree = "<group>"; };
-		4222C155A3B1C3E30D0BDCD47CDFDA84 /* RightPaneHeaderView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = RightPaneHeaderView.xib; sourceTree = "<group>"; };
+		3D7899F41786BC61BFB1DB48E9611CD9 /* ArcNode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ArcNode.swift; sourceTree = "<group>"; };
+		3EA7D74690B27E1335AC09E1FCDD385E /* Settings.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		42F3DDBE5D507BF9F72818D70AD4BA25 /* GraphWindowController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GraphWindowController.swift; sourceTree = "<group>"; };
 		4716D3C96E16FCC61EFEC011E56C547E /* ObjectAssociation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ObjectAssociation.swift; path = "CoreArchitekkt/Source/Public/Classes+Structs/ObjectAssociation.swift"; sourceTree = "<group>"; };
 		4ADD871C4FE4C2FE929BA804689D5774 /* Node.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Node.swift; path = "CoreArchitekkt/Source/Public/Classes+Structs/Node/Node.swift"; sourceTree = "<group>"; };
-		4E3A35726955777EC5D9A7B57923BB86 /* SKArchitekkt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SKArchitekkt.debug.xcconfig; sourceTree = "<group>"; };
-		513DA2C414B8C0EFBEDBE4F79431A228 /* SettingsGroup.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingsGroup.swift; sourceTree = "<group>"; };
-		523C0977BFA8D17AD1765B8B8A60DAA6 /* NodeScene.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NodeScene.swift; sourceTree = "<group>"; };
-		5B00187297F218EF66983CD5DBE0472F /* NodeViewController.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = NodeViewController.storyboard; sourceTree = "<group>"; };
+		4CB1F3A46A03B57B4196618C23CC8ADF /* CGFloat.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
+		5CB716FF8A1E8F3F84970B576B9A7489 /* SettingsItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingsItem.swift; sourceTree = "<group>"; };
 		607D5C2384FC4AC4305C3494349B64D2 /* TabViewCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TabViewCoordinator.swift; path = "CoreArchitekkt/Source/Public/Classes+Structs/Coordinator/TabViewCoordinator.swift"; sourceTree = "<group>"; };
 		62AD7241DD9EEF388487778CE0E2EAC5 /* Pods-UnitTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-UnitTests-Info.plist"; sourceTree = "<group>"; };
-		672DE4A0A347A832B866F1527AC01263 /* CGFloat.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGFloat.swift; sourceTree = "<group>"; };
+		65B4E7BA23BE122FA48D2C26D9F50B7A /* NodeScene+MouseInteraction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NodeScene+MouseInteraction.swift"; sourceTree = "<group>"; };
+		65BD8D1A904720F2CF24F9A504710829 /* VirtualArc.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VirtualArc.swift; sourceTree = "<group>"; };
 		681A39BF5817C04F854DED4BE4DB397D /* CoreArchitekkt-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "CoreArchitekkt-Info.plist"; sourceTree = "<group>"; };
-		68D845DDFD28837C5CA51C0DBED6CFAD /* CGVector+Comparable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CGVector+Comparable.swift"; sourceTree = "<group>"; };
-		6BF8F754833B704F099C598978BE0BB8 /* NodeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NodeView.swift; sourceTree = "<group>"; };
 		6D1362B1F3CD5BC3787CD080B2B5FCD7 /* ViewCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ViewCoordinator.swift; path = "CoreArchitekkt/Source/Public/Classes+Structs/Coordinator/ViewCoordinator.swift"; sourceTree = "<group>"; };
-		6DE1B2B7D008BCA6DF60936910190E6F /* SKArchitekkt-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SKArchitekkt-umbrella.h"; sourceTree = "<group>"; };
 		6FE39D3BB1C3B729C9FE6DB4986C621E /* CoreArchitekkt-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CoreArchitekkt-umbrella.h"; sourceTree = "<group>"; };
-		710B846CC064C897EE29EEC77232D246 /* SKArchitekkt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SKArchitekkt.release.xcconfig; sourceTree = "<group>"; };
-		71D090A3E3AE9CD49AE67FE9E2CA8060 /* RightPaneFooterView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = RightPaneFooterView.xib; sourceTree = "<group>"; };
+		71355523B9C9B5C9C64DA22A1FE26E38 /* GraphCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GraphCoordinator.swift; sourceTree = "<group>"; };
 		78577DEF968EFD16F2F8D885915AD013 /* Pods-SKArchitekkt_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SKArchitekkt_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		7A3620B620CD61A2D93271AE792A1543 /* VirtualArc.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VirtualArc.swift; sourceTree = "<group>"; };
 		7B2AE89803B2C9A98C7AD1D0EA5D0BDF /* DispatchQueue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DispatchQueue.swift; path = CoreArchitekkt/Source/Public/Extensions/DispatchQueue.swift; sourceTree = "<group>"; };
 		7CD7B2F53B31794115C4A705F925E85D /* Pods-SKArchitekkt_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SKArchitekkt_Example-Info.plist"; sourceTree = "<group>"; };
-		7DA176BCE014204FFE3A845102834B5E /* RightPaneHeaderView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RightPaneHeaderView.swift; sourceTree = "<group>"; };
 		7F1D16EED072E12ABDEF15AF97807E0C /* ConsistentUrlRequirement.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConsistentUrlRequirement.swift; path = "CoreArchitekkt/Source/Public/Classes+Structs/ConsistentUrlRequirement.swift"; sourceTree = "<group>"; };
-		834FD5ECA44733ACC5F2BDB69FF44E9A /* CGPoint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGPoint.swift; sourceTree = "<group>"; };
-		838C28682F83FE52A7328B8B79228DEC /* RightPaneCollectionViewItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RightPaneCollectionViewItem.swift; sourceTree = "<group>"; };
-		84C835F60C7998DEBFA7CEA629FB4A56 /* NodeView+RootNodeHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NodeView+RootNodeHandler.swift"; sourceTree = "<group>"; };
-		89CC0D5F3093FBF5DB3C65D7AC5D98A8 /* ArcNode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ArcNode.swift; sourceTree = "<group>"; };
+		872B996F30C039A3A4FF728BC07CFB14 /* SKArchitekkt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SKArchitekkt.debug.xcconfig; sourceTree = "<group>"; };
 		8B0958B648B0CCCEBAEB92B70691991D /* ViewWithBackgroundColor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ViewWithBackgroundColor.swift; path = "CoreArchitekkt/Source/Public/Classes+Structs/ViewWithBackgroundColor.swift"; sourceTree = "<group>"; };
-		8D0941EE246A956700674F74 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = SKArchitekkt/Assets/Assets.xcassets; sourceTree = "<group>"; };
-		8FBE668855B29D2ED20A54BD33F65868 /* NodeViewController+RootNodeHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NodeViewController+RootNodeHandler.swift"; sourceTree = "<group>"; };
+		8CBDCDC3A7E243C1C3F2162A31A8CEBF /* NodeView+RootNodeHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NodeView+RootNodeHandler.swift"; sourceTree = "<group>"; };
 		9255986F82E0CE6312DE651C1BABBD9B /* StoryBoardLoadable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StoryBoardLoadable.swift; path = CoreArchitekkt/Source/Public/Protocols/StoryBoardLoadable.swift; sourceTree = "<group>"; };
-		950AEDDF19820F01C3D3734656F222A4 /* ResponderChain.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ResponderChain.swift; sourceTree = "<group>"; };
+		9542EFCB25513A6598374C3829BE9172 /* GraphCoordinator.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = GraphCoordinator.storyboard; sourceTree = "<group>"; };
+		97087AD7D6640479F0AE39309AE3FABB /* RightPaneHeaderView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RightPaneHeaderView.swift; sourceTree = "<group>"; };
+		97CD50FCB7FFFF1BED230830B5431470 /* SKArchitekkt-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SKArchitekkt-prefix.pch"; sourceTree = "<group>"; };
 		987EEA5B5021E3BCA9A02C843E74C1CE /* Pods-UnitTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-UnitTests-acknowledgements.plist"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9DCC7B450AC569B69237BB834C55B3BD /* SKArchitekkt.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SKArchitekkt.modulemap; sourceTree = "<group>"; };
-		A078BD38ED51E8EE6D069C84C1168F10 /* GraphWindowController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = GraphWindowController.swift; sourceTree = "<group>"; };
-		A3837F504FBE76BDDCF6B1C4801A3106 /* SettingsItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingsItem.swift; sourceTree = "<group>"; };
-		A6DA0724D1AF91319607D6B9CFF35717 /* Pods_SKArchitekkt_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SKArchitekkt_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9BBDF9AD3A8725C421A2F63DE0404D22 /* ShapeNode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ShapeNode.swift; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A63639EB37AE18AB8A08FDCAE8FB0FC1 /* SKArchitekkt-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SKArchitekkt-umbrella.h"; sourceTree = "<group>"; };
+		A6DA0724D1AF91319607D6B9CFF35717 /* Pods_SKArchitekkt_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SKArchitekkt_Example.framework; path = "Pods-SKArchitekkt_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A7EA1627A85D99FF15968F04081ACC22 /* NodeViewController.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = NodeViewController.storyboard; sourceTree = "<group>"; };
 		A7FA6E338676F8D3055E72B3075FB682 /* Coordinating.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Coordinating.swift; path = "CoreArchitekkt/Source/Public/Classes+Structs/Coordinator/Coordinating.swift"; sourceTree = "<group>"; };
-		AAE71485CA51E31CC9F43C5BAC3FD90B /* ArcNode+Rendering.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "ArcNode+Rendering.swift"; sourceTree = "<group>"; };
+		AAA3B7C5EAE0F91CEABC8FF316175B85 /* RightPaneViewController.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = RightPaneViewController.storyboard; sourceTree = "<group>"; };
 		AFEC9802B6BC60C0EC6EEBCEE26C4EFA /* Pods-SKArchitekkt_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SKArchitekkt_Example-frameworks.sh"; sourceTree = "<group>"; };
-		B0CDC69F1EC4402589210D73A07B116C /* ShapeNode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ShapeNode.swift; sourceTree = "<group>"; };
 		B1B69F4AF46D1C2EB093D05E86A38E9B /* NSRect.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NSRect.swift; path = CoreArchitekkt/Source/Public/Extensions/NSRect.swift; sourceTree = "<group>"; };
-		B4CC583CB3FB124A92AE02CF3404CFA5 /* GraphCoordinator.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = GraphCoordinator.storyboard; sourceTree = "<group>"; };
-		BA363B70FAE9D80D7CB085C16D56D619 /* SKArchitekkt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SKArchitekkt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BA5A7C8A8ECFA0AEE129C32983E53A08 /* NodeScene+Physics.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NodeScene+Physics.swift"; sourceTree = "<group>"; };
+		B274B144529075959BA2839D6BC5EA0B /* NodeScene+Physics.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NodeScene+Physics.swift"; sourceTree = "<group>"; };
+		B8B36384C911667DD826A00A1FF72F28 /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = SKArchitekkt/Assets/Assets.xcassets; sourceTree = "<group>"; };
+		BA363B70FAE9D80D7CB085C16D56D619 /* SKArchitekkt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SKArchitekkt.framework; path = SKArchitekkt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAE2CBC08B767AAED24EA315E6D42638 /* NSWindowController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = NSWindowController.swift; path = CoreArchitekkt/Source/Public/Extensions/NSWindowController.swift; sourceTree = "<group>"; };
-		BAF819A6DD5E3FBC2DA5452EB168FA35 /* SKArchitekkt-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SKArchitekkt-Info.plist"; sourceTree = "<group>"; };
+		BC95A120987D76FED64D8382074060B9 /* RightPaneFooterView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = RightPaneFooterView.xib; sourceTree = "<group>"; };
+		BD956A8374A8F5E4E47932EC03327CF8 /* RightPaneHeaderView.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = RightPaneHeaderView.xib; sourceTree = "<group>"; };
 		C7F2F6D2B14E5BE9FBEE04BE52E0E91E /* Pods-SKArchitekkt_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SKArchitekkt_Example-umbrella.h"; sourceTree = "<group>"; };
-		C97CA0F18E585D7E21C8F567734BF095 /* SKArchitekkt-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SKArchitekkt-dummy.m"; sourceTree = "<group>"; };
-		CA7F804540679C38E23C4D8881C57A37 /* RightPaneViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RightPaneViewController.swift; sourceTree = "<group>"; };
+		C945FD31E30F327345A98382E8CEE615 /* NodeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NodeView.swift; sourceTree = "<group>"; };
+		CA1D8DE733ACA163A3AA0110302CF049 /* RightPaneViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RightPaneViewController.swift; sourceTree = "<group>"; };
+		CE0687B1E41D441A854A93BE4DFFA118 /* ShapeNode+Rendering.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "ShapeNode+Rendering.swift"; sourceTree = "<group>"; };
 		CF9F154498A791E8E713E6DF0A36EB5C /* GraphRequestHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GraphRequestHandler.swift; path = CoreArchitekkt/Source/Public/Protocols/GraphRequestHandler.swift; sourceTree = "<group>"; };
-		CFDCEDDC51824B42E174AF09A5431FE8 /* CoreArchitekkt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreArchitekkt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CFDCEDDC51824B42E174AF09A5431FE8 /* CoreArchitekkt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = CoreArchitekkt.framework; path = CoreArchitekkt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CFF8D297C4370BB1EF03E44201AFACE0 /* Pods-UnitTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-UnitTests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		D06B85D849C09D3F9A744D5F9763595E /* SKArchitekkt-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SKArchitekkt-prefix.pch"; sourceTree = "<group>"; };
+		D04BDEE35D22AC220A75881E7D8598FD /* RightPaneCollectionViewItem.xib */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.xib; path = RightPaneCollectionViewItem.xib; sourceTree = "<group>"; };
 		D321BD7795383FE2E7D55AC2200D1D6D /* SplitViewCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SplitViewCoordinator.swift; path = "CoreArchitekkt/Source/Public/Classes+Structs/Coordinator/SplitViewCoordinator.swift"; sourceTree = "<group>"; };
-		D3C6476711DC915BFF75421B1F8B40FE /* VirtualTransformation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VirtualTransformation.swift; sourceTree = "<group>"; };
-		D3E7F7D5E86F09900E5D941DE359D66D /* NodeViewController.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = NodeViewController.swift; sourceTree = "<group>"; };
-		D62B86F37F78801FEEC6159F44B5D18F /* VirtualNode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VirtualNode.swift; sourceTree = "<group>"; };
+		D62513EF230AC83328541E763922992F /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		D7901CC0E294D3826882FEB51E427983 /* CoreArchitekkt-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "CoreArchitekkt-prefix.pch"; sourceTree = "<group>"; };
 		DA9DBA317CBE10CBDEBF4248B7BFF3D8 /* WindowCoordinator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = WindowCoordinator.swift; path = "CoreArchitekkt/Source/Public/Classes+Structs/Coordinator/WindowCoordinator.swift"; sourceTree = "<group>"; };
-		DB3F143C083C253354C5B5E75C15012E /* Pods_UnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB3F143C083C253354C5B5E75C15012E /* Pods_UnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_UnitTests.framework; path = "Pods-UnitTests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DBB27AFB05B76298A7826A6F938D2CDC /* RootNodeHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RootNodeHandler.swift; path = CoreArchitekkt/Source/Public/Protocols/RootNodeHandler.swift; sourceTree = "<group>"; };
 		DCEBAF7F9E9809C648BDC772E17540DE /* Node+Comparable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "Node+Comparable.swift"; path = "CoreArchitekkt/Source/Public/Classes+Structs/Node/Node+Comparable.swift"; sourceTree = "<group>"; };
+		DE095A27975F6525DECCF2B16427F44E /* ResponderChain.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ResponderChain.swift; sourceTree = "<group>"; };
+		DE148DEEC3FD86DE9C72A465C9491D6C /* NodeViewController+RootNodeHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NodeViewController+RootNodeHandler.swift"; sourceTree = "<group>"; };
 		E48D51B424A16B867A11F6F37DD6F905 /* CoreArchitekkt.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = CoreArchitekkt.modulemap; sourceTree = "<group>"; };
 		E6CD65037279B55ADFE76A5D179B84E6 /* Shell.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Shell.swift; path = "CoreArchitekkt/Source/Public/Classes+Structs/Shell.swift"; sourceTree = "<group>"; };
 		E8E6EE372BF4C474DAE2D3111ABE174D /* DependencyUpdating.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DependencyUpdating.swift; path = "CoreArchitekkt/Source/Public/Classes+Structs/Coordinator/DependencyUpdating.swift"; sourceTree = "<group>"; };
-		EE76CBFCCE841A29E696B0F575973325 /* RightPaneViewController.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = RightPaneViewController.storyboard; sourceTree = "<group>"; };
-		F3CFBC4E235F34200508067B530233DB /* GraphCoordinator+RootNodeHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "GraphCoordinator+RootNodeHandler.swift"; sourceTree = "<group>"; };
-		F820111206C99C037F0671344DB1D52A /* SKArchitekkt.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = SKArchitekkt.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		EC4C160BCA05F5B3116730933F81C56A /* CGPoint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGPoint.swift; sourceTree = "<group>"; };
+		ED6E0D381942B7B54DC1B1DE334DD5D3 /* CGVector+Comparable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "CGVector+Comparable.swift"; sourceTree = "<group>"; };
+		EE9E1234B59ED64F0FC7EE95CB090A75 /* VirtualNode.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = VirtualNode.swift; sourceTree = "<group>"; };
+		EEBD4610ABA6CFC1475F65935CA7285A /* SKArchitekkt.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = SKArchitekkt.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		F3865B9D468E0B222D2A87D13D87F599 /* CGVector.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CGVector.swift; sourceTree = "<group>"; };
+		F81AE144168A17A4F6D261E7C644220E /* GraphCoordinator+RootNodeHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "GraphCoordinator+RootNodeHandler.swift"; sourceTree = "<group>"; };
+		F8919B5FDBBAE4F3E351262F0CB5ACBA /* SKArchitekkt-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SKArchitekkt-Info.plist"; sourceTree = "<group>"; };
+		F8BFC67698A0C2D09588A2DCC5B21FA1 /* RightPaneCollectionViewItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RightPaneCollectionViewItem.swift; sourceTree = "<group>"; };
 		FB9D426DA9B522A28593DECA1390037C /* CoreArchitekkt.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = CoreArchitekkt.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -232,15 +232,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E67006FC66A09452CB22F91951008A96 /* Cocoa.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		30D0088B58AD503F4A907E23B0817A39 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				0BE944988A6AFAFF716CA93F694D78B6 /* Cocoa.framework in Frameworks */,
-				0006B53C66902ACC0878E90C5FF73DA2 /* CoreArchitekkt.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,17 +251,27 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E779B5F4DFD6DCDDC86656EF043B9E09 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3A20329CDA9F461BFA624430920F5BF7 /* Cocoa.framework in Frameworks */,
+				0FA371FDF1269D30162A4B5BD77BE5CC /* CoreArchitekkt.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0EA0034AC3626BF16E84B2584FC92277 /* Settings */ = {
+		0FABA7FC061D2E043F590CBA85871440 /* NodeView */ = {
 			isa = PBXGroup;
 			children = (
-				0D455FE5B9676A7064B06A17023BED63 /* Settings.swift */,
-				513DA2C414B8C0EFBEDBE4F79431A228 /* SettingsGroup.swift */,
-				A3837F504FBE76BDDCF6B1C4801A3106 /* SettingsItem.swift */,
+				C945FD31E30F327345A98382E8CEE615 /* NodeView.swift */,
+				8CBDCDC3A7E243C1C3F2162A31A8CEBF /* NodeView+RootNodeHandler.swift */,
+				6931820756A331A1537B6A47797283D2 /* NodeScene */,
 			);
-			path = Settings;
+			name = NodeView;
+			path = NodeView;
 			sourceTree = "<group>";
 		};
 		128679E74F07EB13B66C502232FB29E9 /* Targets Support Files */ = {
@@ -282,38 +283,43 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		2A7D4A5F1646C5BB6C6692AEDBB1A840 /* Virtual */ = {
+		1A97206C9B4E26D7F6C80AB1A7F8896D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				7A3620B620CD61A2D93271AE792A1543 /* VirtualArc.swift */,
-				D62B86F37F78801FEEC6159F44B5D18F /* VirtualNode.swift */,
-				D3C6476711DC915BFF75421B1F8B40FE /* VirtualTransformation.swift */,
+				4CB1F3A46A03B57B4196618C23CC8ADF /* CGFloat.swift */,
+				1F8DE7BC3F6722BF4B2203AAC3AF090F /* CGPath.swift */,
+				EC4C160BCA05F5B3116730933F81C56A /* CGPoint.swift */,
+				F3865B9D468E0B222D2A87D13D87F599 /* CGVector.swift */,
+				ED6E0D381942B7B54DC1B1DE334DD5D3 /* CGVector+Comparable.swift */,
 			);
-			path = Virtual;
+			name = Extensions;
+			path = Extensions;
 			sourceTree = "<group>";
 		};
-		3AED5FA713DEE43F87BE9933D19921C4 /* RightPaneViewController */ = {
+		2A15F1F4C04BA4CB18606968B1A6ECA0 /* Public */ = {
 			isa = PBXGroup;
 			children = (
-				838C28682F83FE52A7328B8B79228DEC /* RightPaneCollectionViewItem.swift */,
-				2166F1E1D0E86514B8C20BC5AB6AD20A /* RightPaneCollectionViewItem.xib */,
-				71D090A3E3AE9CD49AE67FE9E2CA8060 /* RightPaneFooterView.xib */,
-				7DA176BCE014204FFE3A845102834B5E /* RightPaneHeaderView.swift */,
-				4222C155A3B1C3E30D0BDCD47CDFDA84 /* RightPaneHeaderView.xib */,
-				EE76CBFCCE841A29E696B0F575973325 /* RightPaneViewController.storyboard */,
-				CA7F804540679C38E23C4D8881C57A37 /* RightPaneViewController.swift */,
+				8BF1DDE6F8E3726CD4EF0B01BAC8F84E /* GraphWindow */,
 			);
-			path = RightPaneViewController;
+			name = Public;
+			path = SKArchitekkt/Source/Public;
 			sourceTree = "<group>";
 		};
-		3B790809CBFB2D3970EDAA957DCB8028 /* NodeView */ = {
+		2CE4DC4F2ED4C6ADA3893D05DBB4C9B6 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				6BF8F754833B704F099C598978BE0BB8 /* NodeView.swift */,
-				84C835F60C7998DEBFA7CEA629FB4A56 /* NodeView+RootNodeHandler.swift */,
-				D2E7D6F55DE5121D3F71FDA3D66050B6 /* NodeScene */,
+				D62513EF230AC83328541E763922992F /* README.md */,
+				EEBD4610ABA6CFC1475F65935CA7285A /* SKArchitekkt.podspec */,
 			);
-			path = NodeView;
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		49033FD2EBD0FE36D9E27787E8D32786 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B8B36384C911667DD826A00A1FF72F28 /* Assets.xcassets */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		4D27FAD9EDAB2203F8BEECC329B72BF8 /* OS X */ = {
@@ -341,14 +347,15 @@
 			path = "Target Support Files/Pods-SKArchitekkt_Example";
 			sourceTree = "<group>";
 		};
-		528C464B960E377E47835CE58E1A4F40 /* NodeViewController */ = {
+		595719534D351C1AADF64948CC3F06FA /* NodeViewController */ = {
 			isa = PBXGroup;
 			children = (
-				5B00187297F218EF66983CD5DBE0472F /* NodeViewController.storyboard */,
-				D3E7F7D5E86F09900E5D941DE359D66D /* NodeViewController.swift */,
-				8FBE668855B29D2ED20A54BD33F65868 /* NodeViewController+RootNodeHandler.swift */,
-				3B790809CBFB2D3970EDAA957DCB8028 /* NodeView */,
+				A7EA1627A85D99FF15968F04081ACC22 /* NodeViewController.storyboard */,
+				1CAB99D9978EABC90B07383CD7C36015 /* NodeViewController.swift */,
+				DE148DEEC3FD86DE9C72A465C9491D6C /* NodeViewController+RootNodeHandler.swift */,
+				0FABA7FC061D2E043F590CBA85871440 /* NodeView */,
 			);
+			name = NodeViewController;
 			path = NodeViewController;
 			sourceTree = "<group>";
 		};
@@ -360,13 +367,29 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		6B6C468AD2D98A75349F05867DCD639D /* Public */ = {
+		67548E52472D69B6F0A977DFA0C0449E /* ShapeNode */ = {
 			isa = PBXGroup;
 			children = (
-				DB4D5CC5C8F0C2D3F3A8360D2B8209C5 /* GraphWindow */,
+				9BBDF9AD3A8725C421A2F63DE0404D22 /* ShapeNode.swift */,
+				CE0687B1E41D441A854A93BE4DFFA118 /* ShapeNode+Rendering.swift */,
 			);
-			name = Public;
-			path = SKArchitekkt/Source/Public;
+			name = ShapeNode;
+			path = ShapeNode;
+			sourceTree = "<group>";
+		};
+		6931820756A331A1537B6A47797283D2 /* NodeScene */ = {
+			isa = PBXGroup;
+			children = (
+				277434AA4E8FEEA3C274C05FC9EA055F /* NodeScene.swift */,
+				65B4E7BA23BE122FA48D2C26D9F50B7A /* NodeScene+MouseInteraction.swift */,
+				B274B144529075959BA2839D6BC5EA0B /* NodeScene+Physics.swift */,
+				1896BA996DCFB1B614B56DE3B966418F /* NodeScene+Rendering.swift */,
+				AF9150C44B3766991972E65707951CB0 /* ArcNode */,
+				67548E52472D69B6F0A977DFA0C0449E /* ShapeNode */,
+				82DB05214A529FDF9CCD018864E1B0FD /* Virtual */,
+			);
+			name = NodeScene;
+			path = NodeScene;
 			sourceTree = "<group>";
 		};
 		6BB8590D04666847D9863DD1B5B252D3 /* Products */ = {
@@ -380,16 +403,30 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		71BC4DEF3410785C6BEED06635EDABEA /* Extensions */ = {
+		7C4F1D06F31200442E285C4DEDA52038 /* RightPaneViewController */ = {
 			isa = PBXGroup;
 			children = (
-				672DE4A0A347A832B866F1527AC01263 /* CGFloat.swift */,
-				201B47B696E370A867CD31A784A33CFA /* CGPath.swift */,
-				834FD5ECA44733ACC5F2BDB69FF44E9A /* CGPoint.swift */,
-				20C3896C2FA7428F9446D9F045FB0587 /* CGVector.swift */,
-				68D845DDFD28837C5CA51C0DBED6CFAD /* CGVector+Comparable.swift */,
+				F8BFC67698A0C2D09588A2DCC5B21FA1 /* RightPaneCollectionViewItem.swift */,
+				D04BDEE35D22AC220A75881E7D8598FD /* RightPaneCollectionViewItem.xib */,
+				BC95A120987D76FED64D8382074060B9 /* RightPaneFooterView.xib */,
+				97087AD7D6640479F0AE39309AE3FABB /* RightPaneHeaderView.swift */,
+				BD956A8374A8F5E4E47932EC03327CF8 /* RightPaneHeaderView.xib */,
+				AAA3B7C5EAE0F91CEABC8FF316175B85 /* RightPaneViewController.storyboard */,
+				CA1D8DE733ACA163A3AA0110302CF049 /* RightPaneViewController.swift */,
 			);
-			path = Extensions;
+			name = RightPaneViewController;
+			path = RightPaneViewController;
+			sourceTree = "<group>";
+		};
+		82DB05214A529FDF9CCD018864E1B0FD /* Virtual */ = {
+			isa = PBXGroup;
+			children = (
+				65BD8D1A904720F2CF24F9A504710829 /* VirtualArc.swift */,
+				EE9E1234B59ED64F0FC7EE95CB090A75 /* VirtualNode.swift */,
+				1F7682B918CB513431A41ED93E54B1B7 /* VirtualTransformation.swift */,
+			);
+			name = Virtual;
+			path = Virtual;
 			sourceTree = "<group>";
 		};
 		87A6D9003388DBB927B6DA5AB5C5167F /* Support Files */ = {
@@ -407,66 +444,59 @@
 			path = "../Target Support Files/CoreArchitekkt";
 			sourceTree = "<group>";
 		};
-		8A4E518000A19032922C7C296F57F603 /* ResponderChain */ = {
+		8BF1DDE6F8E3726CD4EF0B01BAC8F84E /* GraphWindow */ = {
 			isa = PBXGroup;
 			children = (
-				950AEDDF19820F01C3D3734656F222A4 /* ResponderChain.swift */,
+				9542EFCB25513A6598374C3829BE9172 /* GraphCoordinator.storyboard */,
+				71355523B9C9B5C9C64DA22A1FE26E38 /* GraphCoordinator.swift */,
+				F81AE144168A17A4F6D261E7C644220E /* GraphCoordinator+RootNodeHandler.swift */,
+				2BD7058571560C99155CF0CFC553C28F /* GraphWindowController.storyboard */,
+				42F3DDBE5D507BF9F72818D70AD4BA25 /* GraphWindowController.swift */,
 			);
-			path = ResponderChain;
+			name = GraphWindow;
+			path = GraphWindow;
 			sourceTree = "<group>";
 		};
-		95742814C7B46E32C8B6B80C439B8661 /* Development Pods */ = {
+		915AB9976B4CF4057321536B688C34DA /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				FC53FBBE4847CAEB885005F295361451 /* SKArchitekkt */,
+				F926BD10A4C953BD9018FCF2A7638615 /* SKArchitekkt */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
 		};
-		A1ED6F5E083F029BE77E05125E435E42 /* Support Files */ = {
+		AF9150C44B3766991972E65707951CB0 /* ArcNode */ = {
 			isa = PBXGroup;
 			children = (
-				9DCC7B450AC569B69237BB834C55B3BD /* SKArchitekkt.modulemap */,
-				C97CA0F18E585D7E21C8F567734BF095 /* SKArchitekkt-dummy.m */,
-				BAF819A6DD5E3FBC2DA5452EB168FA35 /* SKArchitekkt-Info.plist */,
-				D06B85D849C09D3F9A744D5F9763595E /* SKArchitekkt-prefix.pch */,
-				6DE1B2B7D008BCA6DF60936910190E6F /* SKArchitekkt-umbrella.h */,
-				4E3A35726955777EC5D9A7B57923BB86 /* SKArchitekkt.debug.xcconfig */,
-				710B846CC064C897EE29EEC77232D246 /* SKArchitekkt.release.xcconfig */,
+				3D7899F41786BC61BFB1DB48E9611CD9 /* ArcNode.swift */,
+				241D6AF26C16DE6DD4E2378D63412F61 /* ArcNode+Rendering.swift */,
 			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/SKArchitekkt";
+			name = ArcNode;
+			path = ArcNode;
 			sourceTree = "<group>";
 		};
-		AF7A9F82C7A965186D7ED6B9233B8B10 /* Internal */ = {
+		B3B5B658CAE6D47FA47B8506E8BD27EE /* Internal */ = {
 			isa = PBXGroup;
 			children = (
-				71BC4DEF3410785C6BEED06635EDABEA /* Extensions */,
-				528C464B960E377E47835CE58E1A4F40 /* NodeViewController */,
-				8A4E518000A19032922C7C296F57F603 /* ResponderChain */,
-				3AED5FA713DEE43F87BE9933D19921C4 /* RightPaneViewController */,
-				0EA0034AC3626BF16E84B2584FC92277 /* Settings */,
+				1A97206C9B4E26D7F6C80AB1A7F8896D /* Extensions */,
+				595719534D351C1AADF64948CC3F06FA /* NodeViewController */,
+				EFF6D431F36FA405AFCEB2A3F0438E72 /* ResponderChain */,
+				7C4F1D06F31200442E285C4DEDA52038 /* RightPaneViewController */,
+				C3AFB9395711139771F2DC63FD758D60 /* Settings */,
 			);
 			name = Internal;
 			path = SKArchitekkt/Source/Internal;
 			sourceTree = "<group>";
 		};
-		C0656903FE8349A6ABCD2C4D605F6543 /* ArcNode */ = {
+		C3AFB9395711139771F2DC63FD758D60 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				89CC0D5F3093FBF5DB3C65D7AC5D98A8 /* ArcNode.swift */,
-				AAE71485CA51E31CC9F43C5BAC3FD90B /* ArcNode+Rendering.swift */,
+				3EA7D74690B27E1335AC09E1FCDD385E /* Settings.swift */,
+				198D91E5D27FD5DEF6E3FB57DD99E431 /* SettingsGroup.swift */,
+				5CB716FF8A1E8F3F84970B576B9A7489 /* SettingsItem.swift */,
 			);
-			path = ArcNode;
-			sourceTree = "<group>";
-		};
-		C70CF074A0ADE0600BC3D1B4AC997B74 /* ShapeNode */ = {
-			isa = PBXGroup;
-			children = (
-				B0CDC69F1EC4402589210D73A07B116C /* ShapeNode.swift */,
-				1C5DF1414BC322DD9DFE7C4A74C4091E /* ShapeNode+Rendering.swift */,
-			);
-			path = ShapeNode;
+			name = Settings;
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		C7616996C9C84657DCAC3F7A981F1C69 /* Frameworks */ = {
@@ -506,6 +536,7 @@
 				DA9DBA317CBE10CBDEBF4248B7BFF3D8 /* WindowCoordinator.swift */,
 				87A6D9003388DBB927B6DA5AB5C5167F /* Support Files */,
 			);
+			name = CoreArchitekkt;
 			path = CoreArchitekkt;
 			sourceTree = "<group>";
 		};
@@ -513,7 +544,7 @@
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				95742814C7B46E32C8B6B80C439B8661 /* Development Pods */,
+				915AB9976B4CF4057321536B688C34DA /* Development Pods */,
 				C7616996C9C84657DCAC3F7A981F1C69 /* Frameworks */,
 				657945F60374612434A2610FCD623A68 /* Pods */,
 				6BB8590D04666847D9863DD1B5B252D3 /* Products */,
@@ -521,30 +552,19 @@
 			);
 			sourceTree = "<group>";
 		};
-		D2E7D6F55DE5121D3F71FDA3D66050B6 /* NodeScene */ = {
+		DCC33115EB668C684E5A920D20DC3E54 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				523C0977BFA8D17AD1765B8B8A60DAA6 /* NodeScene.swift */,
-				1D56482D3C75D6706D8D29BA9C26B58E /* NodeScene+MouseInteraction.swift */,
-				BA5A7C8A8ECFA0AEE129C32983E53A08 /* NodeScene+Physics.swift */,
-				057DFE66CFC1EA121E4F80185DC02961 /* NodeScene+Rendering.swift */,
-				C0656903FE8349A6ABCD2C4D605F6543 /* ArcNode */,
-				C70CF074A0ADE0600BC3D1B4AC997B74 /* ShapeNode */,
-				2A7D4A5F1646C5BB6C6692AEDBB1A840 /* Virtual */,
+				34A0E16DB291B410C16327A47D9D5AB2 /* SKArchitekkt.modulemap */,
+				027646B07FF854A82F129091512CC6A6 /* SKArchitekkt-dummy.m */,
+				F8919B5FDBBAE4F3E351262F0CB5ACBA /* SKArchitekkt-Info.plist */,
+				97CD50FCB7FFFF1BED230830B5431470 /* SKArchitekkt-prefix.pch */,
+				A63639EB37AE18AB8A08FDCAE8FB0FC1 /* SKArchitekkt-umbrella.h */,
+				872B996F30C039A3A4FF728BC07CFB14 /* SKArchitekkt.debug.xcconfig */,
+				19586AB9300C2917F0B88D04C43186E6 /* SKArchitekkt.release.xcconfig */,
 			);
-			path = NodeScene;
-			sourceTree = "<group>";
-		};
-		DB4D5CC5C8F0C2D3F3A8360D2B8209C5 /* GraphWindow */ = {
-			isa = PBXGroup;
-			children = (
-				B4CC583CB3FB124A92AE02CF3404CFA5 /* GraphCoordinator.storyboard */,
-				2FC9E5E6AA4B3A8B82273B19804450A9 /* GraphCoordinator.swift */,
-				F3CFBC4E235F34200508067B530233DB /* GraphCoordinator+RootNodeHandler.swift */,
-				22510E172C13985B6EFAFBCE5CD93E34 /* GraphWindowController.storyboard */,
-				A078BD38ED51E8EE6D069C84C1168F10 /* GraphWindowController.swift */,
-			);
-			path = GraphWindow;
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/SKArchitekkt";
 			sourceTree = "<group>";
 		};
 		EFD030BAB2355E0789B9DFC7058E7B27 /* Pods-UnitTests */ = {
@@ -564,23 +584,23 @@
 			path = "Target Support Files/Pods-UnitTests";
 			sourceTree = "<group>";
 		};
-		F7DCB0FDDE3F23E86F39EFDAF1FD8579 /* Pod */ = {
+		EFF6D431F36FA405AFCEB2A3F0438E72 /* ResponderChain */ = {
 			isa = PBXGroup;
 			children = (
-				21108D04E110ABB63E120E8D79752E37 /* README.md */,
-				F820111206C99C037F0671344DB1D52A /* SKArchitekkt.podspec */,
+				DE095A27975F6525DECCF2B16427F44E /* ResponderChain.swift */,
 			);
-			name = Pod;
+			name = ResponderChain;
+			path = ResponderChain;
 			sourceTree = "<group>";
 		};
-		FC53FBBE4847CAEB885005F295361451 /* SKArchitekkt */ = {
+		F926BD10A4C953BD9018FCF2A7638615 /* SKArchitekkt */ = {
 			isa = PBXGroup;
 			children = (
-				6B6C468AD2D98A75349F05867DCD639D /* Public */,
-				AF7A9F82C7A965186D7ED6B9233B8B10 /* Internal */,
-				8D0941EE246A956700674F74 /* Assets.xcassets */,
-				F7DCB0FDDE3F23E86F39EFDAF1FD8579 /* Pod */,
-				A1ED6F5E083F029BE77E05125E435E42 /* Support Files */,
+				B3B5B658CAE6D47FA47B8506E8BD27EE /* Internal */,
+				2CE4DC4F2ED4C6ADA3893D05DBB4C9B6 /* Pod */,
+				2A15F1F4C04BA4CB18606968B1A6ECA0 /* Public */,
+				49033FD2EBD0FE36D9E27787E8D32786 /* Resources */,
+				DCC33115EB668C684E5A920D20DC3E54 /* Support Files */,
 			);
 			name = SKArchitekkt;
 			path = ../..;
@@ -589,11 +609,11 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		A093225231FA7867A3006EB14659F5BB /* Headers */ = {
+		7D23AE8E6C175F73CF2878133DCFE511 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2AFA3ABE77F8857D4FF85B1151704664 /* SKArchitekkt-umbrella.h in Headers */,
+				04249447D60349B954C4D2C74F8C4BAF /* SKArchitekkt-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -666,17 +686,17 @@
 		};
 		61702F1BDCCB9632B4C064A4B2E64C8D /* SKArchitekkt */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FC690D9EBE20D58BCDFA9595B1E3AF8E /* Build configuration list for PBXNativeTarget "SKArchitekkt" */;
+			buildConfigurationList = 9EDBFB9E383153249C196F35BC3B8FB7 /* Build configuration list for PBXNativeTarget "SKArchitekkt" */;
 			buildPhases = (
-				A093225231FA7867A3006EB14659F5BB /* Headers */,
-				09FE87BE6D25A5D8D642C25DE89919EB /* Sources */,
-				30D0088B58AD503F4A907E23B0817A39 /* Frameworks */,
-				38100B5816417A5FA5F00627A4DC9FF7 /* Resources */,
+				7D23AE8E6C175F73CF2878133DCFE511 /* Headers */,
+				1E337998789F2CC32E401BECB555559F /* Sources */,
+				E779B5F4DFD6DCDDC86656EF043B9E09 /* Frameworks */,
+				2BBE7ED0F4BD24A8B6DD4E44134E906F /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				84C11377A488BA88E079495F813D6EA3 /* PBXTargetDependency */,
+				575E1BCF7758FF76E22CCB196ADBC159 /* PBXTargetDependency */,
 			);
 			name = SKArchitekkt;
 			productName = SKArchitekkt;
@@ -732,11 +752,11 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		38100B5816417A5FA5F00627A4DC9FF7 /* Resources */ = {
+		2BBE7ED0F4BD24A8B6DD4E44134E906F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8D0941EF246A956700674F74 /* Assets.xcassets in Resources */,
+				5A42DA2FC1F10FD16877DD9ACCD4BFDD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -764,48 +784,48 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		09FE87BE6D25A5D8D642C25DE89919EB /* Sources */ = {
+		1E337998789F2CC32E401BECB555559F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				13E0F7BC14D915075D1AD00B7F1FB27D /* ArcNode+Rendering.swift in Sources */,
-				AEB468A1703CA264E27382CF6CAD0A4C /* ArcNode.swift in Sources */,
-				39BAEC139CB5D83AC905155346F91B49 /* CGFloat.swift in Sources */,
-				188108F8503188AC17D6E1416052B01A /* CGPath.swift in Sources */,
-				46844D0E3E0F968F5A013F3A6894D288 /* CGPoint.swift in Sources */,
-				1531AC99F4E7FAD0BA4F1CAE33F23B76 /* CGVector+Comparable.swift in Sources */,
-				D2385B7E96DDD4B6E2607C5F18789F4D /* CGVector.swift in Sources */,
-				C8C14B01CAAFBDDD3B37907FEDEFA863 /* GraphCoordinator+RootNodeHandler.swift in Sources */,
-				B756A8F403B3AD0ACE0FE39BDFD7EFBF /* GraphCoordinator.storyboard in Sources */,
-				6BB488412BCFA022E40C1E8DE4661348 /* GraphCoordinator.swift in Sources */,
-				E0E9EE710E6AC751A07713CD99ADD8D2 /* GraphWindowController.storyboard in Sources */,
-				B4C09CF27CD39CB5B0BEB2864C9CC24B /* GraphWindowController.swift in Sources */,
-				FC51CF558A51D9F1B2B848E09433C4C6 /* NodeScene+MouseInteraction.swift in Sources */,
-				BCD61D39B17500A9FBA370CCD5A65051 /* NodeScene+Physics.swift in Sources */,
-				4DC6F837E40F3646AB4E56D10B053262 /* NodeScene+Rendering.swift in Sources */,
-				68876EE8DDBE9E32D5421FB9143ED7CF /* NodeScene.swift in Sources */,
-				5DD5AF42510EEB8856E5CCB6EC21D1CC /* NodeView+RootNodeHandler.swift in Sources */,
-				95273D5D005BDE216B679278AC228BE7 /* NodeView.swift in Sources */,
-				FBA0252CECF03011A8C9D986E08A3CCA /* NodeViewController+RootNodeHandler.swift in Sources */,
-				AC62AF0757E8E9CA57F198F4880FD8FF /* NodeViewController.storyboard in Sources */,
-				59DE612F71CC3F0B67B12F025EFA0C53 /* NodeViewController.swift in Sources */,
-				7562CBA323DAD915BB4ABCAFCF7B7CD8 /* ResponderChain.swift in Sources */,
-				584551CEF456B61DC63A333D2E573610 /* RightPaneCollectionViewItem.swift in Sources */,
-				59138110B3C5F80C4DFD1AA2103D9840 /* RightPaneCollectionViewItem.xib in Sources */,
-				FFD08DA90932FA79E4C4C0E0D05D6D77 /* RightPaneFooterView.xib in Sources */,
-				D9DD7EC179153B34C84A46B656C784B1 /* RightPaneHeaderView.swift in Sources */,
-				9175E532C5CE323F3132642F064C6914 /* RightPaneHeaderView.xib in Sources */,
-				18DB07DD8C579BF7EB2A0D82293C2528 /* RightPaneViewController.storyboard in Sources */,
-				498D2EE2EC2E0E23CCB274D81B984377 /* RightPaneViewController.swift in Sources */,
-				A6F1B50E13B3E0D250D3207F474E7010 /* Settings.swift in Sources */,
-				33B0907ED29EB85001024005336A9F1C /* SettingsGroup.swift in Sources */,
-				2F07DBAA675F3D7CD38D32D7C9049572 /* SettingsItem.swift in Sources */,
-				0FE105436F8476F90220445E707DCA99 /* ShapeNode+Rendering.swift in Sources */,
-				9B552EA7097FBA2A28441AA6DAD02B96 /* ShapeNode.swift in Sources */,
-				A059DF9326C38EC052EE654EB1F39CA9 /* SKArchitekkt-dummy.m in Sources */,
-				66A707A7933E948F7907736EA3EE7229 /* VirtualArc.swift in Sources */,
-				5D72DEE159A410E14B73FED3E7A00966 /* VirtualNode.swift in Sources */,
-				A36B4310980421116C12B698B7524E30 /* VirtualTransformation.swift in Sources */,
+				1FDEECD121F293F5164EBAD4CBA737A3 /* ArcNode+Rendering.swift in Sources */,
+				DCC1B44B40584D40D5A2886B79CA7E3C /* ArcNode.swift in Sources */,
+				157974B6BDACA9F9BC552F013823C3B3 /* CGFloat.swift in Sources */,
+				EF6A021D7F63BBFA70A5D6FB2753AA8F /* CGPath.swift in Sources */,
+				A80E22B6F62A1CB36BFFBB2A5C598FB7 /* CGPoint.swift in Sources */,
+				1CA6660A33BFA8689189DE3AB86A200E /* CGVector+Comparable.swift in Sources */,
+				90B9C421B1629CCC7721B5D2E3473BDF /* CGVector.swift in Sources */,
+				CAA93F42A8C4486F66740EEA64E0A915 /* GraphCoordinator+RootNodeHandler.swift in Sources */,
+				B68BBFDA9E99BF2B0EC1E1B1744E77A3 /* GraphCoordinator.storyboard in Sources */,
+				0206C59735A9781E083A418C89B71602 /* GraphCoordinator.swift in Sources */,
+				543B34ACF173E0DA01595180E4E9776C /* GraphWindowController.storyboard in Sources */,
+				F584F54F85532460E051F5AE3E1A729C /* GraphWindowController.swift in Sources */,
+				9B02AD619230542F80D9D212AEEBBEE5 /* NodeScene+MouseInteraction.swift in Sources */,
+				DB113C0E1EBA8FB354D601099A33BA0E /* NodeScene+Physics.swift in Sources */,
+				C653698370BE18D9FF943C3E8D2EADDC /* NodeScene+Rendering.swift in Sources */,
+				2EBBEA859BB9F94911AEDB4366C6B101 /* NodeScene.swift in Sources */,
+				57C1AA179A2AE54569DC73C691126811 /* NodeView+RootNodeHandler.swift in Sources */,
+				A31C6AE14D22C48B134AEC7C3E5AD00A /* NodeView.swift in Sources */,
+				CBC581E297DE6D070D431A59035E977C /* NodeViewController+RootNodeHandler.swift in Sources */,
+				218137CEB765DE2C36CE21A692F34B60 /* NodeViewController.storyboard in Sources */,
+				C2CA8B13F718CF2FE380B45075542F08 /* NodeViewController.swift in Sources */,
+				964722EA849E37D3AC3D9B3E94A723A9 /* ResponderChain.swift in Sources */,
+				7BFD6D10454BF5601E2E5DAFD356A13C /* RightPaneCollectionViewItem.swift in Sources */,
+				970F31293C9D76B5D7F3296C02DF2975 /* RightPaneCollectionViewItem.xib in Sources */,
+				9FDFB9A11EEC5759F7EB7219491F6B8A /* RightPaneFooterView.xib in Sources */,
+				C0A79D21FC04C70363BAEDA7BD1E3FB2 /* RightPaneHeaderView.swift in Sources */,
+				58B3498A128C388874DF4EFF527BC81A /* RightPaneHeaderView.xib in Sources */,
+				AE1A24DEB04D33B434F62ED22A13E25A /* RightPaneViewController.storyboard in Sources */,
+				65B9EF27631ADB87D4236BB33A933DFF /* RightPaneViewController.swift in Sources */,
+				B3C0844DAAB60583FE1CA94FB18D01A5 /* Settings.swift in Sources */,
+				1912F144CFB0FCA2677341815232E863 /* SettingsGroup.swift in Sources */,
+				18BAEADC0FD59DD52429E934EFAAF586 /* SettingsItem.swift in Sources */,
+				2F5F34CFBD66266CEC9B740C8FAF5E97 /* ShapeNode+Rendering.swift in Sources */,
+				EC124901A4289D95CB3A47DAE55787DF /* ShapeNode.swift in Sources */,
+				940D63F2B79D1186EF073FF1BA11F407 /* SKArchitekkt-dummy.m in Sources */,
+				606FA9E28A53F4EBCFDE0A0649CC62B5 /* VirtualArc.swift in Sources */,
+				0B9DEAA18030BA9578E1CDE9394965A8 /* VirtualNode.swift in Sources */,
+				FC867D24F5946CEA4C742ED3986244FD /* VirtualTransformation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -859,11 +879,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		84C11377A488BA88E079495F813D6EA3 /* PBXTargetDependency */ = {
+		575E1BCF7758FF76E22CCB196ADBC159 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = CoreArchitekkt;
 			target = DEE73FAC9259AC519912CB2CA3698E2A /* CoreArchitekkt */;
-			targetProxy = 7B26EFA369A7AD5A6062DCBB71CCF2BC /* PBXContainerItemProxy */;
+			targetProxy = 39B5CD596CE23AEB78EABE1C16FF6DED /* PBXContainerItemProxy */;
 		};
 		97256E9E4F6B3F081FE6BB8458365C6C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1081,11 +1101,46 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Release;
+		};
+		641FEF38B6ACF0AC95A524BEE694B8B5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 872B996F30C039A3A4FF728BC07CFB14 /* SKArchitekkt.debug.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_PREFIX_HEADER = "Target Support Files/SKArchitekkt/SKArchitekkt-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SKArchitekkt/SKArchitekkt-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MODULEMAP_FILE = "Target Support Files/SKArchitekkt/SKArchitekkt.modulemap";
+				PRODUCT_MODULE_NAME = SKArchitekkt;
+				PRODUCT_NAME = SKArchitekkt;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
 		};
 		845852A2E05AC2539E5B475AED58DCF4 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -1191,6 +1246,40 @@
 			};
 			name = Release;
 		};
+		D4B3DCE349D8AD53E279FBAD8B95C556 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 19586AB9300C2917F0B88D04C43186E6 /* SKArchitekkt.release.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				GCC_PREFIX_HEADER = "Target Support Files/SKArchitekkt/SKArchitekkt-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SKArchitekkt/SKArchitekkt-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MODULEMAP_FILE = "Target Support Files/SKArchitekkt/SKArchitekkt.modulemap";
+				PRODUCT_MODULE_NAME = SKArchitekkt;
+				PRODUCT_NAME = SKArchitekkt;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 		EBAEC82B5CA185CAF049E2171BDD5B81 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 18D9A0217E5BCB2579DAA58BBA2761BC /* Pods-SKArchitekkt_Example.release.xcconfig */;
@@ -1226,74 +1315,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
-		};
-		F29F499481A1A2210DE8298FCEA4EEFF /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 710B846CC064C897EE29EEC77232D246 /* SKArchitekkt.release.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				GCC_PREFIX_HEADER = "Target Support Files/SKArchitekkt/SKArchitekkt-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SKArchitekkt/SKArchitekkt-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MODULEMAP_FILE = "Target Support Files/SKArchitekkt/SKArchitekkt.modulemap";
-				PRODUCT_MODULE_NAME = SKArchitekkt;
-				PRODUCT_NAME = SKArchitekkt;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		F8000655986A139729E952246AFB94DF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4E3A35726955777EC5D9A7B57923BB86 /* SKArchitekkt.debug.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_VERSION = A;
-				GCC_PREFIX_HEADER = "Target Support Files/SKArchitekkt/SKArchitekkt-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SKArchitekkt/SKArchitekkt-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MODULEMAP_FILE = "Target Support Files/SKArchitekkt/SKArchitekkt.modulemap";
-				PRODUCT_MODULE_NAME = SKArchitekkt;
-				PRODUCT_NAME = SKArchitekkt;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
 		};
 /* End XCBuildConfiguration section */
 
@@ -1334,11 +1355,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FC690D9EBE20D58BCDFA9595B1E3AF8E /* Build configuration list for PBXNativeTarget "SKArchitekkt" */ = {
+		9EDBFB9E383153249C196F35BC3B8FB7 /* Build configuration list for PBXNativeTarget "SKArchitekkt" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F8000655986A139729E952246AFB94DF /* Debug */,
-				F29F499481A1A2210DE8298FCEA4EEFF /* Release */,
+				641FEF38B6ACF0AC95A524BEE694B8B5 /* Debug */,
+				D4B3DCE349D8AD53E279FBAD8B95C556 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
