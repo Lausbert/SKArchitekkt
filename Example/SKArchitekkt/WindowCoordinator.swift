@@ -12,8 +12,7 @@ class WindowCoordinator: CoreArchitekkt.WindowCoordinator<Any> {
         let graphTuple = self.graphTuple ?? open(
             windowController: GraphWindowController.self,
             with: GraphCoordinator.self,
-            inheritDependencies: false,
-            preferredContentSize: CGSize(width: 800, height: 800)
+            inheritDependencies: false
         )
         graphTuple.1.handle(rootNode: rootNode)
         self.graphTuple = graphTuple

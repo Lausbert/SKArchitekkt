@@ -14,6 +14,7 @@
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <rect key="contentRect" x="179" y="1363" width="800" height="800"/>
                         <rect key="screenRect" x="-115" y="1050" width="1920" height="1057"/>
+                        <value key="minSize" type="size" width="600" height="600"/>
                         <toolbar key="toolbar" implicitIdentifier="B81BE9D2-A0C1-4939-8949-1EB8C9F0C368" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="NK7-LC-gOf">
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="CBD-ad-LT9"/>
