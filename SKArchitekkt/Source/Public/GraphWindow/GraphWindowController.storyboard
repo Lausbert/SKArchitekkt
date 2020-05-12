@@ -12,7 +12,7 @@
                 <windowController storyboardIdentifier="GraphWindowController" id="Ix0-MV-sOP" customClass="GraphWindowController" customModule="SKArchitekkt" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingIdentifier="GraphWindow" tabbingMode="preferred" titleVisibility="hidden" id="bHO-5R-2bQ">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
-                        <rect key="contentRect" x="179" y="1363" width="800" height="800"/>
+                        <rect key="contentRect" x="179" y="1363" width="1500" height="1500"/>
                         <rect key="screenRect" x="-115" y="1050" width="1920" height="1057"/>
                         <toolbar key="toolbar" implicitIdentifier="B81BE9D2-A0C1-4939-8949-1EB8C9F0C368" autosavesConfiguration="NO" displayMode="iconAndLabel" sizeMode="regular" id="NK7-LC-gOf">
                             <allowedToolbarItems>
@@ -58,13 +58,13 @@
             <objects>
                 <viewController id="lXD-d8-nGm" sceneMemberID="viewController">
                     <view key="view" id="6We-wW-Ed2">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1500" height="1500"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </view>
                 </viewController>
                 <customObject id="Vrr-1y-G7W" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="864" y="146"/>
+            <point key="canvasLocation" x="1058" y="132"/>
         </scene>
     </scenes>
     <resources>
