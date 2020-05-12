@@ -6,6 +6,13 @@ import CoreArchitekkt
 public class GraphWindowController: NSWindowController {
 
     // MARK: - Public -
+    
+    public override func windowDidLoad() {
+        shouldCascadeWindows = false
+        windowFrameAutosaveName = String(describing: Self.self)
+        
+        super.windowDidLoad()
+    }
 
     public override func didLoadContentViewController() {
         super.didLoadContentViewController()
