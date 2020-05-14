@@ -13,7 +13,6 @@ extension NodeScene: SKSceneDelegate {
         self.settingsItemObservations = settings.settingsItems.map({ [weak self] (settingsItem) -> NSKeyValueObservation in
             return settingsItem.observe(\.value) { (_, _) in
                 self?.startSimulation()
-                self?.applyRandomForceToAllShapeNodeDescendants()
             }
         })
     }
@@ -43,11 +42,10 @@ extension NodeScene: SKSceneDelegate {
 
     // MARK: - Private -
 
-    private static let forceDecayTargetObjectAssociation = ObjectAssociation<CGFloat>()
     private var forceDecayTarget: CGFloat { return 0 }
     private var forceDecayMin: CGFloat { return 0.1 }
-    private var forceDecayDecay: CGFloat { return CGFloat(settings.forceDecaySettingsItem.value) }
-    private var velocityDecay: CGFloat { return CGFloat(settings.velocityDecaySettingsitem.value) }
+    private var forceDecayDecay: CGFloat { return 0.005 }
+    private var velocityDecay: CGFloat { return 0.05 }
 
     private static let forceDecayObjectAssociation = ObjectAssociation<CGFloat>()
     private var forceDecay: CGFloat {
@@ -58,13 +56,6 @@ extension NodeScene: SKSceneDelegate {
     private var settingsItemObservations: [NSKeyValueObservation] {
         get { NodeScene.settingsItemObservationsObjectAssociation[self] ?? [] }
         set { NodeScene.settingsItemObservationsObjectAssociation[self] = newValue }
-    }
-
-    private func applyRandomForceToAllShapeNodeDescendants() {
-        for shapeNode in shapeRootNode.castedChildren.flatMap({ $0.allDescendants }) {
-            let force = CGVector(dx: CGFloat.random(in: -(shapeNode.radius^^3)...shapeNode.radius^^3), dy: CGFloat.random(in: -(shapeNode.radius^^3)...shapeNode.radius^^3))
-            shapeNode.physicsBody?.applyImpulse(force)
-        }
     }
 
     private func updatePhysicsWith(forceDecay: CGFloat, velocityDecay: CGFloat) {
@@ -91,7 +82,7 @@ extension NodeScene: SKSceneDelegate {
 
     private func updateRadialGravitationalForceOnChildren(for shapeNode: ShapeNode, withForceDecay forceDecay: CGFloat) {
         shapeNode.castedChildren.forEach {
-            let force = computeForceBetween(first: shapeNode, second: $0, minimumRadius: shapeNode.radius, multiplier: CGFloat(settings.radialGravitationalForceOnChildrenMultiplierSettingsItem.value)*forceDecay*shapeNode.radius^^2*$0.radius^^2, proportionalToDistanceRaisedToPowerOf: CGFloat(settings.radialGravitationalForceOnChildrenPowerSettingsItem.value))
+            let force = computeForceBetween(first: shapeNode, second: $0, minimumRadius: shapeNode.radius, multiplier: forceDecay*shapeNode.radius^^2*$0.radius^^2, proportionalToDistanceRaisedToPowerOf: -1.4)
             $0.physicsBody?.applyForce(force)
         }
     }
@@ -99,7 +90,7 @@ extension NodeScene: SKSceneDelegate {
     private func updateNegativeRadialGravitationalForceOnSiblings(for shapeNode: ShapeNode, withForceDecay forceDecay: CGFloat) {
         guard shapeNode.castedChildren.count > 1 else { return }
         for pair in shapeNode.siblingPairs {
-            let force = computeForceBetween(first: pair.0, second: pair.1, multiplier: CGFloat(settings.negativeRadialGravitationalForceOnSiblingsMultiplierSettingsItem.value)*forceDecay*pair.0.radius^^2*pair.1.radius^^2, proportionalToDistanceRaisedToPowerOf: CGFloat(settings.negativeRadialGravitationalForceOnSiblingsPowerSettingsItem.value))
+            let force = computeForceBetween(first: pair.0, second: pair.1, multiplier: 5*forceDecay*pair.0.radius^^2*pair.1.radius^^2, proportionalToDistanceRaisedToPowerOf: CGFloat(settings.negativeRadialGravitationalForceOnSiblingsPowerSettingsItem.value))
             pair.0.physicsBody?.applyForce(force)
             pair.1.physicsBody?.applyForce(-force)
         }
@@ -126,7 +117,7 @@ extension NodeScene: SKSceneDelegate {
             guard let lastSource = sources.last, let lastDestination = tos.last else { return }
             let offSetDistance = -(lastSource.radius + lastDestination.radius)
             let multiplier = min(10, max(1, log(CGFloat(arcNode.weight))))
-            let force = computeForceBetween(first: sourceShapedNode, second: destinationShapeNode, offSetDistance: offSetDistance, multiplier: CGFloat(settings.springForceBetweenConnectedNodesMultiplierSettingsItem.value)*forceDecay*multiplier, proportionalToDistanceRaisedToPowerOf: CGFloat(settings.springForceBetweenConnectedNodesPowerSettingsItem.value))
+            let force = computeForceBetween(first: sourceShapedNode, second: destinationShapeNode, offSetDistance: offSetDistance, multiplier: forceDecay*multiplier, proportionalToDistanceRaisedToPowerOf: CGFloat(settings.springForceBetweenConnectedNodesPowerSettingsItem.value))
             sources.forEach {
                 $0.physicsBody?.applyForce(-force)
             }
