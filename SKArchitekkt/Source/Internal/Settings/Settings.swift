@@ -1,6 +1,7 @@
 //  Copyright © 2019 Stephan Lerner. All rights reserved.
 
 import Foundation
+import Combine
 
 final class Settings: Codable {
 
@@ -14,8 +15,8 @@ final class Settings: Codable {
         } else {
             settings = Settings()
         }
-        settingsItemObservations = settings.settingsItems.map({ (settingsItem) -> NSKeyValueObservation in
-            return settingsItem.observe(\.value) { (_, _) in
+        settingsItemsCancellables = settings.settingsItems.map({ (settingsItem) -> AnyCancellable in
+            settingsItem.$value.sink { (_) in
                 if let data = try? JSONEncoder().encode(settings) {
                     UserDefaults.standard.set(data, forKey: userDefaultsKey)
                 }
@@ -28,15 +29,9 @@ final class Settings: Codable {
         let newSettings = Settings()
         let zippedSettingsItems = zip(settingsItems, newSettings.settingsItems)
         for (settingsItem, newSettingsItem) in zippedSettingsItems {
-            settingsItem.minValue = newSettingsItem.minValue
             settingsItem.value = newSettingsItem.value
-            settingsItem.maxValue = newSettingsItem.maxValue
         }
     }
-    
-    let negativeRadialGravitationalForceOnSiblingsPowerSettingsItem: SettingsItem
-    let springForceBetweenConnectedNodesPowerSettingsItem: SettingsItem
-    let areaBasedOnTotalChildrensAreaMultiplierSettingsItem: SettingsItem
 
     var settingsItems: [SettingsItem] {
         return settingsGroups.flatMap { $0.settingsItems }
@@ -54,15 +49,50 @@ final class Settings: Codable {
                 ])
         ]
     }
+    
+    // MARK: Force
+    
+    let negativeRadialGravitationalForceOnSiblingsPowerSettingsItem: SettingsItem
+    let springForceBetweenConnectedNodesPowerSettingsItem: SettingsItem
+    let areaBasedOnTotalChildrensAreaMultiplierSettingsItem: SettingsItem
+        
+    var negativeRadialGravitationalForceOnSiblingsPower: Double {
+        if case let .range(value, _, _) = negativeRadialGravitationalForceOnSiblingsPowerSettingsItem.value {
+            return value
+        } else {
+            assertionFailure()
+            return -1.1
+        }
+    }
+    var springForceBetweenConnectedNodesPower: Double {
+        if case let .range(value, _, _) = springForceBetweenConnectedNodesPowerSettingsItem.value {
+            return value
+        } else {
+            assertionFailure()
+            return 2.3
+        }
+    }
+    var areaBasedOnTotalChildrensAreaMultiplier: Double {
+        if case let .range(value, _, _) = areaBasedOnTotalChildrensAreaMultiplierSettingsItem.value {
+            return value
+        } else {
+            assertionFailure()
+            return 4
+        }
+    }
+    
+    
 
     // MARK: - Private -
 
     private static let userDefaultsKey = "settingsUserDefaultsKey"
-    private static var settingsItemObservations: [NSKeyValueObservation] = []
-
+    private static var settingsItemsCancellables: [AnyCancellable] = []
+    
     private init() {
-        negativeRadialGravitationalForceOnSiblingsPowerSettingsItem = SettingsItem(name: "Power", value: -1.1, minValue: -2.1, maxValue: -0.1)
-        springForceBetweenConnectedNodesPowerSettingsItem = SettingsItem(name: "Power", value: 2.3, minValue: 1, maxValue: 3.6)
-        areaBasedOnTotalChildrensAreaMultiplierSettingsItem = SettingsItem(name: "Multiplier", value: 4, minValue: 2, maxValue: 6)
+        negativeRadialGravitationalForceOnSiblingsPowerSettingsItem = SettingsItem(name: "Power", value: .range(value: -1.1, minValue: -2.1, maxValue: -0.1))
+        springForceBetweenConnectedNodesPowerSettingsItem = SettingsItem(name: "Power", value: .range(value: 2.3, minValue: 1, maxValue: 3.6))
+        areaBasedOnTotalChildrensAreaMultiplierSettingsItem = SettingsItem(name: "Multiplier", value: .range(value: 4, minValue: 2, maxValue: 6))
     }
+    
+    
 }

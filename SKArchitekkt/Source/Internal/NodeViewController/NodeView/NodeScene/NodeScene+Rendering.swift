@@ -2,6 +2,7 @@
 
 import SpriteKit
 import CoreArchitekkt
+import Combine
 
 extension NodeScene {
 
@@ -35,13 +36,9 @@ extension NodeScene {
         arcNodes = []
         scene?.addChild(shapeRootNode)
         scene?.addChild(arcRootNode)
-        self.radiusRelatedSettingsItemObservations = [
-            settings.areaBasedOnTotalChildrensAreaMultiplierSettingsItem
-            ].map { [weak self] (settingsItem) -> NSKeyValueObservation in
-                return settingsItem.observe(\.value) { (_, _) in
-                    self?.update()
-                }
-        }
+        self.areaBasedOnTotalChildrensAreaMultiplierSettingsItemCancellable = settings.areaBasedOnTotalChildrensAreaMultiplierSettingsItem.$value.sink(receiveValue: { [weak self] (_) in
+                self?.update()
+        })
     }
 
     func add(rootNode: Node) {
@@ -61,10 +58,10 @@ extension NodeScene {
 
     // MARK: - Private -
 
-    private static let radiusRelatedSettingsItemObservationsObjectAssociation = ObjectAssociation<[NSKeyValueObservation]>()
-    private var radiusRelatedSettingsItemObservations: [NSKeyValueObservation] {
-        get { NodeScene.radiusRelatedSettingsItemObservationsObjectAssociation[self] ?? [] }
-        set { NodeScene.radiusRelatedSettingsItemObservationsObjectAssociation[self] = newValue }
+    private static let areaBasedOnTotalChildrensAreaMultiplierSettingsItemCancellableObjectAssociation = ObjectAssociation<AnyCancellable>()
+    private var areaBasedOnTotalChildrensAreaMultiplierSettingsItemCancellable: AnyCancellable? {
+        get { NodeScene.areaBasedOnTotalChildrensAreaMultiplierSettingsItemCancellableObjectAssociation[self] }
+        set { NodeScene.areaBasedOnTotalChildrensAreaMultiplierSettingsItemCancellableObjectAssociation[self] = newValue }
     }
 
     private static let rootNodeObjectAssociation = ObjectAssociation<Node>()
@@ -99,7 +96,6 @@ extension NodeScene {
 
     private func update() {
         guard let rootNode = rootNode else {
-            assertionFailure()
             return
         }
         #warning("Todo: Integrate colorDictionary in settings.")
@@ -116,7 +112,7 @@ extension NodeScene {
            colorDictionary: colorDictionary,
            defaultColor: .windowFrameColor,
            baseRadius: 128,
-           areaMultiplier: CGFloat(settings.areaBasedOnTotalChildrensAreaMultiplierSettingsItem.value)
+           areaMultiplier: CGFloat(settings.areaBasedOnTotalChildrensAreaMultiplier)
         )
         let newVirtualNodes = VirtualNode.createVirtualNodes(
             from: rootNode,

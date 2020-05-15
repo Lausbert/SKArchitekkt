@@ -31,16 +31,19 @@ class RightPaneViewController: NSViewController, NSCollectionViewDataSource, NSC
     }
 
     func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
-        guard let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RightPaneCollectionViewItem"), for: indexPath) as? RightPaneCollectionViewItem else { return NSCollectionViewItem() }
         let settingsItem = settings.settingsGroups[indexPath.section].settingsItems[indexPath.item]
-        item.label.stringValue = settingsItem.name
-        item.slider.minValue = settingsItem.minValue
-        item.slider.maxValue = settingsItem.maxValue
-        item.slider.doubleValue = settingsItem.value
-        item.sliderChangeHandler = { [weak settingsItem] value in
-            settingsItem?.value = value
+        switch settingsItem.value {
+        case let .range(value, minValue, maxValue):
+            guard let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RightPaneCollectionViewItem"), for: indexPath) as? RightPaneCollectionViewItem else { return NSCollectionViewItem() }
+            item.label.stringValue = settingsItem.name
+            item.slider.minValue = minValue
+            item.slider.maxValue = maxValue
+            item.slider.doubleValue = value
+            item.sliderChangeHandler = { [weak settingsItem] newValue in
+                settingsItem?.value = .range(value: newValue, minValue: minValue, maxValue: maxValue)
+            }
+            return item
         }
-        return item
     }
 
     func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {

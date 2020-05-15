@@ -2,18 +2,30 @@
 
 import Foundation
 
-class SettingsItem: NSObject, Codable {
+class SettingsItem: ObservableObject, Codable {
 
     let name: String
-    @objc dynamic var value: Double
-    var minValue: Double
-    var maxValue: Double
+    @Published var value: SettingsValue
 
-    init(name: String, value: Double, minValue: Double, maxValue: Double) {
+    init(name: String, value: SettingsValue) {
         self.name = name
         self.value = value
-        self.minValue = minValue
-        self.maxValue = maxValue
+    }
+    
+    enum CodingKeys: CodingKey {
+        case name, value
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.name = try container.decode(String.self, forKey: .name)
+        self.value = try container.decode(SettingsValue.self, forKey: .value)
+    }
+       
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(name, forKey: .name)
+        try container.encode(value, forKey: .value)
     }
 
 }

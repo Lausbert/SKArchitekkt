@@ -48,6 +48,9 @@
 		8DD3C08A246C902200349EBB /* RightPaneHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DD3C089246C902200349EBB /* RightPaneHeaderView.xib */; };
 		8DD3C08C246C902B00349EBB /* RightPaneFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DD3C08B246C902B00349EBB /* RightPaneFooterView.xib */; };
 		8DD3C08E246C903800349EBB /* RightPaneViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DD3C08D246C903800349EBB /* RightPaneViewController.storyboard */; };
+		8DD3C090246EE6BA00349EBB /* SettingsValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD3C08F246EE6BA00349EBB /* SettingsValue.swift */; };
+		8DF96923246EFEB800C02737 /* KeyedEncodingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF96922246EFEB800C02737 /* KeyedEncodingContainer.swift */; };
+		8DF96925246EFEDA00C02737 /* KeyedDecodingContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF96924246EFEDA00C02737 /* KeyedDecodingContainer.swift */; };
 		90B9C421B1629CCC7721B5D2E3473BDF /* CGVector.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3865B9D468E0B222D2A87D13D87F599 /* CGVector.swift */; };
 		920DF021B7F9231AE86DF0947EAA344F /* GraphRequestHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76BDF05EDE1854597B247985B4E09292 /* GraphRequestHandler.swift */; };
 		940D63F2B79D1186EF073FF1BA11F407 /* SKArchitekkt-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 027646B07FF854A82F129091512CC6A6 /* SKArchitekkt-dummy.m */; };
@@ -180,6 +183,9 @@
 		8DD3C089246C902200349EBB /* RightPaneHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RightPaneHeaderView.xib; path = ../../../Assets/RightPaneHeaderView.xib; sourceTree = "<group>"; };
 		8DD3C08B246C902B00349EBB /* RightPaneFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RightPaneFooterView.xib; path = ../../../Assets/RightPaneFooterView.xib; sourceTree = "<group>"; };
 		8DD3C08D246C903800349EBB /* RightPaneViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = RightPaneViewController.storyboard; path = ../../../Assets/RightPaneViewController.storyboard; sourceTree = "<group>"; };
+		8DD3C08F246EE6BA00349EBB /* SettingsValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsValue.swift; sourceTree = "<group>"; };
+		8DF96922246EFEB800C02737 /* KeyedEncodingContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyedEncodingContainer.swift; sourceTree = "<group>"; };
+		8DF96924246EFEDA00C02737 /* KeyedDecodingContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyedDecodingContainer.swift; sourceTree = "<group>"; };
 		943AB4D8031A381DF7F15835AC628975 /* Regex.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Regex.swift; path = "CoreArchitekkt/Source/Public/Classes+Structs/Regex.swift"; sourceTree = "<group>"; };
 		97087AD7D6640479F0AE39309AE3FABB /* RightPaneHeaderView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RightPaneHeaderView.swift; sourceTree = "<group>"; };
 		97CD50FCB7FFFF1BED230830B5431470 /* SKArchitekkt-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SKArchitekkt-prefix.pch"; sourceTree = "<group>"; };
@@ -300,6 +306,8 @@
 				EC4C160BCA05F5B3116730933F81C56A /* CGPoint.swift */,
 				F3865B9D468E0B222D2A87D13D87F599 /* CGVector.swift */,
 				ED6E0D381942B7B54DC1B1DE334DD5D3 /* CGVector+Comparable.swift */,
+				8DF96922246EFEB800C02737 /* KeyedEncodingContainer.swift */,
+				8DF96924246EFEDA00C02737 /* KeyedDecodingContainer.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -487,6 +495,7 @@
 				3EA7D74690B27E1335AC09E1FCDD385E /* Settings.swift */,
 				198D91E5D27FD5DEF6E3FB57DD99E431 /* SettingsGroup.swift */,
 				5CB716FF8A1E8F3F84970B576B9A7489 /* SettingsItem.swift */,
+				8DD3C08F246EE6BA00349EBB /* SettingsValue.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -814,9 +823,12 @@
 				2F5F34CFBD66266CEC9B740C8FAF5E97 /* ShapeNode+Rendering.swift in Sources */,
 				EC124901A4289D95CB3A47DAE55787DF /* ShapeNode.swift in Sources */,
 				940D63F2B79D1186EF073FF1BA11F407 /* SKArchitekkt-dummy.m in Sources */,
+				8DD3C090246EE6BA00349EBB /* SettingsValue.swift in Sources */,
+				8DF96923246EFEB800C02737 /* KeyedEncodingContainer.swift in Sources */,
 				606FA9E28A53F4EBCFDE0A0649CC62B5 /* VirtualArc.swift in Sources */,
 				0B9DEAA18030BA9578E1CDE9394965A8 /* VirtualNode.swift in Sources */,
 				FC867D24F5946CEA4C742ED3986244FD /* VirtualTransformation.swift in Sources */,
+				8DF96925246EFEDA00C02737 /* KeyedDecodingContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1120,7 +1132,7 @@
 				INFOPLIST_FILE = "Target Support Files/SKArchitekkt/SKArchitekkt-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MODULEMAP_FILE = "Target Support Files/SKArchitekkt/SKArchitekkt.modulemap";
 				PRODUCT_MODULE_NAME = SKArchitekkt;
 				PRODUCT_NAME = SKArchitekkt;
@@ -1154,7 +1166,7 @@
 				INFOPLIST_FILE = "Target Support Files/CoreArchitekkt/CoreArchitekkt-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MODULEMAP_FILE = "Target Support Files/CoreArchitekkt/CoreArchitekkt.modulemap";
 				PRODUCT_MODULE_NAME = CoreArchitekkt;
 				PRODUCT_NAME = CoreArchitekkt;
@@ -1224,7 +1236,7 @@
 				INFOPLIST_FILE = "Target Support Files/SKArchitekkt/SKArchitekkt-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MODULEMAP_FILE = "Target Support Files/SKArchitekkt/SKArchitekkt.modulemap";
 				PRODUCT_MODULE_NAME = SKArchitekkt;
 				PRODUCT_NAME = SKArchitekkt;
@@ -1258,7 +1270,7 @@
 				INFOPLIST_FILE = "Target Support Files/CoreArchitekkt/CoreArchitekkt-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MODULEMAP_FILE = "Target Support Files/CoreArchitekkt/CoreArchitekkt.modulemap";
 				PRODUCT_MODULE_NAME = CoreArchitekkt;
 				PRODUCT_NAME = CoreArchitekkt;

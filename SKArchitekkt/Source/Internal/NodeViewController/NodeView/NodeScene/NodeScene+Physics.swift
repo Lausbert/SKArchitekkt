@@ -2,6 +2,7 @@
 
 import SpriteKit
 import CoreArchitekkt
+import Combine
 
 extension NodeScene: SKSceneDelegate {
 
@@ -10,8 +11,8 @@ extension NodeScene: SKSceneDelegate {
     func setUpPhysics() {
         delegate = self
         physicsWorld.gravity = CGVector.zero
-        self.settingsItemObservations = settings.settingsItems.map({ [weak self] (settingsItem) -> NSKeyValueObservation in
-            return settingsItem.observe(\.value) { (_, _) in
+        self.settingsItemCancellables = settings.settingsItems.map({ [weak self] (settingsItem) -> AnyCancellable in
+            settingsItem.$value.sink { (_) in
                 self?.startSimulation()
             }
         })
@@ -52,10 +53,10 @@ extension NodeScene: SKSceneDelegate {
         get { NodeScene.forceDecayObjectAssociation[self] ?? 1 }
         set { NodeScene.forceDecayObjectAssociation[self] = newValue }
     }
-    private static let settingsItemObservationsObjectAssociation = ObjectAssociation<[NSKeyValueObservation]>()
-    private var settingsItemObservations: [NSKeyValueObservation] {
-        get { NodeScene.settingsItemObservationsObjectAssociation[self] ?? [] }
-        set { NodeScene.settingsItemObservationsObjectAssociation[self] = newValue }
+    private static let settingsItemCancellablesObjectAssociation = ObjectAssociation<[AnyCancellable]>()
+    private var settingsItemCancellables: [AnyCancellable] {
+        get { NodeScene.settingsItemCancellablesObjectAssociation[self] ?? [] }
+        set { NodeScene.settingsItemCancellablesObjectAssociation[self] = newValue }
     }
 
     private func updatePhysicsWith(forceDecay: CGFloat, velocityDecay: CGFloat) {
@@ -90,7 +91,7 @@ extension NodeScene: SKSceneDelegate {
     private func updateNegativeRadialGravitationalForceOnSiblings(for shapeNode: ShapeNode, withForceDecay forceDecay: CGFloat) {
         guard shapeNode.castedChildren.count > 1 else { return }
         for pair in shapeNode.siblingPairs {
-            let force = computeForceBetween(first: pair.0, second: pair.1, multiplier: 5*forceDecay*pair.0.radius^^2*pair.1.radius^^2, proportionalToDistanceRaisedToPowerOf: CGFloat(settings.negativeRadialGravitationalForceOnSiblingsPowerSettingsItem.value))
+            let force = computeForceBetween(first: pair.0, second: pair.1, multiplier: 5*forceDecay*pair.0.radius^^2*pair.1.radius^^2, proportionalToDistanceRaisedToPowerOf: CGFloat(settings.negativeRadialGravitationalForceOnSiblingsPower))
             pair.0.physicsBody?.applyForce(force)
             pair.1.physicsBody?.applyForce(-force)
         }
@@ -117,7 +118,7 @@ extension NodeScene: SKSceneDelegate {
             guard let lastSource = sources.last, let lastDestination = tos.last else { return }
             let offSetDistance = -(lastSource.radius + lastDestination.radius)
             let multiplier = min(10, max(1, log(CGFloat(arcNode.weight))))
-            let force = computeForceBetween(first: sourceShapedNode, second: destinationShapeNode, offSetDistance: offSetDistance, multiplier: forceDecay*multiplier, proportionalToDistanceRaisedToPowerOf: CGFloat(settings.springForceBetweenConnectedNodesPowerSettingsItem.value))
+            let force = computeForceBetween(first: sourceShapedNode, second: destinationShapeNode, offSetDistance: offSetDistance, multiplier: forceDecay*multiplier, proportionalToDistanceRaisedToPowerOf: CGFloat(settings.springForceBetweenConnectedNodesPower))
             sources.forEach {
                 $0.physicsBody?.applyForce(-force)
             }
