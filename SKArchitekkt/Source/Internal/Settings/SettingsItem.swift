@@ -2,7 +2,7 @@
 
 import Foundation
 
-class SettingsItem: ObservableObject, Codable {
+class SettingsItem: Codable {
     
     // MARK: - Internal -
 
