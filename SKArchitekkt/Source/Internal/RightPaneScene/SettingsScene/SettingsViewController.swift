@@ -34,7 +34,7 @@ class SettingsViewController: NSViewController, NSCollectionViewDataSource, NSCo
         let settingsItem = settings.forceSettingsGroups[indexPath.section].settingsItems[indexPath.item]
         switch settingsItem.value {
         case let .range(value, minValue, maxValue):
-            guard let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RightPaneCollectionViewItem"), for: indexPath) as? RightPaneCollectionViewItem else { return NSCollectionViewItem() }
+            guard let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "SettingsRangeCollectionViewItem"), for: indexPath) as? SettingsRangeCollectionViewItem else { return NSCollectionViewItem() }
             item.label.stringValue = settingsItem.name
             item.slider.minValue = minValue
             item.slider.maxValue = maxValue
@@ -70,7 +70,7 @@ class SettingsViewController: NSViewController, NSCollectionViewDataSource, NSCo
                 return headerView
             }
         case NSCollectionView.elementKindSectionFooter:
-            return collectionView.makeSupplementaryView(ofKind: kind, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RightPaneFooterView"), for: indexPath)
+            return collectionView.makeSupplementaryView(ofKind: kind, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "SettingsFooterView"), for: indexPath)
         default:
             break
         }
