@@ -8,7 +8,7 @@ class SettingsViewController: NSViewController, NSCollectionViewDataSource, NSCo
 
     @IBOutlet weak var collectionView: NSCollectionView!
 
-    var settings: Settings!
+    var settingsGroups: [SettingsGroup] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,20 +18,20 @@ class SettingsViewController: NSViewController, NSCollectionViewDataSource, NSCo
     }
 
     @IBAction func didPressResetButton(_ sender: Any) {
-        settings.settingsGroups.forEach { $0.reset() }
+        settingsGroups.forEach { $0.reset() }
         collectionView.reloadData()
     }
 
     func numberOfSections(in collectionView: NSCollectionView) -> Int {
-        return settings.forceSettingsGroups.count
+        return settingsGroups.count
     }
 
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
-        return settings.forceSettingsGroups[section].settingsItems.count
+        return settingsGroups[section].settingsItems.count
     }
 
     func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
-        let settingsItem = settings.forceSettingsGroups[indexPath.section].settingsItems[indexPath.item]
+        let settingsItem = settingsGroups[indexPath.section].settingsItems[indexPath.item]
         switch settingsItem.value {
         case let .range(value, minValue, maxValue):
             guard let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "SettingsRangeCollectionViewItem"), for: indexPath) as? SettingsRangeCollectionViewItem else { return NSCollectionViewItem() }
@@ -47,7 +47,7 @@ class SettingsViewController: NSViewController, NSCollectionViewDataSource, NSCo
     }
 
     func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {
-        let settingsItem = settings.forceSettingsGroups[indexPath.section].settingsItems[indexPath.item]
+        let settingsItem = settingsGroups[indexPath.section].settingsItems[indexPath.item]
         switch settingsItem.value {
         case .range:
             return NSSize(width: collectionView.frame.width, height: 23)
@@ -66,7 +66,7 @@ class SettingsViewController: NSViewController, NSCollectionViewDataSource, NSCo
         switch kind {
         case NSCollectionView.elementKindSectionHeader:
             if let headerView = collectionView.makeSupplementaryView(ofKind: kind, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "SettingsHeaderView"), for: indexPath) as? SettingsHeaderView {
-                headerView.label.stringValue = settings.forceSettingsGroups[indexPath.section].name
+                headerView.label.stringValue = settingsGroups[indexPath.section].name
                 return headerView
             }
         case NSCollectionView.elementKindSectionFooter:

@@ -16,7 +16,7 @@ public class GraphCoordinator: SplitViewCoordinator<ModuleDependencies> {
     public override func insertSplitViewItem(_ splitViewItem: NSSplitViewItem, at index: Int) {
         switch splitViewItem.viewController {
         case let settingsViewController as SettingsViewController:
-            settingsViewController.settings = settings
+            settingsViewController.settingsGroups = settings.forceSettingsGroups
         default:
             break
         }
