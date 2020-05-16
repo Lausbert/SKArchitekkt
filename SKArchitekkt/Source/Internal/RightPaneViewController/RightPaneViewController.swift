@@ -18,20 +18,20 @@ class RightPaneViewController: NSViewController, NSCollectionViewDataSource, NSC
     }
 
     @IBAction func didPressResetButton(_ sender: Any) {
-        settings.reset()
+        settings.settingsGroups.forEach { $0.reset() }
         collectionView.reloadData()
     }
 
     func numberOfSections(in collectionView: NSCollectionView) -> Int {
-        return settings.settingsGroups.count
+        return settings.forceSettingsGroups.count
     }
 
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
-        return settings.settingsGroups[section].settingsItems.count
+        return settings.forceSettingsGroups[section].settingsItems.count
     }
 
     func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
-        let settingsItem = settings.settingsGroups[indexPath.section].settingsItems[indexPath.item]
+        let settingsItem = settings.forceSettingsGroups[indexPath.section].settingsItems[indexPath.item]
         switch settingsItem.value {
         case let .range(value, minValue, maxValue):
             guard let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RightPaneCollectionViewItem"), for: indexPath) as? RightPaneCollectionViewItem else { return NSCollectionViewItem() }
@@ -62,7 +62,7 @@ class RightPaneViewController: NSViewController, NSCollectionViewDataSource, NSC
         switch kind {
         case NSCollectionView.elementKindSectionHeader:
             if let headerView = collectionView.makeSupplementaryView(ofKind: kind, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RightPaneHeaderView"), for: indexPath) as? RightPaneHeaderView {
-                headerView.label.stringValue = settings.settingsGroups[indexPath.section].name
+                headerView.label.stringValue = settings.forceSettingsGroups[indexPath.section].name
                 return headerView
             }
         case NSCollectionView.elementKindSectionFooter:

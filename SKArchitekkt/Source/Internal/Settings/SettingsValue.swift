@@ -3,6 +3,8 @@
 import Foundation
 
 enum SettingsValue: Codable {
+    
+    // MARK: - Internal -
    
     case range(value: Double, minValue: Double, maxValue: Double)
     
@@ -37,3 +39,5 @@ enum SettingsValue: Codable {
         }
     }
 }
+
+extension SettingsValue: Equatable {}

@@ -36,8 +36,13 @@ extension NodeScene {
         arcNodes = []
         scene?.addChild(shapeRootNode)
         scene?.addChild(arcRootNode)
-        self.areaBasedOnTotalChildrensAreaMultiplierSettingsItemCancellable = settings.areaBasedOnTotalChildrensAreaMultiplierSettingsItem.$value.sink(receiveValue: { [weak self] (_) in
+        self.areaBasedOnTotalChildrensAreaMultiplierSettingsItemCancellable = settings.areaBasedOnTotalChildrensAreaMultiplierSettingsItem.$value.sink(receiveValue: { [weak self] (settingsValue) in
+            if case let .range(value, _, _) = settingsValue {
+                self?.update(areaBasedOnTotalChildrensAreaMultiplier: value)
+            } else {
+                assertionFailure()
                 self?.update()
+            }
         })
     }
 
@@ -94,7 +99,7 @@ extension NodeScene {
         set { NodeScene.arcRootNodeObjectAssociation[self] = newValue }
     }
 
-    private func update() {
+    private func update(areaBasedOnTotalChildrensAreaMultiplier: Double? = nil) {
         guard let rootNode = rootNode else {
             return
         }
@@ -112,7 +117,7 @@ extension NodeScene {
            colorDictionary: colorDictionary,
            defaultColor: .windowFrameColor,
            baseRadius: 128,
-           areaMultiplier: CGFloat(settings.areaBasedOnTotalChildrensAreaMultiplier)
+           areaMultiplier: CGFloat(areaBasedOnTotalChildrensAreaMultiplier ?? settings.areaBasedOnTotalChildrensAreaMultiplier)
         )
         let newVirtualNodes = VirtualNode.createVirtualNodes(
             from: rootNode,

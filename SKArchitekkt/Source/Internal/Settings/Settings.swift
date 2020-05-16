@@ -10,8 +10,15 @@ final class Settings: Codable {
     static func createSettings() -> Settings {
         let settings: Settings
         if let data = UserDefaults.standard.data(forKey: userDefaultsKey),
-            let s = try? JSONDecoder().decode(Settings.self, from: data) {
-            settings = s
+            let oldSettings = try? JSONDecoder().decode(Settings.self, from: data) {
+            let newSettings = Settings()
+            let zippedSettingsItems = zip(oldSettings.settingsItems, newSettings.settingsItems)
+            if oldSettings.settingsItems.count == newSettings.settingsItems.count
+                ,zippedSettingsItems.allSatisfy({ $0.0.name == $0.1.name && $0.0.initialValue == $0.1.initialValue }) {
+                settings = oldSettings
+            } else {
+                settings = newSettings
+            }
         } else {
             settings = Settings()
         }
@@ -24,30 +31,12 @@ final class Settings: Codable {
         })
         return settings
     }
-    
-    func reset() {
-        let newSettings = Settings()
-        let zippedSettingsItems = zip(settingsItems, newSettings.settingsItems)
-        for (settingsItem, newSettingsItem) in zippedSettingsItems {
-            settingsItem.value = newSettingsItem.value
-        }
-    }
 
+    var settingsGroups: [SettingsGroup] {
+        forceSettingsGroups
+    }
     var settingsItems: [SettingsItem] {
         return settingsGroups.flatMap { $0.settingsItems }
-    }
-    var settingsGroups: [SettingsGroup] {
-        return [
-            SettingsGroup(name: "Negative Radial Gravitational Force On Siblings", settingsItems: [
-                negativeRadialGravitationalForceOnSiblingsPowerSettingsItem
-                ]),
-            SettingsGroup(name: "Spring Force Between Connected Nodes", settingsItems: [
-                springForceBetweenConnectedNodesPowerSettingsItem
-                ]),
-            SettingsGroup(name: "Area Based On Total Childrens Area", settingsItems: [
-                areaBasedOnTotalChildrensAreaMultiplierSettingsItem
-                ])
-        ]
     }
     
     // MARK: Force
@@ -80,6 +69,19 @@ final class Settings: Codable {
             return 4
         }
     }
+    var forceSettingsGroups: [SettingsGroup] {
+        return [
+            SettingsGroup(name: "Negative Radial Gravitational Force On Siblings", settingsItems: [
+                negativeRadialGravitationalForceOnSiblingsPowerSettingsItem
+                ]),
+            SettingsGroup(name: "Spring Force Between Connected Nodes", settingsItems: [
+                springForceBetweenConnectedNodesPowerSettingsItem
+                ]),
+            SettingsGroup(name: "Area Based On Total Childrens Area", settingsItems: [
+                areaBasedOnTotalChildrensAreaMultiplierSettingsItem
+                ])
+        ]
+    }
     
     
 
@@ -89,9 +91,13 @@ final class Settings: Codable {
     private static var settingsItemsCancellables: [AnyCancellable] = []
     
     private init() {
-        negativeRadialGravitationalForceOnSiblingsPowerSettingsItem = SettingsItem(name: "Power", value: .range(value: -1.1, minValue: -2.1, maxValue: -0.1))
-        springForceBetweenConnectedNodesPowerSettingsItem = SettingsItem(name: "Power", value: .range(value: 2.3, minValue: 1, maxValue: 3.6))
-        areaBasedOnTotalChildrensAreaMultiplierSettingsItem = SettingsItem(name: "Multiplier", value: .range(value: 4, minValue: 2, maxValue: 6))
+        // Force
+        let v1 = SettingsValue.range(value: -1.1, minValue: -2.1, maxValue: -0.1)
+        let v2 = SettingsValue.range(value: 2.3, minValue: 1, maxValue: 3.6)
+        let v3 = SettingsValue.range(value: 4, minValue: 2, maxValue: 6)
+        negativeRadialGravitationalForceOnSiblingsPowerSettingsItem = SettingsItem(name: "Power", value: v1, initialValue: v1)
+        springForceBetweenConnectedNodesPowerSettingsItem = SettingsItem(name: "Power", value: v2, initialValue: v2)
+        areaBasedOnTotalChildrensAreaMultiplierSettingsItem = SettingsItem(name: "Multiplier", value: v3, initialValue: v3)
     }
     
     
