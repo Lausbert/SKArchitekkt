@@ -65,7 +65,7 @@ class SettingsViewController: NSViewController, NSCollectionViewDataSource, NSCo
     func collectionView(_ collectionView: NSCollectionView, viewForSupplementaryElementOfKind kind: NSCollectionView.SupplementaryElementKind, at indexPath: IndexPath) -> NSView {
         switch kind {
         case NSCollectionView.elementKindSectionHeader:
-            if let headerView = collectionView.makeSupplementaryView(ofKind: kind, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "RightPaneHeaderView"), for: indexPath) as? RightPaneHeaderView {
+            if let headerView = collectionView.makeSupplementaryView(ofKind: kind, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "SettingsHeaderView"), for: indexPath) as? SettingsHeaderView {
                 headerView.label.stringValue = settings.forceSettingsGroups[indexPath.section].name
                 return headerView
             }

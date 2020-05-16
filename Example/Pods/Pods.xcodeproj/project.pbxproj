@@ -45,7 +45,7 @@
 		8DD3C084246C900E00349EBB /* GraphWindowController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DD3C083246C900E00349EBB /* GraphWindowController.storyboard */; };
 		8DD3C086246C901600349EBB /* NodeViewCoordinator.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DD3C085246C901600349EBB /* NodeViewCoordinator.storyboard */; };
 		8DD3C088246C901D00349EBB /* RightPaneCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DD3C087246C901D00349EBB /* RightPaneCollectionViewItem.xib */; };
-		8DD3C08A246C902200349EBB /* RightPaneHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DD3C089246C902200349EBB /* RightPaneHeaderView.xib */; };
+		8DD3C08A246C902200349EBB /* SettingsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DD3C089246C902200349EBB /* SettingsHeaderView.xib */; };
 		8DD3C08C246C902B00349EBB /* RightPaneFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DD3C08B246C902B00349EBB /* RightPaneFooterView.xib */; };
 		8DD3C08E246C903800349EBB /* SettingsViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DD3C08D246C903800349EBB /* SettingsViewController.storyboard */; };
 		8DD3C090246EE6BA00349EBB /* SettingsValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD3C08F246EE6BA00349EBB /* SettingsValue.swift */; };
@@ -66,7 +66,7 @@
 		AACA0C8D526C48A8FCEF2460548B0014 /* GraphRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13DE0FC2CB41CEA31165B2E15EFAB6E /* GraphRequest.swift */; };
 		AF16DAD53BC9EE1E7D52B0C68D6C246B /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82A1344D155DE631D20313B0F70D4A40 /* DispatchQueue.swift */; };
 		B3C0844DAAB60583FE1CA94FB18D01A5 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EA7D74690B27E1335AC09E1FCDD385E /* Settings.swift */; };
-		C0A79D21FC04C70363BAEDA7BD1E3FB2 /* RightPaneHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97087AD7D6640479F0AE39309AE3FABB /* RightPaneHeaderView.swift */; };
+		C0A79D21FC04C70363BAEDA7BD1E3FB2 /* SettingsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97087AD7D6640479F0AE39309AE3FABB /* SettingsHeaderView.swift */; };
 		C2CA8B13F718CF2FE380B45075542F08 /* NodeViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CAB99D9978EABC90B07383CD7C36015 /* NodeViewCoordinator.swift */; };
 		C653698370BE18D9FF943C3E8D2EADDC /* NodeScene+Rendering.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1896BA996DCFB1B614B56DE3B966418F /* NodeScene+Rendering.swift */; };
 		CAA93F42A8C4486F66740EEA64E0A915 /* GraphCoordinator+RootNodeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81AE144168A17A4F6D261E7C644220E /* GraphCoordinator+RootNodeHandler.swift */; };
@@ -181,7 +181,7 @@
 		8DD3C083246C900E00349EBB /* GraphWindowController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = GraphWindowController.storyboard; path = ../../../Assets/GraphWindowController.storyboard; sourceTree = "<group>"; };
 		8DD3C085246C901600349EBB /* NodeViewCoordinator.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = NodeViewCoordinator.storyboard; path = ../../../Assets/NodeViewCoordinator.storyboard; sourceTree = "<group>"; };
 		8DD3C087246C901D00349EBB /* RightPaneCollectionViewItem.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RightPaneCollectionViewItem.xib; sourceTree = "<group>"; };
-		8DD3C089246C902200349EBB /* RightPaneHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RightPaneHeaderView.xib; sourceTree = "<group>"; };
+		8DD3C089246C902200349EBB /* SettingsHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsHeaderView.xib; sourceTree = "<group>"; };
 		8DD3C08B246C902B00349EBB /* RightPaneFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RightPaneFooterView.xib; sourceTree = "<group>"; };
 		8DD3C08D246C903800349EBB /* SettingsViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SettingsViewController.storyboard; sourceTree = "<group>"; };
 		8DD3C08F246EE6BA00349EBB /* SettingsValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsValue.swift; sourceTree = "<group>"; };
@@ -189,7 +189,7 @@
 		8DF96924246EFEDA00C02737 /* KeyedDecodingContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyedDecodingContainer.swift; sourceTree = "<group>"; };
 		8DF969272470749500C02737 /* ModuleDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleDependencies.swift; sourceTree = "<group>"; };
 		943AB4D8031A381DF7F15835AC628975 /* Regex.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Regex.swift; path = "CoreArchitekkt/Source/Public/Classes+Structs/Regex.swift"; sourceTree = "<group>"; };
-		97087AD7D6640479F0AE39309AE3FABB /* RightPaneHeaderView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RightPaneHeaderView.swift; sourceTree = "<group>"; };
+		97087AD7D6640479F0AE39309AE3FABB /* SettingsHeaderView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SettingsHeaderView.swift; sourceTree = "<group>"; };
 		97CD50FCB7FFFF1BED230830B5431470 /* SKArchitekkt-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SKArchitekkt-prefix.pch"; sourceTree = "<group>"; };
 		9829A733FE0D4104E76611184A521AF9 /* CoreArchitekkt.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = CoreArchitekkt.release.xcconfig; sourceTree = "<group>"; };
 		987EEA5B5021E3BCA9A02C843E74C1CE /* Pods-UnitTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-UnitTests-acknowledgements.plist"; sourceTree = "<group>"; };
@@ -468,8 +468,8 @@
 			children = (
 				CA1D8DE733ACA163A3AA0110302CF049 /* SettingsViewController.swift */,
 				8DD3C08D246C903800349EBB /* SettingsViewController.storyboard */,
-				97087AD7D6640479F0AE39309AE3FABB /* RightPaneHeaderView.swift */,
-				8DD3C089246C902200349EBB /* RightPaneHeaderView.xib */,
+				97087AD7D6640479F0AE39309AE3FABB /* SettingsHeaderView.swift */,
+				8DD3C089246C902200349EBB /* SettingsHeaderView.xib */,
 				8DD3C08B246C902B00349EBB /* RightPaneFooterView.xib */,
 				F8BFC67698A0C2D09588A2DCC5B21FA1 /* RightPaneCollectionViewItem.swift */,
 				8DD3C087246C901D00349EBB /* RightPaneCollectionViewItem.xib */,
@@ -778,7 +778,7 @@
 				8DD3C088246C901D00349EBB /* RightPaneCollectionViewItem.xib in Resources */,
 				8DD3C082246C900500349EBB /* GraphCoordinator.storyboard in Resources */,
 				8DD3C08E246C903800349EBB /* SettingsViewController.storyboard in Resources */,
-				8DD3C08A246C902200349EBB /* RightPaneHeaderView.xib in Resources */,
+				8DD3C08A246C902200349EBB /* SettingsHeaderView.xib in Resources */,
 				8DD3C08C246C902B00349EBB /* RightPaneFooterView.xib in Resources */,
 				8DD3C086246C901600349EBB /* NodeViewCoordinator.storyboard in Resources */,
 				5A42DA2FC1F10FD16877DD9ACCD4BFDD /* Assets.xcassets in Resources */,
@@ -835,7 +835,7 @@
 				C2CA8B13F718CF2FE380B45075542F08 /* NodeViewCoordinator.swift in Sources */,
 				964722EA849E37D3AC3D9B3E94A723A9 /* ResponderChain.swift in Sources */,
 				7BFD6D10454BF5601E2E5DAFD356A13C /* RightPaneCollectionViewItem.swift in Sources */,
-				C0A79D21FC04C70363BAEDA7BD1E3FB2 /* RightPaneHeaderView.swift in Sources */,
+				C0A79D21FC04C70363BAEDA7BD1E3FB2 /* SettingsHeaderView.swift in Sources */,
 				65B9EF27631ADB87D4236BB33A933DFF /* SettingsViewController.swift in Sources */,
 				B3C0844DAAB60583FE1CA94FB18D01A5 /* Settings.swift in Sources */,
 				1912F144CFB0FCA2677341815232E863 /* SettingsGroup.swift in Sources */,

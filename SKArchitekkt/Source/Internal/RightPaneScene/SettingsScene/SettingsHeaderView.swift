@@ -2,7 +2,7 @@
 
 import AppKit
 
-class RightPaneHeaderView: NSView {
+class SettingsHeaderView: NSView {
 
     @IBOutlet weak var label: NSTextFieldCell!
 
