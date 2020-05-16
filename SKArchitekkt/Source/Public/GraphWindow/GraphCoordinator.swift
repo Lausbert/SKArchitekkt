@@ -15,8 +15,8 @@ public class GraphCoordinator: SplitViewCoordinator<ModuleDependencies> {
 
     public override func insertSplitViewItem(_ splitViewItem: NSSplitViewItem, at index: Int) {
         switch splitViewItem.viewController {
-        case let rightPaneViewController as RightPaneViewController:
-            rightPaneViewController.settings = settings
+        case let settingsViewController as SettingsViewController:
+            settingsViewController.settings = settings
         default:
             break
         }
@@ -26,7 +26,7 @@ public class GraphCoordinator: SplitViewCoordinator<ModuleDependencies> {
     public override func splitViewDidResizeSubviews(_ notification: Notification) {
         for splitViewItem in splitViewItems {
             switch splitViewItem.viewController {
-            case is RightPaneViewController:
+            case is SettingsViewController:
                 didSetRightPane(self, visible: !splitViewItem.isCollapsed)
             default:
                 break
@@ -44,9 +44,9 @@ public class GraphCoordinator: SplitViewCoordinator<ModuleDependencies> {
         switch pane {
         case .right:
             if animated {
-                splitViewItems.first(where: { $0.viewController is RightPaneViewController })?.animator().isCollapsed = !visible
+                splitViewItems.first(where: { $0.viewController is SettingsViewController })?.animator().isCollapsed = !visible
             } else {
-                splitViewItems.first(where: { $0.viewController is RightPaneViewController })?.isCollapsed = !visible
+                splitViewItems.first(where: { $0.viewController is SettingsViewController })?.isCollapsed = !visible
             }
         }
     }
@@ -58,7 +58,7 @@ public class GraphCoordinator: SplitViewCoordinator<ModuleDependencies> {
     private func setUp() {
         dependencies = ModuleDependencies(settings: settings)
         splitView.delegate = self
-        let rightPaneSplitViewItem = NSSplitViewItem(viewController: RightPaneViewController.createFromStoryBoard())
+        let rightPaneSplitViewItem = NSSplitViewItem(viewController: SettingsViewController.createFromStoryBoard())
         rightPaneSplitViewItem.canCollapse = true
         add(coordinator: NodeViewCoordinator.createFromStoryBoard())
         addSplitViewItem(rightPaneSplitViewItem)
