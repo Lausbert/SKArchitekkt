@@ -8,7 +8,7 @@ extension GraphCoordinator: RootNodeHandler {
     // MARK: - Public -
 
     public func handle(rootNode: Node) {
-        (children.filter { $0 is NodeViewController }.first as? NodeViewController)?.handle(rootNode: rootNode)
+        (children.filter { $0 is NodeViewCoordinator }.first as? NodeViewCoordinator)?.handle(rootNode: rootNode)
     }
 
 }

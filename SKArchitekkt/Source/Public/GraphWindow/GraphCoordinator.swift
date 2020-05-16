@@ -3,7 +3,7 @@
 import AppKit
 import CoreArchitekkt
 
-public class GraphCoordinator: SplitViewCoordinator<Any> {
+public class GraphCoordinator: SplitViewCoordinator<ModuleDependencies> {
 
     // MARK: - Public -
 
@@ -15,8 +15,6 @@ public class GraphCoordinator: SplitViewCoordinator<Any> {
 
     public override func insertSplitViewItem(_ splitViewItem: NSSplitViewItem, at index: Int) {
         switch splitViewItem.viewController {
-        case let nodeViewController as NodeViewController:
-            nodeViewController.settings = settings
         case let rightPaneViewController as RightPaneViewController:
             rightPaneViewController.settings = settings
         default:
@@ -58,11 +56,11 @@ public class GraphCoordinator: SplitViewCoordinator<Any> {
     private let settings: Settings = Settings.createSettings()
 
     private func setUp() {
+        dependencies = ModuleDependencies(settings: settings)
         splitView.delegate = self
-        let nodeSplitViewItem = NSSplitViewItem(viewController: NodeViewController.createFromStoryBoard())
         let rightPaneSplitViewItem = NSSplitViewItem(viewController: RightPaneViewController.createFromStoryBoard())
         rightPaneSplitViewItem.canCollapse = true
-        addSplitViewItem(nodeSplitViewItem)
+        add(coordinator: NodeViewCoordinator.createFromStoryBoard())
         addSplitViewItem(rightPaneSplitViewItem)
     }
 

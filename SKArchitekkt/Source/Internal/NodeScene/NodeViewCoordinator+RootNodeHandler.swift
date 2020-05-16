@@ -3,7 +3,7 @@
 import Foundation
 import CoreArchitekkt
 
-extension NodeViewController: RootNodeHandler {
+extension NodeViewCoordinator: RootNodeHandler {
 
     // MARK: - Internal -
 
