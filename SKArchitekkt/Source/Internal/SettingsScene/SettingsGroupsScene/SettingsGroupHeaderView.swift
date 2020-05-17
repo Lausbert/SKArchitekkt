@@ -2,7 +2,7 @@
 
 import AppKit
 
-class SettingsHeaderView: NSView {
+class SettingsGroupHeaderView: NSView {
 
     @IBOutlet weak var label: NSTextFieldCell!
 

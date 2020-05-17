@@ -2,7 +2,7 @@
 
 import AppKit
 
-class SettingsRangeCollectionViewItem: NSCollectionViewItem {
+class SettingsValueRangeCollectionViewItem: NSCollectionViewItem {
 
     @IBOutlet weak var label: NSTextField!
     @IBOutlet weak var slider: NSSlider!

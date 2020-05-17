@@ -13,20 +13,10 @@ public class GraphCoordinator: SplitViewCoordinator<ModuleDependencies> {
         setUp()
     }
 
-    public override func insertSplitViewItem(_ splitViewItem: NSSplitViewItem, at index: Int) {
-        switch splitViewItem.viewController {
-        case let settingsViewController as SettingsViewController:
-            settingsViewController.settingsGroups = settings.forceSettingsGroups
-        default:
-            break
-        }
-        super.insertSplitViewItem(splitViewItem, at: index)
-    }
-
     public override func splitViewDidResizeSubviews(_ notification: Notification) {
         for splitViewItem in splitViewItems {
             switch splitViewItem.viewController {
-            case is SettingsViewController:
+            case is SettingsGroupsViewController:
                 didSetRightPane(self, visible: !splitViewItem.isCollapsed)
             default:
                 break
@@ -44,9 +34,9 @@ public class GraphCoordinator: SplitViewCoordinator<ModuleDependencies> {
         switch pane {
         case .right:
             if animated {
-                splitViewItems.first(where: { $0.viewController is SettingsViewController })?.animator().isCollapsed = !visible
+                splitViewItems.first(where: { $0.viewController is SettingsGroupsViewController })?.animator().isCollapsed = !visible
             } else {
-                splitViewItems.first(where: { $0.viewController is SettingsViewController })?.isCollapsed = !visible
+                splitViewItems.first(where: { $0.viewController is SettingsGroupsViewController })?.isCollapsed = !visible
             }
         }
     }
@@ -58,10 +48,13 @@ public class GraphCoordinator: SplitViewCoordinator<ModuleDependencies> {
     private func setUp() {
         dependencies = ModuleDependencies(settings: settings)
         splitView.delegate = self
-        let rightPaneSplitViewItem = NSSplitViewItem(viewController: SettingsViewController.createFromStoryBoard())
-        rightPaneSplitViewItem.canCollapse = true
         add(coordinator: NodeViewCoordinator.createFromStoryBoard())
-        addSplitViewItem(rightPaneSplitViewItem)
+        let paneCoordinator = PaneCoordinator.createFromStoryBoard()
+        add(coordinator: paneCoordinator, canCollapse: true)
+        let settingsCoordinator = SettingsCoordinator.createFromStoryBoard()
+        let bundle = Bundle(for: Self.self)
+        let image = bundle.image(forResource: "RightPaneToolbarIcon")!
+        paneCoordinator.transition(toCoordinator: settingsCoordinator, withTabImages: [image])
     }
 
 }

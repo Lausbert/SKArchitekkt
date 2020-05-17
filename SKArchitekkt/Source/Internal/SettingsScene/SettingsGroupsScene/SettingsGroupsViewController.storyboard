@@ -5,10 +5,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Settings View Controller-->
+        <!--Settings Groups View Controller-->
         <scene sceneID="ZDS-SV-DIq">
             <objects>
-                <viewController storyboardIdentifier="SettingsViewController" id="Wmc-0e-3p5" customClass="SettingsViewController" customModule="SKArchitekkt" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SettingsGroupsViewController" id="Wmc-0e-3p5" customClass="SettingsGroupsViewController" customModule="SKArchitekkt" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="Kdp-pu-OB0">
                         <rect key="frame" x="0.0" y="0.0" width="260" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>

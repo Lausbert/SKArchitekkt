@@ -52,7 +52,7 @@
             </constraints>
             <point key="canvasLocation" x="191.5" y="154"/>
         </customView>
-        <customObject id="0GD-3T-Q8W" customClass="SettingsRangeCollectionViewItem" customModule="SKArchitekkt" customModuleProvider="target">
+        <customObject id="0GD-3T-Q8W" customClass="SettingsValueRangeCollectionViewItem" customModule="SKArchitekkt" customModuleProvider="target">
             <connections>
                 <outlet property="label" destination="qNL-HV-CVy" id="StT-Z2-sdo"/>
                 <outlet property="slider" destination="ANE-Kn-jyJ" id="l2d-Jl-qR3"/>

@@ -2,7 +2,7 @@
 
 import AppKit
 
-class SettingsViewController: NSViewController, NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout {
+class SettingsGroupsViewController: NSViewController, NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout {
 
     // MARK: - Internal -
 
@@ -34,7 +34,7 @@ class SettingsViewController: NSViewController, NSCollectionViewDataSource, NSCo
         let settingsItem = settingsGroups[indexPath.section].settingsItems[indexPath.item]
         switch settingsItem.value {
         case let .range(value, minValue, maxValue):
-            guard let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "SettingsRangeCollectionViewItem"), for: indexPath) as? SettingsRangeCollectionViewItem else { return NSCollectionViewItem() }
+            guard let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "SettingsValueRangeCollectionViewItem"), for: indexPath) as? SettingsValueRangeCollectionViewItem else { return NSCollectionViewItem() }
             item.label.stringValue = settingsItem.name
             item.slider.minValue = minValue
             item.slider.maxValue = maxValue
@@ -65,12 +65,12 @@ class SettingsViewController: NSViewController, NSCollectionViewDataSource, NSCo
     func collectionView(_ collectionView: NSCollectionView, viewForSupplementaryElementOfKind kind: NSCollectionView.SupplementaryElementKind, at indexPath: IndexPath) -> NSView {
         switch kind {
         case NSCollectionView.elementKindSectionHeader:
-            if let headerView = collectionView.makeSupplementaryView(ofKind: kind, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "SettingsHeaderView"), for: indexPath) as? SettingsHeaderView {
+            if let headerView = collectionView.makeSupplementaryView(ofKind: kind, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "SettingsGroupHeaderView"), for: indexPath) as? SettingsGroupHeaderView {
                 headerView.label.stringValue = settingsGroups[indexPath.section].name
                 return headerView
             }
         case NSCollectionView.elementKindSectionFooter:
-            return collectionView.makeSupplementaryView(ofKind: kind, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "SettingsFooterView"), for: indexPath)
+            return collectionView.makeSupplementaryView(ofKind: kind, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "SettingsGroupFooterView"), for: indexPath)
         default:
             break
         }
