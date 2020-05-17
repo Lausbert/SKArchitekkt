@@ -34,9 +34,9 @@ public class GraphCoordinator: SplitViewCoordinator<ModuleDependencies> {
         switch pane {
         case .right:
             if animated {
-                splitViewItems.first(where: { $0.viewController is SettingsGroupsViewController })?.animator().isCollapsed = !visible
+                splitViewItems.first(where: { $0.viewController is PaneCoordinator })?.animator().isCollapsed = !visible
             } else {
-                splitViewItems.first(where: { $0.viewController is SettingsGroupsViewController })?.isCollapsed = !visible
+                splitViewItems.first(where: { $0.viewController is PaneCoordinator })?.isCollapsed = !visible
             }
         }
     }
