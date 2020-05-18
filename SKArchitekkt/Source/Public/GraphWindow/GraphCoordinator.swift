@@ -53,8 +53,9 @@ public class GraphCoordinator: SplitViewCoordinator<ModuleDependencies> {
         add(coordinator: paneCoordinator, canCollapse: true)
         let settingsCoordinator = SettingsCoordinator.createFromStoryBoard()
         let bundle = Bundle(for: Self.self)
-        let image = bundle.image(forResource: "ForceTabbarIcon")!
-        paneCoordinator.transition(toCoordinator: settingsCoordinator, withTabImages: [image])
+        let forceImage = bundle.image(forResource: "ForceTabbarIcon")!
+        let visibilityImage = bundle.image(forResource: "VisibilityTabbarIcon")!
+        paneCoordinator.transition(toCoordinator: settingsCoordinator, withTabImages: [forceImage, visibilityImage])
     }
 
 }

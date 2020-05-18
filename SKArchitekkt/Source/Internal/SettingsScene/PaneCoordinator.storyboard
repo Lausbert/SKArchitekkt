@@ -14,9 +14,9 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aRJ-gy-Xhf">
-                                <rect key="frame" x="225" y="274" width="0.0" height="20"/>
+                                <rect key="frame" x="225" y="278" width="0.0" height="14"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="mTw-BQ-Hmc"/>
+                                    <constraint firstAttribute="height" constant="14" id="mTw-BQ-Hmc"/>
                                 </constraints>
                             </stackView>
                             <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="ktG-KG-ARm">
@@ -29,10 +29,10 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="ktG-KG-ARm" secondAttribute="trailing" id="AtD-nA-DC4"/>
                             <constraint firstItem="fzl-G8-JdG" firstAttribute="leading" secondItem="C8o-cc-dyw" secondAttribute="leading" id="DYQ-lA-xqc"/>
-                            <constraint firstItem="aRJ-gy-Xhf" firstAttribute="top" secondItem="C8o-cc-dyw" secondAttribute="top" constant="6" id="Eag-Hc-ZPk"/>
+                            <constraint firstItem="aRJ-gy-Xhf" firstAttribute="top" secondItem="C8o-cc-dyw" secondAttribute="top" constant="8" id="Eag-Hc-ZPk"/>
                             <constraint firstItem="ktG-KG-ARm" firstAttribute="leading" secondItem="C8o-cc-dyw" secondAttribute="leading" id="MyT-0P-tXz"/>
                             <constraint firstItem="aRJ-gy-Xhf" firstAttribute="centerX" secondItem="C8o-cc-dyw" secondAttribute="centerX" id="Wi0-zs-ROr"/>
-                            <constraint firstItem="ktG-KG-ARm" firstAttribute="top" secondItem="aRJ-gy-Xhf" secondAttribute="bottom" constant="2" id="dOS-oP-64i"/>
+                            <constraint firstItem="ktG-KG-ARm" firstAttribute="top" secondItem="aRJ-gy-Xhf" secondAttribute="bottom" constant="6" id="dOS-oP-64i"/>
                             <constraint firstAttribute="trailing" secondItem="fzl-G8-JdG" secondAttribute="trailing" id="gs6-lp-YXm"/>
                             <constraint firstAttribute="bottom" secondItem="fzl-G8-JdG" secondAttribute="bottom" id="iMM-9e-LnP"/>
                             <constraint firstItem="fzl-G8-JdG" firstAttribute="top" secondItem="ktG-KG-ARm" secondAttribute="bottom" id="zji-C9-g9Y"/>
