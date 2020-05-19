@@ -6,24 +6,24 @@
     </dependencies>
     <scenes>
         <!--Settings Coordinator-->
-        <scene sceneID="Pzu-7y-jNX">
+        <scene sceneID="NV5-YD-2wU">
             <objects>
-                <tabViewController storyboardIdentifier="SettingsCoordinator" tabStyle="unspecified" id="K8H-4S-dw4" customClass="SettingsCoordinator" customModule="SKArchitekkt" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabView key="tabView" type="noTabsNoBorder" id="64g-2O-1gf">
+                <tabViewController storyboardIdentifier="SettingsCoordinator" tabStyle="unspecified" id="lH9-We-Ke1" customClass="SettingsCoordinator" customModule="SKArchitekkt" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabView key="tabView" type="noTabsNoBorder" id="ibM-JX-1U0">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <font key="font" metaFont="system"/>
                         <connections>
-                            <outlet property="delegate" destination="K8H-4S-dw4" id="6uV-JN-zFl"/>
+                            <outlet property="delegate" destination="lH9-We-Ke1" id="Lgc-FS-ydZ"/>
                         </connections>
                     </tabView>
                     <connections>
-                        <outlet property="tabView" destination="64g-2O-1gf" id="4px-aE-dkD"/>
+                        <outlet property="tabView" destination="ibM-JX-1U0" id="xZt-vh-Fq0"/>
                     </connections>
                 </tabViewController>
-                <customObject id="ikJ-OW-u0h" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <customObject id="mjh-Df-Dlc" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="25" y="-282"/>
+            <point key="canvasLocation" x="320" y="-270"/>
         </scene>
     </scenes>
 </document>

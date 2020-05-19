@@ -14,7 +14,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     private func getRootNode() -> Node {
-        guard let ressourceIdentifier = UserDefaults.standard.string(forKey: "ressourceIdentifier") else { fatalError("Could not setup root node.") }
+        let ressourceIdentifier = UserDefaults.standard.string(forKey: "ressourceIdentifier") ?? "CocoaPodsWorkspace"
         let ressourceJsonString: String
         switch ressourceIdentifier {
         case CocoaPodsWorkspace.identifier():

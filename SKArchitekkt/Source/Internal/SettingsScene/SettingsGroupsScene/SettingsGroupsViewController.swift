@@ -23,6 +23,7 @@ class SettingsGroupsViewController: NSViewController, NSCollectionViewDataSource
 
     @IBAction func didPressResetButton(_ sender: Any) {
         settingsGroups.forEach { $0.reset() }
+        collectionView.reloadData()
     }
 
     func numberOfSections(in collectionView: NSCollectionView) -> Int {
@@ -91,13 +92,7 @@ class SettingsGroupsViewController: NSViewController, NSCollectionViewDataSource
     private var cancellables: [AnyCancellable] = []
 
     private func setUp() {
-        cancellables = []
-        cancellables += settingsGroups.flatMap { $0.settingsItems } .map({ (settingsItem) -> AnyCancellable in
-            settingsItem.objectWillChange.receive(on: DispatchQueue.main).sink { [weak self] (_) in
-                self?.collectionView.reloadData()
-            }
-        })
-        cancellables += settingsGroups.map({ (settingsGroup) -> AnyCancellable in
+        cancellables = settingsGroups.map({ (settingsGroup) -> AnyCancellable in
            settingsGroup.objectWillChange.receive(on: DispatchQueue.main).sink { [weak self] (_) in
                self?.collectionView.reloadData()
            }
