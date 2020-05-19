@@ -50,6 +50,10 @@ class SettingsGroupsViewController: NSViewController, NSCollectionViewDataSource
                 settingsItem?.value = .range(value: newValue, minValue: minValue, maxValue: maxValue)
             }
             return item
+        case .deletable:
+            guard let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "SettingsValueDeletableCollectionViewItem"), for: indexPath) as? SettingsValueDeletableCollectionViewItem else { return NSCollectionViewItem() }
+            item.label.stringValue = settingsItem.name
+            return item
         }
     }
 
@@ -60,6 +64,8 @@ class SettingsGroupsViewController: NSViewController, NSCollectionViewDataSource
         let settingsItem = settingsGroups[indexPath.section].settingsItems[indexPath.item]
         switch settingsItem.value {
         case .range:
+            return NSSize(width: collectionView.frame.width, height: 23)
+        case .deletable:
             return NSSize(width: collectionView.frame.width, height: 23)
         }
     }

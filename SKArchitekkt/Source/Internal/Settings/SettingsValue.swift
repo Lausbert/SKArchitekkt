@@ -7,9 +7,10 @@ enum SettingsValue: Codable {
     // MARK: - Internal -
    
     case range(value: Double, minValue: Double, maxValue: Double)
+    case deletable(data: Data)
     
     enum CodingKeys: CodingKey {
-        case range
+        case range, deletable
     }
 
     init(from decoder: Decoder) throws {
@@ -20,6 +21,9 @@ enum SettingsValue: Codable {
         case .range:
             let (value, minValue, maxValue): (Double, Double, Double) = try container.decodeValues(for: .range)
             self = .range(value: value, minValue: minValue, maxValue: maxValue)
+        case .deletable:
+            let data = try container.decode(Data.self, forKey: .deletable)
+            self = .deletable(data: data)
         case .none:
             throw DecodingError.dataCorrupted(
                 DecodingError.Context(
@@ -36,6 +40,8 @@ enum SettingsValue: Codable {
         switch self {
         case let .range(value, minValue, maxValue):
             try container.encodeValues(value, minValue, maxValue, for: .range)
+        case let .deletable(data):
+            try container.encode(data, forKey: .deletable)
         }
     }
 }
