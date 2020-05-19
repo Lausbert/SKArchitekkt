@@ -41,7 +41,7 @@ final class Settings: Codable {
     }
 
     var settingsGroups: [SettingsGroup] {
-        forceSettingsGroups
+        forceSettingsGroups + visibilitySettingsGroups
     }
     var settingsItems: [SettingsItem] {
         return settingsGroups.flatMap { $0.settingsItems }
@@ -91,6 +91,14 @@ final class Settings: Codable {
         ]
     }
     
+    // MARK: Visibility
+    
+    var visibilitySettingsGroups: [SettingsGroup] {
+        return [
+            SettingsGroup(name: "Hidden Nodes", settingsItems: []),
+            SettingsGroup(name: "Flattened Nodes", settingsItems: [])
+        ]
+    }
     
 
     // MARK: - Private -

@@ -20,6 +20,10 @@ class SettingsCoordinator: TabViewCoordinator<HasSettings> {
             forceSettingsGroupsViewController.settingsGroups = settings.forceSettingsGroups
             let forceSettingsTabViewItem = NSTabViewItem(viewController: forceSettingsGroupsViewController)
             addTabViewItem(forceSettingsTabViewItem)
+            let visibilitySettingsGroupsViewController = SettingsGroupsViewController.createFromStoryBoard()
+            visibilitySettingsGroupsViewController.settingsGroups = settings.visibilitySettingsGroups
+            let visibilitySettingsTabViewItem = NSTabViewItem(viewController: visibilitySettingsGroupsViewController)
+            addTabViewItem(visibilitySettingsTabViewItem)
         } else {
             assertionFailure()
         }

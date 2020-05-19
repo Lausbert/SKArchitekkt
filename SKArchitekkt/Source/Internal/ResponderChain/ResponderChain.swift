@@ -1,6 +1,6 @@
 // Copyright © 2020 Stephan Lerner. All rights reserved.
 
-import Cocoa
+import AppKit
 
 extension NSResponder {
 

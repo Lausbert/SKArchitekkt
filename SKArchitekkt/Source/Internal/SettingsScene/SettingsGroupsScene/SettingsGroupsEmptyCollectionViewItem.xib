@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="c22-O7-iKe">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="23"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="DAr-dj-puu">
+                    <rect key="frame" x="0.0" y="0.0" width="480" height="23"/>
+                    <subviews>
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ia8-FH-926">
+                            <rect key="frame" x="223" y="5" width="35" height="13"/>
+                            <textFieldCell key="cell" lineBreakMode="clipping" title="Empty" id="Vmy-2A-Bl9">
+                                <font key="font" metaFont="system" size="10"/>
+                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </textFieldCell>
+                        </textField>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="Ia8-FH-926" firstAttribute="centerY" secondItem="DAr-dj-puu" secondAttribute="centerY" id="V4A-LT-4Mq"/>
+                        <constraint firstItem="Ia8-FH-926" firstAttribute="centerX" secondItem="DAr-dj-puu" secondAttribute="centerX" id="naB-lE-Kir"/>
+                    </constraints>
+                </customView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="DAr-dj-puu" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="2Tc-tL-XUP"/>
+                <constraint firstItem="DAr-dj-puu" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="G59-cY-Hby"/>
+                <constraint firstAttribute="trailing" secondItem="DAr-dj-puu" secondAttribute="trailing" id="els-F3-LMp"/>
+                <constraint firstAttribute="bottom" secondItem="DAr-dj-puu" secondAttribute="bottom" id="kOV-JZ-Ocm"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="154"/>
+        </customView>
+        <customObject id="y3I-kI-Xwv" customClass="SettingsGroupsEmptyCollectionViewItem" customModule="SKArchitekkt" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="c22-O7-iKe" id="YGB-1c-cuc"/>
+            </connections>
+        </customObject>
+    </objects>
+</document>

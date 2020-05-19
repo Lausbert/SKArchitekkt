@@ -41,6 +41,8 @@
 		7C464BAC98ACCD41F2828AC9A2F3DC32 /* SplitViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0FE828EF73883CCFC11B87156F1725C /* SplitViewCoordinator.swift */; };
 		7E7D605A9FE9ACAAF30A0F710034E1EA /* DependencyUpdating.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5075C832C883506A2E7AAEFF4D25DA4 /* DependencyUpdating.swift */; };
 		8C137D2C679F4D636042246634241084 /* ViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF8977A55010C15379CC7E62E2DA9E37 /* ViewCoordinator.swift */; };
+		8D1FCE732473DD3E0044F7BD /* SettingsGroupsEmptyCollectionViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D1FCE722473DD3E0044F7BD /* SettingsGroupsEmptyCollectionViewItem.xib */; };
+		8D1FCE752473FBDE0044F7BD /* SettingsGroupsEmptyCollectionViewItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1FCE742473FBDE0044F7BD /* SettingsGroupsEmptyCollectionViewItem.swift */; };
 		8D46CE7624712464007DE632 /* PaneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D46CE7524712464007DE632 /* PaneCoordinator.swift */; };
 		8D46CE7824712482007DE632 /* PaneCoordinator.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D46CE7724712482007DE632 /* PaneCoordinator.storyboard */; };
 		8D46CE7A247124D6007DE632 /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D46CE79247124D6007DE632 /* SettingsCoordinator.swift */; };
@@ -180,6 +182,8 @@
 		82A1344D155DE631D20313B0F70D4A40 /* DispatchQueue.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DispatchQueue.swift; path = CoreArchitekkt/Source/Public/Extensions/DispatchQueue.swift; sourceTree = "<group>"; };
 		872B996F30C039A3A4FF728BC07CFB14 /* SKArchitekkt.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SKArchitekkt.debug.xcconfig; sourceTree = "<group>"; };
 		8CBDCDC3A7E243C1C3F2162A31A8CEBF /* NodeView+RootNodeHandler.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "NodeView+RootNodeHandler.swift"; sourceTree = "<group>"; };
+		8D1FCE722473DD3E0044F7BD /* SettingsGroupsEmptyCollectionViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsGroupsEmptyCollectionViewItem.xib; sourceTree = "<group>"; };
+		8D1FCE742473FBDE0044F7BD /* SettingsGroupsEmptyCollectionViewItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsGroupsEmptyCollectionViewItem.swift; sourceTree = "<group>"; };
 		8D46CE7524712464007DE632 /* PaneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaneCoordinator.swift; sourceTree = "<group>"; };
 		8D46CE7724712482007DE632 /* PaneCoordinator.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PaneCoordinator.storyboard; sourceTree = "<group>"; };
 		8D46CE79247124D6007DE632 /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
@@ -483,6 +487,8 @@
 				97087AD7D6640479F0AE39309AE3FABB /* SettingsGroupHeaderView.swift */,
 				8DD3C089246C902200349EBB /* SettingsGroupHeaderView.xib */,
 				8DD3C08B246C902B00349EBB /* SettingsGroupFooterView.xib */,
+				8D1FCE742473FBDE0044F7BD /* SettingsGroupsEmptyCollectionViewItem.swift */,
+				8D1FCE722473DD3E0044F7BD /* SettingsGroupsEmptyCollectionViewItem.xib */,
 				F8BFC67698A0C2D09588A2DCC5B21FA1 /* SettingsValueRangeCollectionViewItem.swift */,
 				8DD3C087246C901D00349EBB /* SettingsValueRangeCollectionViewItem.xib */,
 			);
@@ -797,6 +803,7 @@
 				8DD3C086246C901600349EBB /* NodeViewCoordinator.storyboard in Resources */,
 				5A42DA2FC1F10FD16877DD9ACCD4BFDD /* Assets.xcassets in Resources */,
 				8DD3C084246C900E00349EBB /* GraphWindowController.storyboard in Resources */,
+				8D1FCE732473DD3E0044F7BD /* SettingsGroupsEmptyCollectionViewItem.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -858,6 +865,7 @@
 				2F5F34CFBD66266CEC9B740C8FAF5E97 /* ShapeNode+Rendering.swift in Sources */,
 				EC124901A4289D95CB3A47DAE55787DF /* ShapeNode.swift in Sources */,
 				940D63F2B79D1186EF073FF1BA11F407 /* SKArchitekkt-dummy.m in Sources */,
+				8D1FCE752473FBDE0044F7BD /* SettingsGroupsEmptyCollectionViewItem.swift in Sources */,
 				8DD3C090246EE6BA00349EBB /* SettingsValue.swift in Sources */,
 				8DF96923246EFEB800C02737 /* KeyedEncodingContainer.swift in Sources */,
 				606FA9E28A53F4EBCFDE0A0649CC62B5 /* VirtualArc.swift in Sources */,

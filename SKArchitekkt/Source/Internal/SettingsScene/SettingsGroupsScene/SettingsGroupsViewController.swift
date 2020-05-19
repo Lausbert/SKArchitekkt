@@ -30,10 +30,13 @@ class SettingsGroupsViewController: NSViewController, NSCollectionViewDataSource
     }
 
     func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
-        return settingsGroups[section].settingsItems.count
+        return max(settingsGroups[section].settingsItems.count, 1)
     }
 
     func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
+        guard settingsGroups[indexPath.section].settingsItems.count > 0 else {
+            return collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "SettingsGroupsEmptyCollectionViewItem"), for: indexPath)
+        }
         let settingsItem = settingsGroups[indexPath.section].settingsItems[indexPath.item]
         switch settingsItem.value {
         case let .range(value, minValue, maxValue):
@@ -50,6 +53,9 @@ class SettingsGroupsViewController: NSViewController, NSCollectionViewDataSource
     }
 
     func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {
+        guard settingsGroups[indexPath.section].settingsItems.count > 0 else {
+            return NSSize(width: collectionView.frame.width, height: 23)
+        }
         let settingsItem = settingsGroups[indexPath.section].settingsItems[indexPath.item]
         switch settingsItem.value {
         case .range:

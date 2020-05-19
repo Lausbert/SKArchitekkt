@@ -1,6 +1,6 @@
 // Copyright © 2020 Stephan Lerner. All rights reserved.
 
-import Cocoa
+import AppKit
 import CoreArchitekkt
 
 class PaneCoordinator: ViewCoordinator<NoDependencies> {
