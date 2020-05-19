@@ -94,12 +94,15 @@ final class Settings: Codable {
     
     // MARK: Visibility
     
-    var visibilitySettingsGroups: [SettingsGroup] {
+    let hiddenNodesSettingsGroups: SettingsGroup
+    let flattendedNodesSettingsGroups: SettingsGroup
+    
+    lazy var visibilitySettingsGroups: [SettingsGroup] = {
         return [
-            SettingsGroup(name: "Hidden Nodes", settingsItems: []),
-            SettingsGroup(name: "Flattened Nodes", settingsItems: [])
+            hiddenNodesSettingsGroups,
+            flattendedNodesSettingsGroups
         ]
-    }
+    }()
     
 
     // MARK: - Private -
@@ -115,6 +118,8 @@ final class Settings: Codable {
         negativeRadialGravitationalForceOnSiblingsPowerSettingsItem = SettingsItem(name: "Power", value: v1, initialValue: v1)
         springForceBetweenConnectedNodesPowerSettingsItem = SettingsItem(name: "Power", value: v2, initialValue: v2)
         areaBasedOnTotalChildrensAreaMultiplierSettingsItem = SettingsItem(name: "Multiplier", value: v3, initialValue: v3)
+        hiddenNodesSettingsGroups = SettingsGroup(name: "Hidden Nodes", settingsItems: [])
+        flattendedNodesSettingsGroups = SettingsGroup(name: "Flattened Nodes", settingsItems: [])
     }
     
     
