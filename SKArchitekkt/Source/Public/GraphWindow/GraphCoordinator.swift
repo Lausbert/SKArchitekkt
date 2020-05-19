@@ -16,7 +16,7 @@ public class GraphCoordinator: SplitViewCoordinator<ModuleDependencies> {
     public override func splitViewDidResizeSubviews(_ notification: Notification) {
         for splitViewItem in splitViewItems {
             switch splitViewItem.viewController {
-            case is SettingsGroupsViewController:
+            case is PaneCoordinator:
                 didSetRightPane(self, visible: !splitViewItem.isCollapsed)
             default:
                 break
