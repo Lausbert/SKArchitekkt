@@ -2,12 +2,12 @@
 
 import Foundation
 
-class SettingsGroup: Codable {
+class SettingsGroup: ObservableObject, Codable {
     
     // MARK: - Internal -
 
     let name: String
-    var settingsItems: [SettingsItem]
+    @Published var settingsItems: [SettingsItem]
 
     init(name: String, settingsItems: [SettingsItem]) {
         self.name = name
@@ -22,6 +22,22 @@ class SettingsGroup: Codable {
                 settingsItems.remove(at: index)
             }
         }
+    }
+    
+    enum CodingKeys: CodingKey {
+        case name, settingsItems
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.name = try container.decode(String.self, forKey: .name)
+        self.settingsItems = try container.decode([SettingsItem].self, forKey: .settingsItems)
+    }
+       
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(name, forKey: .name)
+        try container.encode(settingsItems, forKey: .settingsItems)
     }
 
 }

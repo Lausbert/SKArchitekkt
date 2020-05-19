@@ -36,7 +36,7 @@ extension NodeScene {
         arcNodes = []
         scene?.addChild(shapeRootNode)
         scene?.addChild(arcRootNode)
-        self.areaBasedOnTotalChildrensAreaMultiplierSettingsItemCancellable = settings.areaBasedOnTotalChildrensAreaMultiplierSettingsItem.$value.receive(on: DispatchQueue.main).sink(receiveValue: { [weak self] (_) in
+        self.areaBasedOnTotalChildrensAreaMultiplierSettingsItemCancellable = settings.areaBasedOnTotalChildrensAreaMultiplierSettingsItem.objectWillChange.receive(on: DispatchQueue.main).sink(receiveValue: { [weak self] (_) in
                 self?.update()
         })
     }

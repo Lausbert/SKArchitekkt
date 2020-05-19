@@ -1,6 +1,6 @@
 //  Copyright © 2019 Stephan Lerner. All rights reserved.
 
-import AppKit
+import Combine
 
 class SettingsGroupsViewController: NSViewController, NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout {
 
@@ -8,7 +8,11 @@ class SettingsGroupsViewController: NSViewController, NSCollectionViewDataSource
 
     @IBOutlet weak var collectionView: NSCollectionView!
 
-    var settingsGroups: [SettingsGroup] = []
+    var settingsGroups: [SettingsGroup] = [] {
+        didSet {
+            setUp()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +23,6 @@ class SettingsGroupsViewController: NSViewController, NSCollectionViewDataSource
 
     @IBAction func didPressResetButton(_ sender: Any) {
         settingsGroups.forEach { $0.reset() }
-        collectionView.reloadData()
     }
 
     func numberOfSections(in collectionView: NSCollectionView) -> Int {
@@ -76,5 +79,23 @@ class SettingsGroupsViewController: NSViewController, NSCollectionViewDataSource
         }
         return NSView()
     }
+    
+    // MARK: - Private -
+    
+    private var cancellables: [AnyCancellable] = []
 
+    private func setUp() {
+        cancellables = []
+        cancellables += settingsGroups.flatMap { $0.settingsItems } .map({ (settingsItem) -> AnyCancellable in
+            settingsItem.objectWillChange.receive(on: DispatchQueue.main).sink { [weak self] (_) in
+                self?.collectionView.reloadData()
+            }
+        })
+        cancellables += settingsGroups.map({ (settingsGroup) -> AnyCancellable in
+           settingsGroup.objectWillChange.receive(on: DispatchQueue.main).sink { [weak self] (_) in
+               self?.collectionView.reloadData()
+           }
+        })
+    }
+    
 }

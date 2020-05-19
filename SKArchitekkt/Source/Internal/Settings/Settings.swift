@@ -9,7 +9,7 @@ final class Settings: Codable {
 
     static func createSettings() -> Settings {
         let settings: Settings
-        if let data = UserDefaults.standard.data(forKey: userDefaultsKey),
+        if let data = UserDefaults.standard.data(forKey: userDefaultsKeyPrefix),
             let oldSettings = try? JSONDecoder().decode(Settings.self, from: data) {
             let newSettings = Settings()
             let zippedSettingsItems = zip(oldSettings.settingsItems, newSettings.settingsItems)
@@ -22,12 +22,20 @@ final class Settings: Codable {
         } else {
             settings = Settings()
         }
-        settingsItemsCancellables = settings.settingsItems.map({ (settingsItem) -> AnyCancellable in
-            settingsItem.$value.sink { (_) in
+        cancellables = []
+        cancellables += settings.settingsItems.map({ (settingsItem) -> AnyCancellable in
+            settingsItem.objectWillChange.receive(on: DispatchQueue.main).sink { (_) in
                 if let data = try? JSONEncoder().encode(settings) {
-                    UserDefaults.standard.set(data, forKey: userDefaultsKey)
+                    UserDefaults.standard.set(data, forKey: userDefaultsKeyPrefix)
                 }
             }
+        })
+        cancellables += settings.settingsGroups.map({ (settingsGroup) -> AnyCancellable in
+           settingsGroup.objectWillChange.receive(on: DispatchQueue.main).sink { (_) in
+               if let data = try? JSONEncoder().encode(settings) {
+                   UserDefaults.standard.set(data, forKey: userDefaultsKeyPrefix)
+               }
+           }
         })
         return settings
     }
@@ -87,8 +95,8 @@ final class Settings: Codable {
 
     // MARK: - Private -
 
-    private static let userDefaultsKey = "settingsUserDefaultsKey"
-    private static var settingsItemsCancellables: [AnyCancellable] = []
+    private static let userDefaultsKeyPrefix = "skarchitekkt/settings/"
+    private static var cancellables: [AnyCancellable] = []
     
     private init() {
         // Force
