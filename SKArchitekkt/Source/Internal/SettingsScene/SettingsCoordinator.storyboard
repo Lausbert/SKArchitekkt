@@ -10,7 +10,7 @@
             <objects>
                 <tabViewController storyboardIdentifier="SettingsCoordinator" tabStyle="unspecified" id="lH9-We-Ke1" customClass="SettingsCoordinator" customModule="SKArchitekkt" customModuleProvider="target" sceneMemberID="viewController">
                     <tabView key="tabView" type="noTabsNoBorder" id="ibM-JX-1U0">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="260" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <font key="font" metaFont="system"/>
                         <connections>
