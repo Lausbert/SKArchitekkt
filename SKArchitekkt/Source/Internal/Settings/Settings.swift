@@ -77,7 +77,8 @@ final class Settings: Codable {
             return 4
         }
     }
-    var forceSettingsGroups: [SettingsGroup] {
+    
+    lazy var forceSettingsGroups: [SettingsGroup] = {
         return [
             SettingsGroup(name: "Negative Radial Gravitational Force On Siblings", settingsItems: [
                 negativeRadialGravitationalForceOnSiblingsPowerSettingsItem
@@ -89,7 +90,7 @@ final class Settings: Codable {
                 areaBasedOnTotalChildrensAreaMultiplierSettingsItem
                 ])
         ]
-    }
+    }()
     
     // MARK: Visibility
     
