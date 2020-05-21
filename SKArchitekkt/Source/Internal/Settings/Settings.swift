@@ -122,7 +122,7 @@ final class Settings: Codable {
         negativeRadialGravitationalForceOnSiblingsPowerSettingsItem = SettingsItem(name: "Power", value: v1, initialValue: v1)
         springForceBetweenConnectedNodesPowerSettingsItem = SettingsItem(name: "Power", value: v2, initialValue: v2)
         areaBasedOnTotalChildrensAreaMultiplierSettingsItem = SettingsItem(name: "Multiplier", value: v3, initialValue: v3)
-        hiddenNodesSettingsGroup = SettingsGroup(name: "Hidden Nodes", settingsItems: [SettingsItem(name: "test", value: .deletable(data: "test".data(using: .utf8)!), initialValue: .deletable(data: "test".data(using: .utf8)!))])
+        hiddenNodesSettingsGroup = SettingsGroup(name: "Hidden Nodes", settingsItems: [])
         flattendedNodesSettingsGroup = SettingsGroup(name: "Flattened Nodes", settingsItems: [])
     }
     
