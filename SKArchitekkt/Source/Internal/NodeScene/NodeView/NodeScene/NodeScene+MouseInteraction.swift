@@ -59,6 +59,22 @@ extension NodeScene {
         frozenNodes = []
         movedNode = nil
     }
+    
+    override func rightMouseDown(with event: NSEvent) {
+        guard let view = view else {
+            assertionFailure()
+            return
+        }
+        let menu = NSMenu()
+        let item = NSMenuItem(title: "testItem", action: #selector(testAction), keyEquivalent: "")
+        item.target = self
+        menu.insertItem(item, at: 0)
+        menu.popUp(positioning: nil, at: view.convert(event.location(in: self), from: self), in: view)
+    }
+    
+    @objc func testAction() {
+        print("testAction")
+    }
 
     override func scrollWheel(with event: NSEvent) {
         guard let currentScale = camera?.xScale else { return }
