@@ -24,6 +24,14 @@ class SettingsGroup: ObservableObject, Codable {
         }
     }
     
+    func remove(settingsItem: SettingsItem) {
+        guard let index = settingsItems.firstIndex(of: settingsItem) else {
+            assertionFailure()
+            return
+        }
+        settingsItems.remove(at: index)
+    }
+    
     enum CodingKeys: CodingKey {
         case name, settingsItems
     }

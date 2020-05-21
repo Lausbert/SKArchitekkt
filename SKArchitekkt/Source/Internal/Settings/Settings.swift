@@ -12,9 +12,14 @@ final class Settings: Codable {
         if let data = UserDefaults.standard.data(forKey: userDefaultsKeyPrefix),
             let oldSettings = try? JSONDecoder().decode(Settings.self, from: data) {
             let newSettings = Settings()
-            let zippedSettingsItems = zip(oldSettings.settingsItems, newSettings.settingsItems)
-            if oldSettings.settingsItems.count == newSettings.settingsItems.count
-                ,zippedSettingsItems.allSatisfy({ $0.0.name == $0.1.name && $0.0.initialValue == $0.1.initialValue }) {
+            let oldSettingsItemsWithInitialValue = oldSettings.settingsItems.filter { $0.initialValue != nil }
+            let newSettingsItemsWithInitialValue = newSettings.settingsItems.filter { $0.initialValue != nil }
+            let zippedSettingsItemsWithInitialValue = zip(
+                oldSettingsItemsWithInitialValue,
+                newSettingsItemsWithInitialValue
+            )
+            if oldSettingsItemsWithInitialValue.count == newSettingsItemsWithInitialValue.count
+                ,zippedSettingsItemsWithInitialValue.allSatisfy({ $0.0.name == $0.1.name && $0.0.initialValue == $0.1.initialValue }) {
                 settings = oldSettings
             } else {
                 settings = newSettings
@@ -94,13 +99,13 @@ final class Settings: Codable {
     
     // MARK: Visibility
     
-    let hiddenNodesSettingsGroups: SettingsGroup
-    let flattendedNodesSettingsGroups: SettingsGroup
+    let hiddenNodesSettingsGroup: SettingsGroup
+    let flattendedNodesSettingsGroup: SettingsGroup
     
     lazy var visibilitySettingsGroups: [SettingsGroup] = {
         return [
-            hiddenNodesSettingsGroups,
-            flattendedNodesSettingsGroups
+            hiddenNodesSettingsGroup,
+            flattendedNodesSettingsGroup
         ]
     }()
 
@@ -117,8 +122,8 @@ final class Settings: Codable {
         negativeRadialGravitationalForceOnSiblingsPowerSettingsItem = SettingsItem(name: "Power", value: v1, initialValue: v1)
         springForceBetweenConnectedNodesPowerSettingsItem = SettingsItem(name: "Power", value: v2, initialValue: v2)
         areaBasedOnTotalChildrensAreaMultiplierSettingsItem = SettingsItem(name: "Multiplier", value: v3, initialValue: v3)
-        hiddenNodesSettingsGroups = SettingsGroup(name: "Hidden Nodes", settingsItems: [SettingsItem(name: "test", value: .deletable(data: "test".data(using: .utf8)!))])
-        flattendedNodesSettingsGroups = SettingsGroup(name: "Flattened Nodes", settingsItems: [])
+        hiddenNodesSettingsGroup = SettingsGroup(name: "Hidden Nodes", settingsItems: [SettingsItem(name: "test", value: .deletable(data: "test".data(using: .utf8)!), initialValue: .deletable(data: "test".data(using: .utf8)!))])
+        flattendedNodesSettingsGroup = SettingsGroup(name: "Flattened Nodes", settingsItems: [])
     }
     
     

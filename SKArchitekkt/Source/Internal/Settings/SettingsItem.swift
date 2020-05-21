@@ -35,3 +35,9 @@ class SettingsItem: ObservableObject, Codable {
     }
 
 }
+
+extension SettingsItem: Equatable {
+    static func == (lhs: SettingsItem, rhs: SettingsItem) -> Bool {
+        lhs.name == rhs.name && lhs.value == rhs.value && lhs.initialValue == rhs.initialValue
+    }
+}

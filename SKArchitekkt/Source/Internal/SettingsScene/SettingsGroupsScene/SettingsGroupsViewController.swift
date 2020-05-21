@@ -53,6 +53,8 @@ class SettingsGroupsViewController: NSViewController, NSCollectionViewDataSource
         case .deletable:
             guard let item = collectionView.makeItem(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "SettingsValueDeletableCollectionViewItem"), for: indexPath) as? SettingsValueDeletableCollectionViewItem else { return NSCollectionViewItem() }
             item.label.stringValue = settingsItem.name
+            item.button.action = #selector(didPressButton(_:))
+            item.button.target = self
             return item
         }
     }
@@ -103,6 +105,19 @@ class SettingsGroupsViewController: NSViewController, NSCollectionViewDataSource
                self?.collectionView.reloadData()
            }
         })
+    }
+    
+    @objc func didPressButton(_ sender: NSButton) {
+        let point = sender.convert(sender.bounds.center, to: collectionView)
+        guard let indexPath = collectionView.indexPathForItem(at: point) else { return }
+        let settingsGroup = settingsGroups[indexPath.section]
+        let settingsItem = settingsGroup.settingsItems[indexPath.item]
+        switch settingsItem.value {
+        case .range:
+            assertionFailure()
+        case .deletable:
+            settingsGroup.remove(settingsItem: settingsItem)
+        }
     }
     
 }
