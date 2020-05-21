@@ -29,7 +29,7 @@ extension NodeScene {
                 movedNode = replaceNodeWithParentIfNeeded(node: clickedNode)
             case 2:
                 if let shapeNode = clickedNode as? ShapeNode {
-                    toggleUnfoldTransformation(for: shapeNode.id)
+                    toggle(virtualTransformation: .unfold(id: shapeNode.id), withName: shapeNode.nodeName ?? shapeNode.scope)
                 } else {
                     assertionFailure()
                 }

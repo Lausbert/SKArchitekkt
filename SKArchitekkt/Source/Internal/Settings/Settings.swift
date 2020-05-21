@@ -12,13 +12,16 @@ final class Settings: Codable {
         if let data = UserDefaults.standard.data(forKey: userDefaultsKeyPrefix),
             let oldSettings = try? JSONDecoder().decode(Settings.self, from: data) {
             let newSettings = Settings()
+            let zippedSettingsGroups = zip(oldSettings.settingsGroups, newSettings.settingsGroups)
             let oldSettingsItemsWithInitialValue = oldSettings.settingsItems.filter { $0.initialValue != nil }
             let newSettingsItemsWithInitialValue = newSettings.settingsItems.filter { $0.initialValue != nil }
             let zippedSettingsItemsWithInitialValue = zip(
                 oldSettingsItemsWithInitialValue,
                 newSettingsItemsWithInitialValue
             )
-            if oldSettingsItemsWithInitialValue.count == newSettingsItemsWithInitialValue.count
+            if  oldSettings.settingsGroups.count == newSettings.settingsGroups.count,
+                zippedSettingsGroups.allSatisfy({ $0.0.name == $0.1.name }),
+                oldSettingsItemsWithInitialValue.count == newSettingsItemsWithInitialValue.count
                 ,zippedSettingsItemsWithInitialValue.allSatisfy({ $0.0.name == $0.1.name && $0.0.initialValue == $0.1.initialValue }) {
                 settings = oldSettings
             } else {
@@ -99,11 +102,13 @@ final class Settings: Codable {
     
     // MARK: Visibility
     
+    let unfoldedNodesSettingsGroup: SettingsGroup
     let hiddenNodesSettingsGroup: SettingsGroup
     let flattendedNodesSettingsGroup: SettingsGroup
     
     lazy var visibilitySettingsGroups: [SettingsGroup] = {
         return [
+            unfoldedNodesSettingsGroup,
             hiddenNodesSettingsGroup,
             flattendedNodesSettingsGroup
         ]
@@ -122,6 +127,7 @@ final class Settings: Codable {
         negativeRadialGravitationalForceOnSiblingsPowerSettingsItem = SettingsItem(name: "Power", value: v1, initialValue: v1)
         springForceBetweenConnectedNodesPowerSettingsItem = SettingsItem(name: "Power", value: v2, initialValue: v2)
         areaBasedOnTotalChildrensAreaMultiplierSettingsItem = SettingsItem(name: "Multiplier", value: v3, initialValue: v3)
+        unfoldedNodesSettingsGroup = SettingsGroup(name: "Unfolded Nodes", settingsItems: [])
         hiddenNodesSettingsGroup = SettingsGroup(name: "Hidden Nodes", settingsItems: [])
         flattendedNodesSettingsGroup = SettingsGroup(name: "Flattened Nodes", settingsItems: [])
     }
