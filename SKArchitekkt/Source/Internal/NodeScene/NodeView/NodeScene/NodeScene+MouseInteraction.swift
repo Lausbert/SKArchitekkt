@@ -61,19 +61,46 @@ extension NodeScene {
     }
     
     override func rightMouseDown(with event: NSEvent) {
+        let position = event.location(in: self)
+        let nodes = self.nodes(at: position).filter { $0.name == ShapeNode.name }
+        guard let clickedNode = nearestNodeTo(position: position, nodes: nodes) as? ShapeNode else {
+            return
+        }
         guard let view = view else {
             assertionFailure()
             return
         }
-        let menu = NSMenu()
-        let item = NSMenuItem(title: "testItem", action: #selector(testAction), keyEquivalent: "")
-        item.target = self
-        menu.insertItem(item, at: 0)
-        menu.popUp(positioning: nil, at: view.convert(event.location(in: self), from: self), in: view)
-    }
-    
-    @objc func testAction() {
-        print("testAction")
+        if !nodes.isEmpty {
+            switch event.clickCount {
+            case 1:
+                focusedNode = clickedNode
+                let menu = NSMenu()
+                let unfoldNodePrefix = virtualTransformations.contains(.unfold(id: clickedNode.id)) ? "Fold" : "Unfold"
+                let unfoldNodeItem = NSMenuItem(title: "\(unfoldNodePrefix) \(clickedNode.nodeName ?? clickedNode.scope)", action: #selector(unfoldNode), keyEquivalent: "")
+                unfoldNodeItem.target = self
+                menu.insertItem(unfoldNodeItem, at: 0)
+                let hideNodeItem = NSMenuItem(title: "Hide \(clickedNode.nodeName ?? clickedNode.scope)", action: #selector(hideNode), keyEquivalent: "")
+                hideNodeItem.target = self
+                menu.insertItem(hideNodeItem, at: 1)
+                let flattenNodeItem = NSMenuItem(title: "Flatten \(clickedNode.nodeName ?? clickedNode.scope)", action: #selector(flattenNode), keyEquivalent: "")
+                flattenNodeItem.target = self
+                menu.insertItem(flattenNodeItem, at: 2)
+                let separator = NSMenuItem.separator()
+                menu.insertItem(separator, at: 3)
+                let unfoldScopeItem = NSMenuItem(title: "Unfold all \(clickedNode.scope)'s", action: #selector(unfoldScope), keyEquivalent: "")
+                unfoldScopeItem.target = self
+                menu.insertItem(unfoldScopeItem, at: 4)
+                let hideScopeItem = NSMenuItem(title: "Hide all \(clickedNode.scope)'s", action: #selector(hideScope), keyEquivalent: "")
+                hideScopeItem.target = self
+                menu.insertItem(hideScopeItem, at: 5)
+                let flattenScopeItem = NSMenuItem(title: "Flatten all \(clickedNode.scope)'s", action: #selector(flattenScope), keyEquivalent: "")
+                flattenScopeItem.target = self
+                menu.insertItem(flattenScopeItem, at: 6)
+                menu.popUp(positioning: nil, at: view.convert(event.location(in: self), from: self), in: view)
+            default:
+                break
+            }
+        }
     }
 
     override func scrollWheel(with event: NSEvent) {
@@ -96,6 +123,11 @@ extension NodeScene {
         get { return NodeScene.frozenNodesObjectAssociation[self] ?? [] }
         set { NodeScene.frozenNodesObjectAssociation[self] = newValue }
     }
+    private static let focusedNodeObjectAssociation = ObjectAssociation<ShapeNode?>()
+    private var focusedNode: ShapeNode? {
+        get { return NodeScene.focusedNodeObjectAssociation[self] ?? nil }
+        set { NodeScene.focusedNodeObjectAssociation[self] = newValue }
+    }
 
     private func nearestNodeTo(position: CGPoint, nodes: [SKNode]) -> SKNode? {
         let sortedNodes = nodes.sorted { (firstNode, secondNode) -> Bool in
@@ -116,5 +148,53 @@ extension NodeScene {
         }
         return node?.name != ShapeNode.name ? nil : node
     }
-
+    
+    @objc private func unfoldNode() {
+        guard let focusedNode = focusedNode else {
+            assertionFailure()
+            return
+        }
+        toggle(virtualTransformation: .unfold(id: focusedNode.id), withName: focusedNode.nodeName ?? focusedNode.scope)
+    }
+    
+    @objc private func hideNode() {
+        guard let focusedNode = focusedNode else {
+            assertionFailure()
+            return
+        }
+        print("hideNode")
+    }
+    
+    @objc private func flattenNode() {
+        guard let focusedNode = focusedNode else {
+            assertionFailure()
+            return
+        }
+        print("flattenNode")
+    }
+    
+    @objc private func unfoldScope() {
+        guard let focusedNode = focusedNode else {
+            assertionFailure()
+            return
+        }
+        print("unfoldScope")
+    }
+    
+    @objc private func hideScope() {
+        guard let focusedNode = focusedNode else {
+            assertionFailure()
+            return
+        }
+        print("hideScope")
+    }
+    
+    @objc private func flattenScope() {
+        guard let focusedNode = focusedNode else {
+            assertionFailure()
+            return
+        }
+        print("flattenScope")
+    }
+    
 }

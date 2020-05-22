@@ -25,6 +25,22 @@ extension NodeScene {
         get { NodeScene.arcNodesObjectAssociation[self] ?? [] }
         set { NodeScene.arcNodesObjectAssociation[self] = newValue }
     }
+    
+    var virtualTransformations: Set<VirtualTransformation> {
+        get {
+            let settingsValues = settings.visibilitySettingsGroups.flatMap { $0.settingsItems }.map { $0.value }
+            let virtualTransformations: [VirtualTransformation] = settingsValues.compactMap { settingsValue in
+                switch settingsValue {
+                case .range:
+                    assertionFailure()
+                    return nil
+                case let .deletable(data):
+                    return try? JSONDecoder().decode(VirtualTransformation.self, from: data)
+                }
+            }
+            return Set(virtualTransformations)
+        }
+    }
 
     func setUpRendering() {
         oldVirtualNodes = []
@@ -106,22 +122,6 @@ extension NodeScene {
     private var arcRootNode: SKNode {
         get { NodeScene.arcRootNodeObjectAssociation[self] ?? SKNode() }
         set { NodeScene.arcRootNodeObjectAssociation[self] = newValue }
-    }
-    
-    private var virtualTransformations: Set<VirtualTransformation> {
-        get {
-            let settingsValues = settings.visibilitySettingsGroups.flatMap { $0.settingsItems }.map { $0.value }
-            let virtualTransformations: [VirtualTransformation] = settingsValues.compactMap { settingsValue in
-                switch settingsValue {
-                case .range:
-                    assertionFailure()
-                    return nil
-                case let .deletable(data):
-                    return try? JSONDecoder().decode(VirtualTransformation.self, from: data)
-                }
-            }
-            return Set(virtualTransformations)
-        }
     }
 
     private func update() {
