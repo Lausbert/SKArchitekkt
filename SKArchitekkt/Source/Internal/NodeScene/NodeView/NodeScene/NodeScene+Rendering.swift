@@ -82,15 +82,31 @@ extension NodeScene {
             switch virtualTransformation {
             case .unfoldNode:
                 settings.unfoldedNodesSettingsGroup.removeSettingsItemWith(settingsValue: settingsValue)
+            case .hideNode:
+                settings.hiddenNodesSettingsGroup.removeSettingsItemWith(settingsValue: settingsValue)
+            case .flattenNode:
+                settings.flattendedNodesSettingsGroup.removeSettingsItemWith(settingsValue: settingsValue)
             case .unfoldScope:
                 settings.unfoldedScopesSettingsGroup.removeSettingsItemWith(settingsValue: settingsValue)
+            case .hideScope:
+                settings.hiddenScopesSettingsGroup.removeSettingsItemWith(settingsValue: settingsValue)
+            case .flattenScope:
+                settings.flattendedScopesSettingsGroup.removeSettingsItemWith(settingsValue: settingsValue)
             }
         } else {
             switch virtualTransformation {
             case .unfoldNode:
                 settings.unfoldedNodesSettingsGroup.add(settingsItem: settingsItem)
+            case .hideNode:
+                settings.hiddenNodesSettingsGroup.add(settingsItem: settingsItem)
+            case .flattenNode:
+                settings.flattendedNodesSettingsGroup.add(settingsItem: settingsItem)
             case .unfoldScope:
                 settings.unfoldedScopesSettingsGroup.add(settingsItem: settingsItem)
+            case .hideScope:
+                settings.hiddenScopesSettingsGroup.add(settingsItem: settingsItem)
+            case .flattenScope:
+                settings.flattendedScopesSettingsGroup.add(settingsItem: settingsItem)
             }
         }
         update()

@@ -163,7 +163,7 @@ extension NodeScene {
             assertionFailure()
             return
         }
-        print("hideNode")
+        toggle(virtualTransformation: .hideNode(id: focusedNode.id), withName: focusedNode.nodeName ?? focusedNode.scope)
     }
     
     @objc private func flattenNode() {
@@ -171,7 +171,7 @@ extension NodeScene {
             assertionFailure()
             return
         }
-        print("flattenNode")
+        toggle(virtualTransformation: .flattenNode(id: focusedNode.id), withName: focusedNode.nodeName ?? focusedNode.scope)
     }
     
     @objc private func unfoldScope() {
@@ -187,7 +187,7 @@ extension NodeScene {
             assertionFailure()
             return
         }
-        print("hideScope")
+        toggle(virtualTransformation: .hideScope(scope: focusedNode.scope), withName: focusedNode.scope)
     }
     
     @objc private func flattenScope() {
@@ -195,7 +195,7 @@ extension NodeScene {
             assertionFailure()
             return
         }
-        print("flattenScope")
+        toggle(virtualTransformation: .flattenScope(scope: focusedNode.scope), withName: focusedNode.scope)
     }
     
 }
