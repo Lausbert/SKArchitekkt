@@ -105,12 +105,18 @@ final class Settings: Codable {
     let unfoldedNodesSettingsGroup: SettingsGroup
     let hiddenNodesSettingsGroup: SettingsGroup
     let flattendedNodesSettingsGroup: SettingsGroup
+    let unfoldedScopesSettingsGroup: SettingsGroup
+    let hiddenScopesSettingsGroup: SettingsGroup
+    let flattendedScopesSettingsGroup: SettingsGroup
     
     lazy var visibilitySettingsGroups: [SettingsGroup] = {
         return [
             unfoldedNodesSettingsGroup,
             hiddenNodesSettingsGroup,
-            flattendedNodesSettingsGroup
+            flattendedNodesSettingsGroup,
+            unfoldedScopesSettingsGroup,
+            hiddenScopesSettingsGroup,
+            flattendedScopesSettingsGroup
         ]
     }()
 
@@ -130,6 +136,9 @@ final class Settings: Codable {
         unfoldedNodesSettingsGroup = SettingsGroup(name: "Unfolded Nodes", settingsItems: [])
         hiddenNodesSettingsGroup = SettingsGroup(name: "Hidden Nodes", settingsItems: [])
         flattendedNodesSettingsGroup = SettingsGroup(name: "Flattened Nodes", settingsItems: [])
+        unfoldedScopesSettingsGroup = SettingsGroup(name: "Unfolded Scopes", settingsItems: [])
+        hiddenScopesSettingsGroup = SettingsGroup(name: "Hidden Scopes", settingsItems: [])
+        flattendedScopesSettingsGroup = SettingsGroup(name: "Flattened Scopes", settingsItems: [])
     }
     
     
