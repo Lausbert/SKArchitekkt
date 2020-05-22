@@ -15,11 +15,11 @@ class SettingsGroup: ObservableObject, Codable {
     }
     
     func reset() {
-        for (index, settingsItem) in settingsItems.enumerated() {
+        for settingsItem in settingsItems.reversed() {
             if let initialValue = settingsItem.initialValue {
                 settingsItem.value = initialValue
             } else {
-                settingsItems.remove(at: index)
+                settingsItems.remove(element: settingsItem)
             }
         }
     }

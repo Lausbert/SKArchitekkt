@@ -1,4 +1,4 @@
-platform :macos, '10.14'
+platform :macos, '10.15'
 source 'https://github.com/Lausbert/PodSpecsArchitekkt.git'
 
 use_frameworks!

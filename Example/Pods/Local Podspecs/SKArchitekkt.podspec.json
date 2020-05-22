@@ -1,6 +1,6 @@
 {
   "name": "SKArchitekkt",
-  "version": "0.1.40",
+  "version": "0.1.41",
   "summary": "An implementation of a root node handler, based on SpriteKit.",
   "description": "An implementation of a root node handler, based on SpriteKit.",
   "homepage": "https://github.com/Lausbert/SKArchitekkt",
@@ -9,10 +9,10 @@
   },
   "source": {
     "git": "https://github.com/Lausbert/SKArchitekkt.git",
-    "tag": "0.1.40"
+    "tag": "0.1.41"
   },
   "platforms": {
-    "osx": "10.14"
+    "osx": "10.15"
   },
   "swift_versions": "5.0",
   "source_files": "SKArchitekkt/Source/**/*",
