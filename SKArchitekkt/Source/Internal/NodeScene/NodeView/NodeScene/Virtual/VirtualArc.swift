@@ -78,7 +78,7 @@ struct VirtualArc: Hashable {
             }
         )
 
-        if transformations.contains(.unfoldNode(id: node.id)) {
+        if transformations.contains(.unfoldNode(id: node.id)) || transformations.contains(.unfoldScope(scope: node.scope)) {
             let virtualArcContext = createVirtualArcContext(
                 from: node.children,
                 with: transformations
@@ -94,6 +94,8 @@ struct VirtualArc: Hashable {
         } else {
             let resultingTransformations = transformations.filter {
                 if case .unfoldNode = $0 {
+                    return false
+                } else if case .unfoldScope = $0 {
                     return false
                 } else {
                     return true
