@@ -18,6 +18,10 @@ struct VirtualArc: Hashable {
         )
         var weightDictionary = virtualArcContext.weightDictionary
         weightDictionary.forEach { (weightLessVirtualArc, weight) in
+            guard !virtualArcContext.hiddenIds.contains(weightLessVirtualArc.destinationIdentifier)  else {
+                weightDictionary.removeValue(forKey: weightLessVirtualArc)
+                return
+            }
             if let newDestination = virtualArcContext.destinationMapping[weightLessVirtualArc.destinationIdentifier] {
                 let newWeightLessVirtualArc = VirtualArcContext.WeightLessVirtualArc(
                     sourceIdentifier: weightLessVirtualArc.sourceIdentifier,
@@ -59,6 +63,7 @@ struct VirtualArc: Hashable {
         let weightDictionary: [WeightLessVirtualArc: Int]
         let destinationMapping: [UUID: UUID]
         let foldedIds: Set<UUID>
+        let hiddenIds: Set<UUID>
 
     }
 
@@ -78,7 +83,19 @@ struct VirtualArc: Hashable {
             }
         )
 
-        if transformations.contains(.unfoldNode(id: node.id)) || transformations.contains(.unfoldScope(scope: node.scope)) {
+        if transformations.contains(.hideNode(id: node.id)) || transformations.contains(.hideScope(scope: node.scope)) {
+            let resultingTransformations = Set(node.children.map { VirtualTransformation.hideNode(id: $0.id) })
+            let virtualArcContext = createVirtualArcContext(
+                from: node.children,
+                with: resultingTransformations
+            )
+            return VirtualArcContext(
+                weightDictionary: [:],
+                destinationMapping: [:],
+                foldedIds: [],
+                hiddenIds: virtualArcContext.hiddenIds.union([node.id])
+            )
+        } else if transformations.contains(.unfoldNode(id: node.id)) || transformations.contains(.unfoldScope(scope: node.scope)) {
             let virtualArcContext = createVirtualArcContext(
                 from: node.children,
                 with: transformations
@@ -89,7 +106,8 @@ struct VirtualArc: Hashable {
                     uniquingKeysWith: { $0 + $1 }
                 ),
                 destinationMapping: virtualArcContext.destinationMapping,
-                foldedIds: virtualArcContext.foldedIds
+                foldedIds: virtualArcContext.foldedIds,
+                hiddenIds: virtualArcContext.hiddenIds
             )
         } else {
             let resultingTransformations = transformations.filter {
@@ -134,7 +152,8 @@ struct VirtualArc: Hashable {
             let resultingVirtualArcContext = VirtualArcContext(
                 weightDictionary: resultingWeightDictionary,
                 destinationMapping: resultingDestinationMapping,
-                foldedIds: resultingFoldedIds
+                foldedIds: resultingFoldedIds,
+                hiddenIds: virtualArcContext.hiddenIds
             )
             virtualArcContextCache[transformationContext] = resultingVirtualArcContext
             return resultingVirtualArcContext
@@ -145,6 +164,7 @@ struct VirtualArc: Hashable {
         var weightDictionary: [VirtualArcContext.WeightLessVirtualArc: Int] = [:]
         var destinationMapping: [UUID: UUID] = [:]
         var foldedIds: Set<UUID> = []
+        var hiddenIds: Set<UUID> = []
         children.forEach { child in
             let virtualArcContext = createVirtualArcContext(
                 from: child,
@@ -153,11 +173,13 @@ struct VirtualArc: Hashable {
             weightDictionary = weightDictionary.merging(virtualArcContext.weightDictionary, uniquingKeysWith: { $0 + $1 })
             destinationMapping.merge(virtualArcContext.destinationMapping) { $1 }
             foldedIds = foldedIds.union(virtualArcContext.foldedIds)
+            hiddenIds = hiddenIds.union(virtualArcContext.hiddenIds)
         }
         return VirtualArcContext(
             weightDictionary: weightDictionary,
             destinationMapping: destinationMapping,
-            foldedIds: foldedIds
+            foldedIds: foldedIds,
+            hiddenIds: hiddenIds
         )
     }
 
