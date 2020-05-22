@@ -23,7 +23,7 @@ struct VirtualNode: Identifiable, Equatable {
 
     static func createVirtualNodes(from node: Node, with transformations: Set<VirtualTransformation>, and settings: VirtualNode.Settings) -> [VirtualNode] {
 
-        if transformations.contains(.unfold(id: node.id)) {
+        if transformations.contains(.unfoldNode(id: node.id)) {
             let childrenVirtualNodes = node.children.flatMap { createVirtualNodes(from: $0, with: transformations, and: settings) }
             let r = radius(for: childrenVirtualNodes, and: settings)
             return[

@@ -34,7 +34,7 @@ class VirtualNodeTest: VirtualTest {
         let virtualNodes = VirtualNode.createVirtualNodes(
             from: one,
             with: [
-                .unfold(id: one.id)
+                .unfoldNode(id: one.id)
             ],
             and: defaultSettings
         )
@@ -67,8 +67,8 @@ class VirtualNodeTest: VirtualTest {
         let virtualNodes = VirtualNode.createVirtualNodes(
             from: one,
             with: [
-                .unfold(id: one.id),
-                .unfold(id: two.id)
+                .unfoldNode(id: one.id),
+                .unfoldNode(id: two.id)
             ],
             and: defaultSettings
         )
@@ -115,9 +115,9 @@ class VirtualNodeTest: VirtualTest {
         let virtualNodes = VirtualNode.createVirtualNodes(
             from: one,
             with: [
-                .unfold(id: one.id),
-                .unfold(id: two.id),
-                .unfold(id: three.id)
+                .unfoldNode(id: one.id),
+                .unfoldNode(id: two.id),
+                .unfoldNode(id: three.id)
             ],
             and: defaultSettings
         )
@@ -178,13 +178,13 @@ class VirtualNodeTest: VirtualTest {
         let virtualNodes = VirtualNode.createVirtualNodes(
             from: one,
             with: [
-                .unfold(id: one.id),
-                .unfold(id: two.id),
-                .unfold(id: three.id),
-                .unfold(id: four.id),
-                .unfold(id: five.id),
-                .unfold(id: six.id),
-                .unfold(id: seven.id)
+                .unfoldNode(id: one.id),
+                .unfoldNode(id: two.id),
+                .unfoldNode(id: three.id),
+                .unfoldNode(id: four.id),
+                .unfoldNode(id: five.id),
+                .unfoldNode(id: six.id),
+                .unfoldNode(id: seven.id)
             ],
             and: defaultSettings
         )
@@ -244,7 +244,7 @@ class VirtualNodeTest: VirtualTest {
     func testUnfoldingTwo() {
         let virtualNodes = VirtualNode.createVirtualNodes(
             from: one,
-            with: [.unfold(id: two.id)],
+            with: [.unfoldNode(id: two.id)],
             and: defaultSettings
         )
 

@@ -6,10 +6,12 @@ enum VirtualTransformation: Hashable, Codable {
     
     // MARK: - Internal -
 
-    case unfold(id: UUID)
+    case unfoldNode(id: UUID)
+    case unfoldScope(scope: String)
     
     enum CodingKeys: CodingKey {
-        case unfold
+        case unfoldNode
+        case unfoldScope
     }
     
     init(from decoder: Decoder) throws {
@@ -17,9 +19,12 @@ enum VirtualTransformation: Hashable, Codable {
         let key = container.allKeys.first
         
         switch key {
-        case .unfold:
-            let uuid = try container.decode(UUID.self, forKey: .unfold)
-            self = .unfold(id: uuid)
+        case .unfoldNode:
+            let uuid = try container.decode(UUID.self, forKey: .unfoldNode)
+            self = .unfoldNode(id: uuid)
+        case .unfoldScope:
+            let scope = try container.decode(String.self, forKey: .unfoldScope)
+            self = .unfoldScope(scope: scope)
         case .none:
             throw DecodingError.dataCorrupted(
                 DecodingError.Context(
@@ -34,8 +39,10 @@ enum VirtualTransformation: Hashable, Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         
         switch self {
-        case let .unfold(id: uuid):
-            try container.encode(uuid, forKey: .unfold)
+        case let .unfoldNode(id: uuid):
+            try container.encode(uuid, forKey: .unfoldNode)
+        case let .unfoldScope(scope: scope):
+            try container.encode(scope, forKey: .unfoldScope)
         }
     }
 }

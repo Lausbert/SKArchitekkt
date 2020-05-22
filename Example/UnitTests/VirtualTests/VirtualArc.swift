@@ -21,7 +21,7 @@ class VirtualArcTest: VirtualTest {
         let virtualArcs = sort(VirtualArc.createVirtualArcs(
             from: one,
             with: [
-                .unfold(id: one.id)
+                .unfoldNode(id: one.id)
             ]
         ))
 
@@ -37,8 +37,8 @@ class VirtualArcTest: VirtualTest {
         let virtualArcs = sort(VirtualArc.createVirtualArcs(
             from: one,
             with: [
-                .unfold(id: one.id),
-                .unfold(id: two.id)
+                .unfoldNode(id: one.id),
+                .unfoldNode(id: two.id)
             ]
         ))
 
@@ -64,9 +64,9 @@ class VirtualArcTest: VirtualTest {
         let virtualArcs = sort(VirtualArc.createVirtualArcs(
             from: one,
             with: [
-                .unfold(id: one.id),
-                .unfold(id: two.id),
-                .unfold(id: three.id)
+                .unfoldNode(id: one.id),
+                .unfoldNode(id: two.id),
+                .unfoldNode(id: three.id)
             ]
         ))
 
@@ -98,13 +98,13 @@ class VirtualArcTest: VirtualTest {
         let virtualArcs = sort(VirtualArc.createVirtualArcs(
             from: one,
             with: [
-                .unfold(id: one.id),
-                .unfold(id: two.id),
-                .unfold(id: three.id),
-                .unfold(id: four.id),
-                .unfold(id: five.id),
-                .unfold(id: six.id),
-                .unfold(id: seven.id)
+                .unfoldNode(id: one.id),
+                .unfoldNode(id: two.id),
+                .unfoldNode(id: three.id),
+                .unfoldNode(id: four.id),
+                .unfoldNode(id: five.id),
+                .unfoldNode(id: six.id),
+                .unfoldNode(id: seven.id)
             ]
         ))
 
@@ -135,7 +135,7 @@ class VirtualArcTest: VirtualTest {
         let virtualArcs = sort(VirtualArc.createVirtualArcs(
             from: one,
             with: [
-                .unfold(id: two.id)
+                .unfoldNode(id: two.id)
             ]
         ))
 

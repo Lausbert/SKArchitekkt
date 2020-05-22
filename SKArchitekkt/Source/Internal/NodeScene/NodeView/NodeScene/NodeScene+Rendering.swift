@@ -77,16 +77,20 @@ extension NodeScene {
             return
         }
         let settingsValue = SettingsValue.deletable(data: data)
+        let settingsItem = SettingsItem(name: name, value: settingsValue)
         if virtualTransformations.contains(virtualTransformation) {
             switch virtualTransformation {
-            case .unfold:
+            case .unfoldNode:
                 settings.unfoldedNodesSettingsGroup.removeSettingsItemWith(settingsValue: settingsValue)
+            case .unfoldScope:
+                settings.unfoldedScopesSettingsGroup.removeSettingsItemWith(settingsValue: settingsValue)
             }
         } else {
             switch virtualTransformation {
-            case .unfold:
-                let settingsItem = SettingsItem(name: name, value: settingsValue)
+            case .unfoldNode:
                 settings.unfoldedNodesSettingsGroup.add(settingsItem: settingsItem)
+            case .unfoldScope:
+                settings.unfoldedScopesSettingsGroup.add(settingsItem: settingsItem)
             }
         }
         update()
