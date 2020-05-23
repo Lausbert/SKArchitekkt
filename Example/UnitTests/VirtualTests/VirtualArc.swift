@@ -141,6 +141,158 @@ class VirtualArcTest: VirtualTest {
 
         XCTAssertEqual(virtualArcs, [])
     }
+    
+    func testHidingOne() {
+        let virtualArcs = sort(VirtualArc.createVirtualArcs(
+            from: one,
+            with: [
+                .hideNode(id: one.id),
+                .unfoldScope(scope: "one"),
+                .unfoldScope(scope: "two"),
+                .unfoldScope(scope: "three")
+            ]
+        ))
+        
+        XCTAssertEqual(virtualArcs, [])
+    }
+    
+    func testHidingThree() {
+        let virtualArcs = sort(VirtualArc.createVirtualArcs(
+            from: one,
+            with: [
+                .hideNode(id: three.id),
+                .unfoldScope(scope: "one"),
+                .unfoldScope(scope: "two"),
+                .unfoldScope(scope: "three")
+            ]
+        ))
+        
+        let arcOne = virtualArcs[0]
+        XCTAssertEqual(arcOne.sourceIdentifier, four.id)
+        XCTAssertEqual(arcOne.destinationIdentifier, five.id)
+        XCTAssertEqual(arcOne.weight, 1)
+    }
+    
+    func testHidingSeven() {
+        let virtualArcs = sort(VirtualArc.createVirtualArcs(
+            from: one,
+            with: [
+                .hideNode(id: seven.id),
+                .unfoldScope(scope: "one"),
+                .unfoldScope(scope: "two"),
+                .unfoldScope(scope: "three")
+            ]
+        ))
+        
+        let arcOne = virtualArcs[0]
+        XCTAssertEqual(arcOne.sourceIdentifier, four.id)
+        XCTAssertEqual(arcOne.destinationIdentifier, five.id)
+        XCTAssertEqual(arcOne.weight, 1)
+
+        let arcTwo = virtualArcs[1]
+        XCTAssertEqual(arcTwo.sourceIdentifier, four.id)
+        XCTAssertEqual(arcTwo.destinationIdentifier, six.id)
+        XCTAssertEqual(arcTwo.weight, 1)
+
+        let arcThree = virtualArcs[2]
+        XCTAssertEqual(arcThree.sourceIdentifier, five.id)
+        XCTAssertEqual(arcThree.destinationIdentifier, three.id)
+        XCTAssertEqual(arcThree.weight, 1)
+
+        let arcFour = virtualArcs[3]
+        XCTAssertEqual(arcFour.sourceIdentifier, five.id)
+        XCTAssertEqual(arcFour.destinationIdentifier, six.id)
+        XCTAssertEqual(arcFour.weight, 1)
+    }
+    
+    func testFlattenOne() {
+        let virtualArcs = sort(VirtualArc.createVirtualArcs(
+            from: one,
+            with: [
+                .flattenNode(id: one.id),
+                .unfoldScope(scope: "one"),
+                .unfoldScope(scope: "two"),
+                .unfoldScope(scope: "three")
+            ]
+        ))
+        
+        let arcOne = virtualArcs[0]
+        XCTAssertEqual(arcOne.sourceIdentifier, four.id)
+        XCTAssertEqual(arcOne.destinationIdentifier, five.id)
+        XCTAssertEqual(arcOne.weight, 1)
+
+        let arcTwo = virtualArcs[1]
+        XCTAssertEqual(arcTwo.sourceIdentifier, four.id)
+        XCTAssertEqual(arcTwo.destinationIdentifier, six.id)
+        XCTAssertEqual(arcTwo.weight, 1)
+
+        let arcThree = virtualArcs[2]
+        XCTAssertEqual(arcThree.sourceIdentifier, five.id)
+        XCTAssertEqual(arcThree.destinationIdentifier, three.id)
+        XCTAssertEqual(arcThree.weight, 1)
+
+        let arcFour = virtualArcs[3]
+        XCTAssertEqual(arcFour.sourceIdentifier, five.id)
+        XCTAssertEqual(arcFour.destinationIdentifier, six.id)
+        XCTAssertEqual(arcFour.weight, 1)
+    }
+    
+    func testFlattenOneAndThree() {
+        let virtualArcs = sort(VirtualArc.createVirtualArcs(
+            from: one,
+            with: [
+                .flattenNode(id: one.id),
+                .flattenNode(id: three.id),
+                .unfoldScope(scope: "one"),
+                .unfoldScope(scope: "two"),
+                .unfoldScope(scope: "three")
+            ]
+        ))
+        
+        let arcOne = virtualArcs[0]
+        XCTAssertEqual(arcOne.sourceIdentifier, four.id)
+        XCTAssertEqual(arcOne.destinationIdentifier, five.id)
+        XCTAssertEqual(arcOne.weight, 1)
+
+        let arcTwo = virtualArcs[1]
+        XCTAssertEqual(arcTwo.sourceIdentifier, four.id)
+        XCTAssertEqual(arcTwo.destinationIdentifier, six.id)
+        XCTAssertEqual(arcTwo.weight, 1)
+
+        let arcFour = virtualArcs[2]
+        XCTAssertEqual(arcFour.sourceIdentifier, five.id)
+        XCTAssertEqual(arcFour.destinationIdentifier, six.id)
+        XCTAssertEqual(arcFour.weight, 1)
+    }
+    
+    func testFlattenOneThreeAndSeven() {
+        let virtualArcs = sort(VirtualArc.createVirtualArcs(
+            from: one,
+            with: [
+                .flattenNode(id: one.id),
+                .flattenNode(id: three.id),
+                .flattenNode(id: seven.id),
+                .unfoldScope(scope: "one"),
+                .unfoldScope(scope: "two"),
+                .unfoldScope(scope: "three")
+            ]
+        ))
+        
+        let arcOne = virtualArcs[0]
+        XCTAssertEqual(arcOne.sourceIdentifier, four.id)
+        XCTAssertEqual(arcOne.destinationIdentifier, five.id)
+        XCTAssertEqual(arcOne.weight, 1)
+
+        let arcTwo = virtualArcs[1]
+        XCTAssertEqual(arcTwo.sourceIdentifier, four.id)
+        XCTAssertEqual(arcTwo.destinationIdentifier, six.id)
+        XCTAssertEqual(arcTwo.weight, 1)
+
+        let arcFour = virtualArcs[2]
+        XCTAssertEqual(arcFour.sourceIdentifier, five.id)
+        XCTAssertEqual(arcFour.destinationIdentifier, six.id)
+        XCTAssertEqual(arcFour.weight, 1)
+    }
 
     private func sort(_ virtualArcs: [VirtualArc]) -> [VirtualArc] {
         return virtualArcs.sorted { (lhs, rhs) -> Bool in
