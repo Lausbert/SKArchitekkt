@@ -95,6 +95,17 @@ struct VirtualArc: Hashable {
                 foldedIds: [],
                 hiddenIds: virtualArcContext.hiddenIds.union([node.id])
             )
+        } else if transformations.contains(.flattenNode(id: node.id)) || transformations.contains(.flattenScope(scope: node.scope)) {
+            let virtualArcContext = createVirtualArcContext(
+                from: node.children,
+                with: transformations
+            )
+            return VirtualArcContext(
+                weightDictionary: virtualArcContext.weightDictionary,
+                destinationMapping: virtualArcContext.destinationMapping,
+                foldedIds: virtualArcContext.foldedIds,
+                hiddenIds: virtualArcContext.hiddenIds.union([node.id])
+            )
         } else if transformations.contains(.unfoldNode(id: node.id)) || transformations.contains(.unfoldScope(scope: node.scope)) {
             let virtualArcContext = createVirtualArcContext(
                 from: node.children,

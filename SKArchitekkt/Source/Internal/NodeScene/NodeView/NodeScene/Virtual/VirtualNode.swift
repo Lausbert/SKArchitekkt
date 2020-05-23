@@ -25,6 +25,8 @@ struct VirtualNode: Identifiable, Equatable {
 
         if transformations.contains(.hideNode(id: node.id)) || transformations.contains(.hideScope(scope: node.scope)) {
             return []
+        } else if transformations.contains(.flattenNode(id: node.id)) || transformations.contains(.flattenScope(scope: node.scope)) {
+            return node.children.flatMap { createVirtualNodes(from: $0, with: transformations, and: settings) }
         } else if transformations.contains(.unfoldNode(id: node.id)) || transformations.contains(.unfoldScope(scope: node.scope)) {
             let childrenVirtualNodes = node.children.flatMap { createVirtualNodes(from: $0, with: transformations, and: settings) }
             let r = radius(for: childrenVirtualNodes, and: settings)

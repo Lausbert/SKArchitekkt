@@ -10,7 +10,7 @@ extension NodeScene {
 
     private static let shapeRootNodeObjectAssociation = ObjectAssociation<ShapeNode>()
     private(set) var shapeRootNode: ShapeNode {
-        get { NodeScene.shapeRootNodeObjectAssociation[self] ?? ShapeNode.create(radius: 10000, isShape: false) }
+        get { NodeScene.shapeRootNodeObjectAssociation[self] ?? ShapeNode.create(radius: 1000, isShape: false) }
         set { NodeScene.shapeRootNodeObjectAssociation[self] = newValue }
     }
 
@@ -44,7 +44,7 @@ extension NodeScene {
 
     func setUpRendering() {
         oldVirtualNodes = []
-        shapeRootNode = ShapeNode.create(radius: 10000, isShape: false)
+        shapeRootNode = ShapeNode.create(radius: 1000, isShape: false)
         shapeNodesDictionary = [:]
         oldVirtualArcs = []
         arcRootNode = SKNode()
