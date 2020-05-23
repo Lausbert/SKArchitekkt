@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -9,22 +9,25 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="c22-O7-iKe">
-            <rect key="frame" x="0.0" y="0.0" width="197" height="23"/>
+            <rect key="frame" x="0.0" y="0.0" width="197" height="24"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="7ya-xd-nbs">
-                    <rect key="frame" x="0.0" y="0.0" width="197" height="23"/>
+                    <rect key="frame" x="0.0" y="0.0" width="197" height="24"/>
                     <subviews>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ui5-l9-pR6">
-                            <rect key="frame" x="43" y="5" width="31" height="13"/>
-                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="left" title="Label" id="KIE-TF-0pj">
+                        <textField horizontalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ui5-l9-pR6">
+                            <rect key="frame" x="43" y="4" width="31" height="16"/>
+                            <textFieldCell key="cell" lineBreakMode="charWrapping" alignment="left" title="Label" id="KIE-TF-0pj">
                                 <font key="font" metaFont="system" size="10"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="oRh-rk-0bf">
-                            <rect key="frame" x="129" y="3" width="53" height="16"/>
+                            <rect key="frame" x="129" y="4" width="53" height="16"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="51" id="j1g-cq-KLl"/>
+                            </constraints>
                             <buttonCell key="cell" type="push" title="Delete" bezelStyle="rounded" alignment="center" controlSize="mini" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BO9-3t-ioh">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="label" size="9"/>
@@ -34,7 +37,9 @@
                     <constraints>
                         <constraint firstItem="Ui5-l9-pR6" firstAttribute="leading" secondItem="7ya-xd-nbs" secondAttribute="leading" constant="45" id="5Xy-TO-etR"/>
                         <constraint firstAttribute="trailing" secondItem="oRh-rk-0bf" secondAttribute="trailing" constant="16" id="K9B-95-nKc"/>
-                        <constraint firstItem="Ui5-l9-pR6" firstAttribute="centerY" secondItem="7ya-xd-nbs" secondAttribute="centerY" id="a06-cT-vmk"/>
+                        <constraint firstItem="Ui5-l9-pR6" firstAttribute="top" secondItem="7ya-xd-nbs" secondAttribute="top" constant="4" id="lFR-5o-y3a"/>
+                        <constraint firstAttribute="bottom" secondItem="Ui5-l9-pR6" secondAttribute="bottom" constant="4" id="mGT-CD-PDP"/>
+                        <constraint firstItem="oRh-rk-0bf" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Ui5-l9-pR6" secondAttribute="trailing" constant="8" id="s0p-1m-Vje"/>
                         <constraint firstItem="oRh-rk-0bf" firstAttribute="centerY" secondItem="7ya-xd-nbs" secondAttribute="centerY" id="zFZ-Ty-gEk"/>
                     </constraints>
                 </customView>

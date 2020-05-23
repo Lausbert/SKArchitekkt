@@ -60,16 +60,30 @@ class SettingsGroupsViewController: NSViewController, NSCollectionViewDataSource
     }
 
     func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {
-        guard settingsGroups[indexPath.section].settingsItems.count > 0 else {
-            return NSSize(width: collectionView.frame.width, height: 23)
+        let item: NSCollectionViewItem
+        if settingsGroups[indexPath.section].settingsItems.count == 0 {
+            item = SettingsGroupsEmptyCollectionViewItem.createFromNib()
+        } else {
+            let settingsItem = settingsGroups[indexPath.section].settingsItems[indexPath.item]
+            switch settingsItem.value {
+            case let .range(value, minValue, maxValue):
+                let rangeItem = SettingsValueRangeCollectionViewItem.createFromNib()
+                rangeItem.label.stringValue = settingsItem.name
+                rangeItem.slider.minValue = minValue
+                rangeItem.slider.maxValue = maxValue
+                rangeItem.slider.doubleValue = value
+                item = rangeItem
+            case .deletable:
+                let deletableItem = SettingsValueDeletableCollectionViewItem.createFromNib()
+                deletableItem.label.stringValue = settingsItem.name
+                item = deletableItem
+            }
         }
-        let settingsItem = settingsGroups[indexPath.section].settingsItems[indexPath.item]
-        switch settingsItem.value {
-        case .range:
-            return NSSize(width: collectionView.frame.width, height: 23)
-        case .deletable:
-            return NSSize(width: collectionView.frame.width, height: 23)
-        }
+        
+        item.view.translatesAutoresizingMaskIntoConstraints = false
+        item.view.widthAnchor.constraint(equalToConstant: collectionView.frame.width).isActive = true
+        item.view.layoutSubtreeIfNeeded()
+        return item.view.fittingSize
     }
 
     func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> NSSize {
