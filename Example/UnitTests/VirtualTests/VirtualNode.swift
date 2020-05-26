@@ -373,6 +373,25 @@ class VirtualNodeTest: VirtualTest {
         XCTAssertEqual(six.children.count, 0)
     }
     
+    func testHidingTwoAndNoUnfolding() {
+        let virtualNodes = VirtualNode.createVirtualNodes(
+            from: one,
+            with: [
+                .hideNode(id: two.id)
+            ],
+            and: defaultSettings
+        )
+        
+        XCTAssertEqual(virtualNodes.count, 1)
+
+        let one = virtualNodes[0]
+        XCTAssertEqual(one.scope, "one")
+        XCTAssertEqual(one.name, "one")
+        XCTAssertEqual(one.color, .black)
+        XCTAssertEqual(one.radius, 128)
+        XCTAssertEqual(one.children.count, 0)
+    }
+    
     func testFlattenOne() {
         let virtualNodes = VirtualNode.createVirtualNodes(
             from: one,
@@ -524,6 +543,25 @@ class VirtualNodeTest: VirtualTest {
         XCTAssertEqual(six.color, .black)
         XCTAssertEqual(six.radius, 128)
         XCTAssertEqual(six.children.count, 0)
+    }
+    
+    func testFlattenTwoAndNoUnfolding() {
+        let virtualNodes = VirtualNode.createVirtualNodes(
+            from: one,
+            with: [
+                .flattenNode(id: two.id)
+            ],
+            and: defaultSettings
+        )
+        
+        XCTAssertEqual(virtualNodes.count, 1)
+
+        let one = virtualNodes[0]
+        XCTAssertEqual(one.scope, "one")
+        XCTAssertEqual(one.name, "one")
+        XCTAssertEqual(one.color, .black)
+        XCTAssertEqual(one.radius, 128)
+        XCTAssertEqual(one.children.count, 0)
     }
 
 }

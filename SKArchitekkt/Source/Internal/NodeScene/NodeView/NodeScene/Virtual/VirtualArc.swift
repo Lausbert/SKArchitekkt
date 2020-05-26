@@ -69,7 +69,7 @@ struct VirtualArc: Hashable {
 
     private static var virtualArcContextCache: [TransformationContext: VirtualArcContext] = [:]
 
-    private static func createVirtualArcContext(from node: Node, with transformations: Set<VirtualTransformation>) -> VirtualArcContext {
+    private static func createVirtualArcContext(from node: Node, with transformations: Set<VirtualTransformation>, isParentFolded: Bool = false) -> VirtualArcContext {
 
         let weightDictionary = Dictionary(
             uniqueKeysWithValues: node.arcs.map {
@@ -98,12 +98,15 @@ struct VirtualArc: Hashable {
         } else if transformations.contains(.flattenNode(id: node.id)) || transformations.contains(.flattenScope(scope: node.scope)) {
             let virtualArcContext = createVirtualArcContext(
                 from: node.children,
-                with: transformations
+                with: transformations,
+                isParentFolded: isParentFolded
             )
+            let foldedIds: Set<UUID> = isParentFolded ? Set(node.children.map { $0.id }) : []
+            let resultingFoldedIds = foldedIds.union(virtualArcContext.foldedIds)
             return VirtualArcContext(
                 weightDictionary: virtualArcContext.weightDictionary,
                 destinationMapping: virtualArcContext.destinationMapping,
-                foldedIds: virtualArcContext.foldedIds,
+                foldedIds: resultingFoldedIds,
                 hiddenIds: virtualArcContext.hiddenIds.union([node.id])
             )
         } else if transformations.contains(.unfoldNode(id: node.id)) || transformations.contains(.unfoldScope(scope: node.scope)) {
@@ -139,7 +142,8 @@ struct VirtualArc: Hashable {
             }
             let virtualArcContext = createVirtualArcContext(
                 from: node.children,
-                with: resultingTransformations
+                with: resultingTransformations,
+                isParentFolded: true
             )
             let foldedIds = Set(node.children.map { $0.id })
             let resultingFoldedIds = foldedIds.union(virtualArcContext.foldedIds)
@@ -171,7 +175,7 @@ struct VirtualArc: Hashable {
         }
     }
 
-    private static func createVirtualArcContext(from children: [Node], with transformations: Set<VirtualTransformation>) -> VirtualArcContext {
+    private static func createVirtualArcContext(from children: [Node], with transformations: Set<VirtualTransformation>, isParentFolded: Bool = false) -> VirtualArcContext {
         var weightDictionary: [VirtualArcContext.WeightLessVirtualArc: Int] = [:]
         var destinationMapping: [UUID: UUID] = [:]
         var foldedIds: Set<UUID> = []
@@ -179,7 +183,8 @@ struct VirtualArc: Hashable {
         children.forEach { child in
             let virtualArcContext = createVirtualArcContext(
                 from: child,
-                with: transformations
+                with: transformations,
+                isParentFolded: isParentFolded
             )
             weightDictionary = weightDictionary.merging(virtualArcContext.weightDictionary, uniquingKeysWith: { $0 + $1 })
             destinationMapping.merge(virtualArcContext.destinationMapping) { $1 }

@@ -205,6 +205,17 @@ class VirtualArcTest: VirtualTest {
         XCTAssertEqual(arcFour.weight, 1)
     }
     
+    func testHidingTwoAndNoUnfolding() {
+        let virtualArcs = sort(VirtualArc.createVirtualArcs(
+            from: one,
+            with: [
+                .hideNode(id: two.id)
+            ]
+        ))
+        
+        XCTAssertEqual(virtualArcs, [])
+    }
+    
     func testFlattenOne() {
         let virtualArcs = sort(VirtualArc.createVirtualArcs(
             from: one,
@@ -292,6 +303,17 @@ class VirtualArcTest: VirtualTest {
         XCTAssertEqual(arcFour.sourceIdentifier, five.id)
         XCTAssertEqual(arcFour.destinationIdentifier, six.id)
         XCTAssertEqual(arcFour.weight, 1)
+    }
+    
+    func testFlattenTwoAndNoUnfolding() {
+        let virtualArcs = sort(VirtualArc.createVirtualArcs(
+            from: one,
+            with: [
+                .flattenNode(id: two.id)
+            ]
+        ))
+        
+        XCTAssertEqual(virtualArcs, [])
     }
 
     private func sort(_ virtualArcs: [VirtualArc]) -> [VirtualArc] {
