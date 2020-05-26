@@ -10,7 +10,7 @@ extension NodeScene {
 
     private static let shapeRootNodeObjectAssociation = ObjectAssociation<ShapeNode>()
     private(set) var shapeRootNode: ShapeNode {
-        get { NodeScene.shapeRootNodeObjectAssociation[self] ?? ShapeNode.create(radius: 1000, isShape: false) }
+        get { NodeScene.shapeRootNodeObjectAssociation[self] ?? ShapeNode.create(isShape: false) }
         set { NodeScene.shapeRootNodeObjectAssociation[self] = newValue }
     }
 
@@ -44,7 +44,7 @@ extension NodeScene {
 
     func setUpRendering() {
         oldVirtualNodes = []
-        shapeRootNode = ShapeNode.create(radius: 1000, isShape: false)
+        shapeRootNode = ShapeNode.create(isShape: false)
         shapeNodesDictionary = [:]
         oldVirtualArcs = []
         arcRootNode = SKNode()
@@ -175,6 +175,9 @@ extension NodeScene {
         shapeNodesDictionary = Dictionary(
             uniqueKeysWithValues: shapeRootNode.allDescendants.map({ ($0.id, $0) })
         )
+        shapeNodesDictionary[shapeRootNode.id] = shapeRootNode
+        let radius = max(virtualNodeSettings.baseRadius, (sqrt(virtualNodeSettings.areaMultiplier*shapeRootNode.castedChildren.map {$0.radius^^2} .reduce(0, +))))
+        shapeRootNode.update(radius: radius)
         let newVirtualArcs = VirtualArc.createVirtualArcs(
             from: rootNode,
             with: virtualTransformations

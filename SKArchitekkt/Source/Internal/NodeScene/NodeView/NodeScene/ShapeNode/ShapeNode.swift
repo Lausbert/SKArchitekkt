@@ -139,6 +139,7 @@ class ShapeNode: SKShapeNode {
     private static var pool: [ShapeNode] = []
 
     private static func store(shapeNode: ShapeNode) {
+        shapeNode.constraints = []
         shapeNode.physicsBody = nil
         shapeNode.path = nil
         shapeNode.removeAllChildren()
