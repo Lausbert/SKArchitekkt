@@ -101,11 +101,23 @@ struct VirtualArc: Hashable {
                 with: transformations,
                 isParentFolded: isParentFolded
             )
-            let foldedIds: Set<UUID> = isParentFolded ? Set(node.children.map { $0.id }) : []
-            let resultingFoldedIds = foldedIds.union(virtualArcContext.foldedIds)
+            let resultingFoldedIds: Set<UUID>
+            let resultingDestinationMapping: [UUID: UUID]
+            if isParentFolded {
+                resultingFoldedIds = Set(node.children.map { $0.id }).union(virtualArcContext.foldedIds)
+                let childrenDestinationMapping = virtualArcContext.destinationMapping.map {($0.key, node.id)}
+                let destinationMapping = Dictionary(uniqueKeysWithValues: node.children.map {($0.id, node.id)})
+                resultingDestinationMapping = destinationMapping.merging(
+                    childrenDestinationMapping,
+                    uniquingKeysWith: { $1 }
+                )
+            } else {
+                resultingFoldedIds = virtualArcContext.foldedIds
+                resultingDestinationMapping = virtualArcContext.destinationMapping
+            }
             return VirtualArcContext(
                 weightDictionary: virtualArcContext.weightDictionary,
-                destinationMapping: virtualArcContext.destinationMapping,
+                destinationMapping: resultingDestinationMapping,
                 foldedIds: resultingFoldedIds,
                 hiddenIds: virtualArcContext.hiddenIds.union([node.id])
             )
