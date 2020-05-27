@@ -59,7 +59,7 @@ extension NodeScene {
         frozenNodes = []
         movedNode = nil
     }
-    
+
     override func rightMouseDown(with event: NSEvent) {
         let position = event.location(in: self)
         let nodes = self.nodes(at: position).filter { $0.name == ShapeNode.name }
@@ -149,7 +149,7 @@ extension NodeScene {
         }
         return node?.name != ShapeNode.name ? nil : node
     }
-    
+
     @objc private func unfoldNode() {
         guard let focusedNode = focusedNode else {
             assertionFailure()
@@ -157,7 +157,7 @@ extension NodeScene {
         }
         toggle(virtualTransformation: .unfoldNode(id: focusedNode.id), withName: focusedNode.nodeName ?? focusedNode.scope)
     }
-    
+
     @objc private func hideNode() {
         guard let focusedNode = focusedNode else {
             assertionFailure()
@@ -165,7 +165,7 @@ extension NodeScene {
         }
         toggle(virtualTransformation: .hideNode(id: focusedNode.id), withName: focusedNode.nodeName ?? focusedNode.scope)
     }
-    
+
     @objc private func flattenNode() {
         guard let focusedNode = focusedNode else {
             assertionFailure()
@@ -173,7 +173,7 @@ extension NodeScene {
         }
         toggle(virtualTransformation: .flattenNode(id: focusedNode.id), withName: focusedNode.nodeName ?? focusedNode.scope)
     }
-    
+
     @objc private func unfoldScope() {
         guard let focusedNode = focusedNode else {
             assertionFailure()
@@ -181,7 +181,7 @@ extension NodeScene {
         }
         toggle(virtualTransformation: .unfoldScope(scope: focusedNode.scope), withName: focusedNode.scope)
     }
-    
+
     @objc private func hideScope() {
         guard let focusedNode = focusedNode else {
             assertionFailure()
@@ -189,7 +189,7 @@ extension NodeScene {
         }
         toggle(virtualTransformation: .hideScope(scope: focusedNode.scope), withName: focusedNode.scope)
     }
-    
+
     @objc private func flattenScope() {
         guard let focusedNode = focusedNode else {
             assertionFailure()
@@ -197,5 +197,5 @@ extension NodeScene {
         }
         toggle(virtualTransformation: .flattenScope(scope: focusedNode.scope), withName: focusedNode.scope)
     }
-    
+
 }

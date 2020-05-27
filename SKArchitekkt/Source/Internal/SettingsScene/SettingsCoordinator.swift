@@ -3,17 +3,17 @@
 import CoreArchitekkt
 
 class SettingsCoordinator: TabViewCoordinator<HasSettings> {
-    
+
     // MARK: - Internal -
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setUp()
     }
-    
+
     // MARK: - Private -
-    
+
     private func setUp() {
         if let settings = dependencies?.settings {
             let forceSettingsGroupsViewController = SettingsGroupsViewController.createFromStoryBoard()
@@ -30,5 +30,5 @@ class SettingsCoordinator: TabViewCoordinator<HasSettings> {
             assertionFailure()
         }
     }
-    
+
 }

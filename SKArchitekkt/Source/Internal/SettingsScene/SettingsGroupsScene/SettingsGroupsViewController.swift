@@ -79,7 +79,7 @@ class SettingsGroupsViewController: NSViewController, NSCollectionViewDataSource
                 item = deletableItem
             }
         }
-        
+
         item.view.translatesAutoresizingMaskIntoConstraints = false
         item.view.widthAnchor.constraint(equalToConstant: collectionView.frame.width).isActive = true
         item.view.layoutSubtreeIfNeeded()
@@ -108,9 +108,9 @@ class SettingsGroupsViewController: NSViewController, NSCollectionViewDataSource
         }
         return NSView()
     }
-    
+
     // MARK: - Private -
-    
+
     private var cancellables: [AnyCancellable] = []
 
     private func setUp() {
@@ -120,7 +120,7 @@ class SettingsGroupsViewController: NSViewController, NSCollectionViewDataSource
            }
         })
     }
-    
+
     @objc func didPressButton(_ sender: NSButton) {
         let point = sender.convert(sender.bounds.center, to: collectionView)
         guard let indexPath = collectionView.indexPathForItem(at: point) else { return }
@@ -133,5 +133,5 @@ class SettingsGroupsViewController: NSViewController, NSCollectionViewDataSource
             settingsGroup.remove(settingsItem: settingsItem)
         }
     }
-    
+
 }

@@ -3,7 +3,7 @@
 import Foundation
 
 class SettingsItem: ObservableObject, Codable {
-    
+
     // MARK: - Internal -
 
     let name: String
@@ -15,18 +15,18 @@ class SettingsItem: ObservableObject, Codable {
         self.value = value
         self.initialValue = initialValue
     }
-    
+
     enum CodingKeys: CodingKey {
         case name, value, initialValue
     }
-    
+
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.name = try container.decode(String.self, forKey: .name)
         self.value = try container.decode(SettingsValue.self, forKey: .value)
         self.initialValue = try container.decode(SettingsValue?.self, forKey: .initialValue)
     }
-       
+
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(name, forKey: .name)

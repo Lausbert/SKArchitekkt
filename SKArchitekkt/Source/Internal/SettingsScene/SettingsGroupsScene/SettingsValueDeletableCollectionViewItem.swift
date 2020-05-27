@@ -3,8 +3,8 @@
 import AppKit
 
 class SettingsValueDeletableCollectionViewItem: NSCollectionViewItem {
-    
+
     @IBOutlet weak var label: NSTextField!
     @IBOutlet weak var button: NSButton!
-    
+
 }

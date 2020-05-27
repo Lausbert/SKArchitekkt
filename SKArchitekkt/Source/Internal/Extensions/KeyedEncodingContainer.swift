@@ -3,7 +3,7 @@
 import Foundation
 
 extension KeyedEncodingContainer {
-    
+
     mutating func encodeValues<V1: Encodable, V2: Encodable>(
         _ v1: V1,
         _ v2: V2,
@@ -13,7 +13,7 @@ extension KeyedEncodingContainer {
         try container.encode(v1)
         try container.encode(v2)
     }
-    
+
     mutating func encodeValues<V1: Encodable, V2: Encodable, V3: Encodable>(
         _ v1: V1,
         _ v2: V2,
@@ -25,5 +25,5 @@ extension KeyedEncodingContainer {
         try container.encode(v2)
         try container.encode(v3)
     }
-    
+
 }

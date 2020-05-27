@@ -4,12 +4,12 @@ import AppKit
 import CoreArchitekkt
 
 class PaneCoordinator: ViewCoordinator<NoDependencies> {
-    
+
     // MARK: - Internal -
-    
+
     @IBOutlet weak var stackView: NSStackView!
     @IBOutlet weak var containerView: NSView!
-    
+
     func transition<T: NSTabViewController & Coordinating>(toCoordinator to: T, withTabImages tabImages: [NSImage], options: NSViewController.TransitionOptions = [.crossfade], completionHandler: (() -> Void)? = nil) {
         updateStackView(withTabImages: tabImages)
         transition(toCoordinator: to, in: containerView, options: options, completionHandler: completionHandler)
@@ -17,14 +17,14 @@ class PaneCoordinator: ViewCoordinator<NoDependencies> {
             didSelectButton(button)
         }
     }
-    
+
     // MARK: - Private -
-    
+
     private var oldSelection: Int = 0
     private var newSelection: Int = 0
     private var tabViewController: NSTabViewController? { child() }
     private var buttons: [NSButton] { stackView.arrangedSubviews as? [NSButton] ?? [] }
-    
+
     private func updateStackView(withTabImages tabImages: [NSImage]) {
         stackView.arrangedSubviews.forEach { $0.removeFromSuperview() }
         for (index, tabImage) in tabImages.enumerated() {

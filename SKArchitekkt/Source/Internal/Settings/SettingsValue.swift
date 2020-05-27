@@ -3,12 +3,12 @@
 import Foundation
 
 enum SettingsValue: Codable {
-    
+
     // MARK: - Internal -
-   
+
     case range(value: Double, minValue: Double, maxValue: Double)
     case deletable(data: Data)
-    
+
     enum CodingKeys: CodingKey {
         case range, deletable
     }
@@ -16,7 +16,7 @@ enum SettingsValue: Codable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let key = container.allKeys.first
-        
+
         switch key {
         case .range:
             let (value, minValue, maxValue): (Double, Double, Double) = try container.decodeValues(for: .range)
@@ -33,10 +33,10 @@ enum SettingsValue: Codable {
             )
         }
     }
-       
+
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        
+
         switch self {
         case let .range(value, minValue, maxValue):
             try container.encodeValues(value, minValue, maxValue, for: .range)

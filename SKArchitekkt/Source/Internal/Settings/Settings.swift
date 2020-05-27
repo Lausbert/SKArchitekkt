@@ -21,8 +21,7 @@ final class Settings: Codable {
             )
             if  oldSettings.settingsGroups.count == newSettings.settingsGroups.count,
                 zippedSettingsGroups.allSatisfy({ $0.0.name == $0.1.name }),
-                oldSettingsItemsWithInitialValue.count == newSettingsItemsWithInitialValue.count
-                ,zippedSettingsItemsWithInitialValue.allSatisfy({ $0.0.name == $0.1.name && $0.0.initialValue == $0.1.initialValue }) {
+                oldSettingsItemsWithInitialValue.count == newSettingsItemsWithInitialValue.count, zippedSettingsItemsWithInitialValue.allSatisfy({ $0.0.name == $0.1.name && $0.0.initialValue == $0.1.initialValue }) {
                 settings = oldSettings
             } else {
                 settings = newSettings
@@ -54,13 +53,13 @@ final class Settings: Codable {
     var settingsItems: [SettingsItem] {
         return settingsGroups.flatMap { $0.settingsItems }
     }
-    
+
     // MARK: Force
-    
+
     let negativeRadialGravitationalForceOnSiblingsPowerSettingsItem: SettingsItem
     let springForceBetweenConnectedNodesPowerSettingsItem: SettingsItem
     let areaBasedOnTotalChildrensAreaMultiplierSettingsItem: SettingsItem
-        
+
     var negativeRadialGravitationalForceOnSiblingsPower: Double {
         if case let .range(value, _, _) = negativeRadialGravitationalForceOnSiblingsPowerSettingsItem.value {
             return value
@@ -85,7 +84,7 @@ final class Settings: Codable {
             return 4
         }
     }
-    
+
     lazy var forceSettingsGroups: [SettingsGroup] = {
         return [
             SettingsGroup(name: "Negative Radial Gravitational Force On Siblings", settingsItems: [
@@ -99,16 +98,16 @@ final class Settings: Codable {
                 ])
         ]
     }()
-    
+
     // MARK: Visibility
-    
+
     let unfoldedNodesSettingsGroup: SettingsGroup
     let hiddenNodesSettingsGroup: SettingsGroup
     let flattendedNodesSettingsGroup: SettingsGroup
     let unfoldedScopesSettingsGroup: SettingsGroup
     let hiddenScopesSettingsGroup: SettingsGroup
     let flattendedScopesSettingsGroup: SettingsGroup
-    
+
     lazy var visibilitySettingsGroups: [SettingsGroup] = {
         return [
             unfoldedNodesSettingsGroup,
@@ -124,7 +123,7 @@ final class Settings: Codable {
 
     private static let userDefaultsKeyPrefix = "skarchitekkt/settings/"
     private static var cancellables: [AnyCancellable] = []
-    
+
     private init() {
         // Force
         let v1 = SettingsValue.range(value: -1.1, minValue: -2.1, maxValue: -0.1)
@@ -140,6 +139,5 @@ final class Settings: Codable {
         hiddenScopesSettingsGroup = SettingsGroup(name: "Hidden Scopes", settingsItems: [])
         flattendedScopesSettingsGroup = SettingsGroup(name: "Flattened Scopes", settingsItems: [])
     }
-    
-    
+
 }

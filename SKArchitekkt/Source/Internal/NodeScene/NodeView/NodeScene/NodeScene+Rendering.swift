@@ -25,7 +25,7 @@ extension NodeScene {
         get { NodeScene.arcNodesObjectAssociation[self] ?? [] }
         set { NodeScene.arcNodesObjectAssociation[self] = newValue }
     }
-    
+
     var virtualTransformations: Set<VirtualTransformation> {
         get {
             let settingsValues = settings.visibilitySettingsGroups.flatMap { $0.settingsItems }.map { $0.value }

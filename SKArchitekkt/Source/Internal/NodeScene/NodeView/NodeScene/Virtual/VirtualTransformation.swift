@@ -3,7 +3,7 @@
 import Foundation
 
 enum VirtualTransformation: Hashable, Codable {
-    
+
     // MARK: - Internal -
 
     case unfoldNode(id: UUID)
@@ -12,7 +12,7 @@ enum VirtualTransformation: Hashable, Codable {
     case unfoldScope(scope: String)
     case hideScope(scope: String)
     case flattenScope(scope: String)
-    
+
     enum CodingKeys: CodingKey {
         case unfoldNode
         case hideNode
@@ -21,11 +21,11 @@ enum VirtualTransformation: Hashable, Codable {
         case hideScope
         case flattenScope
     }
-    
+
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         let key = container.allKeys.first
-        
+
         switch key {
         case .unfoldNode:
             let uuid = try container.decode(UUID.self, forKey: .unfoldNode)
@@ -54,10 +54,10 @@ enum VirtualTransformation: Hashable, Codable {
             )
         }
     }
-    
+
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        
+
         switch self {
         case let .unfoldNode(id: uuid):
             try container.encode(uuid, forKey: .unfoldNode)
