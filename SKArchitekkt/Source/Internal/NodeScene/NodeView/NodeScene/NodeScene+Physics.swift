@@ -81,7 +81,7 @@ extension NodeScene: SKSceneDelegate {
 
     private func updateRadialGravitationalForceOnChildren(for shapeNode: ShapeNode, withForceDecay forceDecay: CGFloat) {
         shapeNode.castedChildren.forEach {
-            let force = computeForceBetween(first: shapeNode, second: $0, minimumRadius: shapeNode.radius, multiplier: forceDecay*shapeNode.radius^^2*$0.radius^^2, proportionalToDistanceRaisedToPowerOf: -1.4)
+            let force = CGFloat(settings.radialGravitationForceOnChildrenMultiplier)*computeForceBetween(first: shapeNode, second: $0, minimumRadius: shapeNode.radius, multiplier: forceDecay*shapeNode.radius^^2*$0.radius^^2, proportionalToDistanceRaisedToPowerOf: -1.4)
             $0.physicsBody?.applyForce(force)
         }
     }

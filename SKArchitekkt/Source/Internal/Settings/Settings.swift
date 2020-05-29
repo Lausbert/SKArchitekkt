@@ -57,6 +57,7 @@ final class Settings: Codable {
     // MARK: Force
 
     let decayParameterSettingsItem: SettingsItem
+    let radialGravitationForceOnChildrenMultiplierSettingsItem: SettingsItem
     let negativeRadialGravitationalForceOnSiblingsPowerSettingsItem: SettingsItem
     let springForceBetweenConnectedNodesPowerSettingsItem: SettingsItem
     let areaBasedOnTotalChildrensAreaMultiplierSettingsItem: SettingsItem
@@ -67,6 +68,14 @@ final class Settings: Codable {
         } else {
             assertionFailure()
             return 0.5
+        }
+    }
+    var radialGravitationForceOnChildrenMultiplier: Double {
+        if case let .range(value, _, _) = radialGravitationForceOnChildrenMultiplierSettingsItem.value {
+            return value
+        } else {
+            assertionFailure()
+            return 1
         }
     }
     var negativeRadialGravitationalForceOnSiblingsPower: Double {
@@ -98,6 +107,9 @@ final class Settings: Codable {
         return [
             SettingsGroup(name: "Friction", settingsItems: [
                 decayParameterSettingsItem
+                ]),
+            SettingsGroup(name: "Radial Gravitational Force On Children", settingsItems: [
+                radialGravitationForceOnChildrenMultiplierSettingsItem
                 ]),
             SettingsGroup(name: "Negative Radial Gravitational Force On Siblings", settingsItems: [
                 negativeRadialGravitationalForceOnSiblingsPowerSettingsItem
@@ -139,13 +151,15 @@ final class Settings: Codable {
     private init() {
         // Force
         let v1 = SettingsValue.range(value: 0.5, minValue: 0, maxValue: 1)
-        let v2 = SettingsValue.range(value: -1.1, minValue: -2.1, maxValue: -0.1)
-        let v3 = SettingsValue.range(value: 2.3, minValue: 1, maxValue: 3.6)
-        let v4 = SettingsValue.range(value: 4, minValue: 2, maxValue: 6)
+        let v2 = SettingsValue.range(value: 1, minValue: 0, maxValue: 2)
+        let v3 = SettingsValue.range(value: -1.1, minValue: -2.1, maxValue: -0.1)
+        let v4 = SettingsValue.range(value: 2.3, minValue: 1, maxValue: 3.6)
+        let v5 = SettingsValue.range(value: 4, minValue: 2, maxValue: 6)
         decayParameterSettingsItem = SettingsItem(name: "Multiplier", value: v1, initialValue: v1)
-        negativeRadialGravitationalForceOnSiblingsPowerSettingsItem = SettingsItem(name: "Power", value: v2, initialValue: v2)
-        springForceBetweenConnectedNodesPowerSettingsItem = SettingsItem(name: "Power", value: v3, initialValue: v3)
-        areaBasedOnTotalChildrensAreaMultiplierSettingsItem = SettingsItem(name: "Multiplier", value: v4, initialValue: v4)
+        radialGravitationForceOnChildrenMultiplierSettingsItem = SettingsItem(name: "Multiplier", value: v2, initialValue: v2)
+        negativeRadialGravitationalForceOnSiblingsPowerSettingsItem = SettingsItem(name: "Power", value: v3, initialValue: v3)
+        springForceBetweenConnectedNodesPowerSettingsItem = SettingsItem(name: "Power", value: v4, initialValue: v4)
+        areaBasedOnTotalChildrensAreaMultiplierSettingsItem = SettingsItem(name: "Multiplier", value: v5, initialValue: v5)
         // Visibility
         unfoldedNodesSettingsGroup = SettingsGroup(name: "Unfolded Nodes", settingsItems: [])
         hiddenNodesSettingsGroup = SettingsGroup(name: "Hidden Nodes", settingsItems: [])
