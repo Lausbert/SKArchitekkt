@@ -77,6 +77,7 @@ class ShapeNode: SKShapeNode {
             castedChildren.append(shapeNode)
             updateSiblingPairs()
             shapeNode.resetPosition()
+            updateConstraints(forChild: shapeNode)
         }
         super.addChild(node)
     }
@@ -84,6 +85,7 @@ class ShapeNode: SKShapeNode {
     func replaceChild(_ oldShapeNode: ShapeNode, with newShapeNode: ShapeNode) {
         if let index = castedChildren.firstIndex(of: oldShapeNode) {
             castedChildren.insert(newShapeNode, at: index)
+            updateConstraints(forChild: newShapeNode)
             newShapeNode.resetPosition()
         } else {
             assertionFailure()
@@ -185,9 +187,16 @@ class ShapeNode: SKShapeNode {
         path = CGPath(ellipseIn: CGRect(x: -radius, y: -radius, width: 2*radius, height: 2*radius), transform: nil)
     }
 
-    private func updateConstraints() {
-        castedChildren.forEach {
-            $0.constraints = [SKConstraint.distance(SKRange(lowerLimit: 0, upperLimit: radius - $0.radius), to: self)]
+    private func updateConstraints(forChild child: ShapeNode? = nil) {
+        guard isShape else {
+            return
+        }
+        if let child = child {
+            child.constraints = [SKConstraint.distance(SKRange(lowerLimit: 0, upperLimit: radius - child.radius), to: self)]
+        } else {
+            castedChildren.forEach {
+                $0.constraints = [SKConstraint.distance(SKRange(lowerLimit: 0, upperLimit: radius - $0.radius), to: self)]
+            }
         }
     }
 
