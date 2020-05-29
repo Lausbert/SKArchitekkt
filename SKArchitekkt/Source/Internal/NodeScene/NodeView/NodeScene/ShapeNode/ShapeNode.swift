@@ -20,6 +20,7 @@ class ShapeNode: SKShapeNode {
     ) -> ShapeNode {
         let shapeNode = pool.popLast() ?? ShapeNode()
 
+        shapeNode.zPosition = 100
         shapeNode.id = id
         shapeNode.scope = scope
         shapeNode.nodeName = name
@@ -118,7 +119,7 @@ class ShapeNode: SKShapeNode {
         guard isShape else {
             return
         }
-        fillColor = castedChildren.isEmpty ? color : color.withAlphaComponent(0.1)
+        fillColor = castedChildren.isEmpty ? color.withAlphaComponent(0.8) : color.withAlphaComponent(0.1)
         strokeColor = color
         lineWidth = 16
     }
@@ -214,7 +215,7 @@ class ShapeNode: SKShapeNode {
         let fontScalingFactor = CGFloat(1.25)
         let resutlingFontSize = fontSize/fontScalingFactor
         for (index, character) in name.enumerated() {
-            let resultingRadius = isSpiral ? (radius - (CGFloat(index)/lettersPerFullCircle*resutlingFontSize)) : radius
+            let resultingRadius = (isSpiral ? (radius - (CGFloat(index)/lettersPerFullCircle*resutlingFontSize)) : radius) - 12
             let x = cos(angle)*(resultingRadius - resutlingFontSize)
             let y = sin(angle)*(resultingRadius - resutlingFontSize)
             let labelNode = SKLabelNode(text: "\(character)")
