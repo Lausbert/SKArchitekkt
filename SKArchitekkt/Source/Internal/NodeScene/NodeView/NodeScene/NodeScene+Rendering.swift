@@ -148,7 +148,7 @@ extension NodeScene {
         guard let rootNode = rootNode else {
             return
         }
-        #warning("Todo: Integrate colorDictionary in settings.")
+        #warning("Todo: Integrate color settings.")
         let colorDictionary: [String: NSColor] = [
            "struct_decl": #colorLiteral(red: 0.4392156863, green: 0.8470588235, blue: 1, alpha: 1),
            "class_decl": #colorLiteral(red: 0.4392156863, green: 0.8470588235, blue: 1, alpha: 1),

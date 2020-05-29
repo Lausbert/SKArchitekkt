@@ -57,7 +57,16 @@ class SettingsGroup: ObservableObject, Codable {
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(name, forKey: .name)
-        try container.encode(settingsItems, forKey: .settingsItems)
+        #warning("TODO: Integrate project based settings and reproducable uuids")
+        let filteredSettingsItems = settingsItems.filter {
+            switch $0.value {
+            case .range:
+                return true
+            default:
+                return false
+            }
+        }
+        try container.encode(filteredSettingsItems, forKey: .settingsItems)
     }
 
 }
