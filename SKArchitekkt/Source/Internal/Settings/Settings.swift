@@ -56,14 +56,14 @@ final class Settings: Codable {
 
     // MARK: Force
 
-    let decayParameterSettingsItem: SettingsItem
+    let decayPowerSettingsItem: SettingsItem
     let radialGravitationForceOnChildrenMultiplierSettingsItem: SettingsItem
     let negativeRadialGravitationalForceOnSiblingsPowerSettingsItem: SettingsItem
     let springForceBetweenConnectedNodesPowerSettingsItem: SettingsItem
     let areaBasedOnTotalChildrensAreaMultiplierSettingsItem: SettingsItem
 
-    var decayParameter: Double {
-        if case let .range(value, _, _) = decayParameterSettingsItem.value {
+    var decayPower: Double {
+        if case let .range(value, _, _) = decayPowerSettingsItem.value {
             return value
         } else {
             assertionFailure()
@@ -106,7 +106,7 @@ final class Settings: Codable {
     lazy var forceSettingsGroups: [SettingsGroup] = {
         return [
             SettingsGroup(name: "Friction", settingsItems: [
-                decayParameterSettingsItem
+                decayPowerSettingsItem
                 ]),
             SettingsGroup(name: "Radial Gravitational Force On Children", settingsItems: [
                 radialGravitationForceOnChildrenMultiplierSettingsItem
@@ -155,7 +155,7 @@ final class Settings: Codable {
         let v3 = SettingsValue.range(value: -1.1, minValue: -2.1, maxValue: -0.1)
         let v4 = SettingsValue.range(value: 2.3, minValue: 1, maxValue: 3.6)
         let v5 = SettingsValue.range(value: 4, minValue: 2, maxValue: 6)
-        decayParameterSettingsItem = SettingsItem(name: "Multiplier", value: v1, initialValue: v1)
+        decayPowerSettingsItem = SettingsItem(name: "Power", value: v1, initialValue: v1)
         radialGravitationForceOnChildrenMultiplierSettingsItem = SettingsItem(name: "Multiplier", value: v2, initialValue: v2)
         negativeRadialGravitationalForceOnSiblingsPowerSettingsItem = SettingsItem(name: "Power", value: v3, initialValue: v3)
         springForceBetweenConnectedNodesPowerSettingsItem = SettingsItem(name: "Power", value: v4, initialValue: v4)
