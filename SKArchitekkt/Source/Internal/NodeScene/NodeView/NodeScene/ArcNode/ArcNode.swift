@@ -19,8 +19,8 @@ class ArcNode: SKShapeNode {
         super.init()
         self.name = ArcNode.name
         self.zPosition = 10
-        self.fillColor = .windowFrameColor
-        self.strokeColor = .windowFrameColor
+        self.fillColor = NSColor.windowFrameColor.withAlphaComponent(0.8)
+        self.strokeColor = NSColor.windowFrameColor.withAlphaComponent(0.8)
     }
 
     required init?(coder aDecoder: NSCoder) {
