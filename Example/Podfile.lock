@@ -1,6 +1,6 @@
 PODS:
   - CoreArchitekkt (0.1.68)
-  - SKArchitekkt (0.1.41):
+  - SKArchitekkt (0.1.43):
     - CoreArchitekkt
 
 DEPENDENCIES:
@@ -16,7 +16,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   CoreArchitekkt: a170adb69c02eb865633bb538a8b67fcef707763
-  SKArchitekkt: 98992efb33a25639a2a18e7d6d1508fcad53a568
+  SKArchitekkt: 7d52df071d2b09cd94404982fd612d3eba6349a8
 
 PODFILE CHECKSUM: 57efc4069a807a43618115cd3f8db940cc2204a5
 
