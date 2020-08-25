@@ -104,7 +104,7 @@ extension NodeScene {
         camera?.position.x -= 5*scale*event.deltaX
         camera?.position.y += 5*scale*event.deltaY
     }
-    
+
     override func magnify(with event: NSEvent) {
         guard event.phase == .changed, let camera = camera else { return }
         let scale: CGFloat = min(max(0.2, camera.xScale*(1-event.magnification)), 200)
