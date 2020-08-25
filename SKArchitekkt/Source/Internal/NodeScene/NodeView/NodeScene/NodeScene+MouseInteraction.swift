@@ -144,7 +144,7 @@ extension NodeScene {
 
     private func replaceNodeWithParentIfNeeded(node: SKNode?) -> SKNode? {
         var node = node
-        while let parent = node?.parent, parent.name == ShapeNode.name, parent.children.filter { $0.name == ShapeNode.name }.count <= 1 {
+        while let parent = node?.parent, parent.name == ShapeNode.name, parent.children.filter({ $0.name == ShapeNode.name }).count <= 1 {
             node = parent
         }
         return node
