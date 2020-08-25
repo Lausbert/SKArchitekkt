@@ -9,6 +9,10 @@ class NodeView: SKView {
     override func scrollWheel(with event: NSEvent) {
         self.scene?.scrollWheel(with: event)
     }
+    
+    override func magnify(with event: NSEvent) {
+        self.scene?.magnify(with: event)
+    }
 
     func setUp(with settings: Settings) {
         ignoresSiblingOrder = true

@@ -41,16 +41,11 @@ extension NodeScene {
     }
 
     override func mouseDragged(with event: NSEvent) {
-        let scale = (camera?.xScale ?? 1)
-        if frozenNodes.isEmpty {
-            camera?.position.x -= scale*event.deltaX
-            camera?.position.y += scale*event.deltaY
-        } else {
-            startSimulation()
-            movedNode?.position.x += scale*event.deltaX
-            movedNode?.position.y -= scale*event.deltaY
-        }
-    }
+        guard let movedNode = self.movedNode, let scale = camera?.xScale else { return }
+        startSimulation()
+        movedNode.position.x += scale*event.deltaX
+        movedNode.position.y -= scale*event.deltaY
+}
 
     override func mouseUp(with event: NSEvent) {
         for node in frozenNodes {
@@ -105,11 +100,16 @@ extension NodeScene {
     }
 
     override func scrollWheel(with event: NSEvent) {
-        guard let currentScale = camera?.xScale else { return }
-        let newScale: CGFloat = min(max(0.2, currentScale - event.deltaY), 200)
-        let roundedNewScale: CGFloat = round(10*newScale)/10
-        camera?.xScale = roundedNewScale
-        camera?.yScale = roundedNewScale
+        guard let scale = camera?.xScale else { return }
+        camera?.position.x -= 5*scale*event.deltaX
+        camera?.position.y += 5*scale*event.deltaY
+    }
+    
+    override func magnify(with event: NSEvent) {
+        guard event.phase == .changed, let camera = camera else { return }
+        let scale: CGFloat = min(max(0.2, camera.xScale*(1-event.magnification)), 200)
+        camera.xScale = scale
+        camera.yScale = scale
     }
 
     // MARK: - Private -
@@ -144,10 +144,10 @@ extension NodeScene {
 
     private func replaceNodeWithParentIfNeeded(node: SKNode?) -> SKNode? {
         var node = node
-        while (node?.parent?.children.filter { $0.name == ShapeNode.name }.count ?? Int.max) <= 1 {
-            node = node?.parent
+        while let parent = node?.parent, parent.name == ShapeNode.name, parent.children.filter { $0.name == ShapeNode.name }.count <= 1 {
+            node = parent
         }
-        return node?.name != ShapeNode.name ? nil : node
+        return node
     }
 
     @objc private func unfoldNode() {
