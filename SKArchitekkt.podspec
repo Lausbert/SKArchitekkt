@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
     s.name             = 'SKArchitekkt'
-    s.version          = '0.1.44'
+    s.version          = '0.1.45'
     s.summary          = 'An implementation of a root node handler, based on SpriteKit.'
     
     s.description      = <<-DESC
