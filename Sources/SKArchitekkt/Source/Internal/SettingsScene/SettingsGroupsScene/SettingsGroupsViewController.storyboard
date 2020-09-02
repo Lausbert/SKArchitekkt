@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Settings Groups View Controller-->
+        <scene sceneID="ZDS-SV-DIq">
+            <objects>
+                <viewController storyboardIdentifier="SettingsGroupsViewController" id="Wmc-0e-3p5" customClass="SettingsGroupsViewController" customModule="SKArchitekkt" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="Kdp-pu-OB0">
+                        <rect key="frame" x="0.0" y="0.0" width="260" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x7z-zC-PWq">
+                                <rect key="frame" x="0.0" y="46" width="260" height="254"/>
+                                <clipView key="contentView" drawsBackground="NO" id="tkz-WR-tbq">
+                                    <rect key="frame" x="0.0" y="0.0" width="260" height="254"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <collectionView id="x8o-ZZ-gsh">
+                                            <rect key="frame" x="0.0" y="0.0" width="260" height="254"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" id="aaN-dv-AOI">
+                                                <size key="itemSize" width="250" height="50"/>
+                                            </collectionViewFlowLayout>
+                                            <color key="primaryBackgroundColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </collectionView>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.11764705882352941" green="0.11764705882352941" blue="0.11764705882352941" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                </clipView>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="260" id="0fc-X0-fxg"/>
+                                </constraints>
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="wQl-W2-aU9">
+                                    <rect key="frame" x="-100" y="-100" width="248" height="16"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                                <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Hj0-R1-AJA">
+                                    <rect key="frame" x="234" y="1" width="15" height="143"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </scroller>
+                            </scrollView>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QOA-IU-4CA">
+                                <rect key="frame" x="24" y="1" width="212" height="41"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="2F1-fX-7sg"/>
+                                    <constraint firstAttribute="width" constant="200" id="jzN-op-uLa"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Reset" bezelStyle="rounded" alignment="center" state="on" borderStyle="border" inset="2" id="GUm-q4-nEN">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <color key="contentTintColor" red="0.1764705882" green="0.1764705882" blue="0.1764705882" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="didPressResetButton:" target="Wmc-0e-3p5" id="YW5-ih-Sxr"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="x7z-zC-PWq" secondAttribute="trailing" id="Al0-8G-z97"/>
+                            <constraint firstItem="x7z-zC-PWq" firstAttribute="leading" secondItem="Kdp-pu-OB0" secondAttribute="leading" id="CGQ-Xf-vc3"/>
+                            <constraint firstAttribute="bottom" secondItem="QOA-IU-4CA" secondAttribute="bottom" constant="8" id="ViH-mU-NPG"/>
+                            <constraint firstItem="QOA-IU-4CA" firstAttribute="top" secondItem="x7z-zC-PWq" secondAttribute="bottom" constant="8" id="hdd-E0-0Ca"/>
+                            <constraint firstItem="QOA-IU-4CA" firstAttribute="centerX" secondItem="Kdp-pu-OB0" secondAttribute="centerX" id="oeP-br-GVD"/>
+                            <constraint firstItem="x7z-zC-PWq" firstAttribute="top" secondItem="Kdp-pu-OB0" secondAttribute="top" id="xdC-Jf-np4"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collectionView" destination="x8o-ZZ-gsh" id="z8B-n6-fUG"/>
+                    </connections>
+                </viewController>
+                <customObject id="fp2-yN-a8v" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-395" y="267"/>
+        </scene>
+    </scenes>
+</document>
