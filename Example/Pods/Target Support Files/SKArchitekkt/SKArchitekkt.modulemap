@@ -1,6 +1,0 @@
-framework module SKArchitekkt {
-  umbrella header "SKArchitekkt-umbrella.h"
-
-  export *
-  module * { export * }
-}
