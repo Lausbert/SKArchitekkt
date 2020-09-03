@@ -3,7 +3,7 @@
 import AppKit
 import CoreArchitekkt
 
-public class GraphCoordinator: SplitViewCoordinator<ModuleDependencies> {
+public class GraphCoordinator: SplitViewCoordinator<ModuleDependencies>, StoryBoardLoadable {
 
     // MARK: - Public -
 
@@ -52,7 +52,7 @@ public class GraphCoordinator: SplitViewCoordinator<ModuleDependencies> {
         let paneCoordinator = PaneCoordinator.createFromStoryBoard()
         add(coordinator: paneCoordinator, canCollapse: true)
         let settingsCoordinator = SettingsCoordinator.createFromStoryBoard()
-        let bundle = Bundle(for: Self.self)
+        let bundle = Bundle.module
         let forceImage = bundle.image(forResource: "ForceTabbarIcon")!
         let visibilityImage = bundle.image(forResource: "VisibilityTabbarIcon")!
         paneCoordinator.transition(toCoordinator: settingsCoordinator, withTabImages: [forceImage, visibilityImage])

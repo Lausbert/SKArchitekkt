@@ -3,7 +3,7 @@
 import AppKit
 import CoreArchitekkt
 
-class PaneCoordinator: ViewCoordinator<NoDependencies> {
+class PaneCoordinator: ViewCoordinator<NoDependencies>, StoryBoardLoadable {
 
     // MARK: - Internal -
 

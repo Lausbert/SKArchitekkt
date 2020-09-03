@@ -3,7 +3,7 @@
 import AppKit
 import CoreArchitekkt
 
-class SettingsCoordinator: TabViewCoordinator<HasSettings> {
+class SettingsCoordinator: TabViewCoordinator<HasSettings>, StoryBoardLoadable {
 
     // MARK: - Internal -
 

@@ -3,7 +3,7 @@
 import AppKit
 import CoreArchitekkt
 
-public class GraphWindowController: RestorableWindowController {
+public class GraphWindowController: RestorableWindowController, StoryBoardLoadable {
 
     // MARK: - Public -
 

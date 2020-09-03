@@ -2,8 +2,9 @@
 
 import AppKit
 import Combine
+import CoreArchitekkt
 
-class SettingsGroupsViewController: NSViewController, NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout {
+class SettingsGroupsViewController: NSViewController, NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout, StoryBoardLoadable {
 
     // MARK: - Internal -
 
@@ -20,6 +21,16 @@ class SettingsGroupsViewController: NSViewController, NSCollectionViewDataSource
 
         collectionView.delegate = self
         collectionView.dataSource = self
+        let settingsGroupsEmptyCollectionViewItem = NSNib(nibNamed: .init("SettingsGroupsEmptyCollectionViewItem"), bundle: Bundle.module)
+        collectionView.register(settingsGroupsEmptyCollectionViewItem, forItemWithIdentifier: NSUserInterfaceItemIdentifier(rawValue: "SettingsGroupsEmptyCollectionViewItem"))
+        let settingsValueRangeCollectionViewItem = NSNib(nibNamed: .init("SettingsValueRangeCollectionViewItem"), bundle: Bundle.module)
+        collectionView.register(settingsValueRangeCollectionViewItem, forItemWithIdentifier: NSUserInterfaceItemIdentifier(rawValue: "SettingsValueRangeCollectionViewItem"))
+        let settingsValueDeletableCollectionViewItem = NSNib(nibNamed: .init("SettingsValueDeletableCollectionViewItem"), bundle: Bundle.module)
+        collectionView.register(settingsValueDeletableCollectionViewItem, forItemWithIdentifier: NSUserInterfaceItemIdentifier(rawValue: "SettingsValueDeletableCollectionViewItem"))
+        let settingsGroupHeaderView = NSNib(nibNamed: .init("SettingsGroupHeaderView"), bundle: Bundle.module)
+        collectionView.register(settingsGroupHeaderView, forSupplementaryViewOfKind: NSCollectionView.elementKindSectionHeader, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "SettingsGroupHeaderView"))
+        let settingsGroupFooterView = NSNib(nibNamed: .init("SettingsGroupFooterView"), bundle: Bundle.module)
+        collectionView.register(settingsGroupFooterView, forSupplementaryViewOfKind: NSCollectionView.elementKindSectionFooter, withIdentifier: NSUserInterfaceItemIdentifier(rawValue: "SettingsGroupFooterView"))
     }
 
     @IBAction func didPressResetButton(_ sender: Any) {

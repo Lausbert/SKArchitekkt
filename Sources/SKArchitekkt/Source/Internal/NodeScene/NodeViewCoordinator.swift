@@ -2,7 +2,7 @@
 
 import CoreArchitekkt
 
-class NodeViewCoordinator: ViewCoordinator<HasSettings> {
+class NodeViewCoordinator: ViewCoordinator<HasSettings>, StoryBoardLoadable {
 
     // MARK: - Internal -
 

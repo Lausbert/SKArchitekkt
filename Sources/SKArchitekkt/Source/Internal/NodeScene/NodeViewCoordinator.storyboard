@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17154"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
         <!--Node View Coordinator-->
         <scene sceneID="gCY-Nh-JNY">
             <objects>
-                <viewController storyboardIdentifier="NodeViewCoordinator" id="6NJ-4s-tfw" customClass="NodeViewCoordinator" customModule="SKArchitekkt" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="NodeViewCoordinator" id="6NJ-4s-tfw" customClass="NodeViewCoordinator" customModule="SKArchitekkt" sceneMemberID="viewController">
                     <view key="view" id="5d7-bT-ShX">
                         <rect key="frame" x="0.0" y="0.0" width="800" height="800"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="wtR-6b-YBv" customClass="NodeView" customModule="SKArchitekkt" customModuleProvider="target">
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="wtR-6b-YBv" customClass="NodeView" customModule="SKArchitekkt">
                                 <rect key="frame" x="0.0" y="0.0" width="800" height="800"/>
                             </customView>
                         </subviews>
