@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "SKArchitekkt",
+        "repositoryURL": "https://github.com/Lausbert/SKArchitekkt.git",
+        "state": {
+          "branch": null,
+          "revision": "e94257a9623ac41a1c4493b64b30aab4ca1857dd",
+          "version": "0.1.47"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

@@ -1,0 +1,382 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 52;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8DA2760F2504151300FAECD1 /* SKArchitekktExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA2760E2504151300FAECD1 /* SKArchitekktExampleApp.swift */; };
+		8DA276112504151300FAECD1 /* SKArchitekktExampleDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA276102504151300FAECD1 /* SKArchitekktExampleDocument.swift */; };
+		8DA276132504151300FAECD1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA276122504151300FAECD1 /* ContentView.swift */; };
+		8DA276152504151300FAECD1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DA276142504151300FAECD1 /* Assets.xcassets */; };
+		8DA276182504151300FAECD1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DA276172504151300FAECD1 /* Preview Assets.xcassets */; };
+		8DA276222504153600FAECD1 /* CoreArchitekkt in Frameworks */ = {isa = PBXBuildFile; productRef = 8DA276212504153600FAECD1 /* CoreArchitekkt */; };
+		8DA276252504154500FAECD1 /* SKArchitekkt in Frameworks */ = {isa = PBXBuildFile; productRef = 8DA276242504154500FAECD1 /* SKArchitekkt */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		8DA2760B2504151300FAECD1 /* SKArchitekktExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SKArchitekktExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8DA2760E2504151300FAECD1 /* SKArchitekktExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKArchitekktExampleApp.swift; sourceTree = "<group>"; };
+		8DA276102504151300FAECD1 /* SKArchitekktExampleDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKArchitekktExampleDocument.swift; sourceTree = "<group>"; };
+		8DA276122504151300FAECD1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		8DA276142504151300FAECD1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		8DA276172504151300FAECD1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8DA276192504151300FAECD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8DA2761A2504151300FAECD1 /* SKArchitekktExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SKArchitekktExample.entitlements; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8DA276082504151300FAECD1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DA276252504154500FAECD1 /* SKArchitekkt in Frameworks */,
+				8DA276222504153600FAECD1 /* CoreArchitekkt in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8DA276022504151300FAECD1 = {
+			isa = PBXGroup;
+			children = (
+				8DA2760D2504151300FAECD1 /* SKArchitekktExample */,
+				8DA2760C2504151300FAECD1 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8DA2760C2504151300FAECD1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8DA2760B2504151300FAECD1 /* SKArchitekktExample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8DA2760D2504151300FAECD1 /* SKArchitekktExample */ = {
+			isa = PBXGroup;
+			children = (
+				8DA2760E2504151300FAECD1 /* SKArchitekktExampleApp.swift */,
+				8DA276102504151300FAECD1 /* SKArchitekktExampleDocument.swift */,
+				8DA276122504151300FAECD1 /* ContentView.swift */,
+				8DA276142504151300FAECD1 /* Assets.xcassets */,
+				8DA276192504151300FAECD1 /* Info.plist */,
+				8DA2761A2504151300FAECD1 /* SKArchitekktExample.entitlements */,
+				8DA276162504151300FAECD1 /* Preview Content */,
+			);
+			path = SKArchitekktExample;
+			sourceTree = "<group>";
+		};
+		8DA276162504151300FAECD1 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				8DA276172504151300FAECD1 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8DA2760A2504151300FAECD1 /* SKArchitekktExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8DA2761D2504151300FAECD1 /* Build configuration list for PBXNativeTarget "SKArchitekktExample" */;
+			buildPhases = (
+				8DA276072504151300FAECD1 /* Sources */,
+				8DA276082504151300FAECD1 /* Frameworks */,
+				8DA276092504151300FAECD1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SKArchitekktExample;
+			packageProductDependencies = (
+				8DA276212504153600FAECD1 /* CoreArchitekkt */,
+				8DA276242504154500FAECD1 /* SKArchitekkt */,
+			);
+			productName = SKArchitekktExample;
+			productReference = 8DA2760B2504151300FAECD1 /* SKArchitekktExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8DA276032504151300FAECD1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1200;
+				LastUpgradeCheck = 1200;
+				TargetAttributes = {
+					8DA2760A2504151300FAECD1 = {
+						CreatedOnToolsVersion = 12.0;
+					};
+				};
+			};
+			buildConfigurationList = 8DA276062504151300FAECD1 /* Build configuration list for PBXProject "SKArchitekktExample" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8DA276022504151300FAECD1;
+			packageReferences = (
+				8DA276202504153600FAECD1 /* XCRemoteSwiftPackageReference "CoreArchitekkt" */,
+				8DA276232504154500FAECD1 /* XCRemoteSwiftPackageReference "SKArchitekkt" */,
+			);
+			productRefGroup = 8DA2760C2504151300FAECD1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8DA2760A2504151300FAECD1 /* SKArchitekktExample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8DA276092504151300FAECD1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DA276182504151300FAECD1 /* Preview Assets.xcassets in Resources */,
+				8DA276152504151300FAECD1 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8DA276072504151300FAECD1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DA2760F2504151300FAECD1 /* SKArchitekktExampleApp.swift in Sources */,
+				8DA276112504151300FAECD1 /* SKArchitekktExampleDocument.swift in Sources */,
+				8DA276132504151300FAECD1 /* ContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		8DA2761B2504151300FAECD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8DA2761C2504151300FAECD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		8DA2761E2504151300FAECD1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SKArchitekktExample/SKArchitekktExample.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"SKArchitekktExample/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = SKArchitekktExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = StephanLerner.SKArchitekktExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		8DA2761F2504151300FAECD1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SKArchitekktExample/SKArchitekktExample.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_ASSET_PATHS = "\"SKArchitekktExample/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = SKArchitekktExample/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 11.0;
+				PRODUCT_BUNDLE_IDENTIFIER = StephanLerner.SKArchitekktExample;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8DA276062504151300FAECD1 /* Build configuration list for PBXProject "SKArchitekktExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8DA2761B2504151300FAECD1 /* Debug */,
+				8DA2761C2504151300FAECD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8DA2761D2504151300FAECD1 /* Build configuration list for PBXNativeTarget "SKArchitekktExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8DA2761E2504151300FAECD1 /* Debug */,
+				8DA2761F2504151300FAECD1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8DA276202504153600FAECD1 /* XCRemoteSwiftPackageReference "CoreArchitekkt" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Lausbert/CoreArchitekkt.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.72;
+			};
+		};
+		8DA276232504154500FAECD1 /* XCRemoteSwiftPackageReference "SKArchitekkt" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Lausbert/SKArchitekkt.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.1.47;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8DA276212504153600FAECD1 /* CoreArchitekkt */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8DA276202504153600FAECD1 /* XCRemoteSwiftPackageReference "CoreArchitekkt" */;
+			productName = CoreArchitekkt;
+		};
+		8DA276242504154500FAECD1 /* SKArchitekkt */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8DA276232504154500FAECD1 /* XCRemoteSwiftPackageReference "SKArchitekkt" */;
+			productName = SKArchitekkt;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 8DA276032504151300FAECD1 /* Project object */;
+}
