@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		8DA2760F2504151300FAECD1 /* SKArchitekktExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA2760E2504151300FAECD1 /* SKArchitekktExampleApp.swift */; };
-		8DA276112504151300FAECD1 /* SKArchitekktExampleDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA276102504151300FAECD1 /* SKArchitekktExampleDocument.swift */; };
-		8DA276132504151300FAECD1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA276122504151300FAECD1 /* ContentView.swift */; };
 		8DA276152504151300FAECD1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DA276142504151300FAECD1 /* Assets.xcassets */; };
 		8DA276182504151300FAECD1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8DA276172504151300FAECD1 /* Preview Assets.xcassets */; };
 		8DA276222504153600FAECD1 /* CoreArchitekkt in Frameworks */ = {isa = PBXBuildFile; productRef = 8DA276212504153600FAECD1 /* CoreArchitekkt */; };
@@ -19,8 +17,6 @@
 /* Begin PBXFileReference section */
 		8DA2760B2504151300FAECD1 /* SKArchitekktExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SKArchitekktExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DA2760E2504151300FAECD1 /* SKArchitekktExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKArchitekktExampleApp.swift; sourceTree = "<group>"; };
-		8DA276102504151300FAECD1 /* SKArchitekktExampleDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SKArchitekktExampleDocument.swift; sourceTree = "<group>"; };
-		8DA276122504151300FAECD1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8DA276142504151300FAECD1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8DA276172504151300FAECD1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		8DA276192504151300FAECD1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -60,8 +56,6 @@
 			isa = PBXGroup;
 			children = (
 				8DA2760E2504151300FAECD1 /* SKArchitekktExampleApp.swift */,
-				8DA276102504151300FAECD1 /* SKArchitekktExampleDocument.swift */,
-				8DA276122504151300FAECD1 /* ContentView.swift */,
 				8DA276142504151300FAECD1 /* Assets.xcassets */,
 				8DA276192504151300FAECD1 /* Info.plist */,
 				8DA2761A2504151300FAECD1 /* SKArchitekktExample.entitlements */,
@@ -156,8 +150,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DA2760F2504151300FAECD1 /* SKArchitekktExampleApp.swift in Sources */,
-				8DA276112504151300FAECD1 /* SKArchitekktExampleDocument.swift in Sources */,
-				8DA276132504151300FAECD1 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

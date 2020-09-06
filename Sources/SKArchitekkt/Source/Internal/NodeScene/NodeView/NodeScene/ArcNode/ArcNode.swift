@@ -1,6 +1,7 @@
 // Copyright © 2020 Stephan Lerner. All rights reserved.
 
 import SpriteKit
+import AppKit
 
 class ArcNode: SKShapeNode {
 

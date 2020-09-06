@@ -9,7 +9,7 @@ extension UTType {
     }
 }
 
-struct SKArchitekktExampleDocument: FileDocument {
+struct Document: FileDocument {
     var text: String
 
     init(text: String = "Hello, world!") {

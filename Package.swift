@@ -4,7 +4,7 @@ import PackageDescription
 
 let package = Package(
     name: "SKArchitekkt",
-    platforms: [.macOS(.v10_15)],
+    platforms: [.macOS(.v11)],
     products: [
         .library(
             name: "SKArchitekkt",
@@ -22,10 +22,6 @@ let package = Package(
         .target(
             name: "SKArchitekkt",
             dependencies: ["CoreArchitekkt"]
-        ),
-        .testTarget(
-            name: "SKArchitekktTests",
-            dependencies: ["SKArchitekkt"]
-        ),
+        )
     ]
 )
