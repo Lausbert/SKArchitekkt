@@ -7,7 +7,7 @@ public struct SKArchitekktView: View {
     @Binding var document: Document
 
     public var body: some View {
-        TextEditor(text: $document.text)
+        EmptyView()
     }
     
     public init(document: Binding<Document>) {

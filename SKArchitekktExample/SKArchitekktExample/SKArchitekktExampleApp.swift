@@ -7,7 +7,7 @@ import SKArchitekkt
 @main
 struct SKArchitekktExampleApp: App {
     var body: some Scene {
-        DocumentGroup(newDocument: Document()) { file in
+        DocumentGroup(newDocument: Document(node: <#T##Node?#>)) { file in
             SKArchitekktView(document: file.$document)
         }
     }
