@@ -27,22 +27,6 @@ extension NodeScene {
         set { NodeScene.arcNodesObjectAssociation[self] = newValue }
     }
 
-    var virtualTransformations: Set<VirtualTransformation> {
-        get {
-            let settingsValues = settings.visibilitySettingsGroups.flatMap { $0.settingsItems }.map { $0.value }
-            let virtualTransformations: [VirtualTransformation] = settingsValues.compactMap { settingsValue in
-                switch settingsValue {
-                case .range:
-                    assertionFailure()
-                    return nil
-                case let .deletable(data):
-                    return try? JSONDecoder().decode(VirtualTransformation.self, from: data)
-                }
-            }
-            return Set(virtualTransformations)
-        }
-    }
-
     func setUpRendering() {
         oldVirtualNodes = []
         shapeRootNode = ShapeNode.create(isShape: false)
@@ -52,15 +36,8 @@ extension NodeScene {
         arcNodes = []
         scene?.addChild(shapeRootNode)
         scene?.addChild(arcRootNode)
-        cancellables = []
-        cancellables.append(
-            settings.areaBasedOnTotalChildrensAreaMultiplierSettingsItem.objectWillChange.receive(on: DispatchQueue.main).sink(receiveValue: { [weak self] (_) in
-                self?.update()
-                }
-            )
-        )
-        cancellables += settings.visibilitySettingsGroups.map({ (settingsGroup) -> AnyCancellable in
-            settingsGroup.objectWillChange.receive(on: DispatchQueue.main).sink { [weak self] (_) in
+        cancellables = settings.visibilitySettingsGroups.map({ (settingsGroup) -> AnyCancellable in
+            settingsGroup.objectDidChange.sink { [weak self] (_) in
                 self?.update()
                 self?.startSimulation()
             }
@@ -69,47 +46,6 @@ extension NodeScene {
 
     func add(rootNode: Node) {
         self.rootNode = rootNode
-        update()
-    }
-
-    func toggle(virtualTransformation: VirtualTransformation, withName name: String) {
-        guard let data = try? JSONEncoder().encode(virtualTransformation) else {
-            assertionFailure()
-            return
-        }
-        let settingsValue = SettingsValue.deletable(data: data)
-        let settingsItem = SettingsItem(name: name, value: settingsValue)
-        if virtualTransformations.contains(virtualTransformation) {
-            switch virtualTransformation {
-            case .unfoldNode:
-                settings.unfoldedNodesSettingsGroup.removeSettingsItemWith(settingsValue: settingsValue)
-            case .hideNode:
-                settings.hiddenNodesSettingsGroup.removeSettingsItemWith(settingsValue: settingsValue)
-            case .flattenNode:
-                settings.flattendedNodesSettingsGroup.removeSettingsItemWith(settingsValue: settingsValue)
-            case .unfoldScope:
-                settings.unfoldedScopesSettingsGroup.removeSettingsItemWith(settingsValue: settingsValue)
-            case .hideScope:
-                settings.hiddenScopesSettingsGroup.removeSettingsItemWith(settingsValue: settingsValue)
-            case .flattenScope:
-                settings.flattendedScopesSettingsGroup.removeSettingsItemWith(settingsValue: settingsValue)
-            }
-        } else {
-            switch virtualTransformation {
-            case .unfoldNode:
-                settings.unfoldedNodesSettingsGroup.add(settingsItem: settingsItem)
-            case .hideNode:
-                settings.hiddenNodesSettingsGroup.add(settingsItem: settingsItem)
-            case .flattenNode:
-                settings.flattendedNodesSettingsGroup.add(settingsItem: settingsItem)
-            case .unfoldScope:
-                settings.unfoldedScopesSettingsGroup.add(settingsItem: settingsItem)
-            case .hideScope:
-                settings.hiddenScopesSettingsGroup.add(settingsItem: settingsItem)
-            case .flattenScope:
-                settings.flattendedScopesSettingsGroup.add(settingsItem: settingsItem)
-            }
-        }
         update()
     }
 
@@ -173,7 +109,7 @@ extension NodeScene {
         )
         let newVirtualNodes = VirtualNode.createVirtualNodes(
             from: rootNode,
-            with: virtualTransformations,
+            with: settings.virtualTransformations,
             and: virtualNodeSettings
         )
         let shapeNodePatch = ShapeNode.diffChildren(oldVirtualNodes: oldVirtualNodes, newVirtualNode: newVirtualNodes)
@@ -187,7 +123,7 @@ extension NodeScene {
         shapeRootNode.update(radius: radius)
         let newVirtualArcs = VirtualArc.createVirtualArcs(
             from: rootNode,
-            with: virtualTransformations
+            with: settings.virtualTransformations
         )
         let arcNodePatch = ArcNode.diffChildren(oldVirtualArcs: oldVirtualArcs, newVirtualArcs: newVirtualArcs)
         arcNodePatch(arcRootNode)

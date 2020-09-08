@@ -12,7 +12,7 @@ extension NodeScene: SKSceneDelegate {
         delegate = self
         physicsWorld.gravity = CGVector.zero
         self.settingsItemCancellables = settings.settingsItems.map({ [weak self] (settingsItem) -> AnyCancellable in
-            settingsItem.objectWillChange.receive(on: DispatchQueue.main).sink { (_) in
+            settingsItem.objectDidChange.sink { (_) in
                 self?.startSimulation()
             }
         })
