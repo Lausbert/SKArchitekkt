@@ -10,20 +10,29 @@ public struct SKArchitekktView: View {
 
     public var body: some View {
         GeometryReader { geometry in
+            Divider()
             VStack {
-                HSplitView {
+                HStack {
                     VStack { Text("Pane 1") }.frame(maxWidth: .infinity, maxHeight: .infinity)
                     if isShowingRightPane {
-                        VStack { Text("Pane 2") }.frame(maxWidth: .infinity, maxHeight: .infinity)
+                        ExDivider()
+                        VStack { Text("Pane 2") }.frame(width: 250, height: geometry.size.height)
+                            .transition(.move(edge: .trailing)).fixedSize()
                     }
-                    
                 }
-            }.frame(width: geometry.size.width, height: geometry.size.height)
-            .presentedWindowToolbarStyle(UnifiedWindowToolbarStyle()).toolbar {
-                Button(action: { isShowingRightPane.toggle() } ) {
+            }
+            .frame(width: geometry.size.width, height: geometry.size.height)
+            .toolbar {
+                Button(
+                    action: {
+                        withAnimation {
+                            isShowingRightPane.toggle()
+                        }
+                    }
+                ) {
                     Image(systemName: "sidebar.right")
                 }
-            }.transition(.scale(scale: 1, anchor: UnitPoint(x: 0.5, y: 1)))
+            }
         }
     }
     
@@ -35,5 +44,16 @@ public struct SKArchitekktView: View {
 struct SKArchitekktView_Previews: PreviewProvider {
     static var previews: some View {
         SKArchitekktView(document: .constant(Document()))
+    }
+}
+
+struct ExDivider: View {
+    let color: Color = .black
+    let width: CGFloat = 1
+    var body: some View {
+        Rectangle()
+            .fill(color)
+            .frame(width: width)
+            .edgesIgnoringSafeArea(.horizontal)
     }
 }
