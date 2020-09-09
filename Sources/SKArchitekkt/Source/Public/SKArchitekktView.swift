@@ -11,7 +11,7 @@ public struct SKArchitekktView: View {
 
     public var body: some View {
         GeometryReader { geometry in
-            HStack {
+            HStack(spacing: 0) {
                 NodeViewRepresantable(document: $document)
                 if isShowingRightPane {
                     DarkDivider()
@@ -25,6 +25,7 @@ public struct SKArchitekktView: View {
                 } label: {
                     Image(systemName: "sidebar.right")
                 }
+                .help("Hide or show the Inspectors")
             }
         }
     }

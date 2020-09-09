@@ -9,10 +9,13 @@ struct SettingsView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            VStack { Text("Pane 2") }
-                .frame(width: geometry.size.width, height: geometry.size.height, alignment: .topLeading)
+            VStack {
+                Divider()
+                Text("Pane 2")
+                Divider()
+            }
+            .frame(width: geometry.size.width, height: geometry.size.height, alignment: .topLeading)
         }
-        .padding()
         .frame(width: 250)
     }
     

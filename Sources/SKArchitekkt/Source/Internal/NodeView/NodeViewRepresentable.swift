@@ -8,7 +8,12 @@ struct NodeViewRepresantable: View {
     @Binding var document: Document
     
     var body: some View {
-        VStack { Text("Pane 1") }.frame(maxWidth: .infinity, maxHeight: .infinity)
+        GeometryReader { geometry in
+            VStack {
+                Text("Pane 1")
+            }
+            .frame(width: geometry.size.width, height: geometry.size.height)
+        }
     }
     
 }
