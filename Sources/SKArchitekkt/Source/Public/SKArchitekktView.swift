@@ -10,7 +10,6 @@ public struct SKArchitekktView: View {
 
     public var body: some View {
         GeometryReader { geometry in
-            Divider()
             VStack {
                 HStack {
                     VStack { Text("Pane 1") }.frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -48,7 +47,7 @@ struct SKArchitekktView_Previews: PreviewProvider {
 }
 
 struct ExDivider: View {
-    let color: Color = .black
+    let color: Color = .separatorColor
     let width: CGFloat = 1
     var body: some View {
         Rectangle()
