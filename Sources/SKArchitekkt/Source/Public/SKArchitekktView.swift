@@ -5,34 +5,35 @@ import CoreArchitekkt
 
 public struct SKArchitekktView: View {
     
-    @Binding var document: Document
-    
-    @State private var isShowingRightPane: Bool = true
+    // MARK: - Public -
 
     public var body: some View {
-        GeometryReader { geometry in
-            HStack(spacing: 0) {
-                NodeViewRepresantable(document: $document)
-                if isShowingRightPane {
-                    DarkDivider()
-                    SettingsView(document: $document)
-                        .transition(.move(edge: .trailing))
-                }
+        HStack(spacing: 0) {
+            NodeViewRepresantable(document: $document)
+            if isShowingRightPane {
+                DarkDivider()
+                SettingsView(document: $document)
+                    .transition(.move(edge: .trailing))
             }
-            .toolbar {
-                Button {
-                    withAnimation { isShowingRightPane.toggle() }
-                } label: {
-                    Image(systemName: "sidebar.right")
-                }
-                .help("Hide or show the Inspectors")
+        }
+        .toolbar {
+            Button {
+                withAnimation { isShowingRightPane.toggle() }
+            } label: {
+                Image(systemName: "sidebar.right")
             }
+            .help("Hide or show the Inspectors")
         }
     }
     
     public init(document: Binding<Document>) {
         self._document = document
     }
+    
+    // MARK: - Private -
+    
+    @Binding private var document: Document
+    @State private var isShowingRightPane: Bool = true
     
 }
 

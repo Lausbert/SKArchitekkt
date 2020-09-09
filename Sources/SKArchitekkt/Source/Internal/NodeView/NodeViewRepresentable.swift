@@ -5,8 +5,10 @@ import CoreArchitekkt
 
 struct NodeViewRepresantable: View {
     
-    @Binding var document: Document
+    // MARK: - Internal -
     
+    @Binding private(set) var document: Document
+        
     var body: some View {
         GeometryReader { geometry in
             VStack {
@@ -15,5 +17,5 @@ struct NodeViewRepresantable: View {
             .frame(width: geometry.size.width, height: geometry.size.height)
         }
     }
-    
+            
 }
