@@ -36,11 +36,3 @@ public struct SKArchitekktView: View {
     @State private var isShowingRightPane: Bool = true
     
 }
-
-struct SKArchitekktView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        SKArchitekktView(document: .constant(Document()))
-    }
-    
-}
