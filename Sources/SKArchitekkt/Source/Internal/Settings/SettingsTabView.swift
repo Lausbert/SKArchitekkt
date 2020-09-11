@@ -3,7 +3,7 @@
 import SwiftUI
 import CoreArchitekkt
 
-struct SettingsView: View {
+struct SettingsTabView: View {
     
     // MARK: - Internal -
     
