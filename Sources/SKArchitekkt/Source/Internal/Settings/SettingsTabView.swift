@@ -13,8 +13,8 @@ struct SettingsTabView: View {
         SystemTabView(
             side: .right,
             tabs: [
-                ("slider.horizontal.3", AnyView(Text("Tab 1"))),
-                ("eye", AnyView(Text("Tab 2")))
+                ("slider.horizontal.3", AnyView(SettingsView(settingsGroups: document.settings.forceSettingsGroups))),
+                ("eye", AnyView(SettingsView(settingsGroups: document.settings.visibilitySettingsGroups)))
             ]
         )
     }
