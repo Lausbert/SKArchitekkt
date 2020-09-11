@@ -11,7 +11,6 @@ public struct SKArchitekktView: View {
         HStack(spacing: 0) {
             NodeViewRepresantable(document: $document)
             if isShowingRightPane {
-                DarkDivider()
                 SettingsView(document: $document)
                     .transition(.move(edge: .trailing))
             }
