@@ -36,7 +36,7 @@ extension NodeScene {
         arcNodes = []
         scene?.addChild(shapeRootNode)
         scene?.addChild(arcRootNode)
-        cancellables = settings.visibilitySettingsGroups.map({ (settingsGroup) -> AnyCancellable in
+        cancellables = settings.visibilitySettingsDomain.settingsGroups.map({ (settingsGroup) -> AnyCancellable in
             settingsGroup.objectDidChange.sink { [weak self] (_) in
                 self?.update()
                 self?.startSimulation()

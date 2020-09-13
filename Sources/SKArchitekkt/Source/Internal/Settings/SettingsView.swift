@@ -5,13 +5,17 @@ import CoreArchitekkt
 
 struct SettingsView: View {
     
-    let settingsGroups: [SettingsGroup]
+    let settingsDomains: [SettingsDomain]
 
     var body: some View {
-        List(settingsGroups) { settingsGroup in
-            VStack(alignment: .leading) {
-                Text(settingsGroup.name)
-                Divider()
+        ScrollView {
+            VStack(spacing: 0) {
+                ForEach(settingsDomains) { settingsDomain in
+                    VStack(alignment: .leading, spacing: 0) {
+                        Text(settingsDomain.name).padding(4)
+                        Divider()
+                    }
+                }
             }
         }
     }
