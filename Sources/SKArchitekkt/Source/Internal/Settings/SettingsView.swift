@@ -9,13 +9,11 @@ struct SettingsView: View {
 
     var body: some View {
         List(settingsGroups) { settingsGroup in
-            VStack {
+            VStack(alignment: .leading) {
                 Text(settingsGroup.name)
-                    .stretchTopLeading()
                 Divider()
             }
         }
-        .stretch()
     }
     
 }
