@@ -11,7 +11,7 @@ public struct SKArchitekktView: View {
         HStack(spacing: 0) {
             NodeView(scene: NodeScene(document: document))
             if isShowingRightPane {
-                SettingsTabView(document: $document)
+                SettingsTabView(settings: document.settings)
                     .transition(.move(edge: .trailing))
             }
         }
