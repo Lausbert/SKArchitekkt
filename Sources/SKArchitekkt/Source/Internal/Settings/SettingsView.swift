@@ -28,7 +28,7 @@ struct SettingsView: View {
         var body: some View {
             VStack(alignment: .leading, spacing: 0) {
                 Text(settingsDomain.name)
-                    .padding(4)
+                    .padding(6)
                     .font(.headline)
                     .foregroundColor(.gray)
                 VStack(alignment: .leading) {
@@ -50,7 +50,7 @@ struct SettingsView: View {
             VStack(alignment: .leading) {
                 if !settingsGroup.name.isEmpty {
                     Text(settingsGroup.name)
-                        .padding(4)
+                        .padding(6)
                         .font(.subheadline)
                 }
                 ForEach(settingsGroup.settingsItems) { settingsItem in
@@ -59,7 +59,6 @@ struct SettingsView: View {
                 if settingsGroup.settingsItems.isEmpty {
                     Text("Empty")
                         .frame(maxWidth: .infinity, alignment: .center)
-                        .padding(4)
                         .font(.footnote)
                         .foregroundColor(.gray)
                 }
@@ -77,21 +76,32 @@ struct SettingsView: View {
             case let .range(_, minValue, maxValue):
                 VStack(alignment: .leading, spacing: 0) {
                     Text(settingsItem.name)
-                        .font(.subheadline).padding(4)
-                    Slider(value: getBinding(minValue: minValue, maxValue: maxValue), in: minValue...maxValue)
+                        .font(.subheadline).padding(6)
+                    Slider(value: getRangeBinding(minValue: minValue, maxValue: maxValue), in: minValue...maxValue)
                         .padding(EdgeInsets(top: 0, leading: 16, bottom: 4, trailing: 16))
                 }
             case .deletable:
-                EmptyView()
+                HStack {
+                    Text(settingsItem.name)
+                        .font(.subheadline).padding(6)
+                    Button {
+                        settingsGroup.remove(settingsItem: settingsItem)
+                    } label: {
+                        Image(systemName: "minus.circle")
+                    }.buttonStyle(PlainButtonStyle())
+                }
+                .frame(maxWidth: .infinity, alignment: .trailing)
+                .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
             }
         }
         
-        private func getBinding(minValue: Double, maxValue: Double) -> Binding<Double> {
+        private func getRangeBinding(minValue: Double, maxValue: Double) -> Binding<Double> {
             Binding<Double>(
                 get: {
                     if case let .range(value, _, _) = self.settingsItem.value {
                         return value
                     } else {
+                        assertionFailure()
                         return 0.0
                     }
                 },
