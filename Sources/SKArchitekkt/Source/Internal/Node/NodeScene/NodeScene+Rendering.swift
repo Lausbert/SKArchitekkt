@@ -36,12 +36,17 @@ extension NodeScene {
         arcNodes = []
         scene?.addChild(shapeRootNode)
         scene?.addChild(arcRootNode)
-        cancellables = settings.visibilitySettingsDomain.settingsGroups.map({ (settingsGroup) -> AnyCancellable in
+        let visibilityCancellables = document.settings.visibilitySettingsDomain.settingsGroups.map({ (settingsGroup) -> AnyCancellable in
             settingsGroup.objectDidChange.sink { [weak self] (_) in
                 self?.update()
-                self?.startSimulation()
             }
         })
+        let areaCancellables = document.settings.areaSettingsDomain.settingsItems.map({ (settingsItem) -> AnyCancellable in
+            settingsItem.objectDidChange.sink { [weak self] (_) in
+                self?.update()
+            }
+        })
+        cancellables = visibilityCancellables + areaCancellables
     }
 
     func add(rootNode: Node) {
@@ -103,13 +108,13 @@ extension NodeScene {
         ]
         let virtualNodeSettings = VirtualNode.Settings(
            colorDictionary: colorDictionary,
-           defaultColor: .windowFrameColor,
+            defaultColor: .windowFrameTextColor,
            baseRadius: 128,
-           areaMultiplier: CGFloat(settings.areaBasedOnTotalChildrensAreaMultiplier)
+            areaMultiplier: CGFloat(document.settings.areaBasedOnTotalChildrensAreaMultiplier)
         )
         let newVirtualNodes = VirtualNode.createVirtualNodes(
             from: rootNode,
-            with: settings.virtualTransformations,
+            with: document.settings.virtualTransformations,
             and: virtualNodeSettings
         )
         let shapeNodePatch = ShapeNode.diffChildren(oldVirtualNodes: oldVirtualNodes, newVirtualNode: newVirtualNodes)
@@ -123,7 +128,7 @@ extension NodeScene {
         shapeRootNode.update(radius: radius)
         let newVirtualArcs = VirtualArc.createVirtualArcs(
             from: rootNode,
-            with: settings.virtualTransformations
+            with: document.settings.virtualTransformations
         )
         let arcNodePatch = ArcNode.diffChildren(oldVirtualArcs: oldVirtualArcs, newVirtualArcs: newVirtualArcs)
         arcNodePatch(arcRootNode)

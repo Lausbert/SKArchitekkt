@@ -7,15 +7,16 @@ class NodeScene: SKScene {
 
     // MARK: - Internal -
 
-    let settings: Settings
+    let document: Document
 
-    init(with settings: Settings) {
-        self.settings = settings
+    init(document: Document) {
+        self.document = document
         super.init(size: CGSize.zero)
         backgroundColor = NSColor.controlBackgroundColor
         setUpPhysics()
         setUpMouseInteraction()
         setUpRendering()
+        add(rootNode: document.node)
     }
 
     required init?(coder aDecoder: NSCoder) {

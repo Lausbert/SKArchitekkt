@@ -70,7 +70,7 @@ extension NodeScene {
             case 1:
                 focusedNode = clickedNode
                 let menu = NSMenu()
-                let unfoldNodePrefix = settings.virtualTransformations.contains(.unfoldNode(id: clickedNode.id)) ? "Fold" : "Unfold"
+                let unfoldNodePrefix = document.settings.virtualTransformations.contains(.unfoldNode(id: clickedNode.id)) ? "Fold" : "Unfold"
                 let unfoldNodeItem = NSMenuItem(title: "\(unfoldNodePrefix) \(clickedNode.nodeName ?? clickedNode.scope)", action: #selector(unfoldNode), keyEquivalent: "")
                 unfoldNodeItem.target = self
                 menu.insertItem(unfoldNodeItem, at: 0)
@@ -82,7 +82,7 @@ extension NodeScene {
                 menu.insertItem(flattenNodeItem, at: 2)
                 let separator = NSMenuItem.separator()
                 menu.insertItem(separator, at: 3)
-                let unfoldScopePrefix = settings.virtualTransformations.contains(.unfoldScope(scope: clickedNode.scope)) ? "Fold" : "Unfold"
+                let unfoldScopePrefix = document.settings.virtualTransformations.contains(.unfoldScope(scope: clickedNode.scope)) ? "Fold" : "Unfold"
                 let unfoldScopeItem = NSMenuItem(title: "\(unfoldScopePrefix) all \(clickedNode.scope)'s", action: #selector(unfoldScope), keyEquivalent: "")
                 unfoldScopeItem.target = self
                 menu.insertItem(unfoldScopeItem, at: 4)
@@ -201,7 +201,7 @@ extension NodeScene {
     private func toggle(virtualTransformation: VirtualTransformation, withName name: String) {
         let settingsValue = SettingsValue.deletable(virtualTransformation: virtualTransformation)
         let settingsItem = SettingsItem(name: name, value: settingsValue)
-        settings.toggle(settingsItem: settingsItem)
+        document.settings.toggle(settingsItem: settingsItem)
     }
 
 }
