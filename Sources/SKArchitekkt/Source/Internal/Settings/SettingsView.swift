@@ -44,7 +44,7 @@ struct SettingsView: View {
     
     private struct SettingsGroupView: View {
         
-        let settingsGroup: SettingsGroup
+        @ObservedObject var settingsGroup: SettingsGroup
         
         var body: some View {
             VStack(alignment: .leading) {
@@ -85,7 +85,9 @@ struct SettingsView: View {
                     Text(settingsItem.name)
                         .font(.subheadline).padding(6)
                     Button {
-                        settingsGroup.remove(settingsItem: settingsItem)
+                        withAnimation {
+                            settingsGroup.remove(settingsItem: settingsItem)
+                        }
                     } label: {
                         Image(systemName: "minus.circle")
                     }.buttonStyle(PlainButtonStyle())
