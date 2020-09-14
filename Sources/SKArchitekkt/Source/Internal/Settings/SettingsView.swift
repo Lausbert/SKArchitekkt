@@ -54,7 +54,7 @@ struct SettingsView: View {
                         .font(.subheadline)
                 }
                 ForEach(settingsGroup.settingsItems) { settingsItem in
-                    SettingsItemView(settingsItem: settingsItem)
+                    SettingsItemView(settingsGroup: settingsGroup, settingsItem: settingsItem)
                 }
                 if settingsGroup.settingsItems.isEmpty {
                     Text("Empty")
@@ -69,12 +69,37 @@ struct SettingsView: View {
     
     private struct SettingsItemView: View {
         
+        let settingsGroup: SettingsGroup
         let settingsItem: SettingsItem
-        
+                
         var body: some View {
-            Text(settingsItem.name)
-                .padding(4)
-                .font(.subheadline)
+            switch settingsItem.value {
+            case let .range(_, minValue, maxValue):
+                VStack(alignment: .leading, spacing: 0) {
+                    Text(settingsItem.name)
+                        .font(.subheadline).padding(4)
+                    Slider(value: getBinding(minValue: minValue, maxValue: maxValue), in: minValue...maxValue)
+                        .padding(EdgeInsets(top: 0, leading: 16, bottom: 4, trailing: 16))
+                }
+            case .deletable:
+                EmptyView()
+            }
         }
+        
+        private func getBinding(minValue: Double, maxValue: Double) -> Binding<Double> {
+            Binding<Double>(
+                get: {
+                    if case let .range(value, _, _) = self.settingsItem.value {
+                        return value
+                    } else {
+                        return 0.0
+                    }
+                },
+                set: {
+                    self.settingsItem.value = SettingsValue.range(value: $0, minValue: minValue, maxValue: maxValue)
+                }
+            )
+        }
+        
     }
 }
