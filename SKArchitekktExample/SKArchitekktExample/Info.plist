@@ -46,7 +46,10 @@
 			<key>UTTypeDescription</key>
 			<string>Architekkt Document</string>
 			<key>UTTypeIcons</key>
-			<dict/>
+			<dict>
+				<key>UTTypeIconBadgeName</key>
+				<string></string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>io.Architekkt.graph</string>
 			<key>UTTypeTagSpecification</key>
