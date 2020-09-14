@@ -17,6 +17,15 @@ struct SettingsView: View {
                 }
             }
         }
+        Button {
+            settingsDomains.flatMap( { $0.settingsGroups } ).forEach { settingsGroup in
+                withAnimation {
+                    settingsGroup.reset()
+                }
+            }
+        } label: {
+            Text("Reset")
+        }.padding()
     }
     
     // MARK: - Private -
@@ -69,7 +78,7 @@ struct SettingsView: View {
     private struct SettingsItemView: View {
         
         let settingsGroup: SettingsGroup
-        let settingsItem: SettingsItem
+        @ObservedObject var settingsItem: SettingsItem
                 
         var body: some View {
             switch settingsItem.value {

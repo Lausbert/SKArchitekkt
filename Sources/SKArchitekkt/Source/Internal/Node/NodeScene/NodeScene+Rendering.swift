@@ -39,11 +39,13 @@ extension NodeScene {
         let visibilityCancellables = document.settings.visibilitySettingsDomain.settingsGroups.map({ (settingsGroup) -> AnyCancellable in
             settingsGroup.objectDidChange.sink { [weak self] (_) in
                 self?.update()
+                self?.startSimulation()
             }
         })
         let areaCancellables = document.settings.areaSettingsDomain.settingsItems.map({ (settingsItem) -> AnyCancellable in
             settingsItem.objectDidChange.sink { [weak self] (_) in
                 self?.update()
+                self?.startSimulation()
             }
         })
         cancellables = visibilityCancellables + areaCancellables
@@ -108,7 +110,7 @@ extension NodeScene {
         ]
         let virtualNodeSettings = VirtualNode.Settings(
            colorDictionary: colorDictionary,
-            defaultColor: .windowFrameTextColor,
+            defaultColor: .gray,
            baseRadius: 128,
             areaMultiplier: CGFloat(document.settings.areaBasedOnTotalChildrensAreaMultiplier)
         )
