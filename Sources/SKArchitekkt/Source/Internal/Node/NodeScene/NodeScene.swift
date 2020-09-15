@@ -2,21 +2,21 @@
 
 import SpriteKit
 import CoreArchitekkt
+import SwiftUI
 
 class NodeScene: SKScene {
 
     // MARK: - Internal -
 
-    let document: Document
+    @Binding var document: Document
 
-    init(document: Document) {
-        self.document = document
+    init(document: Binding<Document>) {
+        self._document = document
         super.init(size: CGSize.zero)
         backgroundColor = NSColor.controlBackgroundColor
         setUpPhysics()
         setUpMouseInteraction()
         setUpRendering()
-        add(rootNode: document.node)
     }
 
     required init?(coder aDecoder: NSCoder) {

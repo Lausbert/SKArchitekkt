@@ -39,16 +39,14 @@ extension NodeScene {
         let visibilityCancellable = document.settings.visibilitySettingsDomain.objectDidChange.sink { [weak self] _ in
             self?.update()
             self?.startSimulation()
+            self?.document.incrementVersion()
         }
         let areaCancellable = document.settings.areaSettingsDomain.objectDidChange.sink { [weak self] _ in
             self?.update()
             self?.startSimulation()
+            self?.document.incrementVersion()
         }
         cancellables = [visibilityCancellable, areaCancellable]
-    }
-
-    func add(rootNode: Node) {
-        self.rootNode = rootNode
         update()
     }
 
@@ -85,9 +83,6 @@ extension NodeScene {
     }
 
     private func update() {
-        guard let rootNode = rootNode else {
-            return
-        }
         #warning("TODO: Integrate color settings.")
         let colorDictionary: [String: NSColor] = [
             "module": #colorLiteral(red: 0.4745098039, green: 0.9882352941, blue: 0.9176470588, alpha: 1),
@@ -111,7 +106,7 @@ extension NodeScene {
             areaMultiplier: CGFloat(document.settings.areaBasedOnTotalChildrensAreaMultiplier)
         )
         let newVirtualNodes = VirtualNode.createVirtualNodes(
-            from: rootNode,
+            from: document.node,
             with: document.settings.virtualTransformations,
             and: virtualNodeSettings
         )
@@ -125,7 +120,7 @@ extension NodeScene {
         let radius = max(virtualNodeSettings.baseRadius, (sqrt(virtualNodeSettings.areaMultiplier*shapeRootNode.castedChildren.map {$0.radius^^2} .reduce(0, +))))
         shapeRootNode.update(radius: radius)
         let newVirtualArcs = VirtualArc.createVirtualArcs(
-            from: rootNode,
+            from: document.node,
             with: document.settings.virtualTransformations
         )
         let arcNodePatch = ArcNode.diffChildren(oldVirtualArcs: oldVirtualArcs, newVirtualArcs: newVirtualArcs)
