@@ -11,11 +11,9 @@ extension NodeScene: SKSceneDelegate {
     func setUpPhysics() {
         delegate = self
         physicsWorld.gravity = CGVector.zero
-        self.settingsItemCancellables = document.settings.settingsItems.map({ [weak self] (settingsItem) -> AnyCancellable in
-            settingsItem.objectDidChange.sink { (_) in
-                self?.startSimulation()
-            }
-        })
+        settingsItemCancellable = document.settings.forceSettingsDomain.objectDidChange.sink { [weak self] _ in
+            self?.startSimulation()
+        }
     }
 
     func startSimulation() {
@@ -53,10 +51,10 @@ extension NodeScene: SKSceneDelegate {
         get { NodeScene.forceDecayObjectAssociation[self] ?? 1 }
         set { NodeScene.forceDecayObjectAssociation[self] = newValue }
     }
-    private static let settingsItemCancellablesObjectAssociation = ObjectAssociation<[AnyCancellable]>()
-    private var settingsItemCancellables: [AnyCancellable] {
-        get { NodeScene.settingsItemCancellablesObjectAssociation[self] ?? [] }
-        set { NodeScene.settingsItemCancellablesObjectAssociation[self] = newValue }
+    private static let settingsItemCancellableObjectAssociation = ObjectAssociation<AnyCancellable>()
+    private var settingsItemCancellable: AnyCancellable? {
+        get { NodeScene.settingsItemCancellableObjectAssociation[self] }
+        set { NodeScene.settingsItemCancellableObjectAssociation[self] = newValue }
     }
 
     private func updatePhysicsWith(forceDecay: CGFloat, velocityDecay: CGFloat) {

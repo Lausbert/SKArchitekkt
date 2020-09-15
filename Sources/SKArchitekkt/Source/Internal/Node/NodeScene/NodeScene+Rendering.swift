@@ -36,19 +36,15 @@ extension NodeScene {
         arcNodes = []
         scene?.addChild(shapeRootNode)
         scene?.addChild(arcRootNode)
-        let visibilityCancellables = document.settings.visibilitySettingsDomain.settingsGroups.map({ (settingsGroup) -> AnyCancellable in
-            settingsGroup.objectDidChange.sink { [weak self] (_) in
-                self?.update()
-                self?.startSimulation()
-            }
-        })
-        let areaCancellables = document.settings.areaSettingsDomain.settingsItems.map({ (settingsItem) -> AnyCancellable in
-            settingsItem.objectDidChange.sink { [weak self] (_) in
-                self?.update()
-                self?.startSimulation()
-            }
-        })
-        cancellables = visibilityCancellables + areaCancellables
+        let visibilityCancellable = document.settings.visibilitySettingsDomain.objectDidChange.sink { [weak self] _ in
+            self?.update()
+            self?.startSimulation()
+        }
+        let areaCancellable = document.settings.areaSettingsDomain.objectDidChange.sink { [weak self] _ in
+            self?.update()
+            self?.startSimulation()
+        }
+        cancellables = [visibilityCancellable, areaCancellable]
     }
 
     func add(rootNode: Node) {
