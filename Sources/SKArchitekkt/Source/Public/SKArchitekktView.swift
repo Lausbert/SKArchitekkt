@@ -6,6 +6,8 @@ import CoreArchitekkt
 public struct SKArchitekktView: View {
     
     // MARK: - Public -
+    
+    @Binding public var document: Document
 
     public var body: some View {
         HStack(spacing: 0) {
@@ -31,7 +33,6 @@ public struct SKArchitekktView: View {
     
     // MARK: - Private -
     
-    @Binding private var document: Document
     @State private var isShowingRightPane: Bool = true
     
 }
