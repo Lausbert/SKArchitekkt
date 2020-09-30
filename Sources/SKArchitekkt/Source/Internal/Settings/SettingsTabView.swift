@@ -10,7 +10,7 @@ struct SettingsTabView: View {
     let settings: CoreArchitekkt.Settings
     
     var body: some View {
-        SystemTabView(
+        SystemTab(
             side: .right,
             tabs: [
                 ("slider.horizontal.3", AnyView(SettingsView(settingsDomains: settings.firstDomains))),
