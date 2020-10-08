@@ -83,6 +83,7 @@ extension NodeScene {
     }
 
     private func update() {
+        updateSettingsValues()
         #warning("TODO: Integrate color settings.")
         let colorDictionary: [String: NSColor] = [
             "module": #colorLiteral(red: 0.4745098039, green: 0.9882352941, blue: 0.9176470588, alpha: 1),
@@ -103,7 +104,7 @@ extension NodeScene {
            colorDictionary: colorDictionary,
             defaultColor: .gray,
            baseRadius: 128,
-            areaMultiplier: CGFloat(document.settings.areaBasedOnTotalChildrensAreaMultiplier)
+            areaMultiplier: areaBasedOnTotalChildrensAreaMultiplier
         )
         let newVirtualNodes = VirtualNode.createVirtualNodes(
             from: document.node,
