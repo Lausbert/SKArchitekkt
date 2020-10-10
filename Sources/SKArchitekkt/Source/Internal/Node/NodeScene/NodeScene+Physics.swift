@@ -81,7 +81,8 @@ extension NodeScene: SKSceneDelegate {
 
     private func updateRadialGravitationalForceOnChildren(for shapeNode: ShapeNode, withForceDecay forceDecay: CGFloat) {
         shapeNode.castedChildren.forEach {
-            let force = radialGravitationForceOnChildrenMultiplier*computeForceBetween(first: shapeNode, second: $0, minimumRadius: shapeNode.radius, multiplier: forceDecay*shapeNode.radius^^2*$0.radius^^2, proportionalToDistanceRaisedToPowerOf: -1.4)
+            let distanceVector = -CGVector(dx: $0.position.x, dy: $0.position.y)
+            let force = radialGravitationForceOnChildrenMultiplier*computeForceBetween(distanceVector: distanceVector, minimumRadius: shapeNode.radius, multiplier: forceDecay*shapeNode.radius^^2*$0.radius^^2, proportionalToDistanceRaisedToPowerOf: -1.4)
             $0.physicsBody?.applyForce(force)
         }
     }
@@ -89,7 +90,8 @@ extension NodeScene: SKSceneDelegate {
     private func updateNegativeRadialGravitationalForceOnSiblings(for shapeNode: ShapeNode, withForceDecay forceDecay: CGFloat) {
         guard shapeNode.castedChildren.count > 1 else { return }
         for pair in shapeNode.siblingPairs {
-            let force = computeForceBetween(first: pair.0, second: pair.1, multiplier: 5*forceDecay*pair.0.radius^^2*pair.1.radius^^2, proportionalToDistanceRaisedToPowerOf: negativeRadialGravitationalForceOnSiblingsPower)
+            let distanceVector = pair.0.position - pair.1.position
+            let force = computeForceBetween(distanceVector: distanceVector, multiplier: 5*forceDecay*pair.0.radius^^2*pair.1.radius^^2, proportionalToDistanceRaisedToPowerOf: negativeRadialGravitationalForceOnSiblingsPower)
             pair.0.physicsBody?.applyForce(force)
             pair.1.physicsBody?.applyForce(-force)
         }
@@ -98,7 +100,8 @@ extension NodeScene: SKSceneDelegate {
     private func updateSpringForce(for arcNode: ArcNode, withForceDecay forceDecay: CGFloat) {
             guard
                 let sourceShapedNode = shapeNodesDictionary[arcNode.sourceIdentifier],
-                let destinationShapeNode = shapeNodesDictionary[arcNode.destinationIdentifier]
+                let destinationShapeNode = shapeNodesDictionary[arcNode.destinationIdentifier],
+                let scene = scene
                 else {
                     assertionFailure()
                     return
@@ -116,7 +119,8 @@ extension NodeScene: SKSceneDelegate {
             guard let lastSource = sources.last, let lastDestination = tos.last else { return }
             let offSetDistance = -(lastSource.radius + lastDestination.radius)
             let multiplier = min(10, max(1, log(CGFloat(arcNode.weight))))
-        let force = computeForceBetween(first: sourceShapedNode, second: destinationShapeNode, offSetDistance: offSetDistance, multiplier: forceDecay*multiplier, proportionalToDistanceRaisedToPowerOf: springForceBetweenConnectedNodesPower)
+        let distanceVector = sourceShapedNode.convert(.zero, to: scene) - destinationShapeNode.convert(.zero, to: scene)
+        let force = computeForceBetween(distanceVector: distanceVector, offSetDistance: offSetDistance, multiplier: forceDecay*multiplier, proportionalToDistanceRaisedToPowerOf: springForceBetweenConnectedNodesPower)
             sources.forEach {
                 $0.physicsBody?.applyForce(-force)
             }
@@ -125,13 +129,11 @@ extension NodeScene: SKSceneDelegate {
             }
     }
 
-    private func computeForceBetween(first: ShapeNode, second: ShapeNode, offSetDistance: CGFloat = 0, minimumRadius: CGFloat = 0, multiplier: CGFloat = 1, proportionalToDistanceRaisedToPowerOf power: CGFloat = 1) -> CGVector {
-        guard let scene = scene else { return CGVector.zero }
-        let distanceVector = first.convert(CGPoint.zero, to: scene) - second.convert(CGPoint.zero, to: scene)
+    private func computeForceBetween(distanceVector: CGVector, offSetDistance: CGFloat = 0, minimumRadius: CGFloat = 0, multiplier: CGFloat = 1, proportionalToDistanceRaisedToPowerOf power: CGFloat = 1) -> CGVector {
         let distance = distanceVector.length() + offSetDistance
         let newDistance = max(distance, minimumRadius)
         let normalizedDistanceVector = distance > 0 ? distanceVector/distance : CGVector.zero // important note: normalizedDistanceVector is not really normalized in case of distance <= 0
-        let force = 100*multiplier*newDistance^^power*normalizedDistanceVector
+        let force = 50*multiplier*newDistance^^power*normalizedDistanceVector
         return force
     }
 
