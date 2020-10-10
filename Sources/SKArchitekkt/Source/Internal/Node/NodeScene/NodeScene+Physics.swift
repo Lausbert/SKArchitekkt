@@ -14,7 +14,6 @@ extension NodeScene: SKSceneDelegate {
         settingsItemCancellable = document.settings.forceSettingsDomain.objectDidChange.sink { [weak self] _ in
             self?.updateSettingsValues()
             self?.startSimulation()
-            self?.document.incrementVersion()
         }
     }
 

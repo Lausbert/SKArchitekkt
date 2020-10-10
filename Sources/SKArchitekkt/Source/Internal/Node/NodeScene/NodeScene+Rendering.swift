@@ -39,12 +39,10 @@ extension NodeScene {
         let visibilityCancellable = document.settings.visibilitySettingsDomain.objectDidChange.sink { [weak self] _ in
             self?.update()
             self?.startSimulation()
-            self?.document.incrementVersion()
         }
         let areaCancellable = document.settings.areaSettingsDomain.objectDidChange.sink { [weak self] _ in
             self?.update()
             self?.startSimulation()
-            self?.document.incrementVersion()
         }
         cancellables = [visibilityCancellable, areaCancellable]
         update()
