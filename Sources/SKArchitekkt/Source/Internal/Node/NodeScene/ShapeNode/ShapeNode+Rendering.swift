@@ -6,17 +6,50 @@ import CoreArchitekkt
 extension ShapeNode {
 
     // MARK: - Internal -
+    
+    static func align(newVirtualNodes: [VirtualNode], with oldVirtualNodes: [VirtualNode]) -> [VirtualNode] {
+        var newVirtualNodesDictionary = Dictionary(uniqueKeysWithValues: newVirtualNodes.map {($0.id, $0)} )
+        var newVirtualNodes: [VirtualNode] = []
+        for oldVirtualNode in oldVirtualNodes {
+            if let newVirtualNode = newVirtualNodesDictionary.removeValue(forKey: oldVirtualNode.id) {
+                let children = align(newVirtualNodes: newVirtualNode.children, with: oldVirtualNode.children)
+                newVirtualNodes.append(
+                    VirtualNode(
+                        id: newVirtualNode.id,
+                        scope: newVirtualNode.scope,
+                        name: newVirtualNode.name,
+                        children: children,
+                        color: newVirtualNode.color,
+                        radius: newVirtualNode.radius
+                    )
+                )
+            }
+        }
+        newVirtualNodes.append(contentsOf: newVirtualNodesDictionary.values)
+        return newVirtualNodes
+    }
 
-    static func diffChildren(oldVirtualNodes: [VirtualNode], newVirtualNode: [VirtualNode]) -> (ShapeNode) -> Void {
+    static func diffChildren(oldVirtualNodes: [VirtualNode], newVirtualNodes: [VirtualNode]) -> (ShapeNode) -> Void {
 
         var childPatches: [(ShapeNode) -> Void] = []
-        for (index, oldVirtualNode) in oldVirtualNodes.enumerated() {
-            childPatches.append(diff(oldVirtualNode: oldVirtualNode, newVirtualNode: newVirtualNode[safe: index]))
+        var index = 0
+        for oldVirtualNode in oldVirtualNodes {
+            if let newVirtualNode = newVirtualNodes[safe: index] {
+                if newVirtualNode.id == oldVirtualNode.id {
+                    childPatches.append(diff(oldVirtualNode: oldVirtualNode, newVirtualNode: newVirtualNode))
+                    index += 1
+                } else {
+                    childPatches.append(diff(oldVirtualNode: oldVirtualNode, newVirtualNode: nil))
+                }
+            } else {
+                childPatches.append(diff(oldVirtualNode: oldVirtualNode, newVirtualNode: nil))
+                index += 1
+            }
         }
 
         var additionalPatches: [(ShapeNode) -> Void] = []
-        if newVirtualNode.endIndex > oldVirtualNodes.endIndex {
-            for newVirtualNode in newVirtualNode[oldVirtualNodes.endIndex...] {
+        if newVirtualNodes.endIndex > index {
+            for newVirtualNode in newVirtualNodes[index...] {
                 additionalPatches.append { parent in
                     let newShapeNode = render(newVirtualNode)
                     parent.addChild(newShapeNode)
@@ -66,7 +99,7 @@ extension ShapeNode {
             }
         }
 
-        let childrenPatch = diffChildren(oldVirtualNodes: oldVirtualNode.children, newVirtualNode: newVirtualNode.children)
+        let childrenPatch = diffChildren(oldVirtualNodes: oldVirtualNode.children, newVirtualNodes: newVirtualNode.children)
         let attributesPatch = diffAttributes(oldVirtualNode: oldVirtualNode, newVirtualNode: newVirtualNode)
 
         return { oldShapeNode in

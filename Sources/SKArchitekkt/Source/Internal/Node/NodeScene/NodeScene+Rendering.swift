@@ -109,9 +109,10 @@ extension NodeScene {
             with: document.settings.virtualTransformations,
             and: virtualNodeSettings
         )
-        let shapeNodePatch = ShapeNode.diffChildren(oldVirtualNodes: oldVirtualNodes, newVirtualNode: newVirtualNodes)
+        let alignedNewVirtualNodes = ShapeNode.align(newVirtualNodes: newVirtualNodes, with: oldVirtualNodes)
+        let shapeNodePatch = ShapeNode.diffChildren(oldVirtualNodes: oldVirtualNodes, newVirtualNodes: alignedNewVirtualNodes)
         shapeNodePatch(shapeRootNode)
-        oldVirtualNodes = newVirtualNodes
+        oldVirtualNodes = alignedNewVirtualNodes
         shapeNodesDictionary = Dictionary(
             uniqueKeysWithValues: shapeRootNode.allDescendants.map({ ($0.id, $0) })
         )
