@@ -45,10 +45,18 @@ extension NodeScene {
             self?.startSimulation()
         }
         cancellables = [visibilityCancellable, areaCancellable]
+        updateQueue = DispatchQueue(label: "SKArchitekktUpdateQueue", qos: .userInitiated)
         update()
     }
 
     // MARK: - Private -
+    
+    
+    private static let updateQueueObjectAssociation = ObjectAssociation<DispatchQueue>()
+    private var updateQueue: DispatchQueue {
+        get { NodeScene.updateQueueObjectAssociation[self] ?? DispatchQueue(label: "SKArchitekktUpdateQueue", qos: .userInitiated) }
+        set { NodeScene.updateQueueObjectAssociation[self] = newValue }
+    }
 
     private static let cancellablesObjectAssociation = ObjectAssociation<[AnyCancellable]>()
     private var cancellables: [AnyCancellable] {
@@ -79,8 +87,20 @@ extension NodeScene {
         get { NodeScene.arcRootNodeObjectAssociation[self] ?? SKNode() }
         set { NodeScene.arcRootNodeObjectAssociation[self] = newValue }
     }
-
+    
     private func update() {
+        updateQueue.async {
+            self.updateDoNotCallMeInMainThread()
+        }
+    }
+    
+    private func updateStatus(description: String, progress: Double) {
+        DispatchQueue.main.async {
+            self.updateStatus.set(description: description, progress: progress)
+        }
+    }
+
+    private func updateDoNotCallMeInMainThread() {
         updateSettingsValues()
         #warning("TODO: Integrate color settings.")
         let colorDictionary: [String: NSColor] = [
@@ -104,6 +124,7 @@ extension NodeScene {
            baseRadius: 128,
             areaMultiplier: areaBasedOnTotalChildrensAreaMultiplier
         )
+        updateStatus(description: "Updating Nodes", progress: 0.2)
         let newVirtualNodes = VirtualNode.createVirtualNodes(
             from: document.node,
             with: document.settings.virtualTransformations,
@@ -111,6 +132,7 @@ extension NodeScene {
         )
         let alignedNewVirtualNodes = ShapeNode.align(newVirtualNodes: newVirtualNodes, with: oldVirtualNodes)
         let shapeNodePatch = ShapeNode.diffChildren(oldVirtualNodes: oldVirtualNodes, newVirtualNodes: alignedNewVirtualNodes)
+        updateStatus(description: "Rendering Nodes", progress: 0.4)
         shapeNodePatch(shapeRootNode)
         oldVirtualNodes = alignedNewVirtualNodes
         shapeNodesDictionary = Dictionary(
@@ -119,11 +141,13 @@ extension NodeScene {
         shapeNodesDictionary[shapeRootNode.id] = shapeRootNode
         let radius = max(virtualNodeSettings.baseRadius, (sqrt(virtualNodeSettings.areaMultiplier*shapeRootNode.castedChildren.map {$0.radius^^2} .reduce(0, +))))
         shapeRootNode.update(radius: radius)
+        updateStatus(description: "Updating Arcs", progress: 0.6)
         let newVirtualArcs = VirtualArc.createVirtualArcs(
             from: document.node,
             with: document.settings.virtualTransformations
         )
         let arcNodePatch = ArcNode.diffChildren(oldVirtualArcs: oldVirtualArcs, newVirtualArcs: newVirtualArcs)
+        updateStatus(description: "Rendering Arcs", progress: 0.8)
         arcNodePatch(arcRootNode)
         oldVirtualArcs = newVirtualArcs
         arcNodes = []
@@ -132,6 +156,7 @@ extension NodeScene {
                 self.arcNodes.append(arcNode)
             }
         }
+        updateStatus(description: "Running", progress: 1.0)
     }
 
 }

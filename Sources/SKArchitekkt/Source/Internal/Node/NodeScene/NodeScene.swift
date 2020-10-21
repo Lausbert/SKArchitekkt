@@ -9,14 +9,16 @@ class NodeScene: SKScene {
     // MARK: - Internal -
 
     @Binding var document: Document
-    var decayPower: CGFloat = 1.0 // cached for performance reasons
-    var radialGravitationForceOnChildrenMultiplier: CGFloat = 1.0 // cached for performance reasons
-    var negativeRadialGravitationalForceOnSiblingsPower: CGFloat = 1.0 // cached for performance reasons
-    var springForceBetweenConnectedNodesPower: CGFloat = 1.0 // cached for performance reasons
-    var areaBasedOnTotalChildrensAreaMultiplier: CGFloat = 1.0 // cached for performance reasons
+    let updateStatus: UpdateStatus
+    private(set) var decayPower: CGFloat = 1.0 // cached for performance reasons; stored here and not in extension for performance reasons
+    private(set) var radialGravitationForceOnChildrenMultiplier: CGFloat = 1.0 // cached for performance reasons; stored here and not in extension for performance reasons
+    private(set) var negativeRadialGravitationalForceOnSiblingsPower: CGFloat = 1.0 // cached for performance reasons; stored here and not in extension for performance reasons
+    private(set) var springForceBetweenConnectedNodesPower: CGFloat = 1.0 // cached for performance reasons; stored here and not in extension for performance reasons
+    private(set) var areaBasedOnTotalChildrensAreaMultiplier: CGFloat = 1.0 // cached for performance reasons; stored here and not in extension for performance reasons
 
-    init(document: Binding<Document>) {
+    init(document: Binding<Document>, updateStatus: UpdateStatus) {
         self._document = document
+        self.updateStatus = updateStatus
         super.init(size: CGSize.zero)
         backgroundColor = NSColor.controlBackgroundColor
         setUpPhysics()
