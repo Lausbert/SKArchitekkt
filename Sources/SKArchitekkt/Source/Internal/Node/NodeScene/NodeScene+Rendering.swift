@@ -28,6 +28,12 @@ extension NodeScene {
         get { NodeScene.arcNodesObjectAssociation[self] ?? [] }
         set { NodeScene.arcNodesObjectAssociation[self] = newValue }
     }
+    
+    private static let isUpdatingObjectAssociation = ObjectAssociation<Bool>()
+    private(set) var isUpdating: Bool {
+        get { NodeScene.isUpdatingObjectAssociation[self] ?? false }
+        set { NodeScene.isUpdatingObjectAssociation[self] = newValue }
+    }
 
     func setUpRendering() {
         oldVirtualNodes = []
@@ -40,11 +46,9 @@ extension NodeScene {
         scene?.addChild(arcRootNode)
         let visibilityCancellable = document.settings.visibilitySettingsDomain.objectDidChange.sink { [weak self] _ in
             self?.update()
-            self?.startSimulation()
         }
         let areaCancellable = document.settings.areaSettingsDomain.objectDidChange.sink { [weak self] _ in
             self?.update()
-            self?.startSimulation()
         }
         cancellables = [visibilityCancellable, areaCancellable]
         update()
@@ -87,12 +91,17 @@ extension NodeScene {
             self.updateStatus.set(description: description, progress: progress)
         }
     }
-
+    
     private func update() {
+        NodeScene.updateQueue.async {
+            self.updateDoNotCallOnMainThread()
+        }
+    }
+
+    private func updateDoNotCallOnMainThread() {
+        isUpdating = true
+        stopSimulation() // do not remove; otherwise Spritekit will crash, since we are updating nodes outside of main thread
         updateSettingsValues()
-        
-        
-        
         #warning("TODO: Integrate color settings.")
         let colorDictionary: [String: NSColor] = [
             "module": #colorLiteral(red: 0.4745098039, green: 0.9882352941, blue: 0.9176470588, alpha: 1),
@@ -124,9 +133,6 @@ extension NodeScene {
         let alignedNewVirtualNodes = ShapeNode.align(newVirtualNodes: newVirtualNodes, with: oldVirtualNodes)
         let shapeNodePatch = ShapeNode.diffChildren(oldVirtualNodes: oldVirtualNodes, newVirtualNodes: alignedNewVirtualNodes)
         oldVirtualNodes = alignedNewVirtualNodes
-        
-        
-        
         updateStatus(description: "Updating Arcs", progress: 0.4)
         let newVirtualArcs = VirtualArc.createVirtualArcs(
             from: document.node,
@@ -134,9 +140,6 @@ extension NodeScene {
         )
         let arcNodePatch = ArcNode.diffChildren(oldVirtualArcs: oldVirtualArcs, newVirtualArcs: newVirtualArcs)
         oldVirtualArcs = newVirtualArcs
-
-        
-        
         updateStatus(description: "Rendering Nodes", progress: 0.6)
         shapeNodePatch(shapeRootNode)
         shapeNodesDictionary = Dictionary(
@@ -145,10 +148,6 @@ extension NodeScene {
         shapeNodesDictionary[shapeRootNode.id] = shapeRootNode
         let radius = max(virtualNodeSettings.baseRadius, (sqrt(virtualNodeSettings.areaMultiplier*shapeRootNode.castedChildren.map {$0.radius^^2} .reduce(0, +))))
         shapeRootNode.update(radius: radius)
-        
-        
-        
-        
         updateStatus(description: "Rendering Arcs", progress: 0.8)
         arcNodePatch(arcRootNode)
         arcNodes = []
@@ -157,11 +156,9 @@ extension NodeScene {
                 self.arcNodes.append(arcNode)
             }
         }
-        
-        
-        
-        
         updateStatus(description: "Running", progress: 1.0)
+        isUpdating = false
+        startSimulation()
     }
 
 }

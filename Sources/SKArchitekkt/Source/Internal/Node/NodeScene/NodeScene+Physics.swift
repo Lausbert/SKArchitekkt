@@ -18,6 +18,9 @@ extension NodeScene: SKSceneDelegate {
     }
 
     func startSimulation() {
+        guard !isUpdating else {
+            return
+        }
         isPaused = false
         forceDecay = 1
     }
