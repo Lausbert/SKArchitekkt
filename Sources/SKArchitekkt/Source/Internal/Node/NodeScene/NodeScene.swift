@@ -7,6 +7,12 @@ import SwiftUI
 class NodeScene: SKScene {
 
     // MARK: - Internal -
+    
+    static func create(document: Binding<Document>, updateStatus: UpdateStatus) -> NodeScene {
+        let nodeScene = pool[document.wrappedValue.id] ?? NodeScene(document: document, updateStatus: updateStatus)
+        pool[document.wrappedValue.id] = nodeScene
+        return nodeScene
+    }
 
     @Binding var document: Document
     let updateStatus: UpdateStatus
@@ -15,16 +21,6 @@ class NodeScene: SKScene {
     private(set) var negativeRadialGravitationalForceOnSiblingsPower: CGFloat = 1.0 // cached for performance reasons; stored here and not in extension for performance reasons
     private(set) var springForceBetweenConnectedNodesPower: CGFloat = 1.0 // cached for performance reasons; stored here and not in extension for performance reasons
     private(set) var areaBasedOnTotalChildrensAreaMultiplier: CGFloat = 1.0 // cached for performance reasons; stored here and not in extension for performance reasons
-
-    init(document: Binding<Document>, updateStatus: UpdateStatus) {
-        self._document = document
-        self.updateStatus = updateStatus
-        super.init(size: CGSize.zero)
-        backgroundColor = NSColor.controlBackgroundColor
-        setUpPhysics()
-        setUpMouseInteraction()
-        setUpRendering()
-    }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -36,6 +32,20 @@ class NodeScene: SKScene {
         negativeRadialGravitationalForceOnSiblingsPower = CGFloat(document.settings.negativeRadialGravitationalForceOnSiblingsPower)
         springForceBetweenConnectedNodesPower = CGFloat(document.settings.springForceBetweenConnectedNodesPower)
         areaBasedOnTotalChildrensAreaMultiplier = CGFloat(document.settings.areaBasedOnTotalChildrensAreaMultiplier)
+    }
+    
+    // MARK: - Private -
+    
+    private static var pool: [UUID: NodeScene] = [:]
+    
+    private init(document: Binding<Document>, updateStatus: UpdateStatus) {
+        self._document = document
+        self.updateStatus = updateStatus
+        super.init(size: CGSize.zero)
+        backgroundColor = NSColor.controlBackgroundColor
+        setUpPhysics()
+        setUpMouseInteraction()
+        setUpRendering()
     }
 
 }
