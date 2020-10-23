@@ -88,12 +88,6 @@ extension NodeScene {
         set { NodeScene.arcRootNodeObjectAssociation[self] = newValue }
     }
     
-    private func updateStatus(description: String, progress: Double) {
-        DispatchQueue.main.async { [weak self] in
-            self?.updateStatus.set(description: description, progress: progress)
-        }
-    }
-    
     private func update() {
         NodeScene.updateQueue.async { [weak self] in
             self?.updateDoNotCallOnMainThread()
@@ -158,7 +152,6 @@ extension NodeScene {
                 self.arcNodes.append(arcNode)
             }
         }
-        updateStatus(description: "Running", progress: 1.0)
         isUpdating = false
         startSimulation()
     }

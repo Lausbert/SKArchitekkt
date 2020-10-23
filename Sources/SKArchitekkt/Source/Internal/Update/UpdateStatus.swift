@@ -2,6 +2,7 @@
 
 import Foundation
 import Combine
+import CoreArchitekkt
 
 class UpdateStatus: ObservableObject {
     

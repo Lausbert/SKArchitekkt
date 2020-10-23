@@ -37,7 +37,7 @@ public struct SKArchitekktView: View {
     
     public init(document: Binding<Document>) {
         self._document = document
-        self.updateStatus = UpdateStatus.create(id: document.wrappedValue.id, description: "Running", progress: 1.0)
+        self.updateStatus = UpdateStatus.create(id: document.wrappedValue.id, description: "Running \(document.wrappedValue.description)", progress: 1.0)
     }
     
     // MARK: - Private -

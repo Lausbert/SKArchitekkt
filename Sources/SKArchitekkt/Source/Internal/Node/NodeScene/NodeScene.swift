@@ -34,6 +34,12 @@ class NodeScene: SKScene {
         areaBasedOnTotalChildrensAreaMultiplier = CGFloat(document.settings.areaBasedOnTotalChildrensAreaMultiplier)
     }
     
+    func updateStatus(description: String, progress: Double) {
+        DispatchQueue.main.async { [weak self] in
+            self?.updateStatus.set(description: description, progress: progress)
+        }
+    }
+    
     // MARK: - Private -
     
     private static var pool: [UUID: NodeScene] = [:]

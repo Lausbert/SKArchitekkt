@@ -22,11 +22,13 @@ extension NodeScene: SKSceneDelegate {
         guard !isUpdating else {
             return
         }
+        updateStatus(description: "Running \(document.description)", progress: 1.0)
         isPaused = false
         forceDecay = 1
     }
 
     func stopSimulation() {
+        updateStatus(description: "Paused \(document.description)", progress: 1.0)
         isPaused = true
         forceDecay = 0
     }
