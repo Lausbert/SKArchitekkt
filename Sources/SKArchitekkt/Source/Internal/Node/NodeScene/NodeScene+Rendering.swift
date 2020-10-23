@@ -45,9 +45,11 @@ extension NodeScene {
         scene?.addChild(shapeRootNode)
         scene?.addChild(arcRootNode)
         let visibilityCancellable = document.settings.visibilitySettingsDomain.objectDidChange.sink { [weak self] _ in
+            self?.document.bumpVersion()
             self?.update()
         }
         let areaCancellable = document.settings.areaSettingsDomain.objectDidChange.sink { [weak self] _ in
+            self?.document.bumpVersion()
             self?.update()
         }
         cancellables = [visibilityCancellable, areaCancellable]
