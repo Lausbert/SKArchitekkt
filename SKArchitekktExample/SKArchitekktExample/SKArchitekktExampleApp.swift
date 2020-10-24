@@ -7,15 +7,19 @@ import SKArchitekkt
 @main
 struct SKArchitekktExampleApp: App {
     var body: some Scene {
-        DocumentGroup(newDocument: Document(node: node)) { file in
+        DocumentGroup(newDocument: document) { file in
             SKArchitekktView(document: file.$document)
         }
     }
 }
 
-private var node: Node {
+private var document: Document {
+    let graphRequest = GraphRequest(url: URL(staticString: "/TestProject.testproject"), options: ["scheme": "TestProject"])
     let data = nodeString.data(using: String.Encoding.utf8)!
-    return try! JSONDecoder().decode(Node.self, from: data)
+    let node = try! JSONDecoder().decode(Node.self, from: data)
+    var document = Document()
+    document.set(graphRequest: graphRequest, node: node)
+    return document
 }
 
 private let nodeString = """

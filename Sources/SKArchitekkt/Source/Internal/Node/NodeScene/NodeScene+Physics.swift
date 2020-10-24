@@ -19,9 +19,6 @@ extension NodeScene: SKSceneDelegate {
     }
 
     func startSimulation() {
-        guard !isUpdating else {
-            return
-        }
         updateStatus(description: "Running \(document.description)", progress: 1.0)
         isPaused = false
         forceDecay = 1

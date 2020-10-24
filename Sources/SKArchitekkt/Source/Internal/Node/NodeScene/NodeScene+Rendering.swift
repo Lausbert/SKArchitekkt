@@ -28,12 +28,6 @@ extension NodeScene {
         get { NodeScene.arcNodesObjectAssociation[self] ?? [] }
         set { NodeScene.arcNodesObjectAssociation[self] = newValue }
     }
-    
-    private static let isUpdatingObjectAssociation = ObjectAssociation<Bool>()
-    private(set) var isUpdating: Bool {
-        get { NodeScene.isUpdatingObjectAssociation[self] ?? false }
-        set { NodeScene.isUpdatingObjectAssociation[self] = newValue }
-    }
 
     func setUpRendering() {
         oldVirtualNodes = []
@@ -88,18 +82,9 @@ extension NodeScene {
         set { NodeScene.arcRootNodeObjectAssociation[self] = newValue }
     }
     
-    private func update() {
-        NodeScene.updateQueue.async { [weak self] in
-            self?.updateDoNotCallOnMainThread()
-        }
-    }
-
-    private func updateDoNotCallOnMainThread() {
-        isUpdating = true
-        stopSimulation() // do not remove; otherwise Spritekit will crash, since we are updating nodes outside of main thread
-        updateSettingsValues()
-        #warning("TODO: Integrate color settings.")
-        let colorDictionary: [String: NSColor] = [
+    #warning("TODO: Integrate color settings.")
+    private var colorDictionary: [String: NSColor] {
+        [
             "module": #colorLiteral(red: 0.4745098039, green: 0.9882352941, blue: 0.9176470588, alpha: 1),
             "import_decl": #colorLiteral(red: 0.4745098039, green: 0.9882352941, blue: 0.9176470588, alpha: 1),
             "class_decl": #colorLiteral(red: 0.4392156863, green: 0.8470588235, blue: 1, alpha: 1),
@@ -114,12 +99,29 @@ extension NodeScene {
             "destructor_decl": #colorLiteral(red: 0.9607843137, green: 0.768627451, blue: 0.5058823529, alpha: 1),
             "protocol": #colorLiteral(red: 0.8, green: 0.862745098, blue: 0.8588235294, alpha: 1)
         ]
-        let virtualNodeSettings = VirtualNode.Settings(
-           colorDictionary: colorDictionary,
-            defaultColor: .gray,
-           baseRadius: 128,
-            areaMultiplier: areaBasedOnTotalChildrensAreaMultiplier
-        )
+    }
+    
+    var virtualNodeSettings: VirtualNode.Settings {
+        VirtualNode.Settings(
+          colorDictionary: colorDictionary,
+           defaultColor: .gray,
+          baseRadius: 128,
+           areaMultiplier: areaBasedOnTotalChildrensAreaMultiplier
+       )
+    }
+    
+    private func update() {
+        updateSettingsValues()
+        NodeScene.updateQueue.async { [weak self] in
+            self?.updateDoNotCallOnMainThread { (shapeNodePatch, arcNodePatch) in
+                DispatchQueue.main.async {
+                    self?.updateDoOnlyCallOnMainThread(shapeNodePatch: shapeNodePatch, arcNodePatch: arcNodePatch)
+                }
+            }
+        }
+    }
+
+    private func updateDoNotCallOnMainThread(completion: (((ShapeNode) -> Void, (SKNode) -> Void)) -> Void) {
         updateStatus(description: "Updating Nodes", progress: 0.2)
         let newVirtualNodes = VirtualNode.createVirtualNodes(
             from: document.node,
@@ -136,6 +138,10 @@ extension NodeScene {
         )
         let arcNodePatch = ArcNode.diffChildren(oldVirtualArcs: oldVirtualArcs, newVirtualArcs: newVirtualArcs)
         oldVirtualArcs = newVirtualArcs
+        completion((shapeNodePatch, arcNodePatch))
+    }
+    
+    private func updateDoOnlyCallOnMainThread(shapeNodePatch: (ShapeNode) -> Void, arcNodePatch: (SKNode) -> Void) {
         updateStatus(description: "Rendering Nodes", progress: 0.6)
         shapeNodePatch(shapeRootNode)
         shapeNodesDictionary = Dictionary(
@@ -152,7 +158,6 @@ extension NodeScene {
                 self.arcNodes.append(arcNode)
             }
         }
-        isUpdating = false
         startSimulation()
     }
 
