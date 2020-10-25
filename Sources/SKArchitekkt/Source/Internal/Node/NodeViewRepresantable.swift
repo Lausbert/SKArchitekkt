@@ -20,7 +20,7 @@ struct NodeViewRepresantable: NSViewRepresentable {
         context.coordinator.scene = scene
 
         let view = NodeViewRepresantable.NodeView()
-        view.ignoresSiblingOrder = true
+        view.ignoresSiblingOrder = false
         #if DEBUG
         view.showsFPS = true
         #endif

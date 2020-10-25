@@ -148,6 +148,8 @@ class ShapeNode: SKShapeNode {
         shapeNode.removeAllChildren()
         pool.append(shapeNode)
     }
+    
+    private var labelNode: SKLabelNode?
 
     private override init() {
         super.init()
@@ -206,47 +208,12 @@ class ShapeNode: SKShapeNode {
 
     private func updateTextNodes() {
         guard !isHidden else { return }
+        labelNode?.removeFromParent()
         let name = nodeName?.components(separatedBy: ".").last ?? scope
-        children.filter { $0 is SKLabelNode }.forEach { $0.removeFromParent() }
-        let nameLength = CGFloat(name.count)
-        var lettersPerFullCircle = CGFloat(24)
-        let angleDifference = 2*CGFloat.pi/lettersPerFullCircle
-        var angle: CGFloat
-        let isSpiral: Bool
-        if nameLength > lettersPerFullCircle {
-            angle = CGFloat.pi
-            isSpiral = true
-        } else {
-            angle = CGFloat.pi/2 + ((nameLength-1)/2)*angleDifference
-            isSpiral = false
-        }
-        let fontSize = min(radius/3, 10000) // there is a maximum font size, otherwise it will crash
-        let fontScalingFactor = CGFloat(1.25)
-        let resutlingFontSize = fontSize/fontScalingFactor
-        for (index, character) in name.enumerated() {
-            let resultingRadius = (isSpiral ? (radius - (CGFloat(index)/lettersPerFullCircle*resutlingFontSize)) : radius) - 12
-            let x = cos(angle)*(resultingRadius - resutlingFontSize)
-            let y = sin(angle)*(resultingRadius - resutlingFontSize)
-            let labelNode = SKLabelNode(text: "\(character)")
-            labelNode.position = CGPoint(x: x, y: y)
-            labelNode.zRotation = angle - CGFloat.pi/2
-            labelNode.fontSize = fontSize
-            if castedChildren.isEmpty {
-                labelNode.fontColor = .black
-                labelNode.fontName = NSFont.systemFont(ofSize: fontSize).fontName
-            } else {
-                labelNode.fontColor = NSColor.textColor.blended(withFraction: 0.3, of: .clear)
-                labelNode.fontName = NSFont.systemFont(ofSize: fontSize, weight: .light).fontName
-            }
-            addChild(labelNode)
-            let resultingAngleDifference = isSpiral ? angleDifference/(resultingRadius/radius) : angleDifference
-            lettersPerFullCircle = 2*CGFloat.pi/resultingAngleDifference
-            angle -= resultingAngleDifference
-            if resultingRadius < radius/2 {
-                labelNode.text = "…"
-                break
-            }
-        }
+        let fontSize = min(radius/2, 10000) // there is a maximum font size, otherwise it will crash
+        let labelNode = SKLabelNode(text: name, fontNamed: "HelveticaNeue-Bold", fontSize: fontSize, color: .textColor ,shadowColor: .shadowColor)
+        self.labelNode = labelNode
+        addChild(labelNode)
     }
 
 }
