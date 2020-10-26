@@ -20,7 +20,7 @@ extension ShapeNode {
                         name: newVirtualNode.name,
                         children: children,
                         color: newVirtualNode.color,
-                        radius: newVirtualNode.radius
+                        physicalRadius: newVirtualNode.physicalRadius
                     )
                 )
             }
@@ -77,7 +77,7 @@ extension ShapeNode {
             name: node.name,
             children: children,
             color: node.color,
-            radius: node.radius
+            physicalRadius: node.physicalRadius
         )
     }
 
@@ -112,9 +112,9 @@ extension ShapeNode {
             if oldVirtualNode.color != newVirtualNode.color {
                 oldShapeNode.update(color: newVirtualNode.color)
             }
-            if oldVirtualNode.radius != newVirtualNode.radius {
+            if oldVirtualNode.physicalRadius != newVirtualNode.physicalRadius {
                 oldShapeNode.update(color: newVirtualNode.color)
-                oldShapeNode.update(radius: newVirtualNode.radius)
+                oldShapeNode.update(physicalRadius: newVirtualNode.physicalRadius)
             }
         }
     }

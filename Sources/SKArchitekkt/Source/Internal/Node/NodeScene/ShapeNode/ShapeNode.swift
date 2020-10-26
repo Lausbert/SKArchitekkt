@@ -15,7 +15,7 @@ class ShapeNode: SKShapeNode {
         name: String? = nil,
         children: [ShapeNode] = [],
         color: NSColor = .clear,
-        radius: CGFloat = 0,
+        physicalRadius: CGFloat = 0,
         isShape: Bool = true
     ) -> ShapeNode {
         let shapeNode = pool.popLast() ?? ShapeNode()
@@ -26,7 +26,7 @@ class ShapeNode: SKShapeNode {
         shapeNode.nodeName = name
         shapeNode.castedChildren = []
         shapeNode.siblingPairs = []
-        shapeNode.radius = radius
+        shapeNode.physicalRadius = physicalRadius
         shapeNode.isShape = isShape
 
         shapeNode.setUp(children)
@@ -37,7 +37,7 @@ class ShapeNode: SKShapeNode {
             shapeNode.update(color: color)
         }
 
-        shapeNode.update(radius: radius)
+        shapeNode.update(physicalRadius: physicalRadius)
 
         return shapeNode
     }
@@ -47,7 +47,7 @@ class ShapeNode: SKShapeNode {
     private(set) var nodeName: String?
     private(set) var castedChildren: [ShapeNode] = []
     private(set) var siblingPairs: [(ShapeNode, ShapeNode)] = []
-    private(set) var radius: CGFloat = 0
+    private(set) var physicalRadius: CGFloat = 0
     private var isShape: Bool = true
 
     var allDescendants: [ShapeNode] {
@@ -126,8 +126,8 @@ class ShapeNode: SKShapeNode {
         lineWidth = 16
     }
 
-    func update(radius: CGFloat) {
-        self.radius = radius
+    func update(physicalRadius: CGFloat) {
+        self.physicalRadius = physicalRadius
         guard isShape else {
             return
         }
@@ -165,14 +165,14 @@ class ShapeNode: SKShapeNode {
     }
 
     private func resetPosition() {
-        position = CGPoint(x: CGFloat.random(in: -radius/50...radius/50), y: CGFloat.random(in: -radius/50...radius/50))
+        position = CGPoint(x: CGFloat.random(in: -physicalRadius/50...physicalRadius/50), y: CGFloat.random(in: -physicalRadius/50...physicalRadius/50))
     }
 
     private func setUpPhysicsBody() {
-        let physicsBody = SKPhysicsBody(circleOfRadius: radius)
+        let physicsBody = SKPhysicsBody(circleOfRadius: physicalRadius)
         physicsBody.isDynamic = true
         physicsBody.charge = 0
-        physicsBody.mass = radius^^2
+        physicsBody.mass = physicalRadius^^2
         physicsBody.linearDamping = 0
         physicsBody.allowsRotation = false
         physicsBody.collisionBitMask = 0
@@ -186,7 +186,7 @@ class ShapeNode: SKShapeNode {
     }
 
     private func updatePath() {
-        path = CGPath(ellipseIn: CGRect(x: -radius, y: -radius, width: 2*radius, height: 2*radius), transform: nil)
+        path = CGPath(ellipseIn: CGRect(x: -physicalRadius, y: -physicalRadius, width: 2*physicalRadius, height: 2*physicalRadius), transform: nil)
     }
 
     private func updateConstraints(forChild child: ShapeNode? = nil) {
@@ -194,23 +194,23 @@ class ShapeNode: SKShapeNode {
             return
         }
         if let child = child {
-            child.constraints = [SKConstraint.distance(SKRange(lowerLimit: 0, upperLimit: radius - child.radius), to: self)]
+            child.constraints = [SKConstraint.distance(SKRange(lowerLimit: 0, upperLimit: physicalRadius - child.physicalRadius), to: self)]
         } else {
             castedChildren.forEach {
-                $0.constraints = [SKConstraint.distance(SKRange(lowerLimit: 0, upperLimit: radius - $0.radius), to: self)]
+                $0.constraints = [SKConstraint.distance(SKRange(lowerLimit: 0, upperLimit: physicalRadius - $0.physicalRadius), to: self)]
             }
         }
     }
 
     private func updatePhysicsBody() {
-        physicsBody?.mass = radius^^2
+        physicsBody?.mass = physicalRadius^^2
     }
 
     private func updateTextNodes() {
         guard !isHidden else { return }
         labelNode?.removeFromParent()
         let name = nodeName?.components(separatedBy: ".").last ?? scope
-        let fontSize = min(radius/2, 10000) // there is a maximum font size, otherwise it will crash
+        let fontSize = min(physicalRadius/2, 10000) // there is a maximum font size, otherwise it will crash
         let labelNode = SKLabelNode(text: name, fontNamed: "HelveticaNeue-Bold", fontSize: fontSize, color: .textColor ,shadowColor: .shadowColor)
         self.labelNode = labelNode
         addChild(labelNode)

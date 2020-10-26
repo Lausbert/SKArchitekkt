@@ -103,10 +103,8 @@ extension NodeScene {
     
     var virtualNodeSettings: VirtualNode.Settings {
         VirtualNode.Settings(
-          colorDictionary: colorDictionary,
-           defaultColor: .gray,
-          baseRadius: 128,
-           areaMultiplier: areaBasedOnTotalChildrensAreaMultiplier
+            colorDictionary: colorDictionary,
+            defaultColor: .gray
        )
     }
     
@@ -148,8 +146,8 @@ extension NodeScene {
             uniqueKeysWithValues: shapeRootNode.allDescendants.map({ ($0.id, $0) })
         )
         shapeNodesDictionary[shapeRootNode.id] = shapeRootNode
-        let radius = max(virtualNodeSettings.baseRadius, (sqrt(virtualNodeSettings.areaMultiplier*shapeRootNode.castedChildren.map {$0.radius^^2} .reduce(0, +))))
-        shapeRootNode.update(radius: radius)
+        let physicalRadius = VirtualNode.physicalRadius(for: oldVirtualNodes, and: virtualNodeSettings)
+        shapeRootNode.update(physicalRadius: physicalRadius)
         updateStatus(description: "Rendering Arcs", progress: 0.8)
         arcNodePatch(arcRootNode)
         arcNodes = []

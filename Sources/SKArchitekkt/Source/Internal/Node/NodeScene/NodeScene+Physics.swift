@@ -84,7 +84,7 @@ extension NodeScene: SKSceneDelegate {
     private func updateRadialGravitationalForceOnChildren(for shapeNode: ShapeNode, withForceDecay forceDecay: CGFloat) {
         shapeNode.castedChildren.forEach {
             let distanceVector = -CGVector(dx: $0.position.x, dy: $0.position.y)
-            let force = radialGravitationForceOnChildrenMultiplier*computeForceBetween(distanceVector: distanceVector, minimumRadius: shapeNode.radius, multiplier: forceDecay*shapeNode.radius^^2*$0.radius^^2, proportionalToDistanceRaisedToPowerOf: -1.4)
+            let force = radialGravitationForceOnChildrenMultiplier*computeForceBetween(distanceVector: distanceVector, minimumPhysicalRadius: shapeNode.physicalRadius, multiplier: forceDecay*shapeNode.physicalRadius^^2*$0.physicalRadius^^2, proportionalToDistanceRaisedToPowerOf: -1.4)
             $0.physicsBody?.applyForce(force)
         }
     }
@@ -93,7 +93,7 @@ extension NodeScene: SKSceneDelegate {
         guard shapeNode.castedChildren.count > 1 else { return }
         for pair in shapeNode.siblingPairs {
             let distanceVector = pair.0.position - pair.1.position
-            let force = computeForceBetween(distanceVector: distanceVector, multiplier: 5*forceDecay*pair.0.radius^^2*pair.1.radius^^2, proportionalToDistanceRaisedToPowerOf: negativeRadialGravitationalForceOnSiblingsPower)
+            let force = computeForceBetween(distanceVector: distanceVector, multiplier: 5*forceDecay*pair.0.physicalRadius^^2*pair.1.physicalRadius^^2, proportionalToDistanceRaisedToPowerOf: negativeRadialGravitationalForceOnSiblingsPower)
             pair.0.physicsBody?.applyForce(force)
             pair.1.physicsBody?.applyForce(-force)
         }
@@ -119,7 +119,7 @@ extension NodeScene: SKSceneDelegate {
                 tos.append(parent)
             }
             guard let lastSource = sources.last, let lastDestination = tos.last else { return }
-            let offSetDistance = -(lastSource.radius + lastDestination.radius)
+            let offSetDistance = -(lastSource.physicalRadius + lastDestination.physicalRadius)
             let multiplier = min(10, max(1, log(CGFloat(arcNode.weight))))
         let distanceVector = sourceShapedNode.convert(.zero, to: scene) - destinationShapeNode.convert(.zero, to: scene)
         let force = computeForceBetween(distanceVector: distanceVector, offSetDistance: offSetDistance, multiplier: forceDecay*multiplier, proportionalToDistanceRaisedToPowerOf: springForceBetweenConnectedNodesPower)
@@ -131,9 +131,9 @@ extension NodeScene: SKSceneDelegate {
             }
     }
 
-    private func computeForceBetween(distanceVector: CGVector, offSetDistance: CGFloat = 0, minimumRadius: CGFloat = 0, multiplier: CGFloat = 1, proportionalToDistanceRaisedToPowerOf power: CGFloat = 1) -> CGVector {
+    private func computeForceBetween(distanceVector: CGVector, offSetDistance: CGFloat = 0, minimumPhysicalRadius: CGFloat = 0, multiplier: CGFloat = 1, proportionalToDistanceRaisedToPowerOf power: CGFloat = 1) -> CGVector {
         let distance = distanceVector.length() + offSetDistance
-        let newDistance = max(distance, minimumRadius)
+        let newDistance = max(distance, minimumPhysicalRadius)
         let normalizedDistanceVector = distance > 0 ? distanceVector/distance : CGVector.zero // important note: normalizedDistanceVector is not really normalized in case of distance <= 0
         let force = 50*multiplier*newDistance^^power*normalizedDistanceVector
         return force
@@ -152,8 +152,8 @@ extension NodeScene: SKSceneDelegate {
         let toPositionCenter = destinationShapeNode.convert(CGPoint.zero, to: scene)
         let distanceVector = sourcePositionCenter - toPositionCenter
         let distance = distanceVector.length()
-        let fromPosition = sourcePositionCenter - (sourceShapedNode.radius+(sourceShapedNode.lineWidth/2))/distance*distanceVector
-        let toPosition = toPositionCenter + (destinationShapeNode.radius+(destinationShapeNode.lineWidth/2))/distance*distanceVector
+        let fromPosition = sourcePositionCenter - (sourceShapedNode.physicalRadius+(sourceShapedNode.lineWidth/2))/distance*distanceVector
+        let toPosition = toPositionCenter + (destinationShapeNode.physicalRadius+(destinationShapeNode.lineWidth/2))/distance*distanceVector
         let baseWidth = 8*min(10, max(1, log(CGFloat(arcNode.weight))))
         let path = CGPath.arrow(from: fromPosition, to: toPosition, tailWidth: baseWidth, headWidth: 2*baseWidth, headLength: 2*baseWidth)
         arcNode.path = path

@@ -132,9 +132,9 @@ extension NodeScene {
 
     private func nearestNodeTo(position: CGPoint, nodes: [SKNode]) -> SKNode? {
         let sortedNodes = nodes.sorted { (firstNode, secondNode) -> Bool in
-            let firstRadius = (firstNode as? ShapeNode)?.radius ?? 0
-            let secondRadius = (secondNode as? ShapeNode)?.radius ?? 0
-            guard firstRadius == secondRadius else { return firstRadius < secondRadius } // always prefer smaller nodes over bigger
+            let firstPhysicalRadius = (firstNode as? ShapeNode)?.physicalRadius ?? 0
+            let secondPhysicalRadius = (secondNode as? ShapeNode)?.physicalRadius ?? 0
+            guard firstPhysicalRadius == secondPhysicalRadius else { return firstPhysicalRadius < secondPhysicalRadius } // always prefer smaller nodes over bigger
             let convertedFirstPosition = firstNode.parent?.convert(CGPoint.zero, to: self) ?? CGPoint.zero
             let convertedSecondPosition = secondNode.parent?.convert(CGPoint.zero, to: self) ?? CGPoint.zero
             return (convertedFirstPosition - position) < (convertedSecondPosition - position)
