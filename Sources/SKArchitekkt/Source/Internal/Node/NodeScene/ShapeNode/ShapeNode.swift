@@ -16,6 +16,7 @@ class ShapeNode: SKShapeNode {
         children: [ShapeNode] = [],
         color: NSColor = .clear,
         physicalRadius: CGFloat = 0,
+        visualRadius: CGFloat = 0,
         isShape: Bool = true
     ) -> ShapeNode {
         let shapeNode = pool.popLast() ?? ShapeNode()
@@ -27,6 +28,7 @@ class ShapeNode: SKShapeNode {
         shapeNode.castedChildren = []
         shapeNode.siblingPairs = []
         shapeNode.physicalRadius = physicalRadius
+        shapeNode.visualRadius = visualRadius
         shapeNode.isShape = isShape
 
         shapeNode.setUp(children)
@@ -37,7 +39,7 @@ class ShapeNode: SKShapeNode {
             shapeNode.update(color: color)
         }
 
-        shapeNode.update(physicalRadius: physicalRadius)
+        shapeNode.update(physicalRadius: physicalRadius, visualRadius: visualRadius)
 
         return shapeNode
     }
@@ -48,6 +50,7 @@ class ShapeNode: SKShapeNode {
     private(set) var castedChildren: [ShapeNode] = []
     private(set) var siblingPairs: [(ShapeNode, ShapeNode)] = []
     private(set) var physicalRadius: CGFloat = 0
+    private(set) var visualRadius: CGFloat = 0
     private var isShape: Bool = true
 
     var allDescendants: [ShapeNode] {
@@ -126,8 +129,9 @@ class ShapeNode: SKShapeNode {
         lineWidth = 16
     }
 
-    func update(physicalRadius: CGFloat) {
+    func update(physicalRadius: CGFloat, visualRadius: CGFloat) {
         self.physicalRadius = physicalRadius
+        self.visualRadius = visualRadius
         guard isShape else {
             return
         }
@@ -186,7 +190,7 @@ class ShapeNode: SKShapeNode {
     }
 
     private func updatePath() {
-        path = CGPath(ellipseIn: CGRect(x: -physicalRadius, y: -physicalRadius, width: 2*physicalRadius, height: 2*physicalRadius), transform: nil)
+        path = CGPath(ellipseIn: CGRect(x: -visualRadius, y: -visualRadius, width: 2*visualRadius, height: 2*visualRadius), transform: nil)
     }
 
     private func updateConstraints(forChild child: ShapeNode? = nil) {
@@ -194,10 +198,10 @@ class ShapeNode: SKShapeNode {
             return
         }
         if let child = child {
-            child.constraints = [SKConstraint.distance(SKRange(lowerLimit: 0, upperLimit: physicalRadius - child.physicalRadius), to: self)]
+            child.constraints = [SKConstraint.distance(SKRange(lowerLimit: 0, upperLimit: visualRadius - child.visualRadius), to: self)]
         } else {
             castedChildren.forEach {
-                $0.constraints = [SKConstraint.distance(SKRange(lowerLimit: 0, upperLimit: physicalRadius - $0.physicalRadius), to: self)]
+                $0.constraints = [SKConstraint.distance(SKRange(lowerLimit: 0, upperLimit: visualRadius - $0.visualRadius), to: self)]
             }
         }
     }
@@ -210,7 +214,7 @@ class ShapeNode: SKShapeNode {
         guard !isHidden else { return }
         labelNode?.removeFromParent()
         let name = nodeName?.components(separatedBy: ".").last ?? scope
-        let fontSize = min(physicalRadius/2, 10000) // there is a maximum font size, otherwise it will crash
+        let fontSize = min(visualRadius/2, 10000) // there is a maximum font size, otherwise it will crash
         let labelNode = SKLabelNode(text: name, fontNamed: "HelveticaNeue-Bold", fontSize: fontSize, color: .textColor ,shadowColor: .shadowColor)
         self.labelNode = labelNode
         addChild(labelNode)
