@@ -19,9 +19,7 @@ extension ShapeNode {
                         scope: newVirtualNode.scope,
                         name: newVirtualNode.name,
                         children: children,
-                        color: newVirtualNode.color,
-                        physicalRadius: newVirtualNode.physicalRadius,
-                        visualRadius: newVirtualNode.visualRadius
+                        radius: newVirtualNode.radius
                     )
                 )
             }
@@ -30,20 +28,20 @@ extension ShapeNode {
         return newVirtualNodes
     }
 
-    static func diffChildren(oldVirtualNodes: [VirtualNode], newVirtualNodes: [VirtualNode]) -> (ShapeNode) -> Void {
+    static func diffChildren(oldVirtualNodes: [VirtualNode], newVirtualNodes: [VirtualNode], settings: Settings) -> (ShapeNode) -> Void {
 
         var childPatches: [(ShapeNode) -> Void] = []
         var index = 0
         for oldVirtualNode in oldVirtualNodes {
             if let newVirtualNode = newVirtualNodes[safe: index] {
                 if newVirtualNode.id == oldVirtualNode.id {
-                    childPatches.append(diff(oldVirtualNode: oldVirtualNode, newVirtualNode: newVirtualNode))
+                    childPatches.append(diff(oldVirtualNode: oldVirtualNode, newVirtualNode: newVirtualNode, settings: settings))
                     index += 1
                 } else {
-                    childPatches.append(diff(oldVirtualNode: oldVirtualNode, newVirtualNode: nil))
+                    childPatches.append(diff(oldVirtualNode: oldVirtualNode, newVirtualNode: nil, settings: settings))
                 }
             } else {
-                childPatches.append(diff(oldVirtualNode: oldVirtualNode, newVirtualNode: nil))
+                childPatches.append(diff(oldVirtualNode: oldVirtualNode, newVirtualNode: nil, settings: settings))
                 index += 1
             }
         }
@@ -52,7 +50,7 @@ extension ShapeNode {
         if newVirtualNodes.endIndex > index {
             for newVirtualNode in newVirtualNodes[index...] {
                 additionalPatches.append { parent in
-                    let newShapeNode = render(newVirtualNode)
+                    let newShapeNode = render(newVirtualNode, settings: settings)
                     parent.addChild(newShapeNode)
                 }
             }
@@ -70,20 +68,19 @@ extension ShapeNode {
 
     // MARK: - Private -
 
-    private static func render(_ node: VirtualNode) -> ShapeNode {
-        let children = node.children.map { render($0) }
+    private static func render(_ node: VirtualNode, settings: Settings) -> ShapeNode {
+        let children = node.children.map { render($0, settings: settings) }
         return ShapeNode.create(
             id: node.id,
             scope: node.scope,
             name: node.name,
             children: children,
-            color: node.color,
-            physicalRadius: node.physicalRadius,
-            visualRadius: node.visualRadius
+            radius: node.radius,
+            settings: settings
         )
     }
 
-    private static func diff(oldVirtualNode: VirtualNode, newVirtualNode: VirtualNode?) -> (ShapeNode) -> Void {
+    private static func diff(oldVirtualNode: VirtualNode, newVirtualNode: VirtualNode?, settings: Settings) -> (ShapeNode) -> Void {
         guard let newVirtualNode = newVirtualNode else {
             return { oldShapeNode in
                 oldShapeNode.removeFromParent()
@@ -96,13 +93,13 @@ extension ShapeNode {
                     assertionFailure()
                     return
                 }
-                let newShapeNode = render(newVirtualNode)
+                let newShapeNode = render(newVirtualNode, settings: settings)
                 parent.replaceChild(oldShapeNode, with: newShapeNode)
             }
         }
 
-        let childrenPatch = diffChildren(oldVirtualNodes: oldVirtualNode.children, newVirtualNodes: newVirtualNode.children)
-        let attributesPatch = diffAttributes(oldVirtualNode: oldVirtualNode, newVirtualNode: newVirtualNode)
+        let childrenPatch = diffChildren(oldVirtualNodes: oldVirtualNode.children, newVirtualNodes: newVirtualNode.children, settings: settings)
+        let attributesPatch = diffAttributes(oldVirtualNode: oldVirtualNode, newVirtualNode: newVirtualNode, settings: settings)
 
         return { oldShapeNode in
             childrenPatch(oldShapeNode)
@@ -110,13 +107,10 @@ extension ShapeNode {
         }
     }
 
-    private static func diffAttributes(oldVirtualNode: VirtualNode, newVirtualNode: VirtualNode) -> (ShapeNode) -> Void { { oldShapeNode in
-            if oldVirtualNode.color != newVirtualNode.color {
-                oldShapeNode.update(color: newVirtualNode.color)
-            }
-            if oldVirtualNode.physicalRadius != newVirtualNode.physicalRadius || oldVirtualNode.visualRadius != newVirtualNode.visualRadius {
-                oldShapeNode.update(color: newVirtualNode.color)
-                oldShapeNode.update(physicalRadius: newVirtualNode.physicalRadius, visualRadius: newVirtualNode.visualRadius)
+    private static func diffAttributes(oldVirtualNode: VirtualNode, newVirtualNode: VirtualNode, settings: Settings) -> (ShapeNode) -> Void { { oldShapeNode in
+            if oldVirtualNode.radius != newVirtualNode.radius {
+                oldShapeNode.updateColor(settings: settings)
+                oldShapeNode.updateRadius(radius: newVirtualNode.radius, settings: settings)
             }
         }
     }

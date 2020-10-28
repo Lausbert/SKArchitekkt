@@ -6,6 +6,18 @@ import CoreArchitekkt
 class ShapeNode: SKShapeNode {
 
     // MARK: - Internal -
+    
+    struct Settings {
+        let colorDictionary: [String: NSColor]
+        let physicalRadiusMultiplier: CGFloat
+        let visualRadiusMultiplier: CGFloat
+        
+        init(colorDictionary: [String: NSColor] = [:], physicalRadiusMultiplier: CGFloat = 1, visualRadiusMultiplier: CGFloat = 1) {
+            self.colorDictionary = colorDictionary
+            self.physicalRadiusMultiplier = physicalRadiusMultiplier
+            self.visualRadiusMultiplier = visualRadiusMultiplier
+        }
+    }
 
     static let name = "ShapeNode"
 
@@ -14,10 +26,9 @@ class ShapeNode: SKShapeNode {
         scope: String = "",
         name: String? = nil,
         children: [ShapeNode] = [],
-        color: NSColor = .clear,
-        physicalRadius: CGFloat = 0,
-        visualRadius: CGFloat = 0,
-        isShape: Bool = true
+        radius: CGFloat = 1,
+        isShape: Bool = true,
+        settings: Settings = Settings()
     ) -> ShapeNode {
         let shapeNode = pool.popLast() ?? ShapeNode()
 
@@ -27,8 +38,8 @@ class ShapeNode: SKShapeNode {
         shapeNode.nodeName = name
         shapeNode.castedChildren = []
         shapeNode.siblingPairs = []
-        shapeNode.physicalRadius = physicalRadius
-        shapeNode.visualRadius = visualRadius
+        shapeNode.physicalRadius = settings.physicalRadiusMultiplier*radius
+        shapeNode.visualRadius = settings.visualRadiusMultiplier*radius
         shapeNode.isShape = isShape
 
         shapeNode.setUp(children)
@@ -36,10 +47,10 @@ class ShapeNode: SKShapeNode {
         if isShape {
             shapeNode.name = ShapeNode.name
             shapeNode.setUpPhysicsBody()
-            shapeNode.update(color: color)
+            shapeNode.updateColor(settings: settings)
         }
 
-        shapeNode.update(physicalRadius: physicalRadius, visualRadius: visualRadius)
+        shapeNode.updateRadius(radius: radius, settings: settings)
 
         return shapeNode
     }
@@ -49,6 +60,7 @@ class ShapeNode: SKShapeNode {
     private(set) var nodeName: String?
     private(set) var castedChildren: [ShapeNode] = []
     private(set) var siblingPairs: [(ShapeNode, ShapeNode)] = []
+    private(set) var radius: CGFloat = 0
     private(set) var physicalRadius: CGFloat = 0
     private(set) var visualRadius: CGFloat = 0
     private var isShape: Bool = true
@@ -120,18 +132,21 @@ class ShapeNode: SKShapeNode {
         ShapeNode.store(shapeNode: self)
     }
 
-    func update(color: NSColor) {
+    func updateColor(settings: Settings) {
         guard isShape else {
             return
         }
+        let color = settings.colorDictionary[nodeName] ?? settings.colorDictionary[scope] ?? .gray
         fillColor = castedChildren.isEmpty ? color.withAlphaComponent(0.8) : color.withAlphaComponent(0.1)
         strokeColor = color
         lineWidth = 16
     }
 
-    func update(physicalRadius: CGFloat, visualRadius: CGFloat) {
-        self.physicalRadius = physicalRadius
-        self.visualRadius = visualRadius
+    func updateRadius(radius: CGFloat? = nil, settings: Settings) {
+        let radius = radius ?? self.radius
+        self.radius = radius
+        self.physicalRadius = settings.physicalRadiusMultiplier*radius
+        self.visualRadius = settings.visualRadiusMultiplier*radius
         guard isShape else {
             return
         }
