@@ -109,8 +109,7 @@ extension ShapeNode {
 
     private static func diffAttributes(oldVirtualNode: VirtualNode, newVirtualNode: VirtualNode, settings: Settings) -> (ShapeNode) -> Void { { oldShapeNode in
             if oldVirtualNode.radius != newVirtualNode.radius {
-                oldShapeNode.updateColor(settings: settings)
-                oldShapeNode.updateRadius(radius: newVirtualNode.radius, settings: settings)
+                oldShapeNode.update(radius: newVirtualNode.radius, settings: settings)
             }
         }
     }

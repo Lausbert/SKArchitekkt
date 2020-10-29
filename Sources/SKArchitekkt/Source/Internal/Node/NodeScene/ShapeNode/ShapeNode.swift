@@ -47,10 +47,9 @@ class ShapeNode: SKShapeNode {
         if isShape {
             shapeNode.name = ShapeNode.name
             shapeNode.setUpPhysicsBody()
-            shapeNode.updateColor(settings: settings)
         }
 
-        shapeNode.updateRadius(radius: radius, settings: settings)
+        shapeNode.update(radius: radius, settings: settings)
 
         return shapeNode
     }
@@ -132,24 +131,14 @@ class ShapeNode: SKShapeNode {
         ShapeNode.store(shapeNode: self)
     }
 
-    func updateColor(settings: Settings) {
-        guard isShape else {
-            return
-        }
-        let color = settings.colorDictionary[nodeName] ?? settings.colorDictionary[scope] ?? .gray
-        fillColor = castedChildren.isEmpty ? color.withAlphaComponent(0.8) : color.withAlphaComponent(0.1)
-        strokeColor = color
-        lineWidth = 16
-    }
-
-    func updateRadius(radius: CGFloat? = nil, settings: Settings) {
-        let radius = radius ?? self.radius
+    func update(radius: CGFloat, settings: Settings) {
         self.radius = radius
         self.physicalRadius = settings.physicalRadiusMultiplier*radius
         self.visualRadius = settings.visualRadiusMultiplier*radius
         guard isShape else {
             return
         }
+        updateColor(settings: settings)
         updatePath()
         updateConstraints()
         updatePhysicsBody()
@@ -202,6 +191,13 @@ class ShapeNode: SKShapeNode {
         children.forEach {
             addChild($0)
         }
+    }
+    
+    private func updateColor(settings: Settings) {
+        let color = settings.colorDictionary[nodeName] ?? settings.colorDictionary[scope] ?? .gray
+        fillColor = castedChildren.isEmpty ? color.withAlphaComponent(0.8) : color.withAlphaComponent(0.1)
+        strokeColor = color
+        lineWidth = 16
     }
 
     private func updatePath() {

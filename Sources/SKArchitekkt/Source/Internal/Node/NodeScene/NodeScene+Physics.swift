@@ -13,12 +13,12 @@ extension NodeScene: SKSceneDelegate {
         physicsWorld.gravity = CGVector.zero
         settingsItemCancellable = document.settings.forceSettingsDomain.objectDidChange.sink { [weak self] _ in
             self?.document.bumpVersion()
-            self?.updateSettingsValues()
             self?.startSimulation()
         }
     }
 
     func startSimulation() {
+        updateForceSettingsValues()
         updateStatus(description: "Running \(document.description)", progress: 1.0)
         isPaused = false
         forceDecay = 1
