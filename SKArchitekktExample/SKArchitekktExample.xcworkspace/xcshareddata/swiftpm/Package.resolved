@@ -2,6 +2,15 @@
   "object": {
     "pins": [
       {
+        "package": "CoreArchitekkt",
+        "repositoryURL": "https://github.com/Lausbert/CoreArchitekkt.git",
+        "state": {
+          "branch": null,
+          "revision": "bd2f588c27853f8aa1b6738ccd9404d882ec0361",
+          "version": "0.2.0"
+        }
+      },
+      {
         "package": "SKArchitekkt",
         "repositoryURL": "https://github.com/Lausbert/SKArchitekkt.git",
         "state": {
