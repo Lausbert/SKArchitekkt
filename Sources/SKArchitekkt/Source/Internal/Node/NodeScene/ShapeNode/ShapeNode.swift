@@ -197,7 +197,7 @@ class ShapeNode: SKShapeNode {
         let color = settings.colorDictionary[nodeName] ?? settings.colorDictionary[scope] ?? .gray
         fillColor = castedChildren.isEmpty ? color.withAlphaComponent(0.8) : color.withAlphaComponent(0.1)
         strokeColor = color
-        lineWidth = 16
+        lineWidth = 8
     }
 
     private func updatePath() {

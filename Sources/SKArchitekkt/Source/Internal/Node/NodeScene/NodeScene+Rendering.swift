@@ -99,7 +99,7 @@ extension NodeScene {
                 "destructor_decl": #colorLiteral(red: 0.9607843137, green: 0.768627451, blue: 0.5058823529, alpha: 1),
                 "protocol": #colorLiteral(red: 0.8, green: 0.862745098, blue: 0.8588235294, alpha: 1)
             ],
-            physicalRadiusMultiplier: 128.0,
+            physicalRadiusMultiplier: 64.0,
             visualRadiusMultiplier: CGFloat(document.settings.visualRadiusMultiplier)
         )
     }
