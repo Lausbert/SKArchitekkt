@@ -57,11 +57,24 @@ struct SettingsView: View {
         
         var body: some View {
             VStack(alignment: .leading) {
-                if !settingsGroup.name.isEmpty {
-                    Text(settingsGroup.name)
-                        .padding(6)
-                        .font(.subheadline)
+                HStack {
+                    if !settingsGroup.name.isEmpty {
+                        Text(settingsGroup.name)
+                            .font(.subheadline)
+                    }
+                    Spacer()
+                    if let preferredNewValue = settingsGroup.preferredNewValue {
+                        Button {
+                            withAnimation {
+                                let item = SettingsItem(name: "", value: preferredNewValue)
+                                settingsGroup.add(settingsItem: item)
+                            }
+                        } label: {
+                            Image(systemName: "plus.circle")
+                        }.buttonStyle(PlainButtonStyle())
+                    }
                 }
+                .padding(EdgeInsets(top: 6, leading: 6, bottom: 6, trailing: 16))
                 ForEach(settingsGroup.settingsItems) { settingsItem in
                     SettingsItemView(settingsGroup: settingsGroup, settingsItem: settingsItem)
                 }
@@ -89,10 +102,16 @@ struct SettingsView: View {
                     Slider(value: getRangeBinding(minValue: minValue, maxValue: maxValue), in: minValue...maxValue)
                         .padding(EdgeInsets(top: 0, leading: 16, bottom: 4, trailing: 16))
                 }
-            case .deletable:
+            case let .deletable(virtualTransformation):
                 HStack {
-                    Text(settingsItem.name)
-                        .font(.subheadline).padding(6)
+                    switch virtualTransformation {
+                    case .unfoldNode, .hideNode, .flattenNode, .unfoldScope, .hideScope, .flattenScope:
+                        Text(settingsItem.name)
+                            .font(.subheadline).padding(6)
+                    case let .unfoldNodes, let .hideNodes, let .flattenNodes, let .unfoldScopes, let .hideScopes, let .flattenScopes:
+                        TextField("Regex", text: getRegexBinding())
+                            .font(.subheadline).padding(6)
+                    }
                     Button {
                         withAnimation {
                             settingsGroup.remove(settingsItem: settingsItem)
@@ -109,7 +128,7 @@ struct SettingsView: View {
         private func getRangeBinding(minValue: Double, maxValue: Double) -> Binding<Double> {
             Binding<Double>(
                 get: {
-                    if case let .range(value, _, _) = self.settingsItem.value {
+                    if case let .range(value, _, _) = settingsItem.value {
                         return value
                     } else {
                         assertionFailure()
@@ -117,7 +136,47 @@ struct SettingsView: View {
                     }
                 },
                 set: {
-                    self.settingsItem.value = SettingsValue.range(value: $0, minValue: minValue, maxValue: maxValue)
+                    settingsItem.value = SettingsValue.range(value: $0, minValue: minValue, maxValue: maxValue)
+                }
+            )
+        }
+        
+        private func getRegexBinding() -> Binding<String> {
+            Binding<String>(
+                get: {
+                    if case let .deletable(virtualTransformation) = self.settingsItem.value {
+                        switch virtualTransformation {
+                        case let .unfoldNodes(regex), let .hideNodes(regex), let .flattenNodes(regex), let .unfoldScopes(regex), let .hideScopes(regex), let .flattenScopes(regex):
+                            return regex
+                        default:
+                            assertionFailure()
+                            return ""
+                        }
+                    } else {
+                        assertionFailure()
+                        return ""
+                    }
+                },
+                set: {
+                    if case let .deletable(virtualTransformation) = self.settingsItem.value {
+                        switch virtualTransformation {
+                        case .unfoldNodes:
+                            self.settingsItem.value = SettingsValue.deletable(virtualTransformation: .unfoldNodes(regex: $0))
+                        case .hideNodes:
+                            self.settingsItem.value = SettingsValue.deletable(virtualTransformation: .hideNodes(regex: $0))
+                        case .flattenNodes:
+                            self.settingsItem.value = SettingsValue.deletable(virtualTransformation: .flattenNodes(regex: $0))
+                        case .unfoldScopes:
+                            self.settingsItem.value = SettingsValue.deletable(virtualTransformation: .unfoldScopes(regex: $0))
+                        case .hideScopes:
+                            self.settingsItem.value = SettingsValue.deletable(virtualTransformation: .hideScopes(regex: $0))
+                        case .flattenScopes:
+                            self.settingsItem.value = SettingsValue.deletable(virtualTransformation: .flattenScopes(regex: $0))
+                        default:
+                            assertionFailure()
+                        }
+                    }
+                    
                 }
             )
         }
