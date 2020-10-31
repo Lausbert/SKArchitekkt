@@ -52,7 +52,8 @@ extension NodeScene: SKSceneDelegate {
     private var radialGravitationalForceOnChildrenConstantMultiplier: CGFloat { 50.0 }
     private var radialGravitationalForceOnChildrenConstantPower: CGFloat { -1.4 }
     private var negativeRadialGravitationalForceOnSiblingsConstantMulitplier: CGFloat { 250.0 }
-    private var springForceConstantMultiplier: CGFloat { 2000.0 }
+    private var springForceConstantMultiplier: CGFloat { 3000.0 }
+    private var arcWidthConstantMultiplier: CGFloat { 5.0 }
 
     private static let forceDecayObjectAssociation = ObjectAssociation<CGFloat>()
     private var forceDecay: CGFloat {
@@ -129,7 +130,7 @@ extension NodeScene: SKSceneDelegate {
             }
             guard let lastSource = sources.last, let lastDestination = tos.last else { return }
             let offSetDistance = -(lastSource.physicalRadius + lastDestination.physicalRadius)
-            let multiplier = springForceConstantMultiplier*min(10, max(1, log(CGFloat(arcNode.weight))))
+            let multiplier = springForceConstantMultiplier*log(CGFloat(arcNode.weight))
         let distanceVector = sourceShapedNode.convert(.zero, to: scene) - destinationShapeNode.convert(.zero, to: scene)
         let force = computeForceBetween(distanceVector: distanceVector, offSetDistance: offSetDistance, multiplier: forceDecay*multiplier, proportionalToDistanceRaisedToPowerOf: springForceBetweenConnectedNodesPower)
             sources.forEach {
@@ -163,7 +164,7 @@ extension NodeScene: SKSceneDelegate {
         let distance = distanceVector.length()
         let fromPosition = sourcePositionCenter - (sourceShapedNode.visualRadius+(sourceShapedNode.lineWidth/2))/distance*distanceVector
         let toPosition = toPositionCenter + (destinationShapeNode.visualRadius+(destinationShapeNode.lineWidth/2))/distance*distanceVector
-        let baseWidth = 7*min(10, max(1, log(CGFloat(arcNode.weight))))
+        let baseWidth = arcWidthConstantMultiplier*log(CGFloat(arcNode.weight))
         let path = CGPath.arrow(from: fromPosition, to: toPosition, tailWidth: baseWidth, headWidth: 2*baseWidth, headLength: 2*baseWidth)
         arcNode.path = path
     }
