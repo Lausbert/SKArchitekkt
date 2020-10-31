@@ -53,7 +53,6 @@ extension NodeScene: SKSceneDelegate {
     private var radialGravitationalForceOnChildrenConstantPower: CGFloat { -1.4 }
     private var negativeRadialGravitationalForceOnSiblingsConstantMulitplier: CGFloat { 250.0 }
     private var springForceConstantMultiplier: CGFloat { 3000.0 }
-    private var arcWidthConstantMultiplier: CGFloat { 5.0 }
 
     private static let forceDecayObjectAssociation = ObjectAssociation<CGFloat>()
     private var forceDecay: CGFloat {
@@ -164,7 +163,7 @@ extension NodeScene: SKSceneDelegate {
         let distance = distanceVector.length()
         let fromPosition = sourcePositionCenter - (sourceShapedNode.visualRadius+(sourceShapedNode.lineWidth/2))/distance*distanceVector
         let toPosition = toPositionCenter + (destinationShapeNode.visualRadius+(destinationShapeNode.lineWidth/2))/distance*distanceVector
-        let baseWidth = arcWidthConstantMultiplier*log(CGFloat(arcNode.weight))
+        let baseWidth = arcWidthMultiplier*log(CGFloat(arcNode.weight))
         let path = CGPath.arrow(from: fromPosition, to: toPosition, tailWidth: baseWidth, headWidth: 2*baseWidth, headLength: 2*baseWidth)
         arcNode.path = path
     }

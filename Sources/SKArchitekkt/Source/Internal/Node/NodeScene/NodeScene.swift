@@ -22,6 +22,7 @@ class NodeScene: SKScene {
     private(set) var radialGravitationForceOnChildrenMultiplier: CGFloat = 1.0
     private(set) var negativeRadialGravitationalForceOnSiblingsPower: CGFloat = 1.0
     private(set) var springForceBetweenConnectedNodesPower: CGFloat = 1.0
+    private(set) var arcWidthMultiplier: CGFloat = 1.0
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -32,6 +33,7 @@ class NodeScene: SKScene {
         radialGravitationForceOnChildrenMultiplier = CGFloat(document.settings.radialGravitationForceOnChildrenMultiplier)
         negativeRadialGravitationalForceOnSiblingsPower = CGFloat(document.settings.negativeRadialGravitationalForceOnSiblingsPower)
         springForceBetweenConnectedNodesPower = CGFloat(document.settings.springForceBetweenConnectedNodesPower)
+        arcWidthMultiplier = CGFloat(document.settings.arcWidthMultiplier)
     }
     
     func updateStatus(description: String, progress: Double) {

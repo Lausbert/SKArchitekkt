@@ -42,11 +42,11 @@ extension NodeScene {
             self?.document.bumpVersion()
             self?.updateGraph()
         }
-        let areaCancellable = document.settings.areaSettingsDomain.objectDidChange.sink { [weak self] _ in
+        let geometryCancellable = document.settings.geometrySettingsDomain.objectDidChange.sink { [weak self] _ in
             self?.document.bumpVersion()
             self?.updateRadius()
         }
-        cancellables = [visibilityCancellable, areaCancellable]
+        cancellables = [visibilityCancellable, geometryCancellable]
         updateGraph()
     }
 
