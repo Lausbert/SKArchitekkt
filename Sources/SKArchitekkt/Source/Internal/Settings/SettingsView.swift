@@ -108,8 +108,10 @@ struct SettingsView: View {
                     case .unfoldNode, .hideNode, .flattenNode, .unfoldScope, .hideScope, .flattenScope:
                         Text(settingsItem.name)
                             .font(.subheadline).padding(6)
-                    case let .unfoldNodes, let .hideNodes, let .flattenNodes, let .unfoldScopes, let .hideScopes, let .flattenScopes:
+                    case .unfoldNodes, .hideNodes, .flattenNodes, .unfoldScopes, .hideScopes, .flattenScopes:
                         TextField("Regex", text: getRegexBinding())
+                            .textFieldStyle(PlainTextFieldStyle())
+                            .multilineTextAlignment(.trailing)
                             .font(.subheadline).padding(6)
                     }
                     Button {
