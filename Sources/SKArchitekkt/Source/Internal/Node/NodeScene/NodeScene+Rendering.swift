@@ -82,6 +82,18 @@ extension NodeScene {
         set { NodeScene.arcRootNodeObjectAssociation[self] = newValue }
     }
     
+    private static let isUpdatingObjectAssociation = ObjectAssociation<Bool>()
+    private var isUpdating: Bool {
+        get { NodeScene.isUpdatingObjectAssociation[self] ?? false }
+        set { NodeScene.isUpdatingObjectAssociation[self] = newValue }
+    }
+    
+    private static let shouldUpdateAgainObjectAssociation = ObjectAssociation<Bool>()
+    private var shouldUpdateAgain: Bool {
+        get { NodeScene.shouldUpdateAgainObjectAssociation[self] ?? false }
+        set { NodeScene.shouldUpdateAgainObjectAssociation[self] = newValue }
+    }
+    
     private var shapeNodeSettings: ShapeNode.Settings {
         ShapeNode.Settings(
             colorDictionary: [
@@ -112,11 +124,23 @@ extension NodeScene {
     }
     
     private func updateGraph() {
+        guard !isUpdating else {
+            shouldUpdateAgain = true
+            return
+        }
         NodeScene.updateQueue.async { [weak self] in
             self?.updateGraphDoNotCallOnMainThread { (shapeNodePatch, arcNodePatch) in
                 DispatchQueue.main.async {
-                    self?.updateGraphDoOnlyCallOnMainThread(shapeNodePatch: shapeNodePatch, arcNodePatch: arcNodePatch)
-                    self?.startSimulation()
+                    guard let self = self else {
+                        return
+                    }
+                    self.updateGraphDoOnlyCallOnMainThread(shapeNodePatch: shapeNodePatch, arcNodePatch: arcNodePatch)
+                    self.startSimulation()
+                    self.isUpdating = false
+                    if self.shouldUpdateAgain {
+                        self.shouldUpdateAgain = false
+                        self.updateGraph()
+                    }
                 }
             }
         }
