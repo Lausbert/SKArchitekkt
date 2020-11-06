@@ -7,7 +7,7 @@ struct SettingsView: View {
     
     // MARK: - Internal -
     
-    let settingsDomains: [SettingsDomain]
+    @Binding var settingsDomains: [SettingsDomain]
 
     var body: some View {
         ScrollView {
