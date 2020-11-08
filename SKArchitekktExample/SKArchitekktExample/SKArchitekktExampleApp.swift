@@ -14,11 +14,11 @@ struct SKArchitekktExampleApp: App {
 }
 
 private var document: Document {
-    let graphRequest = GraphRequest(url: URL(staticString: "/TestProject.testproject"), options: ["scheme": "TestProject"])
+    let nodeRequest = NodeRequest(url: URL(staticString: "/TestProject.testproject"), options: ["scheme": "TestProject"])
     let data = nodeString.data(using: String.Encoding.utf8)!
     let node = try! JSONDecoder().decode(Node.self, from: data)
     var document = Document()
-    document.set(graphRequest: graphRequest, node: node)
+    document.set(nodeRequest: nodeRequest, node: node)
     return document
 }
 

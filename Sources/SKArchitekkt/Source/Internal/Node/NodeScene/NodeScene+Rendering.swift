@@ -40,14 +40,14 @@ extension NodeScene {
         scene?.addChild(arcRootNode)
         let visibilityCancellable = document.settings.visibilitySettingsDomain.objectDidChange.sink { [weak self] _ in
             self?.document.bumpVersion()
-            self?.updateGraph()
+            self?.updateNode()
         }
         let geometryCancellable = document.settings.geometrySettingsDomain.objectDidChange.sink { [weak self] _ in
             self?.document.bumpVersion()
             self?.updateRadius()
         }
         cancellables = [visibilityCancellable, geometryCancellable]
-        updateGraph()
+        updateNode()
     }
 
     // MARK: - Private -
@@ -123,30 +123,30 @@ extension NodeScene {
         startSimulation()
     }
     
-    private func updateGraph() {
+    private func updateNode() {
         guard !isUpdating else {
             shouldUpdateAgain = true
             return
         }
         NodeScene.updateQueue.async { [weak self] in
-            self?.updateGraphDoNotCallOnMainThread { (shapeNodePatch, arcNodePatch) in
+            self?.updateNodeDoNotCallOnMainThread { (shapeNodePatch, arcNodePatch) in
                 DispatchQueue.main.async {
                     guard let self = self else {
                         return
                     }
-                    self.updateGraphDoOnlyCallOnMainThread(shapeNodePatch: shapeNodePatch, arcNodePatch: arcNodePatch)
+                    self.updateNodeDoOnlyCallOnMainThread(shapeNodePatch: shapeNodePatch, arcNodePatch: arcNodePatch)
                     self.startSimulation()
                     self.isUpdating = false
                     if self.shouldUpdateAgain {
                         self.shouldUpdateAgain = false
-                        self.updateGraph()
+                        self.updateNode()
                     }
                 }
             }
         }
     }
 
-    private func updateGraphDoNotCallOnMainThread(completion: (((ShapeNode) -> Void, (SKNode) -> Void)) -> Void) {
+    private func updateNodeDoNotCallOnMainThread(completion: (((ShapeNode) -> Void, (SKNode) -> Void)) -> Void) {
         updateStatus(description: "Updating Nodes", progress: 0.2)
         let newVirtualNodes = VirtualNode.createVirtualNodes(
             from: document.node,
@@ -165,7 +165,7 @@ extension NodeScene {
         completion((shapeNodePatch, arcNodePatch))
     }
     
-    private func updateGraphDoOnlyCallOnMainThread(shapeNodePatch: (ShapeNode) -> Void, arcNodePatch: (SKNode) -> Void) {
+    private func updateNodeDoOnlyCallOnMainThread(shapeNodePatch: (ShapeNode) -> Void, arcNodePatch: (SKNode) -> Void) {
         updateStatus(description: "Rendering Nodes", progress: 0.6)
         shapeNodePatch(shapeRootNode)
         shapeNodesDictionary = Dictionary(

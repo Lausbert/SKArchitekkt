@@ -7,7 +7,7 @@ public struct SKArchitekktView: View {
     
     // MARK: - Public -
     
-    // In case you are wondering these weird create-methods of NodeScene and UpdateStatus: When a graph is built for the first time, SwiftUI calls the body below two times. Somehow it shows the NodeScene of one call, while it shows the data of the updateStatus of the other call if initialized normally. By using the static create functions we are only creating one NodeScene and one UpdateStatus in the first place by saving them to a private static dictionary. Documents id is key for both. This has the nice side effect, that we can change Document in NodeScene without triggering a reinitiliazing of NodeScene during a new body call.
+    // In case you are wondering these weird create-methods of NodeScene and UpdateStatus: When a node is built for the first time, SwiftUI calls the body below two times. Somehow it shows the NodeScene of one call, while it shows the data of the updateStatus of the other call if initialized normally. By using the static create functions we are only creating one NodeScene and one UpdateStatus in the first place by saving them to a private static dictionary. Documents id is key for both. This has the nice side effect, that we can change Document in NodeScene without triggering a reinitiliazing of NodeScene during a new body call.
     
     @Binding public var document: Document
 
@@ -37,7 +37,7 @@ public struct SKArchitekktView: View {
     
     public init(document: Binding<Document>) {
         self._document = document
-        self.updateStatus = UpdateStatus.create(id: document.wrappedValue.id, description: "Running \(document.wrappedValue.graphRequest.description)", progress: 1.0)
+        self.updateStatus = UpdateStatus.create(id: document.wrappedValue.id, description: "Running \(document.wrappedValue.nodeRequest.description)", progress: 1.0)
     }
     
     // MARK: - Private -

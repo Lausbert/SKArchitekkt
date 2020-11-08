@@ -19,13 +19,13 @@ extension NodeScene: SKSceneDelegate {
 
     func startSimulation() {
         updateForceSettingsValues()
-        updateStatus(description: "Running \(document.graphRequest.description)", progress: 1.0)
+        updateStatus(description: "Running \(document.nodeRequest.description)", progress: 1.0)
         isPaused = false
         forceDecay = 1
     }
 
     func stopSimulation() {
-        updateStatus(description: "Paused \(document.graphRequest.description)", progress: 1.0)
+        updateStatus(description: "Paused \(document.nodeRequest.description)", progress: 1.0)
         isPaused = true
         forceDecay = 0
     }
