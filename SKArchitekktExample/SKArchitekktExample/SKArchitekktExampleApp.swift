@@ -18,7 +18,7 @@ private var document: Document {
     let data = nodeString.data(using: String.Encoding.utf8)!
     let node = try! JSONDecoder().decode(Node.self, from: data)
     var document = Document()
-    document.set(nodeRequest: nodeRequest, node: node, warnings: [warning])
+    document.set(nodeRequest: nodeRequest, node: node, warnings: [warning, warning])
     return document
 }
 

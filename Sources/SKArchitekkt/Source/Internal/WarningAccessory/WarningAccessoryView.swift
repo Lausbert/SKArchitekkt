@@ -8,7 +8,7 @@ struct WarningAccessoryView: View {
     // MARK: - Internal -
     
     @Binding var document: Document
-    
+        
     var body: some View {
         if document.warnings.isEmpty {
             EmptyView()
@@ -18,10 +18,15 @@ struct WarningAccessoryView: View {
             }, label: {
                 HStack(spacing: 4) {
                     Image(systemName: "exclamationmark.triangle.fill")
-                        .foregroundColor(.yellow)
+                        .foregroundColor(.warningColor)
                         .popover(isPresented: $isShowingPopover, attachmentAnchor: .point(.bottom), arrowEdge: .bottom, content: {
-                            Text("TestTestTestTest TestTest TestTestTestTest TestTestTest TestTestTestTestTestTest TestTest TestTestTestTest TestTestTest TestTestTestTestTestTest TestTest TestTestTestTest TestTestTest TestTestTestTestTestTest TestTest TestTestTestTest TestTestTest TestTestTestTestTestTest TestTest TestTestTestTest TestTestTest TestTestTestTestTestTest TestTest TestTestTestTest TestTestTest TestTestTestTestTestTest TestTest TestTestTestTest TestTestTest TestTestTestTestTestTest TestTest TestTestTestTest TestTestTest TestTestTestTestTestTest TestTest TestTestTestTest TestTestTest TestTestTestTestTestTest TestTest TestTestTestTest TestTestTest TestTestTestTestTestTest TestTest TestTestTestTest TestTestTest TestTestTestTestTestTest TestTest TestTestTestTest TestTestTest TestTestTestTestTestTest TestTest TestTestTestTest TestTestTest TestTestTestTestTestTest TestTest TestTestTestTest TestTestTest TestTestTestTestTestTest TestTest TestTestTestTest TestTestTest TestTestTestTestTestTest TestTest TestTestTestTest TestTestTest TestTestTestTestTestTest TestTest TestTestTestTest TestTestTest TestTestTestTestTestTest TestTest TestTestTestTest TestTestTest TestTestTestTestTestTest TestTest TestTestTestTest TestTestTest TestTestTestTestTestTest TestTest TestTestTestTest TestTestTest TestTestTestTestTestTest TestTest TestTestTestTest TestTestTest TestTestTestTestTestTest TestTest TestTestTestTest TestTestTest TestTest")
-                                .padding()
+                            List(document.warnings, id: \.self) { warning in
+                                VStack {
+                                    Text(warning)
+                                        .font(.subheadline)
+                                    Divider()
+                                }
+                            }
                         })
                     Text("\(document.warnings.count)")
                         .font(.subheadline)
