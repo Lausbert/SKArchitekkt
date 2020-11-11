@@ -21,7 +21,9 @@ public struct SKArchitekktView: View {
         }
         .toolbar {
             ToolbarItemGroup(placement: .principal) {
-                UpdateStatusView(updateStatus: updateStatus)
+                UpdateStatusView(updateStatus: updateStatus) {
+                    WarningAccessoryView(document: $document)
+                }
             }
             ToolbarItemGroup(placement: .automatic) {
                 Spacer()
