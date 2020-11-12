@@ -12,15 +12,17 @@ struct SettingsView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
-                ForEach(settingsDomains) { settingsDomain in
-                    SettingsDomainView(settingsDomain: settingsDomain)
+                ForEach(settingsDomains.indices, id: \.self) { index in
+                    SettingsDomainView(settingsDomain: $settingsDomains[index])
                 }
             }
         }
         Button {
-            settingsDomains.flatMap( { $0.settingsGroups } ).forEach { settingsGroup in
-                withAnimation {
-                    settingsGroup.reset()
+            settingsDomains.indices.forEach { settingsDomainIndex in
+                settingsDomains[settingsDomainIndex].settingsGroups.indices.forEach { settingsGroupIndex in
+                    withAnimation {
+                        settingsDomains[settingsDomainIndex].settingsGroups[settingsGroupIndex].reset()
+                    }
                 }
             }
         } label: {
@@ -32,7 +34,7 @@ struct SettingsView: View {
     
     private struct SettingsDomainView: View {
         
-        let settingsDomain: SettingsDomain
+        @Binding var settingsDomain: SettingsDomain
         
         var body: some View {
             VStack(alignment: .leading, spacing: 0) {
@@ -41,8 +43,8 @@ struct SettingsView: View {
                     .font(.headline)
                     .foregroundColor(.gray)
                 VStack(alignment: .leading) {
-                    ForEach(settingsDomain.settingsGroups) { settingsGroup in
-                        SettingsGroupView(settingsGroup: settingsGroup)
+                    ForEach(settingsDomain.settingsGroups.indices, id: \.self) { index in
+                        SettingsGroupView(settingsGroup: $settingsDomain.settingsGroups[index])
                     }
                 }
                 Divider()
@@ -53,7 +55,7 @@ struct SettingsView: View {
     
     private struct SettingsGroupView: View {
         
-        @ObservedObject var settingsGroup: SettingsGroup
+        @Binding var settingsGroup: SettingsGroup
         
         var body: some View {
             VStack(alignment: .leading) {
@@ -75,14 +77,15 @@ struct SettingsView: View {
                     }
                 }
                 .padding(EdgeInsets(top: 6, leading: 6, bottom: 6, trailing: 16))
-                ForEach(settingsGroup.settingsItems) { settingsItem in
-                    SettingsItemView(settingsGroup: settingsGroup, settingsItem: settingsItem)
-                }
                 if settingsGroup.settingsItems.isEmpty {
                     Text("Empty")
                         .frame(maxWidth: .infinity, alignment: .center)
                         .font(.footnote)
                         .foregroundColor(.gray)
+                } else {
+                    ForEach(settingsGroup.settingsItems.indices, id: \.self) { index in
+                        SettingsItemView(settingsGroup: $settingsGroup, settingsItem: $settingsGroup.settingsItems[index])
+                    }
                 }
             }
         }
@@ -90,8 +93,8 @@ struct SettingsView: View {
     
     private struct SettingsItemView: View {
         
-        let settingsGroup: SettingsGroup
-        @ObservedObject var settingsItem: SettingsItem
+        @Binding var settingsGroup: SettingsGroup
+        @Binding var settingsItem: SettingsItem
                 
         var body: some View {
             switch settingsItem.value {
@@ -115,9 +118,7 @@ struct SettingsView: View {
                             .font(.subheadline).padding(6)
                     }
                     Button {
-                        withAnimation {
-                            settingsGroup.remove(settingsItem: settingsItem)
-                        }
+                        settingsGroup.remove(settingsItem: settingsItem)
                     } label: {
                         Image(systemName: "minus.circle")
                     }.buttonStyle(PlainButtonStyle())
@@ -126,7 +127,7 @@ struct SettingsView: View {
                 .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 16))
             }
         }
-        
+                
         private func getRangeBinding(minValue: Double, maxValue: Double) -> Binding<Double> {
             Binding<Double>(
                 get: {

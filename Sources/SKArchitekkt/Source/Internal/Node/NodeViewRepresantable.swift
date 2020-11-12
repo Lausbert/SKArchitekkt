@@ -3,11 +3,13 @@
 import SwiftUI
 import SpriteKit
 import CoreArchitekkt
+import SwiftUI
 
 struct NodeViewRepresantable: NSViewRepresentable {
     
     // MARK: - Internal -
-            
+    
+    @Binding var document: Document
     let scene: NodeScene
     let proxy: GeometryProxy
 
@@ -30,6 +32,7 @@ struct NodeViewRepresantable: NSViewRepresentable {
 
     func updateNSView(_ nsView: SKView, context: Context) {
         context.coordinator.resizeScene(proxy: proxy)
+        scene.updateRendering(document: document) // This seems to be the only possible way to intercept changes of a @Binding in a non-View class
     }
 
     class Coordinator: NSObject {
