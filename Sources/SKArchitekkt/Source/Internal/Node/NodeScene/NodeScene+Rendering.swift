@@ -40,20 +40,6 @@ extension NodeScene {
         scene?.addChild(arcRootNode)
         updateNode()
     }
-    
-    func updateRendering(document: Document) {
-        self.newSettings = document.settings
-        if newSettings.visibilitySettingsDomain != oldSettings.visibilitySettingsDomain {
-            self.oldSettings = self.newSettings
-            updateNode()
-        } else if newSettings.geometrySettingsDomain != oldSettings.geometrySettingsDomain {
-            self.oldSettings = self.newSettings
-            updateRadius()
-        } else if newSettings.forceSettingsDomain != oldSettings.forceSettingsDomain {
-            self.oldSettings = self.newSettings
-            startSimulation()
-        }
-    }
 
     // MARK: - Private -
 

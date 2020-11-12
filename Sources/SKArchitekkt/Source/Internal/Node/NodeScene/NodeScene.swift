@@ -16,8 +16,6 @@ class NodeScene: SKScene {
 
     @Binding var document: Document
     let updateStatus: UpdateStatus
-    var newSettings: CoreArchitekkt.Settings
-    var oldSettings: CoreArchitekkt.Settings
     
     // all force related values cached for performance reasons; stored here and not in extension for performance reasons
     private(set) var decayPower: CGFloat = 1.0
@@ -51,8 +49,6 @@ class NodeScene: SKScene {
     private init(document: Binding<Document>, updateStatus: UpdateStatus) {
         self._document = document
         self.updateStatus = updateStatus
-        self.newSettings = document.wrappedValue.settings
-        self.oldSettings = document.wrappedValue.settings
         super.init(size: CGSize.zero)
         backgroundColor = NSColor.controlBackgroundColor
         setUpPhysics()
