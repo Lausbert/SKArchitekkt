@@ -127,7 +127,7 @@ extension NodeScene: SKSceneDelegate {
             }
             guard let lastSource = sources.last, let lastDestination = tos.last else { return }
             let offSetDistance = -(lastSource.physicalRadius + lastDestination.physicalRadius)
-        let multiplier = springForceConstantMultiplier*log(max(CGFloat(arcNode.weight), 1.1))
+        let multiplier = springForceConstantMultiplier*log(max(CGFloat(arcNode.weight), 1.1)) // because log(1) = 0, we have to set a minimum weight of 1.1
         let distanceVector = sourceShapedNode.convert(.zero, to: scene) - destinationShapeNode.convert(.zero, to: scene)
         let force = computeForceBetween(distanceVector: distanceVector, offSetDistance: offSetDistance, multiplier: forceDecay*multiplier, proportionalToDistanceRaisedToPowerOf: springForceBetweenConnectedNodesPower)
             sources.forEach {
@@ -161,7 +161,7 @@ extension NodeScene: SKSceneDelegate {
         let distance = distanceVector.length()
         let fromPosition = sourcePositionCenter - (sourceShapedNode.visualRadius+(sourceShapedNode.lineWidth/2))/distance*distanceVector
         let toPosition = toPositionCenter + (destinationShapeNode.visualRadius+(destinationShapeNode.lineWidth/2))/distance*distanceVector
-        let baseWidth = arcWidthMultiplier*log(max(CGFloat(arcNode.weight), 1.1))
+        let baseWidth = arcWidthMultiplier*log(max(CGFloat(arcNode.weight), 1.1)) // because log(1) = 0, we have to set a minimum weight of 1.1
         let path = CGPath.arrow(from: fromPosition, to: toPosition, tailWidth: baseWidth, headWidth: 2*baseWidth, headLength: 2*baseWidth)
         arcNode.path = path
     }
