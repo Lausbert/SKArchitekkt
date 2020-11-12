@@ -22,7 +22,7 @@ public struct SKArchitekktView: View {
         .toolbar {
             ToolbarItemGroup(placement: .principal) {
                 UpdateStatusView(updateStatus: updateStatus) {
-                    WarningAccessoryView(document: $document)
+                    WarningAccessoryView(warnings: document.warnings)
                 }
             }
             ToolbarItemGroup(placement: .automatic) {

@@ -12,7 +12,6 @@ extension NodeScene: SKSceneDelegate {
         delegate = self
         physicsWorld.gravity = CGVector.zero
         settingsItemCancellable = document.settings.forceSettingsDomain.objectDidChange.sink { [weak self] _ in
-            self?.document.bumpVersion()
             self?.startSimulation()
         }
     }

@@ -7,10 +7,10 @@ struct WarningAccessoryView: View {
     
     // MARK: - Internal -
     
-    @Binding var document: Document
+    let warnings: [String]
         
     var body: some View {
-        if document.warnings.isEmpty {
+        if warnings.isEmpty {
             EmptyView()
         } else {
             Button(action: {
@@ -20,7 +20,7 @@ struct WarningAccessoryView: View {
                     Image(systemName: "exclamationmark.triangle.fill")
                         .foregroundColor(.warningColor)
                         .popover(isPresented: $isShowingPopover, attachmentAnchor: .point(.bottom), arrowEdge: .bottom, content: {
-                            List(document.warnings, id: \.self) { warning in
+                            List(warnings, id: \.self) { warning in
                                 VStack {
                                     Text(warning)
                                         .font(.subheadline)
@@ -28,7 +28,7 @@ struct WarningAccessoryView: View {
                                 }
                             }
                         })
-                    Text("\(document.warnings.count)")
+                    Text("\(warnings.count)")
                         .font(.subheadline)
                 }
             })
