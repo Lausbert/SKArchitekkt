@@ -92,6 +92,19 @@ struct SettingsView: View {
         
         let settingsGroup: SettingsGroup
         @ObservedObject var settingsItem: SettingsItem
+        
+        init(settingsGroup: SettingsGroup, settingsItem: SettingsItem) {
+            self.settingsGroup = settingsGroup
+            self.settingsItem = settingsItem
+            if case let .deletable(virtualTransformation) = self.settingsItem.value {
+                switch virtualTransformation {
+                case let .unfoldNodes(regex), let .hideNodes(regex), let .flattenNodes(regex), let .unfoldScopes(regex), let .hideScopes(regex), let .flattenScopes(regex):
+                    self.regex = regex
+                default:
+                    break
+                }
+            }
+        }
                 
         var body: some View {
             switch settingsItem.value {
@@ -109,7 +122,9 @@ struct SettingsView: View {
                         Text(settingsItem.name)
                             .font(.subheadline).padding(6)
                     case .unfoldNodes, .hideNodes, .flattenNodes, .unfoldScopes, .hideScopes, .flattenScopes:
-                        TextField("Regex", text: getRegexBinding())
+                        TextField("Regex", text: $regex, onCommit: {
+                            updateSettingsValueWithRegex()
+                        })
                             .textFieldStyle(PlainTextFieldStyle())
                             .multilineTextAlignment(.trailing)
                             .font(.subheadline).padding(6)
@@ -143,44 +158,27 @@ struct SettingsView: View {
             )
         }
         
-        private func getRegexBinding() -> Binding<String> {
-            Binding<String>(
-                get: {
-                    if case let .deletable(virtualTransformation) = self.settingsItem.value {
-                        switch virtualTransformation {
-                        case let .unfoldNodes(regex), let .hideNodes(regex), let .flattenNodes(regex), let .unfoldScopes(regex), let .hideScopes(regex), let .flattenScopes(regex):
-                            return regex
-                        default:
-                            assertionFailure()
-                            return ""
-                        }
-                    } else {
-                        assertionFailure()
-                        return ""
-                    }
-                },
-                set: {
-                    if case let .deletable(virtualTransformation) = self.settingsItem.value {
-                        switch virtualTransformation {
-                        case .unfoldNodes:
-                            self.settingsItem.value = SettingsValue.deletable(virtualTransformation: .unfoldNodes(regex: $0))
-                        case .hideNodes:
-                            self.settingsItem.value = SettingsValue.deletable(virtualTransformation: .hideNodes(regex: $0))
-                        case .flattenNodes:
-                            self.settingsItem.value = SettingsValue.deletable(virtualTransformation: .flattenNodes(regex: $0))
-                        case .unfoldScopes:
-                            self.settingsItem.value = SettingsValue.deletable(virtualTransformation: .unfoldScopes(regex: $0))
-                        case .hideScopes:
-                            self.settingsItem.value = SettingsValue.deletable(virtualTransformation: .hideScopes(regex: $0))
-                        case .flattenScopes:
-                            self.settingsItem.value = SettingsValue.deletable(virtualTransformation: .flattenScopes(regex: $0))
-                        default:
-                            assertionFailure()
-                        }
-                    }
-                    
+        @State private var regex: String = ""
+        
+        private func updateSettingsValueWithRegex() {
+            if case let .deletable(virtualTransformation) = self.settingsItem.value {
+                switch virtualTransformation {
+                case .unfoldNodes:
+                    self.settingsItem.value = SettingsValue.deletable(virtualTransformation: .unfoldNodes(regex: regex))
+                case .hideNodes:
+                    self.settingsItem.value = SettingsValue.deletable(virtualTransformation: .hideNodes(regex: regex))
+                case .flattenNodes:
+                    self.settingsItem.value = SettingsValue.deletable(virtualTransformation: .flattenNodes(regex: regex))
+                case .unfoldScopes:
+                    self.settingsItem.value = SettingsValue.deletable(virtualTransformation: .unfoldScopes(regex: regex))
+                case .hideScopes:
+                    self.settingsItem.value = SettingsValue.deletable(virtualTransformation: .hideScopes(regex: regex))
+                case .flattenScopes:
+                    self.settingsItem.value = SettingsValue.deletable(virtualTransformation: .flattenScopes(regex: regex))
+                default:
+                    assertionFailure()
                 }
-            )
+            }
         }
         
     }
