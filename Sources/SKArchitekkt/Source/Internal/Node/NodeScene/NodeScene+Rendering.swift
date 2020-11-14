@@ -40,6 +40,20 @@ extension NodeScene {
         scene?.addChild(arcRootNode)
         updateNode()
     }
+    
+    func updateRendering(document: Document) {
+        self.newSettings = document.settings
+        if newSettings.visibilitySettingsDomain != oldSettings.visibilitySettingsDomain {
+            self.oldSettings = self.newSettings
+            updateNode()
+        } else if newSettings.geometrySettingsDomain != oldSettings.geometrySettingsDomain {
+            self.oldSettings = self.newSettings
+            updateRadius()
+        } else if newSettings.forceSettingsDomain != oldSettings.forceSettingsDomain {
+            self.oldSettings = self.newSettings
+            startSimulation()
+        }
+    }
 
     // MARK: - Private -
 
@@ -97,7 +111,7 @@ extension NodeScene {
                 "protocol": #colorLiteral(red: 0.8, green: 0.862745098, blue: 0.8588235294, alpha: 1)
             ],
             physicalRadiusMultiplier: 64.0,
-            visualRadiusMultiplier: CGFloat(document.settings.visualRadiusMultiplier)
+            visualRadiusMultiplier: CGFloat(newSettings.visualRadiusMultiplier)
         )
     }
     

@@ -16,6 +16,8 @@ class NodeScene: SKScene {
 
     @Binding var document: Document
     let updateStatus: UpdateStatus
+    var newSettings: CoreArchitekkt.Settings
+    var oldSettings: CoreArchitekkt.Settings
     
     // all force related values cached for performance reasons; stored here and not in extension for performance reasons
     private(set) var decayPower: CGFloat = 1.0
@@ -29,11 +31,11 @@ class NodeScene: SKScene {
     }
     
     func updateForceSettingsValues() {
-        decayPower = CGFloat(document.settings.decayPower)
-        radialGravitationForceOnChildrenMultiplier = CGFloat(document.settings.radialGravitationForceOnChildrenMultiplier)
-        negativeRadialGravitationalForceOnSiblingsPower = CGFloat(document.settings.negativeRadialGravitationalForceOnSiblingsPower)
-        springForceBetweenConnectedNodesPower = CGFloat(document.settings.springForceBetweenConnectedNodesPower)
-        arcWidthMultiplier = CGFloat(document.settings.arcWidthMultiplier)
+        decayPower = CGFloat(newSettings.decayPower)
+        radialGravitationForceOnChildrenMultiplier = CGFloat(newSettings.radialGravitationForceOnChildrenMultiplier)
+        negativeRadialGravitationalForceOnSiblingsPower = CGFloat(newSettings.negativeRadialGravitationalForceOnSiblingsPower)
+        springForceBetweenConnectedNodesPower = CGFloat(newSettings.springForceBetweenConnectedNodesPower)
+        arcWidthMultiplier = CGFloat(newSettings.arcWidthMultiplier)
     }
     
     func updateStatus(description: String, progress: Double) {
@@ -49,6 +51,8 @@ class NodeScene: SKScene {
     private init(document: Binding<Document>, updateStatus: UpdateStatus) {
         self._document = document
         self.updateStatus = updateStatus
+        self.newSettings = document.wrappedValue.settings
+        self.oldSettings = document.wrappedValue.settings
         super.init(size: CGSize.zero)
         backgroundColor = NSColor.controlBackgroundColor
         setUpPhysics()
