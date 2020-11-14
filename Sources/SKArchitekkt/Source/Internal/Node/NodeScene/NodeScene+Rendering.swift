@@ -38,23 +38,10 @@ extension NodeScene {
         arcNodes = []
         scene?.addChild(shapeRootNode)
         scene?.addChild(arcRootNode)
-        let visibilityCancellable = document.settings.visibilitySettingsDomain.objectDidChange.sink { [weak self] _ in
-            self?.updateNode()
-        }
-        let geometryCancellable = document.settings.geometrySettingsDomain.objectDidChange.sink { [weak self] _ in
-            self?.updateRadius()
-        }
-        cancellables = [visibilityCancellable, geometryCancellable]
         updateNode()
     }
 
     // MARK: - Private -
-
-    private static let cancellablesObjectAssociation = ObjectAssociation<[AnyCancellable]>()
-    private var cancellables: [AnyCancellable] {
-        get { NodeScene.cancellablesObjectAssociation[self] ?? [] }
-        set { NodeScene.cancellablesObjectAssociation[self] = newValue }
-    }
 
     private static let rootNodeObjectAssociation = ObjectAssociation<Node>()
     private var rootNode: Node? {

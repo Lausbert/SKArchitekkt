@@ -7,14 +7,14 @@ struct SettingsTabView: View {
     
     // MARK: - Internal -
     
-    let settings: CoreArchitekkt.Settings
+    @Binding var settings: CoreArchitekkt.Settings
     
     var body: some View {
         SystemTab(
             side: .right,
             tabs: [
-                ("slider.horizontal.3", AnyView(SettingsView(settingsDomains: settings.firstDomains))),
-                ("eye", AnyView(SettingsView(settingsDomains: settings.secondDomains)))
+                ("slider.horizontal.3", AnyView(SettingsView(settingsDomains: $settings.firstDomains))),
+                ("eye", AnyView(SettingsView(settingsDomains: $settings.secondDomains)))
             ]
         )
     }
