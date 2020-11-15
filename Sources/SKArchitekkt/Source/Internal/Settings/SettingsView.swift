@@ -7,13 +7,14 @@ struct SettingsView: View {
     
     // MARK: - Internal -
     
+    @Binding var document: Document
     @Binding var settingsDomains: [SettingsDomain]
 
     var body: some View {
         ScrollView {
             VStack(spacing: 0) {
                 ForEach(settingsDomains.indices, id: \.self) { index in
-                    SettingsDomainView(settingsDomain: $settingsDomains[index])
+                    SettingsDomainView(document: $document, settingsDomain: $settingsDomains[index])
                 }
             }
         }
@@ -34,6 +35,7 @@ struct SettingsView: View {
     
     private struct SettingsDomainView: View {
         
+        @Binding var document: Document
         @Binding var settingsDomain: SettingsDomain
         
         var body: some View {
@@ -44,7 +46,7 @@ struct SettingsView: View {
                     .foregroundColor(.gray)
                 VStack(alignment: .leading) {
                     ForEach(settingsDomain.settingsGroups.indices, id: \.self) { index in
-                        SettingsGroupView(settingsGroup: $settingsDomain.settingsGroups[index])
+                        SettingsGroupView(document: $document, settingsGroup: $settingsDomain.settingsGroups[index])
                     }
                 }
                 Divider()
@@ -55,6 +57,7 @@ struct SettingsView: View {
     
     private struct SettingsGroupView: View {
         
+        @Binding var document: Document
         @Binding var settingsGroup: SettingsGroup
         
         var body: some View {
@@ -84,7 +87,7 @@ struct SettingsView: View {
                         .foregroundColor(.gray)
                 } else {
                     ForEach(settingsGroup.settingsItems.indices, id: \.self) { index in
-                        SettingsItemView(settingsGroup: $settingsGroup, settingsItem: $settingsGroup.settingsItems[index])
+                        SettingsItemView(document: $document, settingsGroup: $settingsGroup, settingsItem: $settingsGroup.settingsItems[index])
                     }
                 }
             }
@@ -93,21 +96,9 @@ struct SettingsView: View {
     
     private struct SettingsItemView: View {
         
+        @Binding var document: Document
         @Binding var settingsGroup: SettingsGroup
         @Binding var settingsItem: SettingsItem
-        
-        init(settingsGroup: Binding<SettingsGroup>, settingsItem: Binding<SettingsItem>) {
-            self._settingsGroup = settingsGroup
-            self._settingsItem = settingsItem
-            if case let .deletable(virtualTransformation) = self.settingsItem.value {
-                switch virtualTransformation {
-                case let .unfoldNodes(regex), let .hideNodes(regex), let .flattenNodes(regex), let .unfoldScopes(regex), let .hideScopes(regex), let .flattenScopes(regex):
-                    self.regex = regex
-                default:
-                    break
-                }
-            }
-        }
                 
         var body: some View {
             switch settingsItem.value {
@@ -115,7 +106,9 @@ struct SettingsView: View {
                 VStack(alignment: .leading, spacing: 0) {
                     Text(settingsItem.name)
                         .font(.subheadline).padding(6)
-                    Slider(value: getRangeBinding(minValue: minValue, maxValue: maxValue), in: minValue...maxValue)
+                    Slider(value: getRangeBinding(minValue: minValue, maxValue: maxValue), in: minValue...maxValue, onEditingChanged: { isEditing in
+                        document.isEditing = isEditing
+                    })
                         .padding(EdgeInsets(top: 0, leading: 16, bottom: 4, trailing: 16))
                 }
             case let .deletable(virtualTransformation):
@@ -125,8 +118,8 @@ struct SettingsView: View {
                         Text(settingsItem.name)
                             .font(.subheadline).padding(6)
                     case .unfoldNodes, .hideNodes, .flattenNodes, .unfoldScopes, .hideScopes, .flattenScopes:
-                        TextField("Regex", text: $regex, onCommit: {
-                            updateSettingsValueWithRegex()
+                        TextField("Regex", text: getRegexBinding(), onEditingChanged: { isEditing in
+                            document.isEditing = isEditing
                         })
                             .textFieldStyle(PlainTextFieldStyle())
                             .multilineTextAlignment(.trailing)
@@ -159,27 +152,43 @@ struct SettingsView: View {
             )
         }
         
-        @State private var regex: String = ""
-        
-        private func updateSettingsValueWithRegex() {
-            if case let .deletable(virtualTransformation) = self.settingsItem.value {
-                switch virtualTransformation {
-                case .unfoldNodes:
-                    self.settingsItem.value = SettingsValue.deletable(virtualTransformation: .unfoldNodes(regex: regex))
-                case .hideNodes:
-                    self.settingsItem.value = SettingsValue.deletable(virtualTransformation: .hideNodes(regex: regex))
-                case .flattenNodes:
-                    self.settingsItem.value = SettingsValue.deletable(virtualTransformation: .flattenNodes(regex: regex))
-                case .unfoldScopes:
-                    self.settingsItem.value = SettingsValue.deletable(virtualTransformation: .unfoldScopes(regex: regex))
-                case .hideScopes:
-                    self.settingsItem.value = SettingsValue.deletable(virtualTransformation: .hideScopes(regex: regex))
-                case .flattenScopes:
-                    self.settingsItem.value = SettingsValue.deletable(virtualTransformation: .flattenScopes(regex: regex))
-                default:
-                    assertionFailure()
+        private func getRegexBinding() -> Binding<String> {
+            Binding<String>(
+                get: {
+                    if case let .deletable(virtualTransformation) = self.settingsItem.value {
+                        switch virtualTransformation {
+                        case let .unfoldNodes(regex), let .hideNodes(regex), let .flattenNodes(regex), let .unfoldScopes(regex), let .hideScopes(regex), let .flattenScopes(regex):
+                            return regex
+                        default:
+                            assertionFailure()
+                            return ""
+                        }
+                    } else {
+                        assertionFailure()
+                        return ""
+                    }
+                },
+                set: {
+                    if case let .deletable(virtualTransformation) = self.settingsItem.value {
+                        switch virtualTransformation {
+                        case .unfoldNodes:
+                            self.settingsItem.value = SettingsValue.deletable(virtualTransformation: .unfoldNodes(regex: $0))
+                        case .hideNodes:
+                            self.settingsItem.value = SettingsValue.deletable(virtualTransformation: .hideNodes(regex: $0))
+                        case .flattenNodes:
+                            self.settingsItem.value = SettingsValue.deletable(virtualTransformation: .flattenNodes(regex: $0))
+                        case .unfoldScopes:
+                            self.settingsItem.value = SettingsValue.deletable(virtualTransformation: .unfoldScopes(regex: $0))
+                        case .hideScopes:
+                            self.settingsItem.value = SettingsValue.deletable(virtualTransformation: .hideScopes(regex: $0))
+                        case .flattenScopes:
+                            self.settingsItem.value = SettingsValue.deletable(virtualTransformation: .flattenScopes(regex: $0))
+                        default:
+                            assertionFailure()
+                        }
+                    }
                 }
-            }
+            )
         }
         
     }

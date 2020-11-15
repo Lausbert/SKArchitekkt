@@ -15,7 +15,7 @@ public struct SKArchitekktView: View {
         HStack(spacing: 0) {
             NodeView(updateStatus: updateStatus, document: $document)
             if isShowingRightPane {
-                SettingsTabView(settings: $document.settings)
+                SettingsTabView(document: $document, settings: $document.settings)
                     .transition(.move(edge: .trailing))
             }
         }
@@ -46,5 +46,13 @@ public struct SKArchitekktView: View {
     
     @State private var isShowingRightPane = true
     private let updateStatus: UpdateStatus
+    
+}
+
+extension SKArchitekktView: Equatable {
+    
+    public static func == (lhs: SKArchitekktView, rhs: SKArchitekktView) -> Bool {
+        rhs.document.isEditing
+    }
     
 }
