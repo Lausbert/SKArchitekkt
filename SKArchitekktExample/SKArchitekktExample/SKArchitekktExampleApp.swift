@@ -9,6 +9,7 @@ struct SKArchitekktExampleApp: App {
     var body: some Scene {
         DocumentGroup(newDocument: document) { file in
             SKArchitekktView(document: file.$document)
+                .equatable()
         }
     }
 }
