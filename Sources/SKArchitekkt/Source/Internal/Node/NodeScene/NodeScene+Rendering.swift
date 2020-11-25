@@ -111,14 +111,14 @@ extension NodeScene {
                 "protocol": #colorLiteral(red: 0.8, green: 0.862745098, blue: 0.8588235294, alpha: 1)
             ],
             physicalRadiusMultiplier: 64.0,
-            visualRadiusMultiplier: CGFloat(newSettings.visualRadiusMultiplier)
+            visualRadiusMultiplier: CGFloat(newSettings.visualRadiusMultiplier),
+            ingoingArcsRadiusMultiplier: CGFloat(newSettings.sinkRadiusMultiplier),
+            outgoingArcsRadiusMultiplier: CGFloat(newSettings.sourceRadiusMultiplier)
         )
     }
     
     private func updateRadius() {
-        ([shapeRootNode] + shapeRootNode.allDescendants).forEach { shapeNode in
-            shapeNode.update(radius: shapeNode.radius, settings: shapeNodeSettings)
-        }
+        shapeRootNode.update(radius: shapeRootNode.radius, settings: shapeNodeSettings)
         startSimulation()
     }
     
@@ -146,14 +146,6 @@ extension NodeScene {
     }
 
     private func updateNodeDoNotCallOnMainThread(completion: (((ShapeNode) -> Void, (SKNode) -> Void)) -> Void) {
-        updateStatus(description: "Updating Nodes", progress: 0.2)
-        let newVirtualNodes = VirtualNode.createVirtualNodes(
-            from: document.node,
-            with: document.settings.virtualTransformations
-        )
-        let alignedNewVirtualNodes = ShapeNode.align(newVirtualNodes: newVirtualNodes, with: oldVirtualNodes)
-        let shapeNodePatch = ShapeNode.diffChildren(oldVirtualNodes: oldVirtualNodes, newVirtualNodes: alignedNewVirtualNodes, settings: shapeNodeSettings)
-        oldVirtualNodes = alignedNewVirtualNodes
         updateStatus(description: "Updating Arcs", progress: 0.4)
         let newVirtualArcs = VirtualArc.createVirtualArcs(
             from: document.node,
@@ -161,18 +153,19 @@ extension NodeScene {
         )
         let arcNodePatch = ArcNode.diffChildren(oldVirtualArcs: oldVirtualArcs, newVirtualArcs: newVirtualArcs)
         oldVirtualArcs = newVirtualArcs
+        updateStatus(description: "Updating Nodes", progress: 0.2)
+        let newVirtualNodes = VirtualNode.createVirtualNodes(
+            from: document.node,
+            with: document.settings.virtualTransformations,
+            and: newVirtualArcs
+        )
+        let alignedNewVirtualNodes = VirtualNode.align(newVirtualNodes: newVirtualNodes, with: oldVirtualNodes)
+        let shapeNodePatch = ShapeNode.diffChildren(oldVirtualNodes: oldVirtualNodes, newVirtualNodes: alignedNewVirtualNodes, settings: shapeNodeSettings)
+        oldVirtualNodes = alignedNewVirtualNodes
         completion((shapeNodePatch, arcNodePatch))
     }
     
     private func updateNodeDoOnlyCallOnMainThread(shapeNodePatch: (ShapeNode) -> Void, arcNodePatch: (SKNode) -> Void) {
-        updateStatus(description: "Rendering Nodes", progress: 0.6)
-        shapeNodePatch(shapeRootNode)
-        shapeNodesDictionary = Dictionary(
-            uniqueKeysWithValues: shapeRootNode.allDescendants.map({ ($0.id, $0) })
-        )
-        shapeNodesDictionary[shapeRootNode.id] = shapeRootNode
-        let radius = VirtualNode.radius(for: oldVirtualNodes)
-        shapeRootNode.update(radius: radius, settings: shapeNodeSettings)
         updateStatus(description: "Rendering Arcs", progress: 0.8)
         arcNodePatch(arcRootNode)
         arcNodes = []
@@ -181,6 +174,14 @@ extension NodeScene {
                 self.arcNodes.append(arcNode)
             }
         }
+        updateStatus(description: "Rendering Nodes", progress: 0.6)
+        shapeNodePatch(shapeRootNode)
+        shapeNodesDictionary = Dictionary(
+            uniqueKeysWithValues: shapeRootNode.allDescendants.map({ ($0.id, $0) })
+        )
+        shapeNodesDictionary[shapeRootNode.id] = shapeRootNode
+        let radius = VirtualNode.radius(for: oldVirtualNodes)
+        shapeRootNode.update(radius: radius, settings: shapeNodeSettings)
     }
 
 }

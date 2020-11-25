@@ -11,11 +11,15 @@ class ShapeNode: SKShapeNode {
         let colorDictionary: [String: NSColor]
         let physicalRadiusMultiplier: CGFloat
         let visualRadiusMultiplier: CGFloat
+        let ingoingArcsRadiusMultiplier: CGFloat
+        let outgoingArcsRadiusMultiplier: CGFloat
         
-        init(colorDictionary: [String: NSColor] = [:], physicalRadiusMultiplier: CGFloat = 1, visualRadiusMultiplier: CGFloat = 1) {
+        init(colorDictionary: [String: NSColor] = [:], physicalRadiusMultiplier: CGFloat = 1, visualRadiusMultiplier: CGFloat = 1, ingoingArcsRadiusMultiplier: CGFloat = 0, outgoingArcsRadiusMultiplier: CGFloat = 0) {
             self.colorDictionary = colorDictionary
             self.physicalRadiusMultiplier = physicalRadiusMultiplier
             self.visualRadiusMultiplier = visualRadiusMultiplier
+            self.ingoingArcsRadiusMultiplier = ingoingArcsRadiusMultiplier
+            self.outgoingArcsRadiusMultiplier = outgoingArcsRadiusMultiplier
         }
     }
 
@@ -27,30 +31,27 @@ class ShapeNode: SKShapeNode {
         name: String? = nil,
         children: [ShapeNode] = [],
         radius: CGFloat = 1,
+        ingoingArcsWeight: Int = 0,
+        outgoingArcsWeight: Int = 0,
         isShape: Bool = true,
         settings: Settings = Settings()
     ) -> ShapeNode {
         let shapeNode = pool.popLast() ?? ShapeNode()
-
         shapeNode.zPosition = 100
         shapeNode.id = id
         shapeNode.scope = scope
         shapeNode.nodeName = name
         shapeNode.castedChildren = []
         shapeNode.siblingPairs = []
-        shapeNode.physicalRadius = settings.physicalRadiusMultiplier*radius
-        shapeNode.visualRadius = settings.visualRadiusMultiplier*radius
+        shapeNode.ingoingArcsWeight = ingoingArcsWeight
+        shapeNode.outgoingArcsWeight = outgoingArcsWeight
         shapeNode.isShape = isShape
-
         shapeNode.setUp(children)
-
+        shapeNode.update(radius: radius, settings: settings)
         if isShape {
             shapeNode.name = ShapeNode.name
             shapeNode.setUpPhysicsBody()
         }
-
-        shapeNode.update(radius: radius, settings: settings)
-
         return shapeNode
     }
 
@@ -60,6 +61,9 @@ class ShapeNode: SKShapeNode {
     private(set) var castedChildren: [ShapeNode] = []
     private(set) var siblingPairs: [(ShapeNode, ShapeNode)] = []
     private(set) var radius: CGFloat = 0
+    private(set) var ingoingArcsWeight: Int = 0
+    private(set) var outgoingArcsWeight: Int = 0
+    private(set) var resultingRadius: CGFloat = 0
     private(set) var physicalRadius: CGFloat = 0
     private(set) var visualRadius: CGFloat = 0
     private var isShape: Bool = true
@@ -132,9 +136,14 @@ class ShapeNode: SKShapeNode {
     }
 
     func update(radius: CGFloat, settings: Settings) {
+        castedChildren.forEach { castedChild in
+            castedChild.update(radius: castedChild.radius, settings: settings)
+        }
         self.radius = radius
-        self.physicalRadius = settings.physicalRadiusMultiplier*radius
-        self.visualRadius = settings.visualRadiusMultiplier*radius
+        let minimumResultingRadius = castedChildren.map { $0.resultingRadius }.max() ?? 0
+        self.resultingRadius = max(minimumResultingRadius, radius + settings.ingoingArcsRadiusMultiplier*CGFloat(ingoingArcsWeight) + settings.outgoingArcsRadiusMultiplier*CGFloat(outgoingArcsWeight))
+        self.physicalRadius = max(1, settings.physicalRadiusMultiplier*resultingRadius)
+        self.visualRadius = max(1, settings.visualRadiusMultiplier*resultingRadius)
         guard isShape else {
             return
         }
@@ -143,6 +152,11 @@ class ShapeNode: SKShapeNode {
         updateConstraints()
         updatePhysicsBody()
         updateTextNodes()
+    }
+    
+    func update(ingoingArcsWeigt: Int, outgoingArcsWeight: Int) {
+        self.ingoingArcsWeight = ingoingArcsWeigt
+        self.outgoingArcsWeight = outgoingArcsWeight
     }
 
     // MARK: - Private -

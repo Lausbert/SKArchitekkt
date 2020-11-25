@@ -21,7 +21,6 @@ class NodeScene: SKScene {
     
     // all force related values cached for performance reasons; stored here and not in extension for performance reasons
     private(set) var decayPower: CGFloat = 1.0
-    private(set) var radialGravitationForceOnChildrenMultiplier: CGFloat = 1.0
     private(set) var negativeRadialGravitationalForceOnSiblingsPower: CGFloat = 1.0
     private(set) var springForceBetweenConnectedNodesPower: CGFloat = 1.0
     private(set) var arcWidthMultiplier: CGFloat = 1.0
@@ -32,7 +31,6 @@ class NodeScene: SKScene {
     
     func updateForceSettingsValues() {
         decayPower = CGFloat(newSettings.decayPower)
-        radialGravitationForceOnChildrenMultiplier = CGFloat(newSettings.radialGravitationForceOnChildrenMultiplier)
         negativeRadialGravitationalForceOnSiblingsPower = CGFloat(newSettings.negativeRadialGravitationalForceOnSiblingsPower)
         springForceBetweenConnectedNodesPower = CGFloat(newSettings.springForceBetweenConnectedNodesPower)
         arcWidthMultiplier = CGFloat(newSettings.arcWidthMultiplier)

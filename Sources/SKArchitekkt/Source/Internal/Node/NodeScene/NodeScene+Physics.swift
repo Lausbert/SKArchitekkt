@@ -45,6 +45,7 @@ extension NodeScene: SKSceneDelegate {
     private var forceDecayMin: CGFloat { 0.1 }
     private var forceDecayDecay: CGFloat { 0.000773012*exp(0.858245*(2*decayPower+1)) }
     private var velocityDecay: CGFloat { 0.000133437*exp(2.9706*(2*decayPower+1)) }
+    private var radialGravitationalForceOnChildrenConstantMultiplier: CGFloat { 50.0 }
     private var radialGravitationalForceOnChildrenConstantPower: CGFloat { -1.4 }
     private var negativeRadialGravitationalForceOnSiblingsConstantMulitplier: CGFloat { 250.0 }
     private var springForceConstantMultiplier: CGFloat { 500.0 }
@@ -81,7 +82,7 @@ extension NodeScene: SKSceneDelegate {
             let force = computeForceBetween(
                 distanceVector: distanceVector,
                 minimumPhysicalRadius: shapeNode.physicalRadius,
-                multiplier: radialGravitationForceOnChildrenMultiplier*forceDecay*shapeNode.physicalRadius^^2*$0.physicalRadius^^2,
+                multiplier: radialGravitationalForceOnChildrenConstantMultiplier*forceDecay*shapeNode.physicalRadius^^2*$0.physicalRadius^^2,
                 proportionalToDistanceRaisedToPowerOf: radialGravitationalForceOnChildrenConstantPower)
             $0.physicsBody?.applyForce(force)
         }

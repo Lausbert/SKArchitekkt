@@ -6,27 +6,6 @@ import CoreArchitekkt
 extension ShapeNode {
 
     // MARK: - Internal -
-    
-    static func align(newVirtualNodes: [VirtualNode], with oldVirtualNodes: [VirtualNode]) -> [VirtualNode] {
-        var newVirtualNodesDictionary = Dictionary(uniqueKeysWithValues: newVirtualNodes.map {($0.id, $0)} )
-        var newVirtualNodes: [VirtualNode] = []
-        for oldVirtualNode in oldVirtualNodes {
-            if let newVirtualNode = newVirtualNodesDictionary.removeValue(forKey: oldVirtualNode.id) {
-                let children = align(newVirtualNodes: newVirtualNode.children, with: oldVirtualNode.children)
-                newVirtualNodes.append(
-                    VirtualNode(
-                        id: newVirtualNode.id,
-                        scope: newVirtualNode.scope,
-                        name: newVirtualNode.name,
-                        children: children,
-                        radius: newVirtualNode.radius
-                    )
-                )
-            }
-        }
-        newVirtualNodes.append(contentsOf: newVirtualNodesDictionary.values)
-        return newVirtualNodes
-    }
 
     static func diffChildren(oldVirtualNodes: [VirtualNode], newVirtualNodes: [VirtualNode], settings: Settings) -> (ShapeNode) -> Void {
 
@@ -76,6 +55,8 @@ extension ShapeNode {
             name: node.name,
             children: children,
             radius: node.radius,
+            ingoingArcsWeight: node.ingoingArcsWeight,
+            outgoingArcsWeight: node.outgoingArcsWeight,
             settings: settings
         )
     }
@@ -108,9 +89,12 @@ extension ShapeNode {
     }
 
     private static func diffAttributes(oldVirtualNode: VirtualNode, newVirtualNode: VirtualNode, settings: Settings) -> (ShapeNode) -> Void { { oldShapeNode in
-            if oldVirtualNode.radius != newVirtualNode.radius {
-                oldShapeNode.update(radius: newVirtualNode.radius, settings: settings)
-            }
+        if oldVirtualNode.radius != newVirtualNode.radius {
+            oldShapeNode.update(radius: newVirtualNode.radius, settings: settings)
+        }
+        if oldVirtualNode.ingoingArcsWeight != newVirtualNode.ingoingArcsWeight || oldVirtualNode.outgoingArcsWeight != newVirtualNode.outgoingArcsWeight {
+            oldShapeNode.update(ingoingArcsWeigt: newVirtualNode.ingoingArcsWeight, outgoingArcsWeight: newVirtualNode.outgoingArcsWeight)
+        }
         }
     }
 
