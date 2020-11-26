@@ -141,7 +141,7 @@ class ShapeNode: SKShapeNode {
         }
         self.radius = radius
         let minimumResultingRadius = castedChildren.map { $0.resultingRadius }.max() ?? 0
-        self.resultingRadius = max(minimumResultingRadius, radius + settings.ingoingArcsRadiusMultiplier*CGFloat(ingoingArcsWeight) + settings.outgoingArcsRadiusMultiplier*CGFloat(outgoingArcsWeight))
+        self.resultingRadius = max(minimumResultingRadius, radius + settings.ingoingArcsRadiusMultiplier*sqrt(CGFloat(ingoingArcsWeight)) + settings.outgoingArcsRadiusMultiplier*sqrt(CGFloat(outgoingArcsWeight)))
         self.physicalRadius = max(1, settings.physicalRadiusMultiplier*resultingRadius)
         self.visualRadius = max(1, settings.visualRadiusMultiplier*resultingRadius)
         guard isShape else {
