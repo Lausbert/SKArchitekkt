@@ -149,14 +149,14 @@ extension NodeScene {
         updateStatus(description: "Updating Arcs", progress: 0.4)
         let newVirtualArcs = VirtualArc.createVirtualArcs(
             from: document.node,
-            with: document.settings.virtualTransformations
+            with: document.firstOrdervirtualTransformations
         )
         let arcNodePatch = ArcNode.diffChildren(oldVirtualArcs: oldVirtualArcs, newVirtualArcs: newVirtualArcs)
         oldVirtualArcs = newVirtualArcs
         updateStatus(description: "Updating Nodes", progress: 0.2)
         let newVirtualNodes = VirtualNode.createVirtualNodes(
             from: document.node,
-            with: document.settings.virtualTransformations,
+            with: document.firstOrdervirtualTransformations,
             and: newVirtualArcs
         )
         let alignedNewVirtualNodes = VirtualNode.align(newVirtualNodes: newVirtualNodes, with: oldVirtualNodes)
