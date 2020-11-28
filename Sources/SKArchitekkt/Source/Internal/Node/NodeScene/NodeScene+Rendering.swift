@@ -148,14 +148,14 @@ extension NodeScene {
     private func updateNodeDoNotCallOnMainThread(completion: (((ShapeNode) -> Void, (SKNode) -> Void)) -> Void) {
         updateStatus(description: "Calculating Transformations", progress: 0.0)
         let firstOrderVirtualTransformations = document.firstOrderVirtualTransformations
-        updateStatus(description: "Updating Arcs", progress: 0.2)
+        updateStatus(description: "Updating Arcs", progress: 0.25)
         let newVirtualArcs = VirtualArc.createVirtualArcs(
             from: document.node,
             with: firstOrderVirtualTransformations
         )
         let arcNodePatch = ArcNode.diffChildren(oldVirtualArcs: oldVirtualArcs, newVirtualArcs: newVirtualArcs)
         oldVirtualArcs = newVirtualArcs
-        updateStatus(description: "Updating Nodes", progress: 0.4)
+        updateStatus(description: "Updating Nodes", progress: 0.5)
         let newVirtualNodes = VirtualNode.createVirtualNodes(
             from: document.node,
             with: firstOrderVirtualTransformations,
@@ -168,7 +168,7 @@ extension NodeScene {
     }
     
     private func updateNodeDoOnlyCallOnMainThread(shapeNodePatch: (ShapeNode) -> Void, arcNodePatch: (SKNode) -> Void) {
-        updateStatus(description: "Rendering Arcs", progress: 0.6)
+        updateStatus(description: "Rendering", progress: 0.75)
         arcNodePatch(arcRootNode)
         arcNodes = []
         arcRootNode.enumerateChildNodes(withName: ArcNode.name) { (node, _) in
@@ -176,7 +176,6 @@ extension NodeScene {
                 self.arcNodes.append(arcNode)
             }
         }
-        updateStatus(description: "Rendering Nodes", progress: 0.8)
         shapeNodePatch(shapeRootNode)
         shapeNodesDictionary = Dictionary(
             uniqueKeysWithValues: shapeRootNode.allDescendants.map({ ($0.id, $0) })
