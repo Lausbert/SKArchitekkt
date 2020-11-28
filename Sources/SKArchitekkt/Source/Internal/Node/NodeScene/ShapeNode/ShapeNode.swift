@@ -8,14 +8,12 @@ class ShapeNode: SKShapeNode {
     // MARK: - Internal -
     
     struct Settings {
-        let colorDictionary: [String: NSColor]
         let physicalRadiusMultiplier: CGFloat
         let visualRadiusMultiplier: CGFloat
         let ingoingArcsRadiusMultiplier: CGFloat
         let outgoingArcsRadiusMultiplier: CGFloat
         
-        init(colorDictionary: [String: NSColor] = [:], physicalRadiusMultiplier: CGFloat = 1, visualRadiusMultiplier: CGFloat = 1, ingoingArcsRadiusMultiplier: CGFloat = 0, outgoingArcsRadiusMultiplier: CGFloat = 0) {
-            self.colorDictionary = colorDictionary
+        init(physicalRadiusMultiplier: CGFloat = 1, visualRadiusMultiplier: CGFloat = 1, ingoingArcsRadiusMultiplier: CGFloat = 0, outgoingArcsRadiusMultiplier: CGFloat = 0) {
             self.physicalRadiusMultiplier = physicalRadiusMultiplier
             self.visualRadiusMultiplier = visualRadiusMultiplier
             self.ingoingArcsRadiusMultiplier = ingoingArcsRadiusMultiplier
@@ -147,7 +145,6 @@ class ShapeNode: SKShapeNode {
         guard isShape else {
             return
         }
-        updateColor(settings: settings)
         updatePath()
         updateConstraints()
         updatePhysicsBody()
@@ -207,8 +204,8 @@ class ShapeNode: SKShapeNode {
         }
     }
     
-    private func updateColor(settings: Settings) {
-        let color = settings.colorDictionary[nodeName] ?? settings.colorDictionary[scope] ?? .gray
+    private func update(color: NSColor?) {
+        let color = color ?? .gray
         fillColor = castedChildren.isEmpty ? color.withAlphaComponent(0.8) : color.withAlphaComponent(0.1)
         strokeColor = color
         lineWidth = 8
