@@ -112,6 +112,8 @@ struct SettingsView: View {
                     case .unfoldNode, .hideNode, .flattenNode, .unfoldScope, .hideScope, .flattenScope:
                         Text(settingsItem.name)
                             .font(.subheadline).padding(6)
+                    case .colorNode, .colorScope:
+                        EmptyView()
                     case .unfoldNodes, .hideNodes, .flattenNodes, .unfoldScopes, .hideScopes, .flattenScopes:
                         TextField("Regex", text: getRegexBinding(), onEditingChanged: { isEditing in
                             document.isEditing = isEditing
@@ -119,6 +121,8 @@ struct SettingsView: View {
                             .textFieldStyle(PlainTextFieldStyle())
                             .multilineTextAlignment(.trailing)
                             .font(.subheadline).padding(6)
+                    case .colorNodes, .colorScopes:
+                        EmptyView()
                     }
                     Button {
                         settingsGroup.remove(settingsItem: settingsItem)
