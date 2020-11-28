@@ -80,12 +80,7 @@ struct SettingsView: View {
                     }
                 }
                 .padding(EdgeInsets(top: 6, leading: 6, bottom: 6, trailing: 16))
-                if settingsGroup.settingsItems.isEmpty {
-                    Text("Empty")
-                        .frame(maxWidth: .infinity, alignment: .center)
-                        .font(.footnote)
-                        .foregroundColor(.gray)
-                } else {
+                if !settingsGroup.settingsItems.isEmpty {
                     ForEach(settingsGroup.settingsItems.indices, id: \.self) { index in
                         SettingsItemView(document: $document, settingsGroup: $settingsGroup, settingsItem: $settingsGroup.settingsItems[index])
                     }
