@@ -10,6 +10,8 @@ extension NodeScene {
     func setUpMouseInteraction() {
         let camera = SKCameraNode()
         self.camera = camera
+        camera.xScale = 20
+        camera.yScale = 20
         addChild(camera)
         movedNode = nil
         frozenNodes = []
