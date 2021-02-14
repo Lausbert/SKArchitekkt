@@ -19,7 +19,16 @@ private var document: Document {
     let data = nodeString.data(using: String.Encoding.utf8)!
     let node = try! JSONDecoder().decode(Node.self, from: data)
     var document = Document()
-    document.set(nodeRequest: nodeRequest, node: node, warnings: [warning, warning])
+    document.set(
+        nodeRequest: nodeRequest,
+        node: node,
+        virtualTransformations: [
+            .flattenScope(scope: "root"),
+            .flattenScope(scope: "module"),
+            .flattenScope(scope: "source_file")
+        ],
+        warnings: [warning, warning]
+    )
     return document
 }
 
@@ -3236,51 +3245,134 @@ private let nodeString = """
 """
 
 private let warning = """
-AST for SnapKit has invalid format: ASTScopeImpl: resorting to startingScope hack, file: /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintLayoutGuide.swift
-because location is within an inactive clause
-'NSLayoutGuide' loc: /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintLayoutGuide.swift:36:46
-starting context:
-0x106864e70 Module name=SnapKit
-0x10c060f90 FileUnit file="/Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintLayoutGuide.swift"
-  0x10c061f08 TypeAliasDecl name=ConstraintLayoutGuide
+AST for SnapKit has invalid format: (source_file "/Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintDirectionalInsets.swift"
+  (if_config_decl range=[/Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintDirectionalInsets.swift:24:1 - line:28:1]
+    #if: active
+      (binary_expr type='<null>'
+        (unresolved_decl_ref_expr type='<null>' name=|| function_ref=unapplied)
+        (tuple_expr implicit type='<null>'
+          (call_expr type='<null>' arg_labels=_:
+            (unresolved_decl_ref_expr type='<null>' name=os function_ref=unapplied)
+            (paren_expr type='<null>'
+              (unresolved_decl_ref_expr type='<null>' name=iOS function_ref=unapplied)))
+          (call_expr type='<null>' arg_labels=_:
+            (unresolved_decl_ref_expr type='<null>' name=os function_ref=unapplied)
+            (paren_expr type='<null>'
+              (unresolved_decl_ref_expr type='<null>' name=tvOS function_ref=unapplied)))))
+      (elements
+        (import_decl range=[/Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintDirectionalInsets.swift:25:5 - line:25:12] 'UIKit'))
+    #else:
+      (elements
+        (import_decl range=[/Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintDirectionalInsets.swift:27:5 - line:27:12] 'AppKit')))
+  (import_decl range=[/Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintDirectionalInsets.swift:25:5 - line:25:12] 'UIKit')
+  (if_config_decl range=[/Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintDirectionalInsets.swift:31:1 - line:34:1]
+    #if: active
+      (binary_expr type='<null>'
+        (unresolved_decl_ref_expr type='<null>' name=|| function_ref=unapplied)
+        (tuple_expr implicit type='<null>'
+          (call_expr type='<null>' arg_labels=_:
+            (unresolved_decl_ref_expr type='<null>' name=os function_ref=unapplied)
+            (paren_expr type='<null>'
+              (unresolved_decl_ref_expr type='<null>' name=iOS function_ref=unapplied)))
+          (call_expr type='<null>' arg_labels=_:
+            (unresolved_decl_ref_expr type='<null>' name=os function_ref=unapplied)
+            (paren_expr type='<null>'
+              (unresolved_decl_ref_expr type='<null>' name=tvOS function_ref=unapplied)))))
+      (elements
+        (typealias range=[/Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintDirectionalInsets.swift:33:12 - line:33:52] "ConstraintDirectionalInsets" interface type='ConstraintDirectionalInsets.Type' access=public type='NSDirectionalEdgeInsets')))
+  (typealias range=[/Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintDirectionalInsets.swift:33:12 - line:33:52] "ConstraintDirectionalInsets" interface type='ConstraintDirectionalInsets.Type' access=public type='NSDirectionalEdgeInsets'))(source_file "/Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintDirectionalInsetTarget.swift"
+  (if_config_decl range=[/Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintDirectionalInsetTarget.swift:24:1 - line:28:1]
+    #if: active
+      (binary_expr type='<null>'
+        (unresolved_decl_ref_expr type='<null>' name=|| function_ref=unapplied)
+        (tuple_expr implicit type='<null>'
+          (call_expr type='<null>' arg_labels=_:
+            (unresolved_decl_ref_expr type='<null>' name=os function_ref=unapplied)
+            (paren_expr type='<null>'
+              (unresolved_decl_ref_expr type='<null>' name=iOS function_ref=unapplied)))
+          (call_expr type='<null>' arg_labels=_:
+            (unresolved_decl_ref_expr type='<null>' name=os function_ref=unapplied)
+            (paren_expr type='<null>'
+              (unresolved_decl_ref_expr type='<null>' name=tvOS function_ref=unapplied)))))
+      (elements
+        (import_decl range=[/Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintDirectionalInsetTarget.swift:25:1 - line:25:8] 'UIKit'))
+    #else:
+      (elements
+        (import_decl range=[/Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintDirectionalInsetTarget.swift:27:1 - line:27:8] 'AppKit')))
+  (import_decl range=[/Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintDirectionalInsetTarget.swift:25:1 - line:25:8] 'UIKit')
+  (if_config_decl range=[/Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintDirectionalInsetTarget.swift:30:1 - line:49:1]
+    #if: active
+      (binary_expr type='<null>'
+        (unresolved_decl_ref_expr type='<null>' name=|| function_ref=unapplied)
+        (tuple_expr implicit type='<null>'
+          (call_expr type='<null>' arg_labels=_:
+            (unresolved_decl_ref_expr type='<null>' name=os function_ref=unapplied)
+            (paren_expr type='<null>'
+              (unresolved_decl_ref_expr type='<null>' name=iOS function_ref=unapplied)))
+          (call_expr type='<null>' arg_labels=_:
+            (unresolved_decl_ref_expr type='<null>' name=os function_ref=unapplied)
+            (paren_expr type='<null>'
+              (unresolved_decl_ref_expr type='<null>' name=tvOS function_ref=unapplied)))))
+      (elements
+        (protocol range=[/Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintDirectionalInsetTarget.swift:31:8 - line:32:1] "ConstraintDirectionalInsetTarget" <Self : ConstraintDirectionalInsetTarget> interface type='ConstraintDirectionalInsetTarget.Protocol' access=public non-resilient requirement signature=<Self where Self : ConstraintConstantTarget> inherits: ConstraintConstantTarget)
+        (extension_decl range=[/Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintDirectionalInsetTarget.swift:35:1 - line:36:1] ConstraintDirectionalInsets inherits: ConstraintDirectionalInsetTarget)
+        (extension_decl range=[/Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintDirectionalInsetTarget.swift:38:1 - line:48:1] ConstraintDirectionalInsetTarget
+          (pattern_binding_decl range=[/Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintDirectionalInsetTarget.swift:41:12 - line:47:3]
+            (pattern_typed type='ConstraintDirectionalInsets'
+              (pattern_named type='ConstraintDirectionalInsets' 'constraintDirectionalInsetTargetValue')
+              (type_ident
+                (component id='ConstraintDirectionalInsets' bind=SnapKit.(file).ConstraintDirectionalInsets@/Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintDirectionalInsets.swift:33:22))))
+          (var_decl range=[/Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintDirectionalInsetTarget.swift:41:16 - line:41:16] "constraintDirectionalInsetTargetValue" type='ConstraintDirectionalInsets' interface type='ConstraintDirectionalInsets' access=internal readImpl=getter immutable
+            (accessor_decl range=[/Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintDirectionalInsetTarget.swift:41:83 - line:47:3] 'anonname=0x11000f820' interface type='<Self where Self : ConstraintDirectionalInsetTarget> (Self) -> () -> ConstraintDirectionalInsets' access=internal captures=(<generic> ) get_for=constraintDirectionalInsetTargetValue
+              (parameter "self" type='Self' interface type='Self')
+              (parameter_list)
+              (brace_stmt range=[/Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintDirectionalInsetTarget.swift:41:83 - line:47:3]
+                (if_stmt range=[/Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintDirectionalInsetTarget.swift:42:5 - line:46:5]
+                  (pattern
+                    (pattern_optional_some implicit type='ConstraintDirectionalInsets?'
+                      (pattern_let implicit type='ConstraintDirectionalInsets'
+                        (pattern_named type='ConstraintDirectionalInsets' 'amount')))
+                    (conditional_checked_cast_expr type='ConstraintDirectionalInsets?' location=/Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintDirectionalInsetTarget.swift:42:26 range=[/Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintDirectionalInsetTarget.swift:42:21 - line:42:30] value_cast writtenType='ConstraintDirectionalInsets'
+                      (declref_expr type='Self' location=/Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintDirectionalInsetTarget.swift:42:21 range=[/Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintDirectionalInsetTarget.swift:42:21 - line:42:21] decl=SnapKit.(file).ConstraintDirectionalInsetTarget extension.<anonymous>.self@/Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintDirectionalInsetTarget.swift:41:83 function_ref=unapplied)))
+                  (brace_stmt range=[/Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintDirectionalInsetTarget.swift:42:58 - line:44:5]
+                    (return_stmt range=[/Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintDirectionalInsetTarget.swift:43:7 - line:43:14]
+  
 
+[...]
 
-<unknown>:0: error: fatal error encountered during compilation; please file a bug report with your project and the crash log
-<unknown>:0: note: A lookup was attempted into an inactive clause
-Stack dump:
-0.    Program arguments: /Applications/Xcode-beta.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swift -frontend -dump-ast /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/Constraint.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintAttributes.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintConfig.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintConstantTarget.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintDescription.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintDirectionalInsets.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintDirectionalInsetTarget.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintDSL.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintInsets.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintInsetTarget.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintItem.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintLayoutGuide+Extensions.swift -primary-file /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintLayoutGuide.swift -primary-file /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintLayoutGuideDSL.swift -primary-file /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintLayoutSupport.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintLayoutSupportDSL.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintMaker.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintMakerEditable.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintMakerExtendable.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintMakerFinalizable.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintMakerPriortizable.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintMakerRelatable.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintMultiplierTarget.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintOffsetTarget.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintPriority.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintPriorityTarget.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintRelatableTarget.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintRelation.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintView+Extensions.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintView.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintViewDSL.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/Debugging.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/LayoutConstraint.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/LayoutConstraintItem.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/Typealiases.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/UILayoutSupport+Extensions.swift -serialize-diagnostics-path /Users/stephanlerner/Library/Developer/Xcode/DerivedData/SnapKitCocoaPods-afuzikomyijqoohihqtyxxhpwkrd/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/SnapKit.build/Objects-normal/arm64/ConstraintLayoutGuide.dia -serialize-diagnostics-path /Users/stephanlerner/Library/Developer/Xcode/DerivedData/SnapKitCocoaPods-afuzikomyijqoohihqtyxxhpwkrd/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/SnapKit.build/Objects-normal/arm64/ConstraintLayoutGuideDSL.dia -serialize-diagnostics-path /Users/stephanlerner/Library/Developer/Xcode/DerivedData/SnapKitCocoaPods-afuzikomyijqoohihqtyxxhpwkrd/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/SnapKit.build/Objects-normal/arm64/ConstraintLayoutSupport.dia -target arm64-apple-ios10.0 -Xllvm -aarch64-use-tbi -enable-objc-interop -sdk /Applications/Xcode-beta.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.2.sdk -I /Users/stephanlerner/Library/Developer/Xcode/DerivedData/SnapKitCocoaPods-afuzikomyijqoohihqtyxxhpwkrd/Build/Products/Debug-iphoneos/SnapKit -F /Users/stephanlerner/Library/Developer/Xcode/DerivedData/SnapKitCocoaPods-afuzikomyijqoohihqtyxxhpwkrd/Build/Products/Debug-iphoneos/SnapKit -enable-testing -g -import-underlying-module -module-cache-path /Users/stephanlerner/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -swift-version 5 -enforce-exclusivity=checked -Onone -D DEBUG -D COCOAPODS -serialize-debugging-options -Xcc -working-directory -Xcc /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods -enable-anonymous-context-mangled-names -Xcc -I/Users/stephanlerner/Library/Developer/Xcode/DerivedData/SnapKitCocoaPods-afuzikomyijqoohihqtyxxhpwkrd/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/SnapKit.build/swift-overrides.hmap -Xcc -iquote -Xcc /Users/stephanlerner/Library/Developer/Xcode/DerivedData/SnapKitCocoaPods-afuzikomyijqoohihqtyxxhpwkrd/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/SnapKit.build/SnapKit-generated-files.hmap -Xcc -I/Users/stephanlerner/Library/Developer/Xcode/DerivedData/SnapKitCocoaPods-afuzikomyijqoohihqtyxxhpwkrd/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/SnapKit.build/SnapKit-own-target-headers.hmap -Xcc -I/Users/stephanlerner/Library/Developer/Xcode/DerivedData/SnapKitCocoaPods-afuzikomyijqoohihqtyxxhpwkrd/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/SnapKit.build/SnapKit-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /Users/stephanlerner/Library/Developer/Xcode/DerivedData/SnapKitCocoaPods-afuzikomyijqoohihqtyxxhpwkrd/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/SnapKit.build/all-product-headers.yaml -Xcc -iquote -Xcc /Users/stephanlerner/Library/Developer/Xcode/DerivedData/SnapKitCocoaPods-afuzikomyijqoohihqtyxxhpwkrd/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/SnapKit.build/SnapKit-project-headers.hmap -Xcc -I/Users/stephanlerner/Library/Developer/Xcode/DerivedData/SnapKitCocoaPods-afuzikomyijqoohihqtyxxhpwkrd/Build/Products/Debug-iphoneos/SnapKit/include -Xcc -I/Users/stephanlerner/Library/Developer/Xcode/DerivedData/SnapKitCocoaPods-afuzikomyijqoohihqtyxxhpwkrd/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/SnapKit.build/DerivedSources-normal/arm64 -Xcc -I/Users/stephanlerner/Library/Developer/Xcode/DerivedData/SnapKitCocoaPods-afuzikomyijqoohihqtyxxhpwkrd/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/SnapKit.build/DerivedSources/arm64 -Xcc -I/Users/stephanlerner/Library/Developer/Xcode/DerivedData/SnapKitCocoaPods-afuzikomyijqoohihqtyxxhpwkrd/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/SnapKit.build/DerivedSources -Xcc -DPOD_CONFIGURATION_DEBUG=1 -Xcc -DDEBUG=1 -Xcc -DCOCOAPODS=1 -Xcc -ivfsoverlay -Xcc /Users/stephanlerner/Library/Developer/Xcode/DerivedData/SnapKitCocoaPods-afuzikomyijqoohihqtyxxhpwkrd/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/SnapKit.build/unextended-module-overlay.yaml -target-sdk-version 14.2 -module-name SnapKit -o - -o - -o - -index-store-path /Users/stephanlerner/Library/Developer/Xcode/DerivedData/SnapKitCocoaPods-afuzikomyijqoohihqtyxxhpwkrd/Index/DataStore -index-system-modules
-1.    Apple Swift version 5.3.1 (swiftlang-1200.0.41 clang-1200.0.32.8)
-2.    While evaluating request UnderlyingTypeRequest(SnapKit.(file).ConstraintLayoutGuide@/Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintLayoutGuide.swift:36:22)
-3.    While resolving type NSLayoutGuide at [/Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintLayoutGuide.swift:36:46 - line:36:46] RangeText=""
-4.    While evaluating request UnqualifiedLookupRequest(looking up 'NSLayoutGuide' from 0x10c061f08 TypeAliasDecl name=ConstraintLayoutGuide with options { TypeLookup })
-0  swift                    0x000000010489bc15 llvm::sys::PrintStackTrace(llvm::raw_ostream&) + 37
-1  swift                    0x000000010489c332 SignalHandler(int) + 610
-2  libsystem_platform.dylib 0x00007fff20414d7d _sigtramp + 29
-3  libsystem_platform.dylib 0x00007ffeefbfae48 _sigtramp + 18446744072895750376
-4  libsystem_c.dylib        0x00007fff20322720 abort + 120
-5  swift                    0x00000001000a47a1 swift::performFrontend(llvm::ArrayRef<char const*>, char const*, void*, swift::FrontendObserver*)::$_1::__invoke(void*, std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> > const&, bool) + 1137
-6  swift                    0x00000001047ff1a7 llvm::report_fatal_error(llvm::Twine const&, bool) + 279
-7  swift                    0x00000001047ff082 llvm::report_fatal_error(char const*, bool) + 50
-8  swift                    0x0000000101246f12 swift::ast_scope::ASTScopeImpl::findStartingScopeForLookup(swift::SourceFile*, swift::DeclNameRef, swift::SourceLoc, swift::DeclContext const*) + 1810
-9  swift                    0x00000001013dd717 (anonymous namespace)::UnqualifiedLookupFactory::lookInASTScopes() + 263
-10 swift                    0x00000001013dc8e1 swift::UnqualifiedLookupRequest::evaluate(swift::Evaluator&, swift::UnqualifiedLookupDescriptor) const + 1265
-11 swift                    0x000000010139a3f3 swift::SimpleRequest<swift::UnqualifiedLookupRequest, swift::LookupResult (swift::UnqualifiedLookupDescriptor), (swift::RequestFlags)25>::evaluateRequest(swift::UnqualifiedLookupRequest const&, swift::Evaluator&) + 35
-12 swift                    0x00000001000e2573 llvm::Expected<swift::UnqualifiedLookupRequest::OutputType> swift::Evaluator::getResultUncached<swift::UnqualifiedLookupRequest>(swift::UnqualifiedLookupRequest const&) + 755
-13 swift                    0x00000001000e20ee swift::UnqualifiedLookupRequest::OutputType swift::evaluateOrDefault<swift::UnqualifiedLookupRequest>(swift::Evaluator&, swift::UnqualifiedLookupRequest, swift::UnqualifiedLookupRequest::OutputType) + 206
-14 swift                    0x0000000100f95451 swift::TypeChecker::lookupUnqualifiedType(swift::DeclContext*, swift::DeclNameRef, swift::SourceLoc, swift::OptionSet<swift::NameLookupFlags, unsigned int>) + 225
-15 swift                    0x000000010101ff6a resolveIdentTypeComponent(swift::TypeResolution, llvm::ArrayRef<swift::ComponentIdentTypeRepr*>, swift::TypeResolutionOptions) + 698
-16 swift                    0x000000010101f9bf swift::TypeChecker::resolveIdentifierType(swift::TypeResolution, swift::IdentTypeRepr*, swift::TypeResolutionOptions) + 191
-17 swift                    0x000000010102282f (anonymous namespace)::TypeResolver::resolveType(swift::TypeRepr*, swift::TypeResolutionOptions) + 271
-18 swift                    0x00000001010224e6 swift::TypeResolution::resolveType(swift::TypeRepr*, swift::TypeResolutionOptions) + 566
-19 swift                    0x0000000100f31a66 swift::UnderlyingTypeRequest::evaluate(swift::Evaluator&, swift::TypeAliasDecl*) const + 870
-20 swift                    0x0000000101296bda swift::UnderlyingTypeRequest::OutputType swift::evaluateOrDefault<swift::UnderlyingTypeRequest>(swift::Evaluator&, swift::UnderlyingTypeRequest, swift::UnderlyingTypeRequest::OutputType) + 1242
-21 swift                    0x00000001011e44bc swift::ASTVisitor<(anonymous namespace)::PrintDecl, void, void, void, void, void, void>::visit(swift::Decl*) + 7532
-22 swift                    0x00000001011e38b9 swift::ASTVisitor<(anonymous namespace)::PrintDecl, void, void, void, void, void, void>::visit(swift::Decl*) + 4457
-23 swift                    0x00000001011e72f2 swift::SourceFile::dump(llvm::raw_ostream&) const + 658
-24 swift                    0x00000001000a049e swift::performFrontend(llvm::ArrayRef<char const*>, char const*, void*, swift::FrontendObserver*) + 8718
-25 swift                    0x00000001000242c1 main + 1265
-26 libdyld.dylib            0x00007fff203eb591 start + 1
-27 libdyld.dylib            0x000000000000007f start + 18446603339975183087
+ource/ConstraintMakerRelatable.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintMultiplierTarget.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintOffsetTarget.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintPriority.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintPriorityTarget.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintRelatableTarget.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintRelation.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintView+Extensions.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintView.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintViewDSL.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/Debugging.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/LayoutConstraint.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/LayoutConstraintItem.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/Typealiases.swift /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/UILayoutSupport+Extensions.swift -supplementary-output-file-map /var/folders/58/r5mrf65d7rjgb04ll1_fgk2h0000gn/T/supplementaryOutputs-27249c -target arm64-apple-ios10.0 -Xllvm -aarch64-use-tbi -enable-objc-interop -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.4.sdk -I /Users/stephanlerner/Library/Developer/Xcode/DerivedData/SnapKitCocoaPods-afuzikomyijqoohihqtyxxhpwkrd/Build/Products/Debug-iphoneos/SnapKit -F /Users/stephanlerner/Library/Developer/Xcode/DerivedData/SnapKitCocoaPods-afuzikomyijqoohihqtyxxhpwkrd/Build/Products/Debug-iphoneos/SnapKit -enable-testing -g -import-underlying-module -module-cache-path /Users/stephanlerner/Library/Developer/Xcode/DerivedData/ModuleCache.noindex -swift-version 5 -enforce-exclusivity=checked -Onone -D DEBUG -D COCOAPODS -serialize-debugging-options -Xcc -working-directory -Xcc /Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods -enable-anonymous-context-mangled-names -Xcc -I/Users/stephanlerner/Library/Developer/Xcode/DerivedData/SnapKitCocoaPods-afuzikomyijqoohihqtyxxhpwkrd/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/SnapKit.build/swift-overrides.hmap -Xcc -iquote -Xcc /Users/stephanlerner/Library/Developer/Xcode/DerivedData/SnapKitCocoaPods-afuzikomyijqoohihqtyxxhpwkrd/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/SnapKit.build/SnapKit-generated-files.hmap -Xcc -I/Users/stephanlerner/Library/Developer/Xcode/DerivedData/SnapKitCocoaPods-afuzikomyijqoohihqtyxxhpwkrd/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/SnapKit.build/SnapKit-own-target-headers.hmap -Xcc -I/Users/stephanlerner/Library/Developer/Xcode/DerivedData/SnapKitCocoaPods-afuzikomyijqoohihqtyxxhpwkrd/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/SnapKit.build/SnapKit-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /Users/stephanlerner/Library/Developer/Xcode/DerivedData/SnapKitCocoaPods-afuzikomyijqoohihqtyxxhpwkrd/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/SnapKit.build/all-product-headers.yaml -Xcc -iquote -Xcc /Users/stephanlerner/Library/Developer/Xcode/DerivedData/SnapKitCocoaPods-afuzikomyijqoohihqtyxxhpwkrd/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/SnapKit.build/SnapKit-project-headers.hmap -Xcc -I/Users/stephanlerner/Library/Developer/Xcode/DerivedData/SnapKitCocoaPods-afuzikomyijqoohihqtyxxhpwkrd/Build/Products/Debug-iphoneos/SnapKit/include -Xcc -I/Users/stephanlerner/Library/Developer/Xcode/DerivedData/SnapKitCocoaPods-afuzikomyijqoohihqtyxxhpwkrd/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/SnapKit.build/DerivedSources-normal/arm64 -Xcc -I/Users/stephanlerner/Library/Developer/Xcode/DerivedData/SnapKitCocoaPods-afuzikomyijqoohihqtyxxhpwkrd/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/SnapKit.build/DerivedSources/arm64 -Xcc -I/Users/stephanlerner/Library/Developer/Xcode/DerivedData/SnapKitCocoaPods-afuzikomyijqoohihqtyxxhpwkrd/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/SnapKit.build/DerivedSources -Xcc -DPOD_CONFIGURATION_DEBUG=1 -Xcc -DDEBUG=1 -Xcc -DCOCOAPODS=1 -Xcc -ivfsoverlay -Xcc /Users/stephanlerner/Library/Developer/Xcode/DerivedData/SnapKitCocoaPods-afuzikomyijqoohihqtyxxhpwkrd/Build/Intermediates.noindex/Pods.build/Debug-iphoneos/SnapKit.build/unextended-module-overlay.yaml -target-sdk-version 14.4 -module-name SnapKit -o - -o - -o - -o - -o - -index-store-path /Users/stephanlerner/Library/Developer/Xcode/DerivedData/SnapKitCocoaPods-afuzikomyijqoohihqtyxxhpwkrd/Index/DataStore -index-system-modules
+1.    Apple Swift version 5.3.2 (swiftlang-1200.0.45 clang-1200.0.32.28)
+2.    While evaluating request UnderlyingTypeRequest(SnapKit.(file).ConstraintInsets@/Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintInsets.swift:34:22)
+3.    While resolving type NSEdgeInsets at [/Users/stephanlerner/Desktop/SwiftArchitekkt/Resources/SnapKitCocoaPods/Pods/SnapKit/Source/ConstraintInsets.swift:34:41 - line:34:41] RangeText=""
+4.    While evaluating request UnqualifiedLookupRequest(looking up 'NSEdgeInsets' from 0x11001ec70 TypeAliasDecl name=ConstraintInsets with options { TypeLookup })
+0  swift                    0x0000000103b63bf0 llvm::sys::PrintStackTrace(llvm::raw_ostream&) + 52
+1  swift                    0x0000000103b62d48 llvm::sys::RunSignalHandlers() + 128
+2  swift                    0x0000000103b641ac SignalHandler(int) + 160
+3  libsystem_platform.dylib 0x00000001906bdc44 _sigtramp + 56
+4  libsystem_pthread.dylib  0x0000000190675c24 pthread_kill + 292
+5  libsystem_c.dylib        0x00000001905bd864 abort + 104
+6  swift                    0x0000000100082610 std::__1::__throw_length_error(char const*) + 0
+7  swift                    0x0000000103aeb7c8 llvm::report_fatal_error(llvm::Twine const&, bool) + 220
+8  swift                    0x0000000103aeb6ec llvm::report_fatal_error(llvm::Twine const&, bool) + 0
+9  swift                    0x0000000100f2af70 swift::ast_scope::ASTScopeImpl::lookup(llvm::SmallVectorImpl<swift::ast_scope::ASTScopeImpl const*>&, swift::NullablePtr<swift::ast_scope::ASTScopeImpl const>, swift::NullablePtr<swift::GenericParamList const>, swift::namelookup::AbstractASTScopeDeclConsumer&) const + 0
+10 swift                    0x00000001010ae64c (anonymous namespace)::UnqualifiedLookupFactory::lookInASTScopes() + 264
+11 swift                    0x00000001010ad7b8 swift::UnqualifiedLookupRequest::evaluate(swift::Evaluator&, swift::UnqualifiedLookupDescriptor) const + 1052
+12 swift                    0x000000010106d498 swift::SimpleRequest<swift::UnqualifiedLookupRequest, swift::LookupResult (swift::UnqualifiedLookupDescriptor), (swift::RequestFlags)25>::evaluateRequest(swift::UnqualifiedLookupRequest const&, swift::Evaluator&) + 28
+13 swift                    0x00000001000b87e8 llvm::Expected<swift::UnqualifiedLookupRequest::OutputType> swift::Evaluator::getResultUncached<swift::UnqualifiedLookupRequest>(swift::UnqualifiedLookupRequest const&) + 576
+14 swift                    0x00000001000b8428 swift::UnqualifiedLookupRequest::OutputType swift::evaluateOrDefault<swift::UnqualifiedLookupRequest>(swift::Evaluator&, swift::UnqualifiedLookupRequest, swift::UnqualifiedLookupRequest::OutputType) + 212
+15 swift                    0x0000000100cea78c swift::TypeChecker::lookupUnqualifiedType(swift::DeclContext*, swift::DeclNameRef, swift::SourceLoc, swift::OptionSet<swift::NameLookupFlags, unsigned int>) + 212
+16 swift                    0x0000000100d65184 resolveIdentTypeComponent(swift::TypeResolution, llvm::ArrayRef<swift::ComponentIdentTypeRepr*>, swift::TypeResolutionOptions) + 732
+17 swift                    0x0000000100d64b98 swift::TypeChecker::resolveIdentifierType(swift::TypeResolution, swift::IdentTypeRepr*, swift::TypeResolutionOptions) + 196
+18 swift                    0x0000000100d6726c (anonymous namespace)::TypeResolver::resolveType(swift::TypeRepr*, swift::TypeResolutionOptions) + 276
+19 swift                    0x0000000100d66f2c swift::TypeResolution::resolveType(swift::TypeRepr*, swift::TypeResolutionOptions) + 444
+20 swift                    0x0000000100c8eda0 swift::UnderlyingTypeRequest::evaluate(swift::Evaluator&, swift::TypeAliasDecl*) const + 656
+21 swift                    0x0000000100f774d0 swift::UnderlyingTypeRequest::OutputType swift::evaluateOrDefault<swift::UnderlyingTypeRequest>(swift::Evaluator&, swift::UnderlyingTypeRequest, swift::UnderlyingTypeRequest::OutputType) + 1072
+22 swift                    0x0000000100ed1440 swift::ASTVisitor<(anonymous namespace)::PrintDecl, void, void, void, void, void, void>::visit(swift::Decl*) + 6460
+23 swift                    0x0000000100ed09fc swift::ASTVisitor<(anonymous namespace)::PrintDecl, void, void, void, void, void, void>::visit(swift::Decl*) + 3832
+24 swift                    0x0000000100ed4728 swift::SourceFile::dump(llvm::raw_ostream&) const + 776
+25 swift                    0x000000010007f24c swift::performFrontend(llvm::ArrayRef<char const*>, char const*, void*, swift::FrontendObserver*) + 7128
+26 swift                    0x00000001000188c0 main + 1132
+27 libdyld.dylib            0x0000000190691f34 start + 4
 <unknown>:0: error: unable to execute command: Abort trap: 6
 <unknown>:0: error: compile command failed due to signal 6 (use -v to see invocation)
 
