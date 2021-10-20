@@ -60,7 +60,7 @@ extension NodeScene {
     override func rightMouseDown(with event: NSEvent) {
         let position = event.location(in: self)
         let nodes = self.nodes(at: position).filter { $0.name == ShapeNode.name }
-        guard let clickedNode = nearestNodeTo(position: position, nodes: nodes) as? ShapeNode else {
+        guard let clickedNode = nearestNodeTo(position: position, nodes: nodes) as? ShapeNode, !clickedNode.scope.isEmpty else {
             return
         }
         guard let view = view else {
