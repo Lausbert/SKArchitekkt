@@ -7,18 +7,18 @@ extension ArcNode {
 
     // MARK: - Internal -
 
-    static func diffChildren(oldVirtualArcs: [VirtualArc], newVirtualArcs: [VirtualArc]) -> (SKNode) -> Void {
+    static func diffChildren(oldVirtualArcNodes: [VirtualArcNode], newVirtualArcNodes: [VirtualArcNode]) -> (SKNode) -> Void {
 
         var childPatches: [(SKNode) -> Void] = []
-        for (index, oldVirtualArc) in oldVirtualArcs.enumerated() {
-            childPatches.append(diff(oldVirtualArc: oldVirtualArc, newVirtualArc: newVirtualArcs[safe: index]))
+        for (index, oldVirtualArcNode) in oldVirtualArcNodes.enumerated() {
+            childPatches.append(diff(oldVirtualArcNode: oldVirtualArcNode, newVirtualArcNode: newVirtualArcNodes[safe: index]))
         }
 
         var additionalPatches: [(SKNode) -> Void] = []
-        if newVirtualArcs.endIndex > oldVirtualArcs.endIndex {
-            for newVirtualArc in newVirtualArcs[oldVirtualArcs.endIndex...] {
+        if newVirtualArcNodes.endIndex > oldVirtualArcNodes.endIndex {
+            for newVirtualArcNode in newVirtualArcNodes[oldVirtualArcNodes.endIndex...] {
                 additionalPatches.append { parent in
-                    let newArcNode = render(newVirtualArc)
+                    let newArcNode = render(newVirtualArcNode)
                     parent.addChild(newArcNode)
                 }
             }
@@ -36,29 +36,29 @@ extension ArcNode {
 
     // MARK: - Private -
 
-    private static func render(_ virtualArc: VirtualArc) -> ArcNode {
+    private static func render(_ virtualArcNode: VirtualArcNode) -> ArcNode {
         ArcNode(
-            sourceIdentifier: virtualArc.sourceIdentifier,
-            destinationIdentifier: virtualArc.destinationIdentifier,
-            weight: virtualArc.weight
+            sourceIdentifier: virtualArcNode.sourceIdentifier,
+            destinationIdentifier: virtualArcNode.destinationIdentifier,
+            weight: virtualArcNode.weight
         )
     }
 
-    private static func diff(oldVirtualArc: VirtualArc, newVirtualArc: VirtualArc?) -> (SKNode) -> Void {
-        guard let newVirtualArc = newVirtualArc else {
+    private static func diff(oldVirtualArcNode: VirtualArcNode, newVirtualArcNode: VirtualArcNode?) -> (SKNode) -> Void {
+        guard let newVirtualArcNode = newVirtualArcNode else {
             return { oldArcNode in
                 oldArcNode.removeFromParent()
             }
         }
 
-        if newVirtualArc != oldVirtualArc {
+        if newVirtualArcNode != oldVirtualArcNode {
             return { oldArcNode in
                 guard let parent = oldArcNode.parent, let index = parent.children.firstIndex(of: oldArcNode) else {
                     assertionFailure()
                     return
                 }
                 oldArcNode.removeFromParent()
-                let newArcNode = render(newVirtualArc)
+                let newArcNode = render(newVirtualArcNode)
                 parent.insertChild(newArcNode, at: index)
             }
         }

@@ -30,10 +30,10 @@ extension NodeScene {
     }
 
     func setUpRendering() {
-        oldVirtualNodes = []
+        oldVirtualShapeNodes = []
         shapeRootNode = ShapeNode.create(isShape: false)
         shapeNodesDictionary = [:]
-        oldVirtualArcs = []
+        oldVirtualArcNodes = []
         arcRootNode = SKNode()
         arcNodes = []
         scene?.addChild(shapeRootNode)
@@ -63,16 +63,16 @@ extension NodeScene {
         set { NodeScene.rootNodeObjectAssociation[self] = newValue }
     }
 
-    private static let oldVirtualNodesObjectAssociation = ObjectAssociation<[VirtualNode]>()
-    private(set) var oldVirtualNodes: [VirtualNode] {
-        get { NodeScene.oldVirtualNodesObjectAssociation[self] ?? [] }
-        set { NodeScene.oldVirtualNodesObjectAssociation[self] = newValue }
+    private static let oldVirtualShapeNodesObjectAssociation = ObjectAssociation<[VirtualShapeNode]>()
+    private(set) var oldVirtualShapeNodes: [VirtualShapeNode] {
+        get { NodeScene.oldVirtualShapeNodesObjectAssociation[self] ?? [] }
+        set { NodeScene.oldVirtualShapeNodesObjectAssociation[self] = newValue }
     }
 
-    private static let oldVirtualArcsObjectAssociation = ObjectAssociation<[VirtualArc]>()
-    private(set) var oldVirtualArcs: [VirtualArc] {
-        get { NodeScene.oldVirtualArcsObjectAssociation[self] ?? [] }
-        set { NodeScene.oldVirtualArcsObjectAssociation[self] = newValue }
+    private static let oldVirtualArcNodesObjectAssociation = ObjectAssociation<[VirtualArcNode]>()
+    private(set) var oldVirtualArcNodes: [VirtualArcNode] {
+        get { NodeScene.oldVirtualArcNodesObjectAssociation[self] ?? [] }
+        set { NodeScene.oldVirtualArcNodesObjectAssociation[self] = newValue }
     }
 
     private static let arcRootNodeObjectAssociation = ObjectAssociation<SKNode>()
@@ -149,21 +149,21 @@ extension NodeScene {
         updateStatus(description: "Calculating Transformations", progress: 0.0)
         let firstOrderVirtualTransformations = document.firstOrderVirtualTransformations
         updateStatus(description: "Updating Arcs", progress: 0.25)
-        let newVirtualArcs = VirtualArc.createVirtualArcs(
+        let newVirtualArcNodes = VirtualArcNode.createVirtualArcNodes(
             from: document.node,
             with: firstOrderVirtualTransformations
         )
-        let arcNodePatch = ArcNode.diffChildren(oldVirtualArcs: oldVirtualArcs, newVirtualArcs: newVirtualArcs)
-        oldVirtualArcs = newVirtualArcs
+        let arcNodePatch = ArcNode.diffChildren(oldVirtualArcNodes: oldVirtualArcNodes, newVirtualArcNodes: newVirtualArcNodes)
+        oldVirtualArcNodes = newVirtualArcNodes
         updateStatus(description: "Updating Nodes", progress: 0.5)
-        let newVirtualNodes = VirtualNode.createVirtualNodes(
+        let newVirtualShapeNodes = VirtualShapeNode.createVirtualShapeNodes(
             from: document.node,
             with: firstOrderVirtualTransformations,
-            and: newVirtualArcs
+            and: newVirtualArcNodes
         )
-        let alignedNewVirtualNodes = VirtualNode.align(newVirtualNodes: newVirtualNodes, with: oldVirtualNodes)
-        let shapeNodePatch = ShapeNode.diffChildren(oldVirtualNodes: oldVirtualNodes, newVirtualNodes: alignedNewVirtualNodes, settings: shapeNodeSettings)
-        oldVirtualNodes = alignedNewVirtualNodes
+        let alignedNewVirtualShapeNodes = VirtualShapeNode.align(newVirtualShapeNodes: newVirtualShapeNodes, with: oldVirtualShapeNodes)
+        let shapeNodePatch = ShapeNode.diffChildren(oldVirtualShapeNodes: oldVirtualShapeNodes, newVirtualShapeNodes: alignedNewVirtualShapeNodes, settings: shapeNodeSettings)
+        oldVirtualShapeNodes = alignedNewVirtualShapeNodes
         completion((shapeNodePatch, arcNodePatch))
     }
     
@@ -181,7 +181,7 @@ extension NodeScene {
             uniqueKeysWithValues: shapeRootNode.allDescendants.map({ ($0.id, $0) })
         )
         shapeNodesDictionary[shapeRootNode.id] = shapeRootNode
-        let radius = VirtualNode.radius(for: oldVirtualNodes)
+        let radius = VirtualShapeNode.radius(for: oldVirtualShapeNodes)
         shapeRootNode.update(radius: radius, settings: shapeNodeSettings)
     }
 
