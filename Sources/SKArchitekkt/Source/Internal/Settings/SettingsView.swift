@@ -109,7 +109,7 @@ struct SettingsView: View {
             case let .deletable(virtualTransformation):
                 HStack {
                     switch virtualTransformation {
-                    case .unfoldNode, .hideNode, .flattenNode, .unfoldScope, .hideScope, .flattenScope:
+                    case .unfoldNode, .hideNode, .flattenNode, .fixNode, .unfoldScope, .hideScope, .flattenScope:
                         Text(settingsItem.name)
                             .font(.subheadline).padding(6)
                     case .unfoldNodes, .hideNodes, .flattenNodes, .unfoldScopes, .hideScopes, .flattenScopes:

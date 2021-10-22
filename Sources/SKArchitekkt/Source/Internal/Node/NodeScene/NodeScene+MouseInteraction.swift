@@ -82,18 +82,21 @@ extension NodeScene {
                 let flattenNodeItem = NSMenuItem(title: "Flatten \(clickedNode.nodeName ?? clickedNode.scope)", action: #selector(flattenNode), keyEquivalent: "")
                 flattenNodeItem.target = self
                 menu.insertItem(flattenNodeItem, at: 2)
+                let fixNodeItem = NSMenuItem(title: "Fix \(clickedNode.nodeName ?? clickedNode.scope)", action: #selector(fixNode), keyEquivalent: "")
+                fixNodeItem.target = self
+                menu.insertItem(fixNodeItem, at: 3)
                 let separator = NSMenuItem.separator()
-                menu.insertItem(separator, at: 3)
+                menu.insertItem(separator, at: 4)
                 let unfoldScopePrefix = document.secondOrderVirtualTransformations.contains(.unfoldScope(scope: clickedNode.scope)) ? "Fold" : "Unfold"
                 let unfoldScopeItem = NSMenuItem(title: "\(unfoldScopePrefix) all \(clickedNode.scope)'s", action: #selector(unfoldScope), keyEquivalent: "")
                 unfoldScopeItem.target = self
-                menu.insertItem(unfoldScopeItem, at: 4)
+                menu.insertItem(unfoldScopeItem, at: 5)
                 let hideScopeItem = NSMenuItem(title: "Hide all \(clickedNode.scope)'s", action: #selector(hideScope), keyEquivalent: "")
                 hideScopeItem.target = self
-                menu.insertItem(hideScopeItem, at: 5)
+                menu.insertItem(hideScopeItem, at: 6)
                 let flattenScopeItem = NSMenuItem(title: "Flatten all \(clickedNode.scope)'s", action: #selector(flattenScope), keyEquivalent: "")
                 flattenScopeItem.target = self
-                menu.insertItem(flattenScopeItem, at: 6)
+                menu.insertItem(flattenScopeItem, at: 7)
                 menu.popUp(positioning: nil, at: view.convert(event.location(in: self), from: self), in: view)
             default:
                 break
@@ -174,6 +177,14 @@ extension NodeScene {
             return
         }
         toggle(virtualTransformation: .flattenNode(id: focusedNode.id), withName: focusedNode.nodeName ?? focusedNode.scope)
+    }
+    
+    @objc private func fixNode() {
+        guard let focusedNode = focusedNode else {
+            assertionFailure()
+            return
+        }
+        toggle(virtualTransformation: .fixNode(id: focusedNode.id), withName: focusedNode.nodeName ?? focusedNode.scope)
     }
 
     @objc private func unfoldScope() {
