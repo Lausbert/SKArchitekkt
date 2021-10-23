@@ -57,6 +57,7 @@ extension ShapeNode {
             radius: node.radius,
             ingoingArcsWeight: node.ingoingArcsWeight,
             outgoingArcsWeight: node.outgoingArcsWeight,
+            isFixed: node.isFixed,
             settings: settings
         )
     }
@@ -88,13 +89,16 @@ extension ShapeNode {
         }
     }
 
-    private static func diffAttributes(oldVirtualShapeNode: VirtualShapeNode, newVirtualShapeNode: VirtualShapeNode, settings: Settings) -> (ShapeNode) -> Void { { oldShapeNode in
-        if oldVirtualShapeNode.radius != newVirtualShapeNode.radius {
-            oldShapeNode.update(radius: newVirtualShapeNode.radius, settings: settings)
-        }
-        if oldVirtualShapeNode.ingoingArcsWeight != newVirtualShapeNode.ingoingArcsWeight || oldVirtualShapeNode.outgoingArcsWeight != newVirtualShapeNode.outgoingArcsWeight {
+    private static func diffAttributes(oldVirtualShapeNode: VirtualShapeNode, newVirtualShapeNode: VirtualShapeNode, settings: Settings) -> (ShapeNode) -> Void {
+        { oldShapeNode in
+            if oldVirtualShapeNode.radius != newVirtualShapeNode.radius
+            || oldVirtualShapeNode.ingoingArcsWeight != newVirtualShapeNode.ingoingArcsWeight
+            || oldVirtualShapeNode.outgoingArcsWeight != newVirtualShapeNode.outgoingArcsWeight
+            || oldVirtualShapeNode.isFixed != newVirtualShapeNode.isFixed {
+            oldShapeNode.update(isFixed: newVirtualShapeNode.isFixed)
             oldShapeNode.update(ingoingArcsWeigt: newVirtualShapeNode.ingoingArcsWeight, outgoingArcsWeight: newVirtualShapeNode.outgoingArcsWeight)
-        }
+            oldShapeNode.update(radius: newVirtualShapeNode.radius, settings: settings)
+            }
         }
     }
 

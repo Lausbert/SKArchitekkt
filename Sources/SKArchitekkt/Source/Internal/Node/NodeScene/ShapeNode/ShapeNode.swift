@@ -34,6 +34,7 @@ class ShapeNode: SKShapeNode {
         ingoingArcsWeight: Int = 0,
         outgoingArcsWeight: Int = 0,
         isShape: Bool = true,
+        isFixed: Bool = false,
         settings: Settings = Settings()
     ) -> ShapeNode {
         let shapeNode = pool.popLast() ?? ShapeNode()
@@ -47,6 +48,7 @@ class ShapeNode: SKShapeNode {
         shapeNode.outgoingArcsWeight = outgoingArcsWeight
         shapeNode.isShape = isShape
         shapeNode.setUp(children)
+        shapeNode.isFixed = isFixed
         shapeNode.update(radius: radius, settings: settings)
         if isShape {
             shapeNode.name = ShapeNode.name
@@ -66,7 +68,11 @@ class ShapeNode: SKShapeNode {
     private(set) var resultingRadius: CGFloat = 0
     private(set) var physicalRadius: CGFloat = 0
     private(set) var visualRadius: CGFloat = 0
+    private var isFixed = false
     private var isShape: Bool = true
+    private var strokeWidth: CGFloat {
+        isFixed ? 64.0 : 8.0
+    }
 
     var allDescendants: [ShapeNode] {
            return castedChildren + castedChildren.flatMap { $0.allDescendants }
@@ -143,7 +149,7 @@ class ShapeNode: SKShapeNode {
         let minimumResultingRadius = castedChildren.map { $0.resultingRadius }.max() ?? 0
         self.resultingRadius = max(minimumResultingRadius, radius + settings.ingoingArcsRadiusMultiplier*sqrt(CGFloat(ingoingArcsWeight)) + settings.outgoingArcsRadiusMultiplier*sqrt(CGFloat(outgoingArcsWeight)))
         self.physicalRadius = max(1, settings.physicalRadiusMultiplier*resultingRadius)
-        self.visualRadius = max(1, settings.visualRadiusMultiplier*resultingRadius)
+        self.visualRadius = max(1, (settings.visualRadiusMultiplier*resultingRadius)+0.5*strokeWidth)
         guard isShape else {
             return
         }
@@ -157,6 +163,15 @@ class ShapeNode: SKShapeNode {
     func update(ingoingArcsWeigt: Int, outgoingArcsWeight: Int) {
         self.ingoingArcsWeight = ingoingArcsWeigt
         self.outgoingArcsWeight = outgoingArcsWeight
+    }
+    
+    func update(isFixed: Bool) {
+        self.isFixed = isFixed
+        set(isDynamic: true)
+    }
+    
+    func set(isDynamic: Bool) {
+        physicsBody?.isDynamic = !isFixed && isDynamic
     }
 
     // MARK: - Private -
@@ -192,7 +207,7 @@ class ShapeNode: SKShapeNode {
 
     private func setUpPhysicsBody() {
         let physicsBody = SKPhysicsBody(circleOfRadius: physicalRadius)
-        physicsBody.isDynamic = true
+        physicsBody.isDynamic = !isFixed
         physicsBody.charge = 0
         physicsBody.mass = physicalRadius^^2
         physicsBody.linearDamping = 0
@@ -211,7 +226,7 @@ class ShapeNode: SKShapeNode {
         let color = settings.colorDictionary[nodeName] ?? settings.colorDictionary[scope] ?? .gray
         fillColor = castedChildren.isEmpty ? color.withAlphaComponent(0.8) : color.withAlphaComponent(0.1)
         strokeColor = color
-        lineWidth = 8
+        lineWidth = strokeWidth
     }
 
     private func updatePath() {

@@ -25,7 +25,7 @@ extension NodeScene {
             switch event.clickCount {
             case 1:
                 for node in nodes {
-                    node.physicsBody?.isDynamic = false
+                    (node as? ShapeNode)?.set(isDynamic: false)
                     frozenNodes.append(node)
                 }
                 movedNode = replaceNodeWithParentIfNeeded(node: clickedNode)
@@ -51,7 +51,7 @@ extension NodeScene {
 
     override func mouseUp(with event: NSEvent) {
         for node in frozenNodes {
-            node.physicsBody?.isDynamic = true
+            (node as? ShapeNode)?.set(isDynamic: true)
         }
         frozenNodes = []
         movedNode = nil
@@ -82,7 +82,8 @@ extension NodeScene {
                 let flattenNodeItem = NSMenuItem(title: "Flatten \(clickedNode.nodeName ?? clickedNode.scope)", action: #selector(flattenNode), keyEquivalent: "")
                 flattenNodeItem.target = self
                 menu.insertItem(flattenNodeItem, at: 2)
-                let fixNodeItem = NSMenuItem(title: "Fix \(clickedNode.nodeName ?? clickedNode.scope)", action: #selector(fixNode), keyEquivalent: "")
+                let fixNodePrefix = document.secondOrderVirtualTransformations.contains(.fixNode(id: clickedNode.id)) ? "Unfix" : "Fix"
+                let fixNodeItem = NSMenuItem(title: "\(fixNodePrefix) \(clickedNode.nodeName ?? clickedNode.scope)", action: #selector(fixNode), keyEquivalent: "")
                 fixNodeItem.target = self
                 menu.insertItem(fixNodeItem, at: 3)
                 let separator = NSMenuItem.separator()
