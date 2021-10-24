@@ -97,7 +97,7 @@ extension ShapeNode {
             || oldVirtualShapeNode.isFixed != newVirtualShapeNode.isFixed {
             oldShapeNode.update(isFixed: newVirtualShapeNode.isFixed)
             oldShapeNode.update(ingoingArcsWeigt: newVirtualShapeNode.ingoingArcsWeight, outgoingArcsWeight: newVirtualShapeNode.outgoingArcsWeight)
-            oldShapeNode.update(radius: newVirtualShapeNode.radius, settings: settings)
+            oldShapeNode.update(radius: newVirtualShapeNode.radius, settings: settings) // needs to be called at last
             }
         }
     }
